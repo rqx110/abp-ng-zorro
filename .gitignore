@@ -1,0 +1,15 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# IDEs and editors
+.vs/
+/aspnet-core/src/MyCompanyName.AbpZeroTemplate.Web.Mvc/Properties/PublishProfiles/FolderProfile.pubxml
+aspnet-core/test/JMeter/AspNetZeroDotNetCoreSimpleTest.jmx
+/aspnet-core/build/outputs
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+aspnet-core/DeleteBinsAndObjs.bat
+
+*.pubxml

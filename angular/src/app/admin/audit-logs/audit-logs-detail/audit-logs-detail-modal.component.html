@@ -1,0 +1,122 @@
+<div class="modal-header">
+    <div class="modal-title">
+        {{l("AuditLogDetail")}}
+    </div>
+</div>
+<div>
+    <div>
+        <h3>{{l("UserInformations")}}</h3>
+        <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="4">
+                <label>{{l("UserName")}}:</label>
+            </div>
+            <div nz-col [nzSpan]="10">
+                <span>{{auditLog.userName}}</span>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="4">
+                <label>{{l("IpAddress")}}:</label>
+            </div>
+            <div nz-col [nzSpan]="10">
+                <span>{{auditLog.clientIpAddress}}</span>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="4">
+                <label>{{l("Client")}}:</label>
+            </div>
+            <div nz-col [nzSpan]="10">
+                <span>{{auditLog.clientName}}</span>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="4">
+                <label>{{l("Browser")}}:</label>
+            </div>
+            <div nz-col [nzSpan]="10">
+                <span>{{auditLog.browserInfo}}</span>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8" *ngIf="auditLog.impersonatorUserId">
+            <div nz-col [nzSpan]="4">
+                <label></label>
+            </div>
+            <div nz-col [nzSpan]="10">
+                <span>{{AuditLogImpersonatedOperationInfo}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h3>{{l("ActionInformations")}}</h3>
+        <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="4">
+                <label>{{l("Service")}}:</label>
+            </div>
+            <div nz-col [nzSpan]="10">
+                <span>{{auditLog.serviceName}}</span>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="4">
+                <label>{{l("Action")}}:</label>
+            </div>
+            <div nz-col [nzSpan]="10">
+                <span>{{auditLog.methodName}}</span>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="4">
+                <label>{{l("Time")}}:</label>
+            </div>
+            <div nz-col [nzSpan]="10">
+                <span>{{getExecutionTime()}}</span>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="4">
+                <label>{{l("Duration")}}:</label>
+            </div>
+            <div nz-col [nzSpan]="10">
+                <span>{{getDurationAsMs()}}</span>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="4">
+                <label>{{l("Parameters")}}:</label>
+            </div>
+            <div nz-col [nzSpan]="10">
+                <pre lang="js">{{getFormattedParameters()}}</pre>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h3>{{l("CustomData")}}</h3>
+        <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="8">
+                <label> {{l("None")}}:</label>
+            </div>
+            <div nz-col [nzSpan]="10">
+                <span>{{auditLog.customData}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h3>{{l("ErrorState")}}</h3>
+        <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="4">
+                <nz-badge *ngIf="auditLog.exception " [nzStatus]="'error'" [nzText]="l('Error')"></nz-badge>
+                <nz-badge *ngIf="!auditLog.exception " [nzStatus]="'success'" [nzText]="l('Success')"></nz-badge>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button nz-button type="button" (click)="close()">
+        {{l("Cancel")}}
+    </button>
+</div>

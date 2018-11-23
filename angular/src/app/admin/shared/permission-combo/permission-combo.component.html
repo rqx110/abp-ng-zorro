@@ -1,0 +1,3 @@
+<nz-tree-select style="width: 100%;" nzDefaultExpandAll="true" nzShowSearch="true" [nzNodes]="_treeData" [nzPlaceHolder]="l('FilterByPermission')"
+  [(ngModel)]="selectedPermission" (ngModelChange)="selectedChange($event)" [nzMultiple]="multiple" [nzDropdownStyle]="dropDownStyle">
+</nz-tree-select>

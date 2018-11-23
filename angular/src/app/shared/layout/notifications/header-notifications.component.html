@@ -1,0 +1,54 @@
+<nz-popover nzTrigger="click" nzPlacement="bottomRight" nzOverlayClassName="notice-icon">
+    <div nz-popover class="alain-default__nav-item notice-icon__item">
+        <nz-badge [nzCount]="unreadNotificationCount">
+            <i nz-icon type="bell" class="alain-default__nav-item-icon"></i>
+        </nz-badge>
+    </div>
+    <ng-template #nzTemplate>
+        <nz-spin [nzSpinning]="loading" [nzDelay]="0">
+            <nz-card [nzTitle]="nzTitle" [nzLoading]="loading" [nzExtra]="extra" [nzBordered]="false" class="ant-card__body-nopadding mb0">
+                <ng-template #nzTitle>
+                    {{unreadNotificationCount}} {{l('NewNotifications')}}
+                </ng-template>
+                <ng-template #extra>
+                    <a (click)="openNotificationSettingsModal()">
+                        {{l('Settings')}}
+                    </a>
+                </ng-template>
+                <div *ngIf="notifications?.length === 0; else listTpl" class="notice-icon__notfound">
+                    <p>{{l("ThereIsNoNotification")}}</p>
+                </div>
+                <ng-template #listTpl>
+                    <nz-list [nzDataSource]="notifications" [nzRenderItem]="item">
+                        <ng-template #item let-item>
+                            <nz-list-item (click)="gotoUrl(item.url)">
+                                <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription" [nzAvatar]="nzAvatar">
+                                    <ng-template #nzTitle>
+                                        {{item.text}}
+                                    </ng-template>
+                                    <ng-template #nzDescription>
+                                        <div *ngIf="item.time" class="notice-icon__item-time">
+                                            {{item.time | momentFromNow}}
+                                            <span *ngIf="item.isUnread">
+                                                <a href="javascript:;" *ngIf="item.state=='UNREAD'" class="notice-icon__item-extra"
+                                                    (click)="setNotificationAsRead(item); $event.preventDefault(); $event.stopPropagation();">{{l("SetAsRead")}}</a>
+                                            </span>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template #nzAvatar>
+                                        <i nz-icon [type]="item.icon" class="display-3"></i>
+                                    </ng-template>
+                                </nz-list-item-meta>
+                            </nz-list-item>
+                        </ng-template>
+                    </nz-list>
+                    <div class="notice-icon__clear" *ngIf="notifications.length">
+                        <a href="javascript:;" (click)="setAllNotificationsAsRead();" *ngIf="unreadNotificationCount">{{l("SetAllAsRead")}}</a>
+                        <nz-divider nzType="vertical" *ngIf="unreadNotificationCount"></nz-divider>
+                        <a routerLink="notifications">{{l("SeeAllNotifications")}}</a>
+                    </div>
+                </ng-template>
+            </nz-card>
+        </nz-spin>
+    </ng-template>
+</nz-popover>

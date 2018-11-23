@@ -1,0 +1,84 @@
+<nz-card [nzTitle]="l('TenantSignUp')">
+    <div *ngIf="model.edition" class="text-center">({{l("Edition")}}: {{model.edition.displayName}})</div>
+    <form nz-form #registerForm="ngForm" method="post" novalidate (ngSubmit)="save()" role="form">
+        <h4>{{l("TenantInformations")}}</h4>
+        <nz-form-item>
+            <nz-form-control nzHasFeedback>
+                <input nz-input #tenancyName="ngModel" autoFocus placeholder="{{l('TenancyName')}} *" [(ngModel)]="model.tenancyName"
+                    name="tenancyName" required maxlength="64" pattern="^[a-zA-Z][a-zA-Z0-9_-]{1,}$" />
+                <nz-form-explain *ngIf="!tenancyName.valid && !tenancyName.pristine">{{l("TenantName_Regex_Description")}}</nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control nzHasFeedback>
+                <input nz-input #nameInput="ngModel" placeholder="{{l('Name')}} *" [(ngModel)]="model.name" name="Name"
+                    required maxlength="128" />
+                <nz-form-explain>
+                    <validation-messages [formCtrl]="nameInput"></validation-messages>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <h4>
+            {{l("AccountSettings")}}
+        </h4>
+        <nz-form-item>
+            <nz-form-control nzHasFeedback>
+                <input nz-input #adminEmailAddressInput="ngModel" type="email" placeholder="{{l('AdminEmailAddress')}} *"
+                    [(ngModel)]="model.adminEmailAddress" name="adminEmailAddress" required maxlength="256" email />
+                <nz-form-explain>
+                    <validation-messages [formCtrl]="adminEmailAddressInput"></validation-messages>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control nzHasFeedback>
+                <input nz-input type="password" name="Password" class="form-control" [(ngModel)]="model.adminPassword"
+                    #Password="ngModel" placeholder="{{l('AdminPassword')}}" validateEqual="PasswordRepeat" reverse="true"
+                    [requireDigit]="passwordComplexitySetting.requireDigit" [requireLowercase]="passwordComplexitySetting.requireLowercase"
+                    [requireUppercase]="passwordComplexitySetting.requireUppercase" [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric"
+                    [requiredLength]="passwordComplexitySetting.requiredLength" required>
+                <nz-form-explain [hidden]="Password.valid || Password.pristine">
+                    <ul *ngIf="Password.errors">
+                        <li [hidden]="!Password.errors.requireDigit">{{l("PasswordComplexity_RequireDigit_Hint")}}</li>
+                        <li [hidden]="!Password.errors.requireLowercase">{{l("PasswordComplexity_RequireLowercase_Hint")}}</li>
+                        <li [hidden]="!Password.errors.requireUppercase">{{l("PasswordComplexity_RequireUppercase_Hint")}}</li>
+                        <li [hidden]="!Password.errors.requireNonAlphanumeric">{{l("PasswordComplexity_RequireNonAlphanumeric_Hint")}}</li>
+                        <li [hidden]="!Password.errors.requiredLength">{{l("PasswordComplexity_RequiredLength_Hint",
+                            passwordComplexitySetting.requiredLength)}}</li>
+                    </ul>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-control nzHasFeedback>
+                <input nz-input type="password" name="PasswordRepeat" class="form-control" [ngModel]="model.passwordRepeat"
+                    #PasswordRepeat="ngModel" placeholder="{{l('PasswordRepeat')}}" validateEqual="Password" reverse="false"
+                    [requireDigit]="passwordComplexitySetting.requireDigit" [requireLowercase]="passwordComplexitySetting.requireLowercase"
+                    [requireUppercase]="passwordComplexitySetting.requireUppercase" [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric"
+                    [requiredLength]="passwordComplexitySetting.requiredLength" required>
+                <nz-form-explain [hidden]="PasswordRepeat.valid || PasswordRepeat.pristine">
+                    <ul *ngIf="PasswordRepeat.errors">
+                        <li [hidden]="!PasswordRepeat.errors.requireDigit">{{l("PasswordComplexity_RequireDigit_Hint")}}</li>
+                        <li [hidden]="!PasswordRepeat.errors.requireLowercase">{{l("PasswordComplexity_RequireLowercase_Hint")}}</li>
+                        <li [hidden]="!PasswordRepeat.errors.requireUppercase">{{l("PasswordComplexity_RequireUppercase_Hint")}}</li>
+                        <li [hidden]="!PasswordRepeat.errors.requireNonAlphanumeric">{{l("PasswordComplexity_RequireNonAlphanumeric_Hint")}}</li>
+                        <li [hidden]="!PasswordRepeat.errors.requiredLength">{{l("PasswordComplexity_RequiredLength_Hint",
+                            passwordComplexitySetting.requiredLength)}}</li>
+                        <li [hidden]="PasswordRepeat.valid">{{l("PasswordsDontMatch")}}</li>
+                    </ul>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row nzGutter="8">
+            <nz-col nzSm="12">
+                <button nz-button nzType="primary" nzSize="large" type="submit" [disabled]="!registerForm.form.valid"
+                    [nzLoading]="saving" nzBlock>{{l("Submit")}}</button>
+            </nz-col>
+            <nz-col nzSm="12">
+                <button nz-button nzType="default" nzSize="large" type="button" [disabled]="saving" routerLink="/account/login"
+                    nzBlock>{{l("Back")}}</button>
+            </nz-col>
+        </nz-form-item>
+    </form>
+</nz-card>

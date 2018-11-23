@@ -1,0 +1,17 @@
+<page-header [title]="title">
+    <ng-template #title>
+        {{l('OrganizationUnits')}}
+        <span class="text-sm text-grey-dark">
+            <nz-divider nzType="vertical"></nz-divider>
+            {{l('OrganizationUnitsHeaderInfo')}}
+        </span>
+    </ng-template>
+</page-header>
+<nz-row nzGutter="8">
+    <nz-col nzSpan="8">
+        <organization-tree #ouTree (selectedChange)="ouMembers.organizationUnit = $event"></organization-tree>
+    </nz-col>
+    <nz-col nzSpan="16">
+        <organization-unit-members #ouMembers (membersAdded)="ouTree.membersAdded($event)" (memberRemoved)="ouTree.memberRemoved($event)"></organization-unit-members>
+    </nz-col>
+</nz-row>

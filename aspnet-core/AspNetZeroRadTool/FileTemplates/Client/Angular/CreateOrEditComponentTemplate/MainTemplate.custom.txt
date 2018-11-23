@@ -1,0 +1,55 @@
+﻿import { Component, OnInit, Injector } from '@angular/core';
+import { finalize } from 'rxjs/operators';
+import { {{Entity_Name_Plural_Here}}ServiceProxy, CreateOrEdit{{Entity_Name_Here}}Dto } from '@shared/service-proxies/service-proxies';
+import { ModalComponentBase } from '@shared/common/modal-component-base';
+{{NP_Looped_Lookup_Component_Import_Here}}
+
+@Component({
+    selector: 'createOrEdit{{Entity_Name_Here}}Modal',
+    templateUrl: './create-or-edit-{{entity_Name_Here}}-modal.component.html'
+})
+export class CreateOrEdit{{Entity_Name_Here}}ModalComponent extends ModalComponentBase implements OnInit {
+
+    {{entity_Name_Here}}Id?: number;
+
+    active = false;
+    saving = false;
+
+    {{entity_Name_Here}}: CreateOrEdit{{Entity_Name_Here}}Dto = new CreateOrEdit{{Entity_Name_Here}}Dto();
+	{{NP_Looped_Display_Declaration_Here}}
+
+    constructor(
+        injector: Injector,
+        private _{{entity_Name_Plural_Here}}ServiceProxy: {{Entity_Name_Plural_Here}}ServiceProxy
+    ) {
+        super(injector);
+    }
+
+	ngOnInit(): void {
+        
+        this.init();
+    }
+
+	init(): void {
+        if (this.{{entity_Name_Here}}Id) {		
+            this._{{entity_Name_Plural_Here}}ServiceProxy.get{{Entity_Name_Here}}ForEdit(this.{{entity_Name_Here}}Id).subscribe(result => {
+                    this.{{entity_Name_Here}} = result.{{entity_Name_Here}};
+                    {{NP_Looped_Edit_Bind_Here}}
+                });
+        }
+    }
+
+    save(): void {
+			this.saving = true;
+			this._{{entity_Name_Plural_Here}}ServiceProxy.createOrEdit(this.{{entity_Name_Here}})
+			 .pipe(finalize(() => { this.saving = false; }))
+			 .subscribe(() => {
+			    this.notify.info(this.l('SavedSuccessfully'));
+				this.success();
+             });
+    }
+
+	{{NP_Looped_OpenModal_Here}}
+
+	{{NP_Looped_SetNull_Here}}
+}

@@ -1,0 +1,92 @@
+import { Component, Injector } from '@angular/core';
+import {
+    PagedListingComponentBase,
+    PagedRequestDto,
+} from '@shared/common/paged-listing-component-base';
+import {
+    TenantServiceProxy,
+    TenantListDto,
+    EntityDtoOfInt64,
+} from '@shared/service-proxies/service-proxies';
+import { CreateTenantModalComponent } from './create-tenant-modal.component';
+import { finalize } from 'rxjs/operators';
+import { EditTenantModalComponent } from './edit-tenant-modal.component';
+
+@Component({
+    selector: 'app-tenants',
+    templateUrl: './tenants.component.html',
+    styles: [],
+})
+export class TenantsComponent extends PagedListingComponentBase<TenantListDto> {
+    subscriptionDateRange = [];
+    creationDateRange = [];
+
+    filters: {
+        filterText: string;
+        creationDateRangeActive: boolean;
+        subscriptionEndDateRangeActive: boolean;
+        selectedEditionId: number;
+    } = <any>{};
+
+    constructor(injector: Injector, private _tenantService: TenantServiceProxy) {
+        super(injector);
+    }
+
+    protected fetchDataList(
+        request: PagedRequestDto,
+        pageNumber: number,
+        finishedCallback: () => void,
+    ): void {
+        this._tenantService
+            .getTenants(
+                this.filters.filterText,
+                this.filters.subscriptionEndDateRangeActive ? this.subscriptionDateRange[0] : undefined,
+                this.filters.subscriptionEndDateRangeActive ? this.subscriptionDateRange[1] : undefined,
+                this.filters.creationDateRangeActive ? this.creationDateRange[0] : undefined,
+                this.filters.creationDateRangeActive ? this.creationDateRange[1] : undefined,
+                this.filters.selectedEditionId,
+                this.filters.selectedEditionId !== undefined && (this.filters.selectedEditionId + '') !== '-1',
+                request.sorting,
+                request.maxResultCount,
+                request.skipCount,
+            )
+            .pipe(finalize(finishedCallback))
+            .subscribe(result => {
+                this.dataList = result.items;
+                this.showPaging(result);
+            });
+    }
+
+    unlockAdminUser(tenant: TenantListDto): void {
+        this._tenantService.unlockTenantAdmin(new EntityDtoOfInt64({ id: tenant.id })).subscribe(() => {
+            this.notify.success(this.l('UnlockedTenandAdmin', tenant.name));
+        });
+    }
+
+    changeFeatures(entity: TenantListDto): void { }
+
+    editTenant(tenant: TenantListDto): void {
+        this.modalHelper.createStatic(EditTenantModalComponent, {
+            tenantId: tenant.id
+        }, {size: 'md'})
+            .subscribe(() => { this.refresh(); });
+    }
+
+    protected delete(tenant: TenantListDto): void {
+        this._tenantService.deleteTenant(tenant.id).subscribe(() => {
+            this.refresh();
+            this.notify.success(this.l('SuccessfullyDeleted'));
+        });
+    }
+    create(): void {
+        this.modalHelper.createStatic(CreateTenantModalComponent, null, {size: 'md'}).subscribe(res => {
+            if (res) {
+                this.refresh();
+            }
+        });
+    }
+
+    batchDelete(): void {
+        this.message.warn('method not implement!');
+    }
+}

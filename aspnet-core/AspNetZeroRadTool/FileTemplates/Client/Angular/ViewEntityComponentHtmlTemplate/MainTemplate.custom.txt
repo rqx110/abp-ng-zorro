@@ -1,0 +1,16 @@
+﻿<form nz-form>
+    <div class="modal-header">
+        <div class="modal-title">
+            {{l("")}}
+        </div>
+    </div>
+    <fieldset>
+    {{Property_Looped_Template_Here}}
+    {{NP_Looped_Template_Here}}
+    </fieldset>
+    <div class="modal-footer">
+        <button nz-button [nzType]="'primary'" type="button" (click)="close($event)">
+            {{l("Close")}}
+        </button>
+    </div>
+</form>

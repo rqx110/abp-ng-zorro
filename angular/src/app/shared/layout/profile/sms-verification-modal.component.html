@@ -1,0 +1,19 @@
+<form nz-form #smsVerificationModal="ngForm" (ngSubmit)="save()">
+    <div class="modal-header">
+        <div class="modal-title">{{l('VerifyYourCode')}}</div>
+    </div>
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="YourCode">{{l('YourCode')}}</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
+            <input nz-input name="Code" id="YourCode" #codeInput="ngModel" [(ngModel)]="verifyCode.code" required maxlength="6" minlength="6">
+            <nz-form-explain *ngIf="codeInput.dirty && codeInput.errors">
+                <validation-messages [formCtrl]="codeInput"></validation-messages>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <div class="modal-footer">
+        <button nz-button [nzType]="'primary'" type="submit" [disabled]="!smsVerificationModal.valid||saving" [nzLoading]="saving">
+            <i nz-icon type="save"></i> {{l("Save")}}
+        </button>
+    </div>
+</form>

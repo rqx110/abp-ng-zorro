@@ -1,0 +1,216 @@
+<page-header [title]="l('AuditLogs')"></page-header>
+
+<nz-tabset>
+    <nz-tab [nzTitle]="l('OperationLogs')">
+        <nz-card [nzBordered]="false">
+
+            <form nz-form [nzLayout]="'vertical'" class="search__form">
+                <nz-row nzGutter="8">
+                    <nz-col nzSm="12">
+                        <nz-form-item>
+                            <nz-form-label nzFor="DateRange">
+                                {{l("DateRange")}}
+                            </nz-form-label>
+                            <nz-form-control>
+                                <nz-range-picker name="DateRange" [nzStyle]="{width:'100%'}" [(ngModel)]="startToEndDate"
+                                    [nzPlaceHolder]="[l('StartDateTime'),l('EndDateTime')]"></nz-range-picker>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                    <nz-col [nzSm]="12">
+                        <nz-form-item>
+                            <nz-form-label nzFor="UserName">
+                                {{l("UserName")}}
+                            </nz-form-label>
+                            <nz-form-control>
+                                <input type="text" nz-input [(ngModel)]="username" name="UserName" [placeholder]="l('UserName')">
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                </nz-row>
+
+                <nz-row nzGutter="8" *ngIf="advancedFiltersVisible">
+                    <nz-col nzSm="12">
+                        <nz-form-item>
+                            <nz-form-label>
+                                {{l("Service")}}
+                            </nz-form-label>
+                            <nz-form-control>
+                                <input nz-input name="Service" [(ngModel)]="serviceName" [placeholder]="l('Service')">
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+
+                    <nz-col [nzSm]="12">
+                        <nz-form-item>
+                            <nz-form-label>
+                                {{l("Duration")}}
+                            </nz-form-label>
+                            <nz-form-control>
+                                <nz-input-group nzCompact>
+                                    <nz-input-number name="MinExecutionDuration" [(ngModel)]="minExecutionDuration"
+                                        [nzMin]="0" [nzMax]="86400000" [nzStep]="1" style="text-align: center; width: 100px;"></nz-input-number>
+                                    <input type="text" disabled nz-input placeholder="~" style="width: 30px; border-left: 0px;pointer-events: none; background-color: rgb(255, 255, 255);">
+                                    <nz-input-number name="MaxExecutionDuration" [(ngModel)]="maxExecutionDuration"
+                                        [nzMin]="0" [nzMax]="86400000" [nzStep]="1" style="text-align: center; border-left: 0px; width: 100px;"></nz-input-number>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                </nz-row>
+                <nz-row nzGutter="8" *ngIf="advancedFiltersVisible">
+                    <nz-col nzSm="12">
+                        <nz-form-item>
+                            <nz-form-label>
+                                {{l("MethodName")}}
+                            </nz-form-label>
+                            <nz-form-control>
+                                <input nz-input name="MethodName" [(ngModel)]="methodName" [placeholder]="l('Action')">
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                    <nz-col [nzSm]="12">
+                        <nz-form-item>
+                            <nz-form-label>
+                                {{l("ErrorState")}}
+                            </nz-form-label>
+                            <nz-form-control>
+                                <nz-select [(ngModel)]="hasException" name="HasException" [nzPlaceHolder]="l('ErrorState')"
+                                    nzAllowClear>
+                                    <nz-option [nzLabel]="l('All')" nzValue=""></nz-option>
+                                    <nz-option [nzLabel]="l('Success')" nzValue="false"></nz-option>
+                                    <nz-option [nzLabel]="l('HasError')" nzValue="true"></nz-option>
+                                </nz-select>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                </nz-row>
+                <nz-row *ngIf="advancedFiltersVisible">
+                    <nz-col [nzSm]="12">
+                        <nz-form-item>
+                            <nz-form-label>
+                                {{l("Browser")}}
+                            </nz-form-label>
+                            <nz-form-control>
+                                <input nz-input name="BrowserInfo" [(ngModel)]="browserInfo" [placeholder]="l('Browser')">
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                </nz-row>
+            </form>
+            <nz-row nzGutter="8">
+                <nz-col nzMd="20" nzSm="12">
+                    <button nz-button nzType="primary" (click)="exportToExcelAuditLogs()" [nzLoading]="exporting">
+                        <i nz-icon type="file-excel" *ngIf="!exporting"></i>
+                        <span>
+                            {{l("ExportToExcel")}}
+                        </span>
+                    </button>
+                    <button nz-button [nzType]="'default'" (click)="refresh()"><i nz-icon type="reload"></i>{{l('Refresh')}}</button>
+                </nz-col>
+                <nz-col nzMd="4" nzSm="12" class="text-right">
+                    <a (click)="advancedFiltersVisible=!advancedFiltersVisible">
+                        {{advancedFiltersVisible ? l('HideAdvancedFilters') : l('ShowAdvancedFilters')}}
+                        <i class="anticon" [class.anticon-down]="!advancedFiltersVisible" [class.anticon-up]="advancedFiltersVisible"></i>
+                    </a>
+                </nz-col>
+            </nz-row>
+            <nz-row class="my-md">
+                <nz-table #ajaxTable [nzData]="dataList" [nzTotal]="totalItems" [(nzPageIndex)]="pageNumber"
+                    [(nzPageSize)]="pageSize" [nzLoading]="isTableLoading" (nzPageIndexChange)="pageNumberChange()"
+                    (nzPageSizeChange)="refresh()" [nzShowSizeChanger]="true" [nzShowQuickJumper]="true" [nzNoResult]="noDataTemplate"
+                    [nzShowTotal]="totalTemplate" [nzFrontPagination]="false" [nzScroll]="{x: totalItems>0?'1500px':'auto'}">
+                    <ng-template #noDataTemplate>
+                        <no-data></no-data>
+                    </ng-template>
+                    <ng-template #totalTemplate let-total>
+                        {{l('TotalRecordsCount', total)}}
+                    </ng-template>
+                    <thead (nzSortChange)="gridSort($event)">
+                        <tr>
+                            <th nzWidth="75px" nzLeft="0px" class="text-center"></th>
+                            <th nzWidth="75px" class="text-center"></th>
+                            <th nzShowSort nzSortKey="executionTime">
+                                {{l('Time')}}
+                            </th>
+                            <th nzShowSort nzSortKey="userName">
+                                {{l('UserName')}}
+                            </th>
+                            <th>
+                                {{l('Service')}}
+                            </th>
+                            <th>
+                                {{l('Action')}}
+                            </th>
+                            <th nzShowSort nzSortKey="executionDuration">
+                                {{l('Duration')}}
+                            </th>
+                            <th>
+                                {{l('IpAddress')}}
+                            </th>
+                            <th>
+                                {{l('Client')}}
+                            </th>
+                            <th>
+                                {{l('Browser')}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of ajaxTable.data">
+                            <td nzWidth="75px" nzLeft="0px" class="text-center">
+                                <a (click)="showDetails(item)">
+                                    <i nz-icon type="search" nz-tooltip [nzTitle]="l('Search')"></i>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <i *ngIf="item.exception" nz-tooltip [nzTitle]="l('HasError')" class="anticon anticon-warning text-warning"></i>
+                                <i *ngIf="!item.exception" nz-tooltip [nzTitle]="l('Success')" class="anticon anticon-check-circle text-green"></i>
+                            </td>
+
+                            <td>
+                                {{item.executionTime | momentFormat:'YYYY-MM-DD HH:mm:ss'}}
+                            </td>
+                            <td>
+                                {{item.userName}}
+                            </td>
+                            <td>
+                                <ellipsis lines="1">
+                                    <span nz-tooltip [nzTitle]="item.serviceName">
+                                        {{item.serviceName}}
+                                    </span>
+                                </ellipsis>
+                            </td>
+                            <td>
+                                <ellipsis lines="1">
+                                    <span nz-tooltip [nzTitle]="item.serviceName">
+                                        {{item.methodName}}
+                                    </span>
+                                </ellipsis>
+                            </td>
+                            <td>
+                                {{l('Xms', item.executionDuration)}}
+                            </td>
+                            <td>
+                                {{item.clientIpAddress}}
+                            </td>
+                            <td>
+                                {{item.clientName}}
+                            </td>
+                            <td>
+                                <ellipsis lines="1">
+                                    <span nz-tooltip [nzTitle]="item.browserInfo">
+                                        {{truncateStringWithPostfix(item.browserInfo, 20)}}
+                                    </span>
+                                </ellipsis>
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </nz-row>
+        </nz-card>
+    </nz-tab>
+    <nz-tab [nzTitle]="l('ChangeLogs')">
+        <app-entity-change></app-entity-change>
+    </nz-tab>
+</nz-tabset>

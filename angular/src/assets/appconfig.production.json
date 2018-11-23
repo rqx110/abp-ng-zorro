@@ -1,0 +1,28 @@
+{
+  "remoteServiceBaseUrl": "http://localhost:5000",
+  "appBaseUrl": "http://localhost:4200",
+  "localeMappings": [
+    {
+      "from": "pt-BR",
+      "to": "pt"
+    },
+    {
+      "from": "zh-Hans",
+      "to": "zh"
+    },
+	{
+		"from": "he-IL",
+		"to": "he"
+	}
+  ],
+  "ngZorroLocaleMappings": [
+    {
+      "from": "en",
+      "to": "en_US"
+    },
+    {
+      "from": "zh-Hans",
+      "to": "zh_CN"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+﻿import { Component, Injector } from '@angular/core';
+import { ModalComponentBase } from '@shared/common/modal-component-base';
+import { Get{{Entity_Name_Here}}ForView {{Enum_Import_Here}}} from '@shared/service-proxies/service-proxies';
+
+@Component({
+    selector: 'view{{Entity_Name_Here}}Modal',
+    templateUrl: './view-{{entity_Name_Here}}-modal.component.html'
+})
+export class View{{Entity_Name_Here}}ModalComponent extends ModalComponentBase {
+
+    item : Get{{Entity_Name_Here}}ForView;
+	{{enum_Def_Here}}
+
+    constructor(
+        injector: Injector
+    ) {
+        super(injector);
+    }
+}

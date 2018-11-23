@@ -1,0 +1,97 @@
+{
+"navigationPropertyTemplates":[
+		{
+			"placeholder" : "{{NP_Looped_Display_Declaration_Here}}",
+			"templates" : [
+					{
+					"relation" : "single",
+					"content" : "{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}} = '';
+		 "
+					}
+				]
+		},
+		{
+			"placeholder" : "{{NP_Looped_Display_Init_Here}}",
+			"templates" : [
+					{
+					"relation" : "single",
+					"content" : "this.{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}} = '';
+		 "
+					}
+				]
+		},
+		{
+			"placeholder" : "{{NP_Looped_Edit_Bind_Here}}",
+			"templates" : [
+					{
+					"relation" : "single",
+					"content" : "this.{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}} = result.{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}};
+		 "
+					}
+				]
+		},
+		{
+			"placeholder" : "{{NP_Looped_Lookup_Component_Import_Here}}",
+			"templates" : [
+					{
+					"relation" : "single",
+					"preventDuplicate":true,
+					"content" : "import { {{NP_Foreign_Entity_Name_Here}}LookupTableModalComponent } from './{{nP_Foreign_Entity_Name_Here}}-lookup-table-modal.component';
+"
+					}
+				]
+		},
+		{
+			"placeholder" : "{{NP_Looped_OpenModal_Here}}",
+			"templates" : [
+					{
+					"relation" : "single",
+					"content" : "    openSelect{{NP_Foreign_Entity_Name_Here}}Modal{{NP_Duplication_Number_Here}}() {
+												this.modalHelper
+									.createStatic({{NP_Foreign_Entity_Name_Here}}LookupTableModalComponent, { 
+										id: this.{{entity_Name_Here}}.{{nP_Name_Here}} ,
+										displayName: this.{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}
+									}, { size: 'md' })
+									.subscribe(res => {
+										if (res) {
+											this.{{entity_Name_Here}}.{{nP_Name_Here}} = res.id;
+							            this.{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}} = res.displayName;
+										}
+									});
+					}
+    	"
+					}
+				]
+		},
+		{
+			"placeholder" : "{{NP_Looped_SetNull_Here}}",
+			"templates" : [
+					{
+					"relation" : "single",
+					"content" : "    set{{NP_Name_Here}}Null() {
+							this.{{entity_Name_Here}}.{{nP_Name_Here}} = null;
+							this.{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}} = '';
+						}
+						"
+					}
+				]
+		}
+	],
+"conditionalTemplates":[
+		{
+			"placeholder": "{{Primary_Key_Type_Here}}",
+			"condition": "{{Primary_Key_Here}} == 'Guid'",
+			"content": "string"
+		},
+		{
+			"placeholder": "{{Primary_Key_Type_Here}}",
+			"condition": "{{Primary_Key_Here}} == 'string'",
+			"content": "string"
+		},
+		{
+			"placeholder": "{{Primary_Key_Type_Here}}",
+			"condition": "{{Primary_Key_Here}} != 'Guid'",
+			"content": "number"
+		}
+	]
+}

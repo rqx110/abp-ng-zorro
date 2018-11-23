@@ -1,0 +1,16 @@
+<page-header [title]="'AbpZeroTemplate Installation'">
+    <strong>
+        <span class="text-red">Clear your cookies before installing AbpZeroTemplate ! Otherwise, you might have some
+            problems.</span>
+    </strong>
+</page-header>
+<nz-card [nzBordered]="false">
+    <nz-steps [(nzCurrent)]="item.step">
+        <nz-step nzTitle="Common"></nz-step>
+        <nz-step nzTitle="SMTP Settings"></nz-step>
+        <nz-step nzTitle="Finished"></nz-step>
+    </nz-steps>
+    <install-step1 *ngIf="item.step==0"></install-step1>
+    <install-step2 *ngIf="item.step==1"></install-step2>
+    <install-step3 *ngIf="item.step==2"></install-step3>
+</nz-card>

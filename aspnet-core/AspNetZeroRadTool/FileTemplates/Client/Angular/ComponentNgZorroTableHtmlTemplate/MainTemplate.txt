@@ -1,0 +1,121 @@
+﻿<page-header [title]="title">
+    <ng-template #title>
+        {{l("{{Entity_Name_Plural_Here}}")}}
+        <span class="text-sm text-grey-dark">
+            <nz-divider nzType="vertical"></nz-divider>
+            {{l("{{Entity_Name_Plural_Here}}HeaderInfo")}}
+        </span>
+    </ng-template>
+</page-header>
+<nz-card [nzBordered]="false">
+    <form nz-form [nzLayout]="'inline'" class="search__form">
+        <nz-row nzGutter="8">
+            <nz-col nzSm="24">
+                <nz-form-item>
+                    <nz-form-control>
+                        <nz-input-group nzSearch [nzSuffix]="suffixSearchButton">
+                            <input type="text" nz-input [(ngModel)]="filterText" name="filterText" [placeholder]="l('SearchWithThreeDot')">
+                            <ng-template #suffixSearchButton>
+                                <button nz-button nzType="primary" nzSearch (click)="refresh($event)">
+                                    <i class="anticon anticon-search"></i>
+                                </button>
+                            </ng-template>
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+        </nz-row>
+        <nz-row nzGutter="8" *ngIf="advancedFiltersVisible">
+            {{Property_Filter_Template_Here}}{{NP_Filter_Template_Here}}
+        </nz-row>
+    </form>
+    <nz-row nzGutter="8">
+        <nz-col nzMd="20" nzSm="12">
+            <button nz-button [nzType]="'primary'" *ngIf="isGranted('{{Permission_Value_Here}}.Create')" (click)="createOrEdit()">
+                <i class="anticon anticon-plus"></i>
+                <span>
+                    {{l("CreateNew{{Entity_Name_Here}}")}}
+                </span>
+            </button>
+            <ng-container *ngIf="selectedDataItems.length > 0">
+                <button nz-button [nzType]="'danger'" *ngIf="isGranted('{{Permission_Value_Here}}.Delete')" (click)="batchDelete()">
+                    <i class="anticon anticon-delete"></i>
+                    <span>
+                        Delete Selected
+                    </span>
+                </button>
+            </ng-container>
+            {{Get_Excel_Button_Here}}            
+        </nz-col>
+        <nz-col nzMd="4" nzSm="12" class="text-right">
+            <a (click)="advancedFiltersVisible=!advancedFiltersVisible">
+                {{advancedFiltersVisible ? l('HideAdvancedFilters') : l('ShowAdvancedFilters')}}
+                <i class="anticon" [class.anticon-down]="!advancedFiltersVisible" [class.anticon-up]="advancedFiltersVisible"></i>
+            </a>
+        </nz-col>
+    </nz-row>
+    <div class="my-md">
+        <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+            <ng-template #message>
+                <span>
+                    <strong class="text-primary">{{selectedDataItems.length}}</strong> items selected
+                </span>
+                <a (click)="restCheckStatus(dataList)" class="ml-md" *ngIf="selectedDataItems.length>0">
+                    {{l('Clear')}}
+                </a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a (click)="refresh()">
+                    {{l('Refresh')}}
+                </a>
+            </ng-template>
+        </nz-alert>
+    </div>
+    <nz-row class="my-md">
+        <nz-table #ajaxTable [nzData]="dataList" [nzTotal]="totalItems" [(nzPageIndex)]="pageNumber" [(nzPageSize)]="pageSize"
+            [nzLoading]="isTableLoading" (nzPageIndexChange)="pageNumberChange()" (nzPageSizeChange)="refresh()"
+            [nzShowSizeChanger]="true" [nzShowQuickJumper]="true" [nzNoResult]="noDataTemplate" [nzShowTotal]="totalTemplate"
+            [nzFrontPagination]="false" [nzScroll]="{x: 'auto'}">
+            <ng-template #noDataTemplate>
+                <no-data></no-data>
+            </ng-template>
+            <ng-template #totalTemplate let-total>
+                {{l('TotalRecordsCount', total)}}
+            </ng-template>
+            <thead (nzSortChange)="gridSort($event)">
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled" [nzIndeterminate]="checkboxIndeterminate"
+                        (nzCheckedChange)="checkAll($event)" nzWidth="60px"></th>
+                    {{NP_Looped_Header_Template_Here}}{{Property_Looped_Header_Template_Here}}
+                    <th class="text-center" [hidden]="!isGrantedAny('{{Permission_Value_Here}}.Edit', '{{Permission_Value_Here}}.Delete')">
+                        <span>{{l('Actions')}}</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of ajaxTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshCheckStatus(dataList)"></td>
+                    {{NP_Looped_Template_Here}}{{Property_Looped_Template_Here}}                    
+                    <td>
+                        {{View_Button_Here}}
+                        <ng-container *ngIf="isGranted('{{Permission_Value_Here}}.Edit')">
+                            <a (click)="createOrEdit(item.{{entity_Name_Here}}.id)">
+                                <i nz-icon type="edit"></i>
+                                {{l('Edit')}}
+                            </a>
+                            <nz-divider nzType="vertical"></nz-divider>
+                        </ng-container>
+                        <ng-container *ngIf="isGranted('{{Permission_Value_Here}}.Delete')">
+                            <nz-popconfirm [nzTitle]="l('{{Entity_Name_Here}}DeleteWarningMessage', '')" (nzOnConfirm)="delete{{Entity_Name_Here}}(item.{{entity_Name_Here}})"
+                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
+                                <a nz-popconfirm>
+                                    <i nz-icon type="delete"></i>
+                                    {{l('Delete')}}
+                                </a>
+                            </nz-popconfirm>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-row>
+</nz-card>

@@ -1,0 +1,5 @@
+<ul class="language-switch-area">
+    <li *ngFor="let language of languages">
+        <a [ngClass]="{'language-icon-current': language.name==currentLanguage.name}" href="javascript:;" title="{{language.displayName}}" (click)="changeLanguage(language.name)"><i class="{{language.icon}}"></i></a>
+    </li>
+</ul>

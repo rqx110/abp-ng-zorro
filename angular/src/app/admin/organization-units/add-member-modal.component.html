@@ -1,0 +1,69 @@
+<div class="modal-header">
+    <div class="modal-title">
+        <i nz-icon type="team"></i>
+        {{l("SelectUsers")}}
+    </div>
+</div>
+<fieldset>
+    <nz-input-group nzSearch [nzSuffix]="suffixSearchButton">
+        <input type="text" nz-input [(ngModel)]="filterText" (keyup.enter)="refresh()" name="filterText" [placeholder]="l('SearchWithThreeDot')">
+        <ng-template #suffixSearchButton>
+            <button nz-button nzType="primary" nzSearch (click)="refresh()">
+                <i nz-icon type="search"></i>
+            </button>
+        </ng-template>
+    </nz-input-group>
+    <div class="my-md">
+        <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+            <ng-template #message>
+                <span>
+                    <strong class="text-primary">{{selectedDataItems.length}}</strong> items selected
+                </span>
+                <a (click)="restCheckStatus(dataList)" class="ml-md">
+                    {{l('Clear')}}
+                </a>
+            </ng-template>
+        </nz-alert>
+    </div>
+    <nz-row nzGutter="8">
+        <nz-col nzSm="24">
+            <nz-table #nzDataTable [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]="true"
+                [nzData]="dataList" [nzTotal]="totalItems" [nzLoading]="isTableLoading" [(nzPageIndex)]="pageNumber"
+                [(nzPageSize)]="pageSize" (nzPageIndexChange)="refresh()" (nzPageSizeChange)="refresh()" [nzNoResult]="noDataTemplate"
+                [nzShowTotal]="totalTemplate">
+                <ng-template #noDataTemplate>
+                    <no-data></no-data>
+                </ng-template>
+                <ng-template #totalTemplate let-total>
+                    {{l('TotalRecordsCount', total)}}
+                </ng-template>
+                <thead>
+                    <tr>
+                        <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled"
+                            [nzIndeterminate]="checkboxIndeterminate" (nzCheckedChange)="checkAll($event)"></th>
+                        <th>
+                            {{l('Name')}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of nzDataTable.data">
+                        <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshCheckStatus(dataList)"></td>
+                        <td>
+                            {{item.name}}
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+
+        </nz-col>
+    </nz-row>
+</fieldset>
+<div class="modal-footer">
+    <button nz-button [nzType]="'default'" type="button" (click)="close($event)" [disabled]="saving">
+        {{l("Cancel")}}
+    </button>
+    <button nz-button [nzType]="'primary'" [disabled]="saving" [nzLoading]="saving" (click)="addUsersToOrganizationUnit()">
+        <i nz-icon type="save" *ngIf="!saving"></i> {{l("Save")}}
+    </button>
+</div>

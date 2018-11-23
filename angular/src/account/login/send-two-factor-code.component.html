@@ -1,0 +1,18 @@
+<nz-card [nzTitle]="l('SendSecurityCode')">
+    <form nz-form #twoFactorForm="ngForm" method="post" novalidate (ngSubmit)="submit()" role="form" *ngIf="loginService.authenticateResult">
+        <nz-alert class="mb-md" nzType="info" nzCloseable [nzMessage]="l('SendSecurityCode_Information')" nzShowIcon>
+        </nz-alert>
+        <nz-form-item>
+            <nz-form-control>
+                <nz-select [(ngModel)]="selectedTwoFactorProvider" name="selectedTwoFactorProvider">
+                    <nz-option *ngFor="let provider of loginService.authenticateResult.twoFactorAuthProviders"
+                        [nzLabel]="provider" [nzValue]="provider">
+                    </nz-option>
+                </nz-select>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <button nz-button nzType="primary" nzSize="large" type="submit" nzBlock>{{l("Submit")}}</button>
+        </nz-form-item>
+    </form>
+</nz-card>

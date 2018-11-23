@@ -1,0 +1,35 @@
+<form nz-form #editUserPermissionsForm="ngForm" (ngSubmit)="save()" nzLayout="horizontal">
+    <div class="modal-header">
+        <div class="modal-title">
+            <i nz-icon type="safety" class="mr-sm"></i>
+            <span>
+                {{l("Permissions")}}
+                <span *ngIf="userName"> - {{userName}}</span>
+            </span>
+        </div>
+    </div>
+
+    <fieldset>
+        <nz-alert nzType="warning" nzCloseable [nzShowIcon]="true" [nzMessage]="l('Note_RefreshPageForPermissionChanges')"
+            class="mb-md"></nz-alert>
+        <permission-tree #permissionTree></permission-tree>
+    </fieldset>
+
+    <div class="modal-footer">
+        <button nz-button [nzType]="'default'" type="button" (click)="resetPermissions()" [disabled]="saving"
+            [nzLoading]="resettingPermissions" nz-tooltip [nzTitle]="l('ResetPermissionsTooltip')" class="mr-sm">
+            <i nz-icon type="rollback" *ngIf="!resettingPermissions"></i>
+            {{l("ResetSpecialPermissions")}}
+        </button>
+
+        <button nz-button [nzType]="'default'" type="button" (click)="close($event)" [disabled]="saving || resettingPermissions">
+            {{l("Cancel")}}
+        </button>
+
+        <button nz-button [nzType]="'primary'" type="submit" [disabled]="!editUserPermissionsForm.form.valid || saving || resettingPermissions"
+            [nzLoading]="saving">
+            <i nz-icon type="save" *ngIf="!saving"></i> {{l("Save")}}
+        </button>
+    </div>
+
+</form>

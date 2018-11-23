@@ -1,0 +1,61 @@
+<form nz-form (ngSubmit)="_submitForm()">
+        <nz-form-item>
+            <nz-form-label nzSpan="8">Default from address</nz-form-label>
+            <nz-form-control [nzSpan]="16">
+                <input nz-input type="email" [(ngModel)]="item.setupSettings.smtpSettings.defaultFromAddress" name="defaultFromAddress">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label nzSpan="8">Default from displayName</nz-form-label>
+            <nz-form-control [nzSpan]="16">
+                <input nz-input [(ngModel)]="item.setupSettings.smtpSettings.defaultFromDisplayName" name="defaultFromDisplayName">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label nzSpan="8">SMTP host</nz-form-label>
+            <nz-form-control [nzSpan]="16">
+                <input nz-input [(ngModel)]="item.setupSettings.smtpSettings.smtpHost" name="smtpHost">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label nzSpan="8">SMTP port</nz-form-label>
+            <nz-form-control [nzSpan]="16">
+                <input nz-input type="number" [(ngModel)]="item.setupSettings.smtpSettings.smtpPort" name="smtpPort">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control [nzSpan]="16" nzOffset="8">
+                <label nz-checkbox [(ngModel)]="item.setupSettings.smtpSettings.smtpEnableSsl" name="smtpEnableSsl">UseSsl</label>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control [nzSpan]="16" nzOffset="8">
+                <label nz-checkbox [(ngModel)]="item.setupSettings.smtpSettings.smtpUseDefaultCredentials" name="smtpUseDefaultCredentials">Use
+                    Default Credentials</label>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item [hidden]="item.setupSettings.smtpSettings.smtpUseDefaultCredentials">
+            <nz-form-label nzSpan="8">Domain name</nz-form-label>
+            <nz-form-control [nzSpan]="16">
+                <input nz-input [(ngModel)]="item.setupSettings.smtpSettings.smtpDomain" name="smtpDomain">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item [hidden]="item.setupSettings.smtpSettings.smtpUseDefaultCredentials">
+            <nz-form-label nzSpan="8">User name</nz-form-label>
+            <nz-form-control [nzSpan]="16">
+                <input nz-input [(ngModel)]="item.setupSettings.smtpSettings.smtpUserName" name="smtpUserName">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item [hidden]="item.setupSettings.smtpSettings.smtpUseDefaultCredentials">
+            <nz-form-label nzSpan="8">Password</nz-form-label>
+            <nz-form-control [nzSpan]="16">
+                <input nz-input type="password" [(ngModel)]="item.setupSettings.smtpSettings.smtpPassword" name="smtpPassword">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control nzSpan="16" nzOffset="8">            
+                <button nz-button (click)="prev()">Prev</button>
+                <button nz-button [nzType]="'primary'" [nzLoading]="saving">Submit</button>
+            </nz-form-control>
+        </nz-form-item>
+    </form>

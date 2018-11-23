@@ -1,0 +1,134 @@
+<form nz-form #tenantCreateForm="ngForm" (ngSubmit)="save()">
+    <div class="modal-header">
+        <div class="modal-title">
+            {{l('CreateNewTenant')}}
+        </div>
+    </div>
+    <nz-form-item>
+        <nz-form-label nzFor="tenancyName">{{l('TenancyName')}}</nz-form-label>
+        <nz-form-control nzHasFeedback>
+            <input nz-input name="tenancyName" #tenancyNameInput="ngModel" [(ngModel)]="tenant.tenancyName"
+                [placeholder]="l('TenancyName')" required maxlength="64" pattern="^[a-zA-Z][a-zA-Z0-9_-]{1,}$">
+            <nz-form-explain *ngIf="tenancyNameInput.dirty && tenancyNameInput.errors">
+                <validation-messages [formCtrl]="tenancyNameInput"></validation-messages>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="Name">{{l('Name')}}</nz-form-label>
+        <nz-form-control nzHasFeedback>
+            <input nz-input name="name" #nameInput="ngModel" [(ngModel)]="tenant.name" [placeholder]="l('Name')"
+                required maxlength="128">
+            <nz-form-explain *ngIf="nameInput.dirty&&nameInput.errors">
+                <validation-messages [formCtrl]="nameInput"></validation-messages>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-control>
+        <label nz-checkbox name="UseHostDb" [(ngModel)]="useHostDb">{{l("UseHostDatabase")}}</label>
+    </nz-form-control>
+
+    <nz-form-item *ngIf="!useHostDb">
+        <nz-form-label nzFor="connectionString">{{l('DatabaseConnectionString')}}</nz-form-label>
+        <nz-form-control nzHasFeedback>
+            <input nz-input name="connectionString" #connectionStringInput="ngModel" [(ngModel)]="tenant.connectionString"
+                [placeholder]="l('DatabaseConnectionString')" required maxlength="1024">
+            <nz-form-explain *ngIf="connectionStringInput.dirty&&connectionStringInput.errors">
+                <validation-messages [formCtrl]="connectionStringInput"></validation-messages>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="AdminEmailAddress">{{l('AdminEmailAddress')}}</nz-form-label>
+        <nz-form-control nzHasFeedback>
+            <input nz-input type="email" name="AdminEmailAddress" #adminEmailAddressInput="ngModel" [(ngModel)]="tenant.adminEmailAddress"
+                [placeholder]="l('AdminEmailAddress')" required email maxlength="256">
+            <nz-form-explain *ngIf="adminEmailAddressInput.dirty&&adminEmailAddressInput.errors">
+                <validation-messages [formCtrl]="adminEmailAddressInput"></validation-messages>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-control>
+        <label nz-checkbox name="SetRandomPassword" [(ngModel)]="setRandomPassword">{{l("SetRandomPassword")}}</label>
+    </nz-form-control>
+    <nz-form-item *ngIf="!setRandomPassword">
+        <nz-form-label nzFor="AdminPassword">{{l('AdminPassword')}}</nz-form-label>
+        <nz-form-control nzHasFeedback>
+            <input nz-input name="AdminPassword" #adminPasswordInput="ngModel" [(ngModel)]="tenant.adminPassword"
+                [placeholder]="l('AdminPassword')" type="password" [required]="!setRandomPassword" validateEqual="adminPasswordRepeat"
+                reverse="true" maxlength="32" [requireDigit]="passwordComplexitySetting.requireDigit"
+                [requireLowercase]="passwordComplexitySetting.requireLowercase" [requireUppercase]="passwordComplexitySetting.requireUppercase"
+                [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric" [requiredLength]="passwordComplexitySetting.requiredLength">
+            <nz-form-explain [hidden]="setRandomPassword || adminPasswordInput.valid || adminPasswordInput.pristine">
+                <ul *ngIf="adminPasswordInput.errors">
+                    <li [hidden]="!adminPasswordInput.errors.requireDigit">{{l("PasswordComplexity_RequireDigit_Hint")}}</li>
+                    <li [hidden]="!adminPasswordInput.errors.requireLowercase">{{l("PasswordComplexity_RequireLowercase_Hint")}}</li>
+                    <li [hidden]="!adminPasswordInput.errors.requireUppercase">{{l("PasswordComplexity_RequireUppercase_Hint")}}</li>
+                    <li [hidden]="!adminPasswordInput.errors.requireNonAlphanumeric">{{l("PasswordComplexity_RequireNonAlphanumeric_Hint")}}</li>
+                    <li [hidden]="!adminPasswordInput.errors.requiredLength">{{l("PasswordComplexity_RequiredLength_Hint",
+                        passwordComplexitySetting.requiredLength)}}</li>
+                </ul>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngIf="!setRandomPassword">
+        <nz-form-label nzFor="AdminPasswordRepeat">{{l('AdminPasswordRepeat')}}</nz-form-label>
+        <nz-form-control nzHasFeedback>
+            <input nz-input name="AdminPasswordRepeat" #adminPasswordRepeatInput='ngModel' [(ngModel)]="tenant.adminPasswordRepeat"
+                [placeholder]="l('AdminPasswordRepeat')" [required]="!setRandomPassword" [requireDigit]="passwordComplexitySetting.requireDigit"
+                [requireLowercase]="passwordComplexitySetting.requireLowercase" [requireUppercase]="passwordComplexitySetting.requireUppercase"
+                [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric" [requiredLength]="passwordComplexitySetting.requiredLength"
+                validateEqual="adminPassword" maxlength="32">
+            <nz-form-explain [hidden]="setRandomPassword || adminPasswordRepeatInput.valid || adminPasswordRepeatInput.pristine">
+                <ul *ngIf="adminPasswordRepeatInput.errors">
+                    <li [hidden]="!adminPasswordRepeatInput.errors.requireDigit">{{l("PasswordComplexity_RequireDigit_Hint")}}</li>
+                    <li [hidden]="!adminPasswordRepeatInput.errors.requireLowercase">{{l("PasswordComplexity_RequireLowercase_Hint")}}</li>
+                    <li [hidden]="!adminPasswordRepeatInput.errors.requireUppercase">{{l("PasswordComplexity_RequireUppercase_Hint")}}</li>
+                    <li [hidden]="!adminPasswordRepeatInput.errors.requireNonAlphanumeric">{{l("PasswordComplexity_RequireNonAlphanumeric_Hint")}}</li>
+                    <li [hidden]="!adminPasswordRepeatInput.errors.requiredLength">{{l("PasswordComplexity_RequiredLength_Hint",
+                        passwordComplexitySetting.requiredLength)}}</li>
+                    <li [hidden]="adminPasswordRepeatInput.valid">{{l("PasswordsDontMatch")}}</li>
+                </ul>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-row>
+        <nz-form-label nzFor="edition">
+            {{l("Edition")}}
+        </nz-form-label>
+        <nz-form-control>
+            <nz-select [(ngModel)]="selectedEdtionId" id="edition" name="edition" (ngModelChange)="onEditionChange()">
+                <nz-option *ngFor="let edition of editions" [nzLabel]="edition.displayText" [nzValue]="edition.value"></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-control [hidden]="!isSubscriptionFieldsVisible">
+        <label nz-checkbox name="IsUnlimited" [(ngModel)]="isUnlimited">{{l("UnlimitedTimeSubscription")}}</label>
+    </nz-form-control>
+    <nz-form-item [hidden]="isUnlimited || !isSubscriptionFieldsVisible">
+        <nz-form-label nzFor="SubscriptionEndDate">{{l('SubscriptionEndDate')}}</nz-form-label>
+        <nz-form-control>
+            <nz-date-picker name="SubscriptionEndDateUtc" [(ngModel)]="tenant.subscriptionEndDateUtc"></nz-date-picker>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-control [hidden]="!isSubscriptionFieldsVisible">
+        <label nz-checkbox name="IsInTrialPeriod" [nzDisabled]="isSelectedEditionFree" [(ngModel)]="tenant.isInTrialPeriod">{{l("IsInTrialPeriod")}}</label>
+    </nz-form-control>
+    <nz-form-control>
+        <label nz-checkbox name="ShouldChangePasswordOnNextLogin" [(ngModel)]="tenant.shouldChangePasswordOnNextLogin">{{l("ShouldChangePasswordOnNextLogin")}}</label>
+    </nz-form-control>
+    <nz-form-control>
+        <label nz-checkbox name="SendActivationEmail" [(ngModel)]="tenant.sendActivationEmail">{{l("SendActivationEmail")}}</label>
+    </nz-form-control>
+    <nz-form-control>
+        <label nz-checkbox name="isActive" [(ngModel)]="tenant.isActive">{{l("IsActive")}}</label>
+    </nz-form-control>
+    <div class="modal-footer">
+        <button nz-button type="button" [disabled]="saving" (click)="close()">
+            {{l("Cancel")}}
+        </button>
+        <button nz-button [nzType]="'primary'" type="submit" [disabled]="!tenantCreateForm.form.valid||saving">
+            <i nz-icon type="save"></i> {{l("Save")}}
+        </button>
+    </div>
+</form>

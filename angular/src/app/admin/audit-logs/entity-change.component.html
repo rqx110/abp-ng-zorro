@@ -1,0 +1,107 @@
+<nz-card [nzBordered]="false">
+    <form nz-form [nzLayout]="'vertical'" class="search__form">
+        <div nz-row nzGutter="8">
+            <div nz-col [nzSm]="8">
+                <nz-form-item>
+                    <nz-form-label>
+                        {{l("DateRange")}}
+                    </nz-form-label>
+                    <nz-form-control>
+                        <nz-range-picker name="DateRange" [nzStyle]="{width:'100%'}" [(ngModel)]="startToEndDate"
+                            [nzPlaceHolder]="[l('StartDateTime'),l('EndDateTime')]"></nz-range-picker>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSm]="8">
+                <nz-form-item>
+                    <nz-form-label>
+                        {{l("UserName")}}
+                    </nz-form-label>
+                    <nz-form-control>
+                        <input type="text" nz-input [(ngModel)]="username" name="UserName" [placeholder]="l('UserName')">
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSm]="8">
+                <nz-form-item>
+                    <nz-form-label>
+                        {{l("Object")}}
+                    </nz-form-label>
+                    <nz-form-control>
+                        <nz-select [(ngModel)]="entityTypeFullName" name="EntityTypeFullName" [nzPlaceHolder]="l('Object')"
+                            nzAllowClear>
+                            <nz-option [nzLabel]="l('All')" nzValue=""></nz-option>
+                            <nz-option *ngFor="let objectType of objectTypes" [nzLabel]="objectType.name" [nzValue]="objectType.value"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </form>
+    <nz-row nzGutter="8">
+        <nz-col nzMd="20" nzSm="12">
+            <button nz-button nzType="primary" (click)="exportToExcelEntityChanges()" [nzLoading]="exporting">
+                <i nz-icon type="file-excel" *ngIf="!exporting"></i>
+                <span>
+                    {{l("ExportToExcel")}}
+                </span>
+            </button>
+            <button nz-button [nzType]="'default'" (click)="refresh()"><i nz-icon type="reload"></i>{{l('Refresh')}}</button>
+        </nz-col>
+    </nz-row>
+    <nz-row class="my-md">
+        <nz-table #ajaxTable [nzData]="dataList" [nzTotal]="totalItems" [(nzPageIndex)]="pageNumber" [(nzPageSize)]="pageSize"
+            [nzLoading]="isTableLoading" (nzPageIndexChange)="pageNumberChange()" (nzPageSizeChange)="refresh()"
+            [nzShowSizeChanger]="true" [nzShowQuickJumper]="true" [nzNoResult]="noDataTemplate" [nzShowTotal]="totalTemplate"
+            [nzFrontPagination]="false">
+            <ng-template #noDataTemplate>
+                <no-data></no-data>
+            </ng-template>
+            <ng-template #totalTemplate let-total>
+                {{l('TotalRecordsCount', total)}}
+            </ng-template>
+            <thead (nzSortChange)="gridSort($event)">
+                <tr>
+                    <th nzWidth="75px" nzLeft="0px" class="text-center"></th>
+                    <th>
+                        <span>{{l('Action')}}</span>
+                    </th>
+                    <th>
+                        <span>{{l('Object')}}</span>
+                    </th>
+                    <th nzShowSort nzSortKey="userName">
+                        <span>{{l('UserName')}}</span>
+                    </th>
+                    <th nzShowSort nzSortKey="changeTime">
+                        <span>{{l('Time')}}</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of ajaxTable.data">
+                    <td nzWidth="75px" nzLeft="0px" class="text-center">
+                        <a (click)="showEntityChangeDetails(item)">
+                            <i nz-icon type="search" nz-tooltip [nzTitle]="l('Search')"></i>
+                        </a>
+                    </td>
+                    <td>
+                        {{item.changeTypeName}}
+                    </td>
+                    <td>
+                        <ellipsis lines="1">
+                            <span nz-tooltip [nzTitle]="item.entityTypeFullName">
+                                {{item.entityTypeFullName}}
+                            </span>
+                        </ellipsis>
+                    </td>
+                    <td>
+                        {{item.userName}}
+                    </td>
+                    <td>
+                        {{item.changeTime | momentFormat:'YYYY-MM-DD HH:mm:ss'}}
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-row>
+</nz-card>

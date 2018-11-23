@@ -1,0 +1,4 @@
+{
+	"path" : "app\\{{menu_Position_Here}}\\{{namespace_Relative_Here}}\\{{entity_Name_Plural_Here}}\\{{entity_Name_Plural_Here}}.component.html",
+	"condition": "true"
+}

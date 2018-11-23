@@ -1,0 +1,8 @@
+<div class="alain-default__progress-bar" *ngIf="isFetching"></div>
+<layout-header class="alain-default__header" *ngIf="!installationMode"></layout-header>
+<layout-sidebar class="alain-default__aside" *ngIf="!installationMode"></layout-sidebar>
+<section [className]="installationMode ? 'alain-fullscreen' : 'alain-default__content'">
+    <router-outlet></router-outlet>
+</section>
+<ng-template #settingHost></ng-template>
+<nz-back-top></nz-back-top>

@@ -1,0 +1,55 @@
+<form nz-form #loginForm="ngForm" (ngSubmit)="login()" method="post" role="form">
+    <nz-tabset [nzAnimated]="false" class="tabs">
+        <nz-tab nzTitle="账户密码登录">
+            <nz-form-item>
+                <nz-form-control>
+                    <nz-input-group nzPrefixIcon="anticon anticon-user">
+                        <input nz-input name="userNameOrEmailAddress" #userNameOrEmailAddressInput="ngModel"
+                            [(ngModel)]="loginService.authenticateModel.userNameOrEmailAddress" [placeholder]="l('UserNameOrEmail')"
+                            [nzSize]="'large'" required maxlength="255">
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <nz-input-group nzPrefixIcon="anticon anticon-lock">
+                        <input nz-input name="password" #passwordInput="ngModel" [(ngModel)]="loginService.authenticateModel.password"
+                            [placeholder]="l('Password')" type="password" [nzSize]="'large'" required maxlength="32">
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-tab>        
+    </nz-tabset>
+    <nz-form-item>
+        <nz-col [nzSpan]="12">
+            <label nz-checkbox [(ngModel)]="loginService.rememberMe" name="rememberMe" id="rememberme">
+                <span>{{l("RememberMe")}}</span>
+            </label>
+        </nz-col>
+        <nz-col [nzSpan]="12" class="text-right">
+            <a routerLink="/account/forgot-password" class="forgot forget-password">{{l("ForgotPassword")}}</a>
+
+        </nz-col>
+    </nz-form-item>
+    <nz-form-item>
+        <button nz-button type="submit" nzType="primary" nzSize="large" [nzLoading]="submitting" nzBlock>{{l("LogIn")}}</button>
+    </nz-form-item>
+</form>
+<div class="other" *ngIf="(multiTenancySideIsTeanant || !isMultiTenancyEnabled) && loginService.externalLoginProviders.length > 0">
+    {{l("LoginWith")}}
+    <i *ngFor="let provider of loginService.externalLoginProviders" title="{{provider.name}}" (click)="externalLogin(provider)"
+        nz-icon [type]="provider.icon" class="icon"></i>
+</div>
+<div class="text-center">
+    <span *ngIf="isSelfRegistrationAllowed">
+        <a class="register" routerLink="/account/register">{{l("CreateAnAccount")}}</a>
+        <nz-divider nzType="vertical"></nz-divider>
+    </span>
+    <span *ngIf="!multiTenancySideIsTeanant && isTenantSelfRegistrationAllowed">
+            <a class="register" routerLink="/account/register-tenant">{{l("NewTenant")}}</a>
+            <nz-divider nzType="vertical"></nz-divider>
+        </span>
+    <span>
+        <a class="register" routerLink="/account/email-activation">{{l("EmailActivation")}}</a>
+    </span>
+</div>

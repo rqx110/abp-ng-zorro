@@ -1,0 +1,51 @@
+﻿import { Component, Injector} from '@angular/core';
+
+import {{{Entity_Name_Plural_Here}}ServiceProxy, {{NP_Foreign_Entity_Name_Here}}LookupTableDto } from '@shared/service-proxies/service-proxies';
+import { ModalPagedListingComponentBase } from '@shared/common/modal-paged-listing-component-base';
+import { PagedRequestDto } from '@shared/common/paged-listing-component-base';
+import { finalize } from 'rxjs/operators';
+
+@Component({
+    selector: '{{nP_Foreign_Entity_Name_Here}}LookupTableModal',
+    templateUrl: './{{nP_Foreign_Entity_Name_Here}}-lookup-table-modal.component.html'
+})
+export class {{NP_Foreign_Entity_Name_Here}}LookupTableModalComponent extends ModalPagedListingComponentBase<{{NP_Foreign_Entity_Name_Here}}LookupTableDto> {
+
+    filterText = '';
+    id: {{NP_Id_Type_TS_Here}};
+    displayName: string;
+
+    saving = false;
+    
+
+    constructor(
+        injector: Injector,
+        private _{{entity_Name_Plural_Here}}ServiceProxy: {{Entity_Name_Plural_Here}}ServiceProxy
+    ) {
+        super(injector);
+    }
+
+    protected getDataList(
+        request: PagedRequestDto,
+        pageNumber: number,
+        finishedCallback: () => void,
+    ): void {
+        this._{{entity_Name_Plural_Here}}ServiceProxy.getAll{{NP_Foreign_Entity_Name_Here}}ForLookupTable(
+            this.filterText,
+            request.sorting,
+            request.skipCount,
+            request.maxResultCount)
+        .pipe(finalize(finishedCallback))
+        .subscribe(result => {
+            this.dataList = result.items;
+            this.showPaging(result);
+        });    
+    }
+
+    setAndSave({{nP_Foreign_Entity_Name_Here}}: {{NP_Foreign_Entity_Name_Here}}LookupTableDto) {
+        this.id = {{nP_Foreign_Entity_Name_Here}}.id;
+        this.displayName = {{nP_Foreign_Entity_Name_Here}}.displayName;
+
+        this.success({{nP_Foreign_Entity_Name_Here}});
+    }
+}

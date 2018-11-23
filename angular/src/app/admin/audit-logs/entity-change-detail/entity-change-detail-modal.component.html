@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <div class="modal-title">
+        <span>{{l("Detail")}} - {{l(entityChange.entityTypeFullName)}}</span> <br />
+        <small [innerHTML]="l('CreatedAtByUser', entityChange.changeTime, entityChange.userName)"></small>
+    </div>
+</div>
+
+<nz-table>
+    <thead>
+        <tr>
+            <th>{{l("Property")}}</th>
+            <th>{{l("OriginalValue")}}</th>
+            <th>{{l("NewValue")}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let propertyChange of entityPropertyChanges">
+            <td><strong>{{propertyChange.propertyName}}</strong></td>
+            <td>{{getPropertyChangeValue(propertyChange.originalValue, propertyChange.propertyTypeFullName)}}</td>
+            <td>{{getPropertyChangeValue(propertyChange.newValue, propertyChange.propertyTypeFullName)}}</td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<div class="modal-footer">
+    <button nz-button type="button" (click)="close()">
+        {{l("Cancel")}}
+    </button>
+</div>

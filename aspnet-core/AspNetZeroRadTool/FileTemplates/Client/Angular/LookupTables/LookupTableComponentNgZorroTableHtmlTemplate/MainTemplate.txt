@@ -1,0 +1,66 @@
+﻿<div class="modal-header">
+    <div class="modal-title">
+        {{l("Pick{{NP_Foreign_Entity_Name_Here}}")}}
+    </div>
+</div>
+<fieldset>
+    <form nz-form [nzLayout]="'inline'" class="search__form">
+        <nz-form-item>
+            <nz-form-control>
+                <nz-input-group nzSearch [nzSuffix]="suffixSearchButton">
+                    <input type="text" nz-input [(ngModel)]="filterText" (keyup.enter)="refresh()" name="filterText"
+                        [placeholder]="l('SearchWithThreeDot')">
+                    <ng-template #suffixSearchButton>
+                        <button nz-button nzType="primary" nzSearch (click)="refresh()">
+                            <i nz-icon type="search"></i>
+                        </button>
+                    </ng-template>
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+    <nz-row nzGutter="8">
+        <nz-col nzSm="24">
+            <nz-table #nzDataTable [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]="true"
+                [nzData]="dataList" [nzTotal]="totalItems" [nzLoading]="isTableLoading" [(nzPageIndex)]="pageNumber"
+                [(nzPageSize)]="pageSize" (nzPageIndexChange)="refresh()" (nzPageSizeChange)="refresh()"
+                [nzNoResult]="noDataTemplate" [nzShowTotal]="totalTemplate">
+                <ng-template #noDataTemplate>
+                    <no-data></no-data>
+                </ng-template>
+                <ng-template #totalTemplate let-total>
+                    {{l('TotalRecordsCount', total)}}
+                </ng-template>
+                <thead (nzSortChange)="gridSort($event)">
+                    <tr>
+                        <th nzWidth="130px" class="text-center">
+                            {{l('Actions')}}
+                        </th>
+                        <th>
+                            {{l('{{NP_Display_Property_Name_Here}}')}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of nzDataTable.data">
+                        <td nzWidth="130px" class="text-center">
+                            <a (click)="setAndSave(item)">
+                                <i nz-icon type="check-circle" theme="outline"></i>
+                                {{l("Select")}}
+                            </a>
+                        </td>
+                        <td>
+                            {{item.displayName}}
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+
+        </nz-col>
+    </nz-row>
+</fieldset>
+<div class="modal-footer">
+    <button nz-button [nzType]="'primary'" type="button" (click)="close($event)">
+        {{l("Close")}}
+    </button>
+</div>

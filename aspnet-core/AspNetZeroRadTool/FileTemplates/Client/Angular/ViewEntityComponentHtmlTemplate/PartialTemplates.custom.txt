@@ -1,0 +1,44 @@
+{
+"propertyTemplates":[
+		{
+			"placeholder" : "{{Property_Looped_Template_Here}}",
+			"condition" : "{{Property_Listed_Here}} == true",
+			"templates" : [
+					{
+					"type" : "enum",
+					"content" : "                    <div>
+                        <h6>{{l(\"{{property_Name_Here}}\")}} :</h6>
+                        {{l('Enum_{{Property_Type_Here}}' + {{property_Type_Here}}[item.{{entity_Name_Here}}.{{property_Name_Here}}])}}
+                    </div>
+                    <nz-divider nzDashed></nz-divider>
+"
+					},
+					{
+					"type" : "default",
+					"content" : "                    <div>
+                        <h6>{{l(\"{{Property_Name_Here}}\")}} :</h6>
+                        {{item.{{entity_Name_Here}}.{{property_Name_Here}}}}
+                    </div>
+                    <nz-divider nzDashed></nz-divider>
+"
+					}
+				]
+		}
+	],
+"navigationPropertyTemplates":[
+		{
+			"placeholder" : "{{NP_Looped_Template_Here}}",
+			"templates" : [
+					{
+					"relation" : "single",
+					"content" : "                    <div>
+                        <h6>({{l(\"{{NP_Foreign_Entity_Name_Here}}\")}}) {{l(\"{{NP_Display_Property_Name_Here}}\")}} :</h6>
+                        {{item.{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}}}
+                    </div>
+                    <nz-divider nzDashed></nz-divider>
+"
+					}
+				]
+		}
+	]
+}

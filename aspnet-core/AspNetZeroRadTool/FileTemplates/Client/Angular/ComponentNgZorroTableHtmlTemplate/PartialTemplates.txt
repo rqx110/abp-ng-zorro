@@ -1,0 +1,210 @@
+{
+"propertyTemplates":[
+		{
+			"placeholder" : "{{Property_Looped_Header_Template_Here}}",
+			"condition" : "{{Property_Listed_Here}} == true",
+			"templates" : [
+					{
+					"type" : "default",
+					"content" : "
+							<th nzShowSort nzSortKey=\"{{entity_Name_Here}}.{{property_Name_Here}}\">
+								{{l('{{Property_Name_Here}}')}}
+							</th>
+						"
+					}
+				]
+		},
+		{
+			"placeholder" : "{{Property_Looped_Template_Here}}",
+			"condition" : "{{Property_Listed_Here}} == true",
+			"templates" : [
+					{
+					"type" : "enum",
+					"content" : "
+					<td>
+						{{l('Enum_{{Property_Type_Here}}' + {{property_Type_Here}}[item.{{entity_Name_Here}}.{{property_Name_Here}}])}}
+                    </td>"
+					},
+					{
+					"type" : "bool",
+					"content" : "
+						<td class=\"text-center\">
+							<span class=\"badge badge-success\" *ngIf=\"item.{{entity_Name_Here}}.{{property_Name_Here}}\">{{l('Yes')}}</span>
+							<span class=\"badge badge-error\" *ngIf=\"!item.{{entity_Name_Here}}.{{property_Name_Here}}\">{{l('No')}}</span>
+						</td>"
+					},
+					{
+					"type" : "DateTime",
+					"content" : "
+						<td class=\"text-center\">
+							{{item.{{entity_Name_Here}}.{{property_Name_Here}} | momentFormat:\'L\'}}
+						</td>"
+					},
+					{
+					"type" : "default",
+					"content" : "
+						<td>
+							{{item.{{entity_Name_Here}}.{{property_Name_Here}}}}
+						</td>"
+					}
+				]
+		},
+		{
+			"placeholder" : "{{Property_Filter_Template_Here}}",
+			"condition" : "{{Property_Advanced_Filter_Here}} == true",
+			"templates" : [
+					{
+					"type" : "enum",
+					"content" : "
+							<nz-col nzSm=\"6\">
+								<nz-form-item>
+									<nz-form-label for=\"{{Property_Name_Here}}FilterSelect\">
+										{{l(\"{{Property_Name_Here}}\")}}
+									</nz-form-label>
+									<nz-form-control>
+										<nz-select [(ngModel)]=\"{{property_Name_Here}}Filter\" name=\"{{Property_Name_Here}}Filter\" id=\"{{Property_Name_Here}}FilterSelect\" nzAllowClear>
+										<nz-option [nzLabel]=\"l('All')\" nzValue=\"-1\"></nz-option>
+										{{Enum_Option_Looped_Template_Here}}
+									</nz-select>
+									</nz-form-control>
+								</nz-form-item>
+							</nz-col>"
+					},
+					{
+					"type" : "bool",
+					"content" : "
+							<nz-col nzSm=\"6\">
+								<nz-form-item>
+									<nz-form-label for=\"{{Property_Name_Here}}FilterSelect\">
+										{{l(\"{{Property_Name_Here}}\")}}
+									</nz-form-label>
+									<nz-form-control>
+										<nz-select [(ngModel)]=\"{{property_Name_Here}}Filter\" name=\"{{Property_Name_Here}}Filter\" id=\"{{Property_Name_Here}}FilterSelect\" nzAllowClear>
+										<nz-option [nzLabel]=\"l('All')\" nzValue=\"-1\"></nz-option>
+										<nz-option [nzLabel]=\"l('False')\" nzValue=\"0\"></nz-option>
+										<nz-option [nzLabel]=\"l('True')\" nzValue=\"1\"></nz-option>
+									</nz-select>
+									</nz-form-control>
+								</nz-form-item>
+							</nz-col>"
+					},
+					{
+					"type" : "DateTime",
+					"content" : "
+							<nz-col nzSm=\"6\">
+								<nz-form-item>
+									<nz-form-label nzFor=\"{{Property_Name_Here}}Filter\">
+										{{l(\"{{Property_Name_Here}}\")}}
+									</nz-form-label>
+									<nz-form-control>
+										<range-picker name=\"{{property_Name_Here}}Filter\" id=\"{{Property_Name_Here}}Filter\" [(ngModel)]=\"min{{Property_Name_Here}}Filter\" [(ngModelEnd)]=\"max{{Property_Name_Here}}Filter\"
+											[nzPlaceHolder]=\"[l('StartDateTime'),l('EndDateTime')]\"></range-picker>
+									</nz-form-control>
+								</nz-form-item>
+							</nz-col>"
+					},
+					{
+					"type" : "numeric",
+					"content" : "
+							<nz-col nzSm=\"6\">
+								<nz-form-item>
+									<nz-form-label nzFor=\"Min{{Property_Name_Here}}Filter\">
+										{{l(\"{{Property_Name_Here}}\")}}
+									</nz-form-label>
+									<nz-form-control>
+										<nz-input-number id=\"Min{{Property_Name_Here}}Filter\" name=\"min{{Property_Name_Here}}Filter\" [(ngModel)]=\"min{{Property_Name_Here}}Filter\" [nzPlaceHolder]=\"{{l('MinValue')}}\"></nz-input-number>
+										<nz-input-number id=\"Max{{Property_Name_Here}}Filter\" name=\"max{{Property_Name_Here}}Filter\" [(ngModel)]=\"max{{Property_Name_Here}}Filter\" [nzPlaceHolder]=\"{{l('MaxValue')}}\"></nz-input-number>
+									</nz-form-control>
+								</nz-form-item>
+							</nz-col>"
+					},
+					{
+					"type" : "default",
+					"content" : "
+							<nz-col nzSm=\"6\">
+								<nz-form-item>
+									<nz-form-label nzFor=\"{{Property_Name_Here}}Filter\">
+										{{l(\"{{Property_Name_Here}}\")}}
+									</nz-form-label>
+									<nz-form-control>
+										<input nz-input id=\"{{Property_Name_Here}}Filter\" name=\"{{property_Name_Here}}Filter\" [(ngModel)]=\"{{property_Name_Here}}Filter\">
+									</nz-form-control>
+								</nz-form-item>
+							</nz-col>"
+					}
+				]
+		}
+	],
+"navigationPropertyTemplates":[
+	{
+			"placeholder" : "{{NP_Looped_Header_Template_Here}}",
+			"templates" : [
+					{
+					"relation" : "single",
+					"content" : "
+								<th nzShowSort nzSortKey=\"{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}\">
+									{{l('{{NP_Display_Property_Name_Here}}')}}
+								</th>
+							"
+					}
+				]
+		},
+		{
+			"placeholder" : "{{NP_Looped_Template_Here}}",
+			"templates" : [
+					{
+					"relation" : "single",
+					"content" : "
+					<td>
+                        {{item.{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}}}
+                    </td>"
+					}
+				]
+		},
+		{
+			"placeholder" : "{{NP_Filter_Template_Here}}",
+			"templates" : [
+					{
+					"relation" : "single",
+					"content" : "
+							<nz-col nzSm=\"6\">
+								<nz-form-item>
+									<nz-form-label nzFor=\"{{NP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}Filter\">
+										({{l(\"{{NP_Foreign_Entity_Name_Here}}{{NP_Duplication_Number_Here}}\")}}) {{l(\"{{NP_Display_Property_Name_Here}}\")}}
+									</nz-form-label>
+									<nz-form-control>
+										<input nz-input id=\"{{NP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}Filter\" name=\"{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}Filter\" [(ngModel)]=\"{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}Filter\">
+									</nz-form-control>
+								</nz-form-item>
+							</nz-col>"
+					}
+				]
+		}
+	],
+"enumTemplates":[
+		{
+			"placeholder" : "{{Enum_Option_Looped_Template_Here}}",
+			"content" : "
+			<nz-option [nzLabel]=\"l('Enum_{{Enum_Name_Here}}_{{Enum_Property_Value_Here}}')\" nzValue=\"{{Enum_Property_Value_Here}}\"></nz-option>"
+		}
+	],
+"conditionalTemplates":[
+		{
+			"placeholder": "{{View_Button_Here}}",
+			"condition": "{{Create_View_Only_Here}} == true",
+			"content": "
+					<ng-container>
+                            <a (click)=\"view{{Entity_Name_Here}}(item.id)\">
+                                <i nz-icon type=\"search\"></i>
+                                {{l('View')}}
+                            </a>
+                            <nz-divider nzType=\"vertical\"></nz-divider>
+                        </ng-container>"
+		},
+		{
+			"placeholder": "{{Get_Excel_Button_Here}}",
+			"condition": "{{Create_Excel_Export_Here}} == true",
+			"content": "<button nz-button nzType=\"default\" (click)=\"exportToExcel()\"><i nz-icon type=\"file-excel\"></i><span>{{l('ExportToExcel')}}</span></button>"
+		}
+	]
+}

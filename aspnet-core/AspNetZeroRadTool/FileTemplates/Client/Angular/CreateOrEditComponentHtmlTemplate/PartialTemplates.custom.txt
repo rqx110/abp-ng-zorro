@@ -1,0 +1,132 @@
+{
+"propertyTemplates":[
+		{
+			"placeholder" : "{{Property_Looped_Template_Here}}",
+			"condition" : "{{Property_CreateOrEdit_Here}} == true",
+			"templates" : [
+					{
+					"type" : "enum",
+					"content" : "
+							<nz-form-item nz-row>
+								<nz-form-label nzFor=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\">
+									{{l(\"{{Property_Name_Here}}\")}}
+								</nz-form-label>
+								<nz-form-control>
+									<nz-select [(ngModel)]=\"{{entity_Name_Here}}.{{property_Name_Here}}\" name=\"{{Property_Name_Here}}\" id=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\">
+										{{Enum_Option_Looped_Template_Here}}
+									</nz-select>
+								</nz-form-control>
+							</nz-form-item>"
+					},
+					{
+					"type" : "numeric",
+					"content" : "
+								<nz-form-item nz-row>
+								<nz-form-label nzFor=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\">
+									{{l(\"{{Property_Name_Here}}\")}}
+								</nz-form-label>
+								<nz-form-control>
+									<nz-input-number id=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\" [(ngModel)]=\"{{entity_Name_Here}}.{{property_Name_Here}}\" name=\"{{Property_Name_Here}}\" [nzMin]=\"{{MinValue}}\" [nzMax]=\"{{MaxValue}}\" [nzStep]=\"1\"></nz-input-number>
+								</nz-form-control>
+					"
+					},
+					{
+					"type" : "bool",
+					"content" : "
+					            <label nz-checkbox id=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\" name=\"{{Property_Name_Here}}\" [(ngModel)]=\"{{entity_Name_Here}}.{{property_Name_Here}}\">{{l(\"{{Property_Name_Here}}\")}}</label>
+					"
+					},
+					{
+					"type" : "DateTime",
+					"content" : "
+								<nz-form-item>
+									<nz-form-label nzFor=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\">{{l(\"{{Property_Name_Here}}\")}}</nz-form-label>
+									<nz-form-control>
+										<nz-date-picker [(ngModel)]=\"{{entity_Name_Here}}.{{property_Name_Here}}\" id=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\" name=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\"></nz-date-picker>
+									</nz-form-control>
+								</nz-form-item>
+					"
+					},
+					{
+					"type" : "default",
+					"content" : "
+								<nz-form-item>
+									<nz-form-label nzFor=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\">{{l(\"{{Property_Name_Here}}\")}}</nz-form-label>
+									<nz-form-control>
+										<input nz-input [(ngModel)]=\"{{entity_Name_Here}}.{{property_Name_Here}}\" id=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\" name=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\" {{Regex}} {{MinLengthHere}} {{MaxLengthHere}} {{Required}}>
+									</nz-form-control>
+								</nz-form-item>
+					"
+					}
+				]
+		}
+	],
+"navigationPropertyTemplates":[
+		{
+			"placeholder" : "{{NP_Looped_Template_Here}}",
+			"templates" : [
+					{
+					"relation" : "single",
+					"content" : "
+					<nz-form-item nz-row>
+						<nz-form-label nzFor=\"{{NP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}\">
+							{{l(\"{{NP_Foreign_Entity_Name_Here}}\")}}
+						</nz-form-label>
+						<nz-form-control>
+							<nz-input-group nzSearch [nzSuffix]=\"suffixButton\">
+								<input nz-input id=\"{{NP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}\"
+									name=\"{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}\" 
+									[(ngModel)]=\"{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}\"
+									disabled>
+							</nz-input-group>
+							<ng-template #suffixButton>
+								<i nz-icon type=\"close\" class=\"mr-sm text-sm point\" (click)=\"set{{NP_Name_Here}}Null()\" *ngIf=\"{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}\"></i>
+								<button nz-button nzType=\"primary\" type=\"button\" style=\"margin-left:0\" (click)=\"openSelect{{NP_Foreign_Entity_Name_Here}}Modal{{NP_Duplication_Number_Here}}()\"><i nz-icon type=\"search\"></i>{{l(\"Pick\")}}</button>
+							</ng-template>
+						</nz-form-control>
+						<input nz-input name=\"{{entity_Name_Here}}.{{nP_Name_Here}}\" [(ngModel)]=\"{{entity_Name_Here}}.{{nP_Name_Here}}\" {{NP_IsNullable_Required_Here}} hidden>
+					</nz-form-item>"
+					}
+				]
+		}		
+	],
+"enumTemplates":[
+		{
+			"placeholder" : "{{Enum_Option_Looped_Template_Here}}",
+			"content" : "<nz-option [nzLabel]=\"l(\'Enum_{{Enum_Name_Here}}_{{Enum_Property_Value_Here}}\')\" [nzValue]=\"{{Enum_Property_Value_Here}}\"></nz-option>
+"
+		}
+	],
+"conditionalTemplates":[
+		{
+			"placeholder": "{{Required}}",
+			"condition": "{{Property_Required_Here}} == true",
+			"content": " required"
+		},
+		{
+			"placeholder": "{{Regex}}",
+			"condition": "{{Property_Regex_Here}} != ''",
+			"content": " pattern=\"{{Property_Regex_Here}}\""
+		},
+		{
+			"placeholder": "{{MaxLengthHere}}",
+			"condition": "{{Property_MaxLength_Here}} > -1",
+			"content": " maxlength=\"{{Property_MaxLength_Here}}\""
+		},
+		{
+			"placeholder": "{{MinLengthHere}}",
+			"condition": "{{Property_MinLength_Here}} > -1",
+			"content": " minlength=\"{{Property_MinLength_Here}}\""
+		},
+		{
+			"placeholder": "{{MaxValue}}",
+			"condition": "{{Property_Is_Range_Set_Here}} == true",
+			"content": " max=\"Property_RangeMax_Here\""
+		},
+		{
+			"placeholder": "{{MinValue}}",
+			"condition": "{{Property_Is_Range_Set_Here}} == true",
+			"content": " min=\"Property_RangeMin_Here\""
+		}
+	]
+}

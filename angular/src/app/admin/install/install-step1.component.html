@@ -1,0 +1,48 @@
+<form nz-form #commonStepForm="ngForm" (ngSubmit)="_submitForm()">
+    <nz-form-item>
+        <nz-form-label nzSpan="8" nzRequired>Connection String</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+            <input nz-input #connectionStringInput="ngModel" [(ngModel)]="item.setupSettings.connectionString" name="connectionString"
+                autocomplete="off" required>
+            <nz-form-explain *ngIf="connectionStringInput.dirty && connectionStringInput.errors">
+                <validation-messages [formCtrl]="connectionStringInput"></validation-messages>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzSpan="8" nzRequired>Admin Password</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+            <input nz-input type="password" #passwordStringInput="ngModel" [(ngModel)]="item.setupSettings.adminPassword"
+                name="adminPassword" autocomplete="off" required>
+            <nz-form-explain *ngIf="passwordStringInput.dirty && passwordStringInput.errors">
+                <validation-messages [formCtrl]="passwordStringInput"></validation-messages>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzSpan="8">Client Side URL</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+            <input nz-input [(ngModel)]="item.setupSettings.webSiteUrl" name="webSiteUrl">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzSpan="8">Server Side URL</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+            <input nz-input [(ngModel)]="item.setupSettings.serverUrl" name="serverUrl">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzSpan="8">Default Language</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+            <nz-select [(ngModel)]="item.setupSettings.defaultLanguage" name="defaultLanguage">
+                <nz-option *ngFor="let language of item.languages" [nzLabel]="language.name" [nzValue]="language.value">
+                </nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control nzSpan="16" nzOffset="8">
+            <button nz-button nzType="primary" [disabled]="!commonStepForm.form.valid">Next</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

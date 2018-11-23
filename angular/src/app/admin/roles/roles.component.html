@@ -1,0 +1,110 @@
+<page-header [title]="title">
+    <ng-template #title>
+        {{l('Roles')}}
+        <span class="text-sm text-grey-dark">
+            <nz-divider nzType="vertical"></nz-divider>
+            {{l('RolesHeaderInfo')}}
+        </span>
+    </ng-template>
+</page-header>
+<nz-card [nzBordered]="false">
+    <form nz-form [nzLayout]="'inline'" class="search__form">
+        <nz-form-item>
+            <nz-form-control>
+                <permission-combo [multiple]="false" [dropDownStyle]="{'max-height':'300px'}" [(selectedPermission)]="selectedPermission"
+                    (selectedPermissionChange)="refresh()">
+                </permission-combo>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+    <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Administration.Roles.Create')" (click)="createOrEdit()">
+        <i nz-icon type="plus"></i>
+        <span>
+            {{l("CreateNewRole")}}
+        </span>
+    </button>
+    <ng-container *ngIf="selectedDataItems.length > 0">
+        <button nz-button [nzType]="'danger'" *ngIf="isGranted('Pages.Administration.Roles.Delete')" (click)="batchDelete()">
+            <i nz-icon type="delete"></i>
+            <span>
+                Delete Selected
+            </span>
+        </button>
+    </ng-container>
+    <div class="my-md">
+        <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+            <ng-template #message>
+                <span>
+                    <strong class="text-primary">{{selectedDataItems.length}}</strong> items selected
+                </span>
+                <a (click)="restCheckStatus(dataList)" *ngIf="selectedDataItems.length>0" class="ml-md">
+                    {{l('Clear')}}
+                </a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a (click)="refresh()">
+                    {{l('Refresh')}}
+                </a>
+            </ng-template>
+        </nz-alert>
+    </div>
+    <div class="mb-md">
+
+        <nz-table #ajaxTable [nzData]="dataList" [nzTotal]="totalItems" [nzLoading]="isTableLoading"
+            (nzPageIndexChange)="pageNumberChange()" (nzPageSizeChange)="refresh()" [nzShowSizeChanger]="true"
+            [nzShowQuickJumper]="true" [nzFrontPagination]="false" [nzShowPagination]="false" [nzNoResult]="noDataTemplate">
+            <ng-template #noDataTemplate>
+                <no-data></no-data>
+            </ng-template>
+            <thead>
+                <tr>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled" [nzIndeterminate]="checkboxIndeterminate"
+                        (nzCheckedChange)="checkAll($event)">
+                    </th>
+
+                    <th>
+                        {{l('RoleName')}}
+                    </th>
+                    <th class="text-center">
+                        {{l('CreationTime')}}
+                    </th>
+
+                    <th nzWidth="230px" class="text-center">
+                        {{l('Actions')}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of ajaxTable.data">
+                    <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshCheckStatus(dataList)"></td>
+
+                    <td>
+                        <span class="mr-sm"> {{item.displayName}}</span>
+                        <nz-tag *ngIf="item.isStatic" [nzColor]="'#108ee9'" nz-tooltip [nzTitle]="l('StaticRole_Tooltip')">{{l('Static')}}</nz-tag>
+                        <nz-tag *ngIf="item.isDefault" [nzColor]="'#2db7f5'" nz-tooltip [nzTitle]="l('DefaultRole_Description')">{{l('Default')}}</nz-tag>
+                    </td>
+                    <td class="text-center">
+                        {{item.creationTime | momentFormat:'L'}}
+                    </td>
+                    <td class="text-center">
+                        <ng-container *ngIf="isGranted('Pages.Administration.Roles.Edit')">
+                            <a (click)="createOrEdit(item.id)">
+                                <i nz-icon type="edit"></i>
+                                {{l('Edit')}}
+                            </a>
+                        </ng-container>
+                        <ng-container *ngIf="!item.isStatic&&isGranted('Pages.Administration.Roles.Delete')">
+                            <nz-divider nzType="vertical"></nz-divider>
+                            <nz-popconfirm [nzTitle]="l('RoleDeleteWarningMessage', item.displayName)" (nzOnConfirm)="delete(item)"
+                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
+                                <a nz-popconfirm>
+                                    <i nz-icon type="delete"></i>
+                                    {{l('Delete')}}
+                                </a>
+                            </nz-popconfirm>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</nz-card>

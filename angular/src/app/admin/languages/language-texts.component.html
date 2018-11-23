@@ -1,0 +1,143 @@
+<page-header [title]="l('LanguageTexts')" class="page-header__title"></page-header>
+<nz-card [nzBordered]="false" [nzExtra]="extra" [nzTitle]="l('LanguagesHeaderInfo')">
+    <ng-template #extra>
+        <button nz-button (click)="refresh()">
+            <i nz-icon type="reload"></i>
+            <span>{{l('Refresh')}}</span>
+        </button>
+        <button nz-button (click)="backToLanguageList()" [nzType]="'primary'">
+            <i nz-icon type="rollback"></i>
+            <span>{{l('Back')}}</span>
+        </button>
+    </ng-template>
+    <form nz-form [nzLayout]="'vertical'" class="search__form">
+        <div nz-row nzGutter="8">
+            <div nz-col [nzSm]="6">
+                <nz-form-item>
+                    <nz-form-label nzFor="BaseLanguage">
+                        {{l("BaseLanguage")}}
+                    </nz-form-label>
+                    <nz-form-control>
+                        <nz-select name="BaseLanguage" [(ngModel)]="baseLanguageName" [nzPlaceHolder]="l('BaseLanguage')"
+                            (ngModelChange)="refresh()" [nzShowSearch]="true">
+                            <nz-option nzCustomContent *ngFor="let language of languages" [nzValue]="language.name"
+                                [nzLabel]="language.displayName">
+                                <i class="anticon mr-sm" [ngClass]="language.icon"></i>
+                                <span>
+                                    {{language.displayName}}
+                                </span>
+                            </nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="6">
+                <nz-form-item>
+                    <nz-form-label nzFor="TargetLanguage">
+                        {{l("TargetLanguage")}}
+                    </nz-form-label>
+                    <nz-form-control>
+                        <nz-select name="TargetLanguage" [(ngModel)]="targetLanguageName" [nzPlaceHolder]="l('TargetLanguage')"
+                            (ngModelChange)="refresh()" [nzShowSearch]="true">
+                            <nz-option nzCustomContent *ngFor="let language of languages" [nzValue]="language.name"
+                                [nzLabel]="language.displayName">
+                                <i class="anticon mr-sm" [ngClass]="language.icon"></i>
+                                <span>
+                                    {{language.displayName}}
+                                </span>
+                            </nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="6">
+                <nz-form-item>
+                    <nz-form-label nzFor="sourceName">
+                        {{l("Source")}}
+                    </nz-form-label>
+                    <nz-form-control>
+                        <nz-select name="sourceName" [(ngModel)]="sourceName" [nzPlaceHolder]="l('Source')"
+                            (ngModelChange)="refresh()" [nzShowSearch]="true">
+                            <nz-option *ngFor="let sourceName of sourceNames" [nzValue]="sourceName" [nzLabel]="sourceName"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="6">
+                <nz-form-item>
+                    <nz-form-label nzFor="TargetValue">
+                        {{l("TargetValue")}}
+                    </nz-form-label>
+                    <nz-form-control>
+                        <nz-select name="TargetValue" [(ngModel)]="targetValueFilter" [nzPlaceHolder]="l('TargetValue')"
+                            (ngModelChange)="refresh()" [nzShowSearch]="true">
+                            <nz-option nzValue="ALL" [nzLabel]="l('All')"></nz-option>
+                            <nz-option nzValue="EMPTY" [nzLabel]="l('EmptyOnes')"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <nz-form-item nz-row>
+            <nz-form-control>
+                <nz-input-group nzSearch [nzSuffix]="suffixSearchButton">
+                    <input type="text" nz-input [(ngModel)]="filterText" name="filterText" [placeholder]="l('SearchWithThreeDot')">
+                    <ng-template #suffixSearchButton>
+                        <button nz-button nzType="primary" nzSearch (click)="refresh()">
+                            <i nz-icon type="search"></i>
+                        </button>
+                    </ng-template>
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+    <nz-row class="my-md">
+        <nz-table #ajaxTable [nzData]="dataList" [nzTotal]="totalItems" [(nzPageIndex)]="pageNumber" [(nzPageSize)]="pageSize"
+            [nzLoading]="isTableLoading" (nzPageIndexChange)="pageNumberChange()" (nzPageSizeChange)="refresh()"
+            [nzShowSizeChanger]="true" [nzShowQuickJumper]="true" [nzNoResult]="noDataTemplate" [nzShowTotal]="totalTemplate"
+            [nzFrontPagination]="false">
+            <ng-template #noDataTemplate>
+                <no-data></no-data>
+            </ng-template>
+            <ng-template #totalTemplate let-total>
+                {{l('TotalRecordsCount', total)}}
+            </ng-template>
+            <thead (nzSortChange)="gridSort($event)">
+                <tr>
+                    <th nzShowSort nzSortKey="key">
+                        {{l('Key')}}
+                    </th>
+                    <th nzShowSort nzSortKey="baseValue">
+                        {{l('BaseValue')}}
+                    </th>
+                    <th nzShowSort nzSortKey="targetValue">
+                        {{l('TargetValue')}}
+                    </th>
+                    <th nzWidth="150px" class="text-center">
+                        {{l('Actions')}}
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let item of ajaxTable.data">
+                    <td>
+                        {{item.key}}
+                    </td>
+                    <td>
+                        {{item.baseValue}}
+                    </td>
+                    <td>
+                        {{item.targetValue}}
+                    </td>
+                    <td class="text-center">
+                        <a (click)="edit(item)">
+                            <i nz-icon type="edit"></i>
+                            {{l('Edit')}}
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-row>
+</nz-card>

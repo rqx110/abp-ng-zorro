@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="wrap">
+        <div class="top">
+            <div class="head">
+                <img class="logo" src="./assets/logo-color.svg">
+                <span class="title">Aspnet Zero Template</span>
+            </div>
+            <div class="desc">Base solution for your next web application</div>
+        </div>
+        <div *ngIf="showTenantChange()" class="mb-lg">
+            <app-tenant-change></app-tenant-change>
+        </div>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+        <language-switch></language-switch>
+        <global-footer [links]="links">
+            Copyright
+            <i nz-icon type="copyright"></i> {{currentYear}}
+            Version {{versionText}}
+            by <a href="//aspnetzero.com" target="_blank">Aspnet Zero</a>
+        </global-footer>
+    </div>
+</div>
