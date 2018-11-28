@@ -1,5 +1,4 @@
-# ASP.NET ZERO
+# About
 
-This repository is configured and used for AspNet Zero Team's development. 
-It is not suggested for our customers to use this repository directly. It is suggested to download a project from https://aspnetzero.com/Download.
+This project uses ng-zorro([https://ng.ant.design](https://ng.ant.design)) as Asp.Net Zero front-side template.
 
