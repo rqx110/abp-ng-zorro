@@ -32,6 +32,10 @@ export class ResetPasswordComponent extends AppComponentBase implements OnInit {
     }
 
     ngOnInit(): void {
+        this._profileService.getPasswordComplexitySetting().subscribe(result => {
+            this.passwordComplexitySetting = result.setting;
+        });
+
         if (this._activatedRoute.snapshot.queryParams['c']) {
             this.model.c = this._activatedRoute.snapshot.queryParams['c'];
 
@@ -39,10 +43,6 @@ export class ResetPasswordComponent extends AppComponentBase implements OnInit {
                 this.appSession.changeTenantIfNeeded(
                     tenantId
                 );
-
-                this._profileService.getPasswordComplexitySetting().subscribe(result => {
-                    this.passwordComplexitySetting = result.setting;
-                });
             });
         } else {
             this.model.userId = this._activatedRoute.snapshot.queryParams['userId'];

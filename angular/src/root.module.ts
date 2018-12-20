@@ -28,13 +28,13 @@ export function appInitializerFactory(
     injector: Injector,
     platformLocation: PlatformLocation) {
     return () => {
-        handleLogoutRequest(injector.get(AppAuthService));
-
         return new Promise<boolean>((resolve, reject) => {
             AppConsts.appBaseHref = getBaseHref(platformLocation);
             let appBaseUrl = getDocumentOrigin() + AppConsts.appBaseHref;
 
             AppPreBootstrap.run(appBaseUrl, () => {
+                handleLogoutRequest(injector.get(AppAuthService));
+
                 const appSessionService: AppSessionService = injector.get(AppSessionService);
                 appSessionService.init().then(
                     () => {
