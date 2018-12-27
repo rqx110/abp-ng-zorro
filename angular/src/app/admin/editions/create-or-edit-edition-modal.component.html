@@ -1,0 +1,125 @@
+<form nz-form #editionCreateOrEditForm="ngForm" (ngSubmit)="save()" autocomplete="off">
+    <div class="modal-header">
+        <div class="modal-title">
+            <i nz-icon type="medicine-box" class="mr-sm"></i>
+            <span *ngIf="edition.id">{{l('EditEdition')}}:{{edition.displayName}}</span>
+            <span *ngIf="!edition.id">{{l('CreateNewEdition')}}</span>
+        </div>
+    </div>
+    <fieldset>
+        <nz-tabset>
+            <nz-tab [nzTitle]="l('EditionProperties')">
+                <nz-form-item nz-row>
+                    <nz-form-label nzFor="EditionDisplayName" nzRequired>
+                        {{l("EditionName")}}
+                    </nz-form-label>
+                    <nz-form-control nzHasFeedback>
+                        <input nz-input id="EditionDisplayName" #editionNameInput="ngModel" name="EditionDisplayName"
+                            [(ngModel)]="edition.displayName" required maxlength="64">
+                        <nz-form-explain *ngIf="editionNameInput.dirty && editionNameInput.errors">
+                            <validation-messages [formCtrl]="editionNameInput"></validation-messages>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item nz-row>
+                    <nz-form-label nzFor="SubscriptionPrice">
+                        {{l("SubscriptionPrice")}}
+                    </nz-form-label>
+                    <nz-form-control>
+                        <nz-radio-group name="SubscriptionPrice" [(ngModel)]="isFree" (ngModelChange)="resetPrices($event)">
+                            <label nz-radio [nzValue]="true">{{l("Free")}}</label>
+                            <label nz-radio [nzValue]="false">{{l("Paid")}}</label>
+                        </nz-radio-group>
+                        <div nz-row *ngIf="!isFree" nzGutter="8">
+                            <div nz-col nzSpan="12">
+                                <nz-form-label nzFor="MonthlyPrice" [nzRequired]="!isFree">
+                                    {{l("MonthlyPrice")}}
+                                </nz-form-label>
+                                <nz-form-control nzHasFeedback>
+                                    <nz-input-group nzAddOnBefore="$">
+                                        <input nz-input type="number" id="MonthlyPrice" #monthlyPriceInput="ngModel" name="MonthlyPrice"
+                                            [(ngModel)]="edition.monthlyPrice" [required]="!isFree">
+                                    </nz-input-group>
+                                    <nz-form-explain *ngIf="monthlyPriceInput.dirty && monthlyPriceInput.errors">
+                                        <validation-messages [formCtrl]="monthlyPriceInput"></validation-messages>
+                                    </nz-form-explain>
+                                </nz-form-control>
+                            </div>
+                            <div nz-col nzSpan="12">
+                                <nz-form-label nzFor="AnnualPrice" [nzRequired]="!isFree">
+                                    {{l("AnnualPrice")}}
+                                </nz-form-label>
+                                <nz-form-control nzHasFeedback>
+                                    <nz-input-group nzAddOnBefore="$">
+                                        <input nz-input type="number" id="AnnualPrice" #annualPriceInput="ngModel" name="AnnualPrice"
+                                            [(ngModel)]="edition.annualPrice" [required]="!isFree">
+                                    </nz-input-group>
+                                    <nz-form-explain *ngIf="annualPriceInput.dirty && annualPriceInput.errors">
+                                        <validation-messages [formCtrl]="annualPriceInput"></validation-messages>
+                                    </nz-form-explain>
+                                </nz-form-control>
+                            </div>
+                        </div>
+                        <div [hidden]="isFree">
+                            <div>
+                                <label nz-checkbox name="IsTrialActive" [(ngModel)]="isTrialActive">{{l("IsTrialActive")}}</label>
+                                <div *ngIf="isTrialActive">
+                                    <nz-form-label nzFor="TrialDayCount" [nzRequired]="isTrialActive">
+                                        {{l("TrialDayCount")}}
+                                    </nz-form-label>
+                                    <nz-form-control nzHasFeedback>
+                                        <input nz-input id="TrialDayCount" #trialDayCountInput="ngModel" name="TrialDayCount"
+                                            [(ngModel)]="edition.trialDayCount" [required]="isTrialActive">
+                                        <nz-form-explain *ngIf="trialDayCountInput.dirty && trialDayCountInput.errors">
+                                            <validation-messages [formCtrl]="trialDayCountInput"></validation-messages>
+                                        </nz-form-explain>
+                                    </nz-form-control>
+                                </div>
+                            </div>
+                            <div>
+                                <label nz-checkbox name="IsWaitingDayActive" [(ngModel)]="isWaitingDayActive">{{l("WaitAfterSubscriptionExpireDate")}}</label>
+                                <div *ngIf="isWaitingDayActive">
+                                    <nz-form-label nzFor="WaitingDayAfterExpire" [nzRequired]="isWaitingDayActive">
+                                        {{l("WaitingDayAfterExpire")}}
+                                    </nz-form-label>
+                                    <nz-form-control nzHasFeedback>
+                                        <input nz-input id="WaitingDayAfterExpire" #waitingDayAfterExpireInput="ngModel"
+                                            name="WaitingDayAfterExpire" [(ngModel)]="edition.waitingDayAfterExpire"
+                                            [required]="isWaitingDayActive">
+                                        <nz-form-explain *ngIf="waitingDayAfterExpireInput.dirty && waitingDayAfterExpireInput.errors">
+                                            <validation-messages [formCtrl]="waitingDayAfterExpireInput"></validation-messages>
+                                        </nz-form-explain>
+                                    </nz-form-control>
+                                </div>
+                            </div>
+                            <div nz-row>
+                                <nz-form-label nzFor="ExpireAction">
+                                    {{l("WhatWillDoneAfterSubscriptionExpiry")}}
+                                </nz-form-label>
+                                <nz-form-control>
+                                    <nz-radio-group name="ExpireAction" [(ngModel)]="expireAction" (ngModelChange)="removeExpiringEdition($event)">
+                                        <label nz-radio [nzValue]="expireActionEnum.DeactiveTenant">{{l("DeactiveTenant")}}</label>
+                                        <label nz-radio [nzValue]="expireActionEnum.AssignToAnotherEdition">{{l("AssignToAnotherEdition")}}</label>
+                                    </nz-radio-group>
+                                    <nz-select *ngIf="expireAction == expireActionEnum.AssignToAnotherEdition"
+                                        [(ngModel)]="edition.expiringEditionId" id="expiringEdition" name="ExpiringEdition">
+                                        <nz-option *ngFor="let expiringEdition of expiringEditions" [nzLabel]="expiringEdition.displayText"
+                                            [nzValue]="expiringEdition.value"></nz-option>
+                                    </nz-select>
+                                </nz-form-control>
+                            </div>
+                        </div>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-tab>
+            <nz-tab [nzTitle]="l('Features')">
+                <feature-tree #featureTree></feature-tree>
+            </nz-tab>
+        </nz-tabset>
+    </fieldset>
+    <div class="modal-footer">
+        <button nz-button type="button" [disabled]="saving" (click)="close()"> {{l("Cancel")}} </button>
+        <button nz-button [nzType]="'primary'" type="submit" [disabled]="!editionCreateOrEditForm.form.valid||saving">
+            <i nz-icon type="save"></i> {{l("Save")}} </button>
+    </div>
+</form>

@@ -11,6 +11,7 @@ import {
 import { CreateTenantModalComponent } from './create-tenant-modal.component';
 import { finalize } from 'rxjs/operators';
 import { EditTenantModalComponent } from './edit-tenant-modal.component';
+import { TenantFeaturesModalComponent } from './tenant-features-modal.component';
 
 @Component({
     selector: 'app-tenants',
@@ -57,13 +58,19 @@ export class TenantsComponent extends PagedListingComponentBase<TenantListDto> {
             });
     }
 
-    unlockAdminUser(tenant: TenantListDto): void {
+    unlockUser(tenant: TenantListDto): void {
         this._tenantService.unlockTenantAdmin(new EntityDtoOfInt64({ id: tenant.id })).subscribe(() => {
             this.notify.success(this.l('UnlockedTenandAdmin', tenant.name));
         });
     }
 
-    changeFeatures(entity: TenantListDto): void { }
+    changeFeatures(tenant: TenantListDto): void {
+        this.modalHelper.createStatic(TenantFeaturesModalComponent, {
+            tenantId: tenant.id,
+            tenantName: tenant.name
+        }, {size: 'md'})
+            .subscribe(() => { this.refresh(); });
+     }
 
     editTenant(tenant: TenantListDto): void {
         this.modalHelper.createStatic(EditTenantModalComponent, {

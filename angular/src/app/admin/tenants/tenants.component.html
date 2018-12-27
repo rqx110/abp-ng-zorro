@@ -189,7 +189,7 @@
                             <nz-divider nzType="vertical"></nz-divider>
                         </ng-container>
                         <ng-container>
-                            <nz-dropdown>
+                            <nz-dropdown [nzPlacement]="'bottomRight'">
                                 <a nz-dropdown>
                                     {{l('More')}}
                                     <i nz-icon type="down"></i>
@@ -200,7 +200,7 @@
                                         <i nz-icon type="login"></i>
                                         {{l('LoginAsThisTenant')}}
                                     </li>
-                                    <li nz-menu-item *ngIf="isGranted('Pages.Tenants.ChangeFeatures')" (click)="changeTenantFeatures(item.id, item.name)">
+                                    <li nz-menu-item *ngIf="isGranted('Pages.Tenants.ChangeFeatures')" (click)="changeFeatures(item)">
                                         <i nz-icon type="codepen"></i>
                                         {{l('Features')}}
                                     </li>

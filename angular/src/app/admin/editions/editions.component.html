@@ -1,3 +1,71 @@
-<p>
-  editions works!
-</p>
+<page-header [title]="title">
+    <ng-template #title>
+        {{l('Editions')}}
+        <span class="text-sm text-grey-dark">
+            <nz-divider nzType="vertical"></nz-divider>
+            {{l('EditionsHeaderInfo')}}
+        </span>
+    </ng-template>
+</page-header>
+
+<nz-card [nzBordered]="false">
+    <nz-row nzGutter="8">
+        <nz-col nzMd="20" nzSm="12">
+            <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Editions.Create')" (click)="createEdition()">
+                <i nz-icon type="plus"></i>
+                <span>
+                    {{l("CreateNewEdition")}}
+                </span>
+            </button>
+        </nz-col>
+    </nz-row>
+    <nz-row class="my-md">
+        <nz-table #nzDataTable [nzData]="dataList" [nzLoading]="isTableLoading" nzShowPagination="false"
+            [nzNoResult]="noDataTemplate">
+            <ng-template #noDataTemplate>
+                <no-data></no-data>
+            </ng-template>
+            <thead (nzSortChange)="gridSort($event)">
+                <tr>
+                    <th nzShowSort nzSortKey="tenancyName">
+                        {{l('EditionName')}}
+                    </th>
+                    <th nzShowSort nzSortKey="creationTime" class="text-center">
+                        {{l('CreationTime')}}
+                    </th>
+                    <th class="text-center">
+                        {{l('Actions')}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of nzDataTable.data">
+                    <td>
+                        {{item.displayName}}
+                    </td>
+                    <td class="text-center">
+                        {{item.creationTime | momentFormat:'L'}}
+                    </td>
+                    <td class="text-center">
+                        <ng-container *ngIf="isGranted('Pages.Editions.Edit')">
+                            <a (click)="editEdition(item)">
+                                <i nz-icon type="edit"></i>
+                                {{l('Edit')}}
+                            </a>
+                            <nz-divider nzType="vertical"></nz-divider>
+                        </ng-container>
+                        <ng-container *ngIf="isGranted('Pages.Editions.Delete')">
+                            <nz-popconfirm [nzTitle]="l('EditionDeleteWarningMessage', item.displayName)" (nzOnConfirm)="deleteEdition(item)"
+                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
+                                <a nz-popconfirm>
+                                    <i nz-icon type="delete"></i>
+                                    {{l('Delete')}}
+                                </a>
+                            </nz-popconfirm>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-row>
+</nz-card>

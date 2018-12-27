@@ -27,7 +27,7 @@ export class AppNavigationService {
             new AppMenuItem('Dashboard', 'Pages.Administration.Host.Dashboard', 'anticon anticon-dashboard', '/app/admin/hostDashboard'),
             new AppMenuItem('Dashboard', 'Pages.Tenant.Dashboard', 'anticon anticon-dashboard', '/app/main/dashboard'),
             new AppMenuItem('Tenants', 'Pages.Tenants', 'anticon anticon-bars', '/app/admin/tenants'),
-            // new AppMenuItem('Editions', 'Pages.Editions', 'flaticon-app', '/app/admin/editions'),
+            new AppMenuItem('Editions', 'Pages.Editions', 'anticon anticon-shopping', '/app/admin/editions'),
             new AppMenuItem('Administration', '', 'anticon anticon-appstore', '', [
                 new AppMenuItem('OrganizationUnits', 'Pages.Administration.OrganizationUnits', 'anticon anticon-team', '/app/admin/organization-units'),
                 new AppMenuItem('Roles', 'Pages.Administration.Roles', 'anticon anticon-safety', '/app/admin/roles'),

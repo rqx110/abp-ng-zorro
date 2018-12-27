@@ -22,6 +22,7 @@ import { LanguageTextsComponent } from './languages/language-texts.component';
 import { CreateOrEditUserModalComponent } from './users/create-or-edit-user-modal.component';
 import { EditUserPermissionsModalComponent } from './users/edit-user-permissions-modal.component';
 import { PermissionTreeComponent } from './shared/permission-tree/permission-tree.component';
+import { FeatureTreeComponent } from './shared/feature-tree/feature-tree.component';
 import { CreateOrEditRoleModalComponent } from './roles/create-or-edit-role-modal.component';
 import { AuditLogDetailModalComponent } from './audit-logs/audit-logs-detail/audit-logs-detail-modal.component';
 import { EntityChangeDetailModalComponent } from './audit-logs/entity-change-detail/entity-change-detail-modal.component';
@@ -29,7 +30,9 @@ import { AddMemberModalComponent } from './organization-units/add-member-modal.c
 import { CreateOrEditLanguageModalComponent } from './languages/create-or-edit-language-modal.component';
 import { EditLanguageTextComponent } from './languages/edit-language-text.component';
 import { CreateTenantModalComponent } from './tenants/create-tenant-modal.component';
+import { CreateOrEditEditionModalComponent } from './editions/create-or-edit-edition-modal.component';
 import { EditTenantModalComponent } from './tenants/edit-tenant-modal.component';
+import {TenantFeaturesModalComponent} from './tenants/tenant-features-modal.component';
 import { CreateOrEditUnitModalComponent } from './organization-units/create-or-edit-unit-modal.component';
 import { PermissionComboComponent } from './shared/permission-combo/permission-combo.component';
 import { RoleComboComponent } from './shared/role-combo/role-combo.component';
@@ -70,6 +73,7 @@ import { InstallStep3Component } from './install/install-step3.component';
     OrganizationUnitsTreeComponent,
     EditUserPermissionsModalComponent,
     PermissionTreeComponent,
+    FeatureTreeComponent,
     CreateOrEditRoleModalComponent,
     AuditLogDetailModalComponent,
     EntityChangeDetailModalComponent,
@@ -78,9 +82,11 @@ import { InstallStep3Component } from './install/install-step3.component';
     CreateOrEditLanguageModalComponent,
     EditLanguageTextComponent,
     CreateTenantModalComponent,
+    CreateOrEditEditionModalComponent,
     OrganizationTreeComponent,
     OrganizationUnitMembersComponent,
     EditTenantModalComponent,
+    TenantFeaturesModalComponent,
     EditionComboComponent,
     HostDashboardComponent,
     InstallComponent,
@@ -99,7 +105,9 @@ import { InstallStep3Component } from './install/install-step3.component';
     CreateOrEditLanguageModalComponent,
     EditLanguageTextComponent,
     CreateTenantModalComponent,
+    CreateOrEditEditionModalComponent,
     EditTenantModalComponent,
+    TenantFeaturesModalComponent
   ]
 })
 export class AdminModule { }

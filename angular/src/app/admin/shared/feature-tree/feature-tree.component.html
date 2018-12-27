@@ -1,0 +1,13 @@
+<nz-tree #treeFeature nzExpandAll="true" nzCheckable="true" [nzData]="treeData" nzMultiple="true">
+    <ng-template #nzTreeTemplate let-node>
+        <span class="ant-tree-node-content-wrapper">
+            <span class="ant-tree-title" style="margin-right: 5px;">{{node.title}}</span>
+            <input nz-input nzSize="small" [attr.name]="node.origin.name" *ngIf="node.origin.inputType.name === 'SINGLE_LINE_STRING'"
+                [(ngModel)]="node.origin.value">
+            <nz-select nzSize="small" *ngIf="node.origin.inputType.name === 'COMBOBOX'" [(ngModel)]="node.origin.value">
+                <nz-option *ngFor="let item of node.origin.inputType.itemSource.items" [nzValue]="item.value"
+                    [nzLabel]="item.displayName"></nz-option>
+            </nz-select>
+        </span>
+    </ng-template>
+</nz-tree>
