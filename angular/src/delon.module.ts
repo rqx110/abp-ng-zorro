@@ -6,13 +6,12 @@ import { DelonABCModule, ReuseTabService, ReuseTabStrategy, PageHeaderConfig } f
 import { DelonUtilModule } from '@delon/util';
 
 import { AppConsts } from '@shared/AppConsts';
-import { AbpMenuService } from '@shared/menus/abp-menu.service';
 
 export function pageHeaderConfig(): PageHeaderConfig {
     return Object.assign(new PageHeaderConfig(), {
         homeI18n: abp.localization.localize('HomePage', AppConsts.localization.defaultLocalizationSourceName),
-    }
-    );
+        recursiveBreadcrumb: true
+    });
 }
 
 @NgModule({
@@ -38,9 +37,6 @@ export class DelonModule {
                 // },
                 {
                     provide: PageHeaderConfig, useFactory: pageHeaderConfig
-                },
-                {
-                    provide: MenuService, useClass: AbpMenuService, multi: false
                 }
             ],
         };
