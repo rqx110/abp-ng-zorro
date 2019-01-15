@@ -40,7 +40,7 @@
                     <span>{{l("Refresh")}}</span>
                 </button>
             </ng-template>
-            <div class="web-log-view full-height">
+            <div class="web-log-view full-height scrollbar">
                 <div class="log-line" *ngFor="let log of logs">
                     <span [class]="getLogClass(log)">{{getLogType(log)}}</span>
                     {{getRawLogContent(log)}}

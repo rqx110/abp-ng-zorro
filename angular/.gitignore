@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/src/assets/alain-*.less
 
 # dependencies
 /node_modules

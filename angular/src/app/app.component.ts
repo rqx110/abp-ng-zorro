@@ -62,7 +62,7 @@ export class AppComponent extends AppComponentBase implements OnInit, AfterViewI
     }
 
     private setClass() {
-        const { el, renderer, settings } = this;
+        const { el, doc, renderer, settings } = this;
         const layout = settings.layout;
         updateHostClass(
             el.nativeElement,
@@ -70,13 +70,12 @@ export class AppComponent extends AppComponentBase implements OnInit, AfterViewI
             {
                 ['alain-default']: true,
                 [`alain-default__fixed`]: layout.fixed,
-                [`alain-default__boxed`]: layout.boxed,
                 [`alain-default__collapsed`]: layout.collapsed,
             },
             true,
         );
 
-        this.doc.body.classList[layout.colorWeak ? 'add' : 'remove']('color-weak');
+        doc.body.classList[layout.colorWeak ? 'add' : 'remove']('color-weak');
     }
 
     ngOnInit(): void {

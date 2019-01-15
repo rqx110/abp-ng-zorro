@@ -1,9 +1,8 @@
 import { NgModule, Optional, SkipSelf, ModuleWithProviders, } from '@angular/core';
 import { RouteReuseStrategy } from '@angular/router';
 
-import { AlainThemeModule, MenuService } from '@delon/theme';
-import { DelonABCModule, ReuseTabService, ReuseTabStrategy, PageHeaderConfig } from '@delon/abc';
-import { DelonUtilModule } from '@delon/util';
+import { AlainThemeModule } from '@delon/theme';
+import { ReuseTabService, ReuseTabStrategy, PageHeaderConfig } from '@delon/abc';
 
 import { AppConsts } from '@shared/AppConsts';
 
@@ -16,9 +15,7 @@ export function pageHeaderConfig(): PageHeaderConfig {
 
 @NgModule({
     imports: [
-        AlainThemeModule.forRoot(),
-        DelonABCModule.forRoot(),
-        DelonUtilModule.forRoot()
+        AlainThemeModule.forRoot()
     ],
 })
 
