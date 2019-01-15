@@ -15,7 +15,7 @@ export class AppRouteGuard implements CanActivate, CanActivateChild, CanLoad {
     ) { }
 
     canActivateInternal(data: Data, state: RouterStateSnapshot): boolean {
-        if (state && UrlHelper.isInstallUrl(state.url)) {
+        if (UrlHelper.isInstallUrl(location.href)) {
             return true;
         }
 
