@@ -1,20 +1,20 @@
 <form nz-form #validateForm="ngForm" (ngSubmit)="saveAll()" autocomplete="off">
     <page-header [title]="title">
         <ng-template #title>
-            {{l('Settings')}}
+            {{'Settings' | localize}}
             <span class="text-sm text-grey-dark">
                 <nz-divider nzType="vertical"></nz-divider>
-                {{l('SettingsHeaderInfo')}}
+                {{'SettingsHeaderInfo' | localize}}
             </span>
         </ng-template>
     </page-header>
 
     <nz-tabset *ngIf="settings" [nzTabBarExtraContent]="extraTemplate">
-        <nz-tab [nzTitle]="l('General')" *ngIf="showTimezoneSelection">
+        <nz-tab [nzTitle]="'General' | localize" *ngIf="showTimezoneSelection">
             <nz-card [nzBordered]="false">
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="Timezone">
-                        {{l("Timezone")}}
+                        {{"Timezone" | localize}}
                     </nz-form-label>
                     <nz-form-control>
                         <timezone-combo id="Timezone" [(selectedTimeZone)]="settings.general.timezone"
@@ -23,30 +23,30 @@
                 </nz-form-item>
             </nz-card>
         </nz-tab>
-        <nz-tab [nzTitle]="l('UserManagement')" *ngIf="true">
+        <nz-tab [nzTitle]="'UserManagement' | localize" *ngIf="true">
             <nz-card [nzBordered]="false">
-                <h3>{{l("FormBasedRegistration")}}</h3>
+                <h3>{{"FormBasedRegistration" | localize}}</h3>
                 <nz-form-item nz-row>
-                    <div nz-col><label nz-checkbox name="AllowSelfRegistration" [(ngModel)]="settings.userManagement.allowSelfRegistration">{{l("AllowUsersToRegisterThemselves")}}</label></div>
-                    <nz-form-extra>{{l("AllowUsersToRegisterThemselves_Hint")}}</nz-form-extra>
+                    <div nz-col><label nz-checkbox name="AllowSelfRegistration" [(ngModel)]="settings.userManagement.allowSelfRegistration">{{"AllowUsersToRegisterThemselves" | localize}}</label></div>
+                    <nz-form-extra>{{"AllowUsersToRegisterThemselves_Hint" | localize}}</nz-form-extra>
                 </nz-form-item>
                 <nz-form-item nz-row>
-                    <div nz-col><label nz-checkbox name="IsNewRegisteredUserActiveByDefault" [(ngModel)]="settings.userManagement.isNewRegisteredUserActiveByDefault">{{l("NewRegisteredUsersIsActiveByDefault")}}</label></div>
-                    <nz-form-extra>{{l("NewRegisteredUsersIsActiveByDefault_Hint")}}</nz-form-extra>
+                    <div nz-col><label nz-checkbox name="IsNewRegisteredUserActiveByDefault" [(ngModel)]="settings.userManagement.isNewRegisteredUserActiveByDefault">{{"NewRegisteredUsersIsActiveByDefault" | localize}}</label></div>
+                    <nz-form-extra>{{"NewRegisteredUsersIsActiveByDefault_Hint" | localize}}</nz-form-extra>
                 </nz-form-item>
                 <div *ngIf="!isMultiTenancyEnabled && settings.ldap.isModuleEnabled">
-                    <h3 class="">{{l("LdapSettings")}}</h3>
+                    <h3 class="">{{"LdapSettings" | localize}}</h3>
                     <nz-form-item nz-row>
-                        <div nz-col><label nz-checkbox name="LdapIsEnabled" [(ngModel)]="settings.ldap.isEnabled">{{l("EnableLdapAuthentication")}}</label></div>
-                        <nz-form-extra>{{l("EnableLdapAuthentication")}}</nz-form-extra>
+                        <div nz-col><label nz-checkbox name="LdapIsEnabled" [(ngModel)]="settings.ldap.isEnabled">{{"EnableLdapAuthentication" | localize}}</label></div>
+                        <nz-form-extra>{{"EnableLdapAuthentication" | localize}}</nz-form-extra>
                     </nz-form-item>
                     <nz-form-item nz-row *ngIf="!settings.ldap.isEnabled">
                         <nz-form-label nzFor="LdapDomainName">
-                            {{l("DomainName")}}
+                            {{"DomainName" | localize}}
                         </nz-form-label>
                         <nz-form-control nzHasFeedback>
                             <input nz-input #ldapDomainNameInput="ngModel" name="LdapDomainName" [(ngModel)]="settings.ldap.domain"
-                                [placeholder]="l('DomainName')" id="LdapDomainName" maxlength="128">
+                                [placeholder]="'DomainName' | localize" id="LdapDomainName" maxlength="128">
                             <nz-form-explain *ngIf="ldapDomainNameInput.dirty && ldapDomainNameInput.errors">
                                 <validation-messages [formCtrl]="ldapDomainNameInput"></validation-messages>
                             </nz-form-explain>
@@ -54,11 +54,11 @@
                     </nz-form-item>
                     <nz-form-item nz-row *ngIf="!settings.ldap.isEnabled">
                         <nz-form-label nzFor="LdapUserName">
-                            {{l("UserName")}}
+                            {{"UserName" | localize}}
                         </nz-form-label>
                         <nz-form-control nzHasFeedback>
                             <input nz-input #ldapUserNameInput="ngModel" name="LdapUserName" [(ngModel)]="settings.ldap.userName"
-                                [placeholder]="l('UserName')" id="LdapUserName" maxlength="128">
+                                [placeholder]="'UserName' | localize" id="LdapUserName" maxlength="128">
                             <nz-form-explain *ngIf="ldapUserNameInput.dirty && ldapUserNameInput.errors">
                                 <validation-messages [formCtrl]="ldapUserNameInput"></validation-messages>
                             </nz-form-explain>
@@ -66,11 +66,11 @@
                     </nz-form-item>
                     <nz-form-item nz-row *ngIf="!settings.ldap.isEnabled">
                         <nz-form-label nzFor="LdapPassword">
-                            {{l("Password")}}
+                            {{"Password" | localize}}
                         </nz-form-label>
                         <nz-form-control nzHasFeedback>
                             <input nz-input #ldapPasswordInput="ngModel" name="LdapPassword" [(ngModel)]="settings.ldap.password"
-                                [placeholder]="l('Password')" id="LdapPassword" maxlength="128">
+                                [placeholder]="'Password' | localize" id="LdapPassword" maxlength="128">
                             <nz-form-explain *ngIf="ldapPasswordInput.dirty && ldapPasswordInput.errors">
                                 <validation-messages [formCtrl]="ldapPasswordInput"></validation-messages>
                             </nz-form-explain>
@@ -78,49 +78,49 @@
                     </nz-form-item>
                 </div>
                 <div>
-                    <h3>{{l("OtherSettings")}}</h3>
+                    <h3>{{"OtherSettings" | localize}}</h3>
                     <div nz-row>
-                        <label nz-checkbox name="IsEmailConfirmationRequiredForLogin" [(ngModel)]="settings.userManagement.isEmailConfirmationRequiredForLogin">{{l("EmailConfirmationRequiredForLogin")}}</label>
+                        <label nz-checkbox name="IsEmailConfirmationRequiredForLogin" [(ngModel)]="settings.userManagement.isEmailConfirmationRequiredForLogin">{{"EmailConfirmationRequiredForLogin" | localize}}</label>
                     </div>
                 </div>
             </nz-card>
         </nz-tab>
-        <nz-tab [nzTitle]="l('Security')" *ngIf="true">
+        <nz-tab [nzTitle]="'Security' | localize" *ngIf="true">
             <nz-card [nzBordered]="false">
-                <h3>{{l("PasswordComplexity")}}</h3>
+                <h3>{{"PasswordComplexity" | localize}}</h3>
                 <div nz-row>
-                    <label nz-checkbox name="Setting_PasswordComplexity_UseDefaultSettings" [(ngModel)]="settings.security.useDefaultPasswordComplexitySettings">{{l("UseDefaultSettings")}}</label>
+                    <label nz-checkbox name="Setting_PasswordComplexity_UseDefaultSettings" [(ngModel)]="settings.security.useDefaultPasswordComplexitySettings">{{"UseDefaultSettings" | localize}}</label>
                 </div>
                 <div nz-row>
                     <label nz-checkbox name="Setting_PasswordComplexity_RequireDigit" [(ngModel)]="settings.security.passwordComplexity.requireDigit"
-                        [nzDisabled]="settings.security.useDefaultPasswordComplexitySettings">{{l("PasswordComplexity_RequireDigit")}}</label>
+                        [nzDisabled]="settings.security.useDefaultPasswordComplexitySettings">{{"PasswordComplexity_RequireDigit" | localize}}</label>
                 </div>
                 <div nz-row>
                     <label nz-checkbox name="Setting_PasswordComplexity_RequireLowercase" [(ngModel)]="settings.security.passwordComplexity.requireLowercase"
-                        [nzDisabled]="settings.security.useDefaultPasswordComplexitySettings">{{l("PasswordComplexity_RequireLowercase")}}</label>
+                        [nzDisabled]="settings.security.useDefaultPasswordComplexitySettings">{{"PasswordComplexity_RequireLowercase" | localize}}</label>
                 </div>
                 <div nz-row>
                     <label nz-checkbox name="Setting_PasswordComplexity_RequireNonAlphanumeric" [(ngModel)]="settings.security.passwordComplexity.requireNonAlphanumeric"
-                        [nzDisabled]="settings.security.useDefaultPasswordComplexitySettings">{{l("PasswordComplexity_RequireNonAlphanumeric")}}</label>
+                        [nzDisabled]="settings.security.useDefaultPasswordComplexitySettings">{{"PasswordComplexity_RequireNonAlphanumeric" | localize}}</label>
                 </div>
                 <div nz-row>
                     <label nz-checkbox name="Setting_PasswordComplexity_RequireUppercase" [(ngModel)]="settings.security.passwordComplexity.requireUppercase"
-                        [nzDisabled]="settings.security.useDefaultPasswordComplexitySettings">{{l("PasswordComplexity_RequireUppercase")}}</label>
+                        [nzDisabled]="settings.security.useDefaultPasswordComplexitySettings">{{"PasswordComplexity_RequireUppercase" | localize}}</label>
                 </div>
                 <div nz-row>
-                    <label [ngClass]="{'text-disabled-color':settings.security.useDefaultPasswordComplexitySettings}">{{l("PasswordComplexity_RequiredLength")}}</label>
+                    <label [ngClass]="{'text-disabled-color':settings.security.useDefaultPasswordComplexitySettings}">{{"PasswordComplexity_RequiredLength" | localize}}</label>
                     <input nz-input type="number" name="RequiredLength" class="form-control" [(ngModel)]="settings.security.passwordComplexity.requiredLength"
                         *ngIf="!settings.security.useDefaultPasswordComplexitySettings">
                     <input nz-input type="number" name="RequiredLength" class="form-control" [(ngModel)]="settings.security.defaultPasswordComplexity.requiredLength"
                         *ngIf="settings.security.useDefaultPasswordComplexitySettings" disabled>
                 </div>
-                <h3>{{l("UserLockOut")}}</h3>
+                <h3>{{"UserLockOut" | localize}}</h3>
                 <nz-form-item nz-row class="m0">
-                    <label nz-checkbox name="Setting_UserLockOut_IsEnabled" [(ngModel)]="settings.security.userLockOut.isEnabled">{{l("EnableUserAccountLockingOnFailedLoginAttemts")}}</label>
+                    <label nz-checkbox name="Setting_UserLockOut_IsEnabled" [(ngModel)]="settings.security.userLockOut.isEnabled">{{"EnableUserAccountLockingOnFailedLoginAttemts" | localize}}</label>
                 </nz-form-item>
                 <nz-form-item nz-row *ngIf="settings.security.userLockOut.isEnabled">
                     <nz-form-label nzFor="MaxFailedAccessAttemptsBeforeLockout">
-                        {{l("MaxFailedAccessAttemptsBeforeLockout")}}
+                        {{"MaxFailedAccessAttemptsBeforeLockout" | localize}}
                     </nz-form-label>
                     <nz-form-control>
                         <input nz-input type="number" name="MaxFailedAccessAttemptsBeforeLockout" [(ngModel)]="settings.security.userLockOut.maxFailedAccessAttemptsBeforeLockout"
@@ -129,7 +129,7 @@
                 </nz-form-item>
                 <nz-form-item nz-row *ngIf="settings.security.userLockOut.isEnabled">
                     <nz-form-label nzFor="DefaultAccountLockoutSeconds">
-                        {{l("DefaultAccountLockoutDurationAsSeconds")}}
+                        {{"DefaultAccountLockoutDurationAsSeconds" | localize}}
                     </nz-form-label>
                     <nz-form-control>
                         <input nz-input type="number" name="DefaultAccountLockoutSeconds" [(ngModel)]="settings.security.userLockOut.defaultAccountLockoutSeconds"
@@ -137,30 +137,30 @@
                     </nz-form-control>
                 </nz-form-item>
                 <div *ngIf="!isMultiTenancyEnabled || settings.security.twoFactorLogin.isEnabledForApplication">
-                    <h3>{{l("TwoFactorLogin")}}</h3>
+                    <h3>{{"TwoFactorLogin" | localize}}</h3>
                     <div nz-row>
-                        <label nz-checkbox name="Setting_TwoFactorLogin_IsEnabled" [(ngModel)]="settings.security.twoFactorLogin.isEnabled">{{l("EnableTwoFactorLogin")}}</label>
+                        <label nz-checkbox name="Setting_TwoFactorLogin_IsEnabled" [(ngModel)]="settings.security.twoFactorLogin.isEnabled">{{"EnableTwoFactorLogin" | localize}}</label>
                     </div>
                     <div nz-row *ngIf="settings.security.twoFactorLogin.isEnabled && !isMultiTenancyEnabled">
-                        <label nz-checkbox name="Setting_TwoFactorLogin_IsEmailProviderEnabled" [(ngModel)]="settings.security.twoFactorLogin.isEmailProviderEnabled">{{l("IsEmailVerificationEnabled")}}</label>
+                        <label nz-checkbox name="Setting_TwoFactorLogin_IsEmailProviderEnabled" [(ngModel)]="settings.security.twoFactorLogin.isEmailProviderEnabled">{{"IsEmailVerificationEnabled" | localize}}</label>
                     </div>
                     <div nz-row *ngIf="settings.security.twoFactorLogin.isEnabled && !isMultiTenancyEnabled">
-                        <label nz-checkbox name="Setting_TwoFactorLogin_IsSmsProviderEnabled" [(ngModel)]="settings.security.twoFactorLogin.isSmsProviderEnabled">{{l("IsSmsVerificationEnabled")}}</label>
+                        <label nz-checkbox name="Setting_TwoFactorLogin_IsSmsProviderEnabled" [(ngModel)]="settings.security.twoFactorLogin.isSmsProviderEnabled">{{"IsSmsVerificationEnabled" | localize}}</label>
                     </div>
                     <div nz-row *ngIf="settings.security.twoFactorLogin.isEnabled && !isMultiTenancyEnabled">
-                        <label nz-checkbox name="Setting_TwoFactorLogin_IsGoogleAuthenticatorEnabled" [(ngModel)]="settings.security.twoFactorLogin.isGoogleAuthenticatorEnabled">{{l("IsGoogleAuthenticatorEnabled")}}</label>
+                        <label nz-checkbox name="Setting_TwoFactorLogin_IsGoogleAuthenticatorEnabled" [(ngModel)]="settings.security.twoFactorLogin.isGoogleAuthenticatorEnabled">{{"IsGoogleAuthenticatorEnabled" | localize}}</label>
                     </div>
                     <div nz-row *ngIf="settings.security.twoFactorLogin.isEnabled && !isMultiTenancyEnabled">
-                        <label nz-checkbox name="Setting_TwoFactorLogin_IsRememberBrowserEnabled" [(ngModel)]="settings.security.twoFactorLogin.isRememberBrowserEnabled">{{l("AllowToRememberBrowserForTwoFactorLogin")}}</label>
+                        <label nz-checkbox name="Setting_TwoFactorLogin_IsRememberBrowserEnabled" [(ngModel)]="settings.security.twoFactorLogin.isRememberBrowserEnabled">{{"AllowToRememberBrowserForTwoFactorLogin" | localize}}</label>
                     </div>
                 </div>
             </nz-card>
         </nz-tab>
-        <nz-tab [nzTitle]="l('EmailSmtp')" *ngIf="!isMultiTenancyEnabled">
+        <nz-tab [nzTitle]="'EmailSmtp' | localize" *ngIf="!isMultiTenancyEnabled">
             <nz-card [nzBordered]="false">
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="DefaultFromAddress">
-                        {{l("DefaultFromAddress")}}
+                        {{"DefaultFromAddress" | localize}}
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input #defaultFromAddressInput="ngModel" name="DefaultFromAddress" [(ngModel)]="settings.email.defaultFromAddress"
@@ -172,7 +172,7 @@
                 </nz-form-item>
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="DefaultFromDisplayName">
-                        {{l("DefaultFromDisplayName")}}
+                        {{"DefaultFromDisplayName" | localize}}
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input #defaultFromDisplayNameInput="ngModel" name="DefaultFromDisplayName"
@@ -184,7 +184,7 @@
                 </nz-form-item>
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="SmtpHost">
-                        {{l("SmtpHost")}}
+                        {{"SmtpHost" | localize}}
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input #smtpHostInput="ngModel" name="SmtpHost" [(ngModel)]="settings.email.smtpHost"
@@ -196,7 +196,7 @@
                 </nz-form-item>
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="SmtpPort">
-                        {{l("SmtpPort")}}
+                        {{"SmtpPort" | localize}}
                     </nz-form-label>
                     <nz-form-control>
                         <input nz-input type="number" #smtpPortInput="ngModel" name="SmtpPort" [(ngModel)]="settings.email.smtpPort"
@@ -204,14 +204,14 @@
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item nz-row>
-                    <div nz-col><label nz-checkbox name="SmtpEnableSsl" [(ngModel)]="settings.email.smtpEnableSsl">{{l("UseSsl")}}</label></div>
+                    <div nz-col><label nz-checkbox name="SmtpEnableSsl" [(ngModel)]="settings.email.smtpEnableSsl">{{"UseSsl" | localize}}</label></div>
                 </nz-form-item>
                 <nz-form-item nz-row>
-                    <div nz-col><label nz-checkbox name="SmtpUseDefaultCredentials" [(ngModel)]="settings.email.smtpUseDefaultCredentials">{{l("UseDefaultCredentials")}}</label></div>
+                    <div nz-col><label nz-checkbox name="SmtpUseDefaultCredentials" [(ngModel)]="settings.email.smtpUseDefaultCredentials">{{"UseDefaultCredentials" | localize}}</label></div>
                 </nz-form-item>
                 <nz-form-item nz-row [hidden]="settings.email.smtpUseDefaultCredentials">
                     <nz-form-label nzFor="SmtpDomainName">
-                        {{l("DomainName")}}
+                        {{"DomainName" | localize}}
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input #smtpDomainNameInput="ngModel" name="SmtpDomainName" [(ngModel)]="settings.email.smtpDomain"
@@ -223,7 +223,7 @@
                 </nz-form-item>
                 <nz-form-item nz-row [hidden]="settings.email.smtpUseDefaultCredentials">
                     <nz-form-label nzFor="SmtpUserName">
-                        {{l("UserName")}}
+                        {{"UserName" | localize}}
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input #smtpUserNameInput="ngModel" name="SmtpUserName" [(ngModel)]="settings.email.smtpUserName"
@@ -235,7 +235,7 @@
                 </nz-form-item>
                 <nz-form-item nz-row [hidden]="settings.email.smtpUseDefaultCredentials">
                     <nz-form-label nzFor="SmtpPassword">
-                        {{l("Password")}}
+                        {{"Password" | localize}}
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input type="password" #smtpPasswordInput="ngModel" name="SmtpPassword" [(ngModel)]="settings.email.smtpPassword"
@@ -246,19 +246,19 @@
                     </nz-form-control>
                 </nz-form-item>
                 <hr />
-                <h3>{{l("TestEmailSettingsHeader")}}</h3>
+                <h3>{{"TestEmailSettingsHeader" | localize}}</h3>
                 <nz-input-group nzSearch [nzSuffix]="suffixButton">
                     <input type="text" nz-input [(ngModel)]="testEmailAddress" name="TestEmailAddress">
                 </nz-input-group>
                 <ng-template #suffixButton>
-                    <button nz-button nzType="primary" nzSearch (click)="sendTestEmail()">{{l("SendTestEmail")}}</button>
+                    <button nz-button nzType="primary" nzSearch (click)="sendTestEmail()">{{"SendTestEmail" | localize}}</button>
                 </ng-template>
             </nz-card>
         </nz-tab>
     </nz-tabset>
     <ng-template #extraTemplate>
         <button nz-button [nzType]="'primary'" type="submit">
-            <i nz-icon type="save"></i> {{l("SaveAll")}}
+            <i nz-icon type="save"></i> {{"SaveAll" | localize}}
         </button>
     </ng-template>
 </form>

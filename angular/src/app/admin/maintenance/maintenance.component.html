@@ -1,13 +1,13 @@
-<page-header [title]="l('Maintenance')"></page-header>
+<page-header [title]="'Maintenance' | localize"></page-header>
 
 
 <nz-tabset>
-    <nz-tab [nzTitle]="l('Caches')">
-        <nz-card [nzBordered]="false" [nzExtra]="cachingExtra" [nzTitle]="l('CachesHeaderInfo')">
+    <nz-tab [nzTitle]="'Caches' | localize">
+        <nz-card [nzBordered]="false" [nzExtra]="cachingExtra" [nzTitle]="'CachesHeaderInfo' | localize">
             <ng-template #cachingExtra>
                 <button nz-button [nzType]="'primary'" (click)="clearAllCaches()">
                     <i nz-icon type="delete"></i>
-                    <span>{{l("ClearAll")}}</span>
+                    <span>{{"ClearAll" | localize}}</span>
                 </button>
             </ng-template>
 
@@ -19,7 +19,7 @@
                         </td>
                         <td>
                             <a (click)="clearCache(item.name)">
-                                {{l("Clear")}}
+                                {{"Clear" | localize}}
                             </a>
                         </td>
                     </tr>
@@ -28,16 +28,16 @@
         </nz-card>
     </nz-tab>
 
-    <nz-tab [nzTitle]="l('WebSiteLogs')">
-        <nz-card [nzBordered]="false" [nzExtra]="webSiteLogExtra" [nzTitle]="l('WebSiteLogsHeaderInfo')">
+    <nz-tab [nzTitle]="'WebSiteLogs' | localize">
+        <nz-card [nzBordered]="false" [nzExtra]="webSiteLogExtra" [nzTitle]="'WebSiteLogsHeaderInfo' | localize">
             <ng-template #webSiteLogExtra>
                 <button nz-button [nzType]="'primary'" (click)="downloadWebLogs()">
                     <i nz-icon type="download"></i>
-                    <span>{{l("DownloadAll")}}</span>
+                    <span>{{"DownloadAll" | localize}}</span>
                 </button>
                 <button nz-button [nzType]="'primary'" (click)="getWebLogs()">
                     <i nz-icon type="reload"></i>
-                    <span>{{l("Refresh")}}</span>
+                    <span>{{"Refresh" | localize}}</span>
                 </button>
             </ng-template>
             <div class="web-log-view full-height scrollbar">

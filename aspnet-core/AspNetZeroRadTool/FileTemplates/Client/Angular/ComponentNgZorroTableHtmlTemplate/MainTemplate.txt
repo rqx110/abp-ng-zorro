@@ -1,9 +1,9 @@
 ﻿<page-header [title]="title">
     <ng-template #title>
-        {{l("{{Entity_Name_Plural_Here}}")}}
+        {{"{{Entity_Name_Plural_Here}}" | localize}}
         <span class="text-sm text-grey-dark">
             <nz-divider nzType="vertical"></nz-divider>
-            {{l("{{Entity_Name_Plural_Here}}HeaderInfo")}}
+            {{"{{Entity_Name_Plural_Here}}HeaderInfo" | localize}}
         </span>
     </ng-template>
 </page-header>
@@ -14,7 +14,7 @@
                 <nz-form-item>
                     <nz-form-control>
                         <nz-input-group nzSearch [nzSuffix]="suffixSearchButton">
-                            <input type="text" nz-input [(ngModel)]="filterText" name="filterText" [placeholder]="l('SearchWithThreeDot')">
+                            <input type="text" nz-input [(ngModel)]="filterText" name="filterText" [placeholder]="'SearchWithThreeDot' | localize">
                             <ng-template #suffixSearchButton>
                                 <button nz-button nzType="primary" nzSearch (click)="refresh($event)">
                                     <i class="anticon anticon-search"></i>
@@ -34,7 +34,7 @@
             <button nz-button [nzType]="'primary'" *ngIf="isGranted('{{Permission_Value_Here}}.Create')" (click)="createOrEdit()">
                 <i class="anticon anticon-plus"></i>
                 <span>
-                    {{l("CreateNew{{Entity_Name_Here}}")}}
+                    {{"CreateNew{{Entity_Name_Here}}" | localize}}
                 </span>
             </button>
             <ng-container *ngIf="selectedDataItems.length > 0">
@@ -49,7 +49,7 @@
         </nz-col>
         <nz-col nzMd="4" nzSm="12" class="text-right">
             <a (click)="advancedFiltersVisible=!advancedFiltersVisible">
-                {{advancedFiltersVisible ? l('HideAdvancedFilters') : l('ShowAdvancedFilters')}}
+                {{(advancedFiltersVisible ? 'HideAdvancedFilters' : 'ShowAdvancedFilters') | localize}}
                 <i class="anticon" [class.anticon-down]="!advancedFiltersVisible" [class.anticon-up]="advancedFiltersVisible"></i>
             </a>
         </nz-col>
@@ -61,11 +61,11 @@
                     <strong class="text-primary">{{selectedDataItems.length}}</strong> items selected
                 </span>
                 <a (click)="restCheckStatus(dataList)" class="ml-md" *ngIf="selectedDataItems.length>0">
-                    {{l('Clear')}}
+                    {{'Clear' | localize}}
                 </a>
                 <nz-divider nzType="vertical"></nz-divider>
                 <a (click)="refresh()">
-                    {{l('Refresh')}}
+                    {{'Refresh' | localize}}
                 </a>
             </ng-template>
         </nz-alert>
@@ -79,7 +79,7 @@
                 <no-data></no-data>
             </ng-template>
             <ng-template #totalTemplate let-total>
-                {{l('TotalRecordsCount', total)}}
+                {{'TotalRecordsCount' | localize:total}}
             </ng-template>
             <thead (nzSortChange)="gridSort($event)">
                 <tr>
@@ -87,7 +87,7 @@
                         (nzCheckedChange)="checkAll($event)" nzWidth="60px"></th>
                     {{NP_Looped_Header_Template_Here}}{{Property_Looped_Header_Template_Here}}
                     <th class="text-center" [hidden]="!isGrantedAny('{{Permission_Value_Here}}.Edit', '{{Permission_Value_Here}}.Delete')">
-                        <span>{{l('Actions')}}</span>
+                        <span>{{'Actions' | localize}}</span>
                     </th>
                 </tr>
             </thead>
@@ -100,16 +100,16 @@
                         <ng-container *ngIf="isGranted('{{Permission_Value_Here}}.Edit')">
                             <a (click)="createOrEdit(item.{{entity_Name_Here}}.id)">
                                 <i nz-icon type="edit"></i>
-                                {{l('Edit')}}
+                                {{'Edit' | localize}}
                             </a>
                             <nz-divider nzType="vertical"></nz-divider>
                         </ng-container>
                         <ng-container *ngIf="isGranted('{{Permission_Value_Here}}.Delete')">
-                            <nz-popconfirm [nzTitle]="l('{{Entity_Name_Here}}DeleteWarningMessage', '')" (nzOnConfirm)="delete{{Entity_Name_Here}}(item.{{entity_Name_Here}})"
-                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
+                            <nz-popconfirm [nzTitle]="'{{Entity_Name_Here}}DeleteWarningMessage' | localize:''" (nzOnConfirm)="delete{{Entity_Name_Here}}(item.{{entity_Name_Here}})"
+                                [nzOkText]="'Ok' | localize" [nzCancelText]="'Cancel' | localize">
                                 <a nz-popconfirm>
                                     <i nz-icon type="delete"></i>
-                                    {{l('Delete')}}
+                                    {{'Delete' | localize}}
                                 </a>
                             </nz-popconfirm>
                         </ng-container>

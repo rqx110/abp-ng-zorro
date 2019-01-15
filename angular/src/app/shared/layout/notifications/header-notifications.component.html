@@ -8,15 +8,15 @@
         <nz-spin [nzSpinning]="loading" [nzDelay]="0">
             <nz-card [nzTitle]="nzTitle" [nzLoading]="loading" [nzExtra]="extra" [nzBordered]="false" class="ant-card__body-nopadding mb0">
                 <ng-template #nzTitle>
-                    {{unreadNotificationCount}} {{l('NewNotifications')}}
+                    {{unreadNotificationCount}} {{'NewNotifications' | localize}}
                 </ng-template>
                 <ng-template #extra>
                     <a (click)="openNotificationSettingsModal()">
-                        {{l('Settings')}}
+                        {{'Settings' | localize}}
                     </a>
                 </ng-template>
                 <div *ngIf="notifications?.length === 0; else listTpl" class="notice-icon__notfound">
-                    <p>{{l("ThereIsNoNotification")}}</p>
+                    <p>{{"ThereIsNoNotification" | localize}}</p>
                 </div>
                 <ng-template #listTpl>
                     <nz-list [nzDataSource]="notifications" [nzRenderItem]="item">
@@ -31,7 +31,7 @@
                                             {{item.time | momentFromNow}}
                                             <span *ngIf="item.isUnread">
                                                 <a href="javascript:;" *ngIf="item.state=='UNREAD'" class="notice-icon__item-extra"
-                                                    (click)="setNotificationAsRead(item); $event.preventDefault(); $event.stopPropagation();">{{l("SetAsRead")}}</a>
+                                                    (click)="setNotificationAsRead(item); $event.preventDefault(); $event.stopPropagation();">{{"SetAsRead" | localize}}</a>
                                             </span>
                                         </div>
                                     </ng-template>
@@ -43,9 +43,9 @@
                         </ng-template>
                     </nz-list>
                     <div class="notice-icon__clear" *ngIf="notifications.length">
-                        <a href="javascript:;" (click)="setAllNotificationsAsRead();" *ngIf="unreadNotificationCount">{{l("SetAllAsRead")}}</a>
+                        <a href="javascript:;" (click)="setAllNotificationsAsRead();" *ngIf="unreadNotificationCount">{{"SetAllAsRead" | localize}}</a>
                         <nz-divider nzType="vertical" *ngIf="unreadNotificationCount"></nz-divider>
-                        <a routerLink="notifications">{{l("SeeAllNotifications")}}</a>
+                        <a routerLink="notifications">{{"SeeAllNotifications" | localize}}</a>
                     </div>
                 </ng-template>
             </nz-card>

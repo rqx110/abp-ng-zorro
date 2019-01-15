@@ -1,11 +1,11 @@
-<nz-card [nzTitle]="l('VerifySecurityCode')">
+<nz-card [nzTitle]="'VerifySecurityCode' | localize">
     <form nz-form #twoFactorForm="ngForm" method="post" novalidate (ngSubmit)="submit()" role="form" *ngIf="loginService.authenticateResult">
-        <nz-alert class="mb-md" nzType="info" nzCloseable [nzMessage]="l('SendSecurityCode_Information')" nzShowIcon>
+        <nz-alert class="mb-md" nzType="info" nzCloseable [nzMessage]="'SendSecurityCode_Information' | localize" nzShowIcon>
         </nz-alert>
         <nz-form-item>
             <nz-form-control>
                 <input nz-input #passwordInput="ngModel" autoFocus [(ngModel)]="code" type="password" autocomplete="off"
-                    placeholder="{{l('Code')}} *" name="code" required maxlength="16" />
+                    placeholder="{{'Code' | localize}} *" name="code" required maxlength="16" />
                 <nz-form-explain>
                     <validation-messages [formCtrl]="passwordInput"></validation-messages>
                 </nz-form-explain>
@@ -13,13 +13,13 @@
         </nz-form-item>
         <nz-form-item>
             <nz-form-control>
-                <label nz-checkbox [(ngModel)]="loginService.authenticateModel.rememberClient" name="rememberClient">{{l("RememberThisBrowser")}}</label>
+                <label nz-checkbox [(ngModel)]="loginService.authenticateModel.rememberClient" name="rememberClient">{{"RememberThisBrowser" | localize}}</label>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-            <button nz-button nzType="primary" nzSize="large" type="submit" [disabled]="!twoFactorForm.form.valid" nzBlock>{{l("Submit")}}</button>
-            <span class="remaining-time-counter" *ngIf="remainingSeconds >= 0">{{l("RemainingTime")}}:
-                {{l("SecondShort{0}", remainingSeconds)}}.</span>
+            <button nz-button nzType="primary" nzSize="large" type="submit" [disabled]="!twoFactorForm.form.valid" nzBlock>{{"Submit" | localize}}</button>
+            <span class="remaining-time-counter" *ngIf="remainingSeconds >= 0">{{"RemainingTime" | localize}}:
+                {{"SecondShort{0}" | localize:remainingSeconds}}.</span>
         </nz-form-item>
     </form>
 </nz-card>

@@ -1,7 +1,7 @@
 ﻿<form nz-form>
     <div class="modal-header">
         <div class="modal-title">
-            {{l("")}}
+            {{""  | localize}}
         </div>
     </div>
     <fieldset>
@@ -10,7 +10,7 @@
     </fieldset>
     <div class="modal-footer">
         <button nz-button [nzType]="'primary'" type="button" (click)="close($event)">
-            {{l("Close")}}
+            {{"Close" | localize}}
         </button>
     </div>
 </form>

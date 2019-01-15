@@ -1,9 +1,9 @@
 <form nz-form #smsVerificationModal="ngForm" (ngSubmit)="save()">
     <div class="modal-header">
-        <div class="modal-title">{{l('VerifyYourCode')}}</div>
+        <div class="modal-title">{{'VerifyYourCode' | localize}}</div>
     </div>
     <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="YourCode">{{l('YourCode')}}</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="YourCode">{{'YourCode' | localize}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
             <input nz-input name="Code" id="YourCode" #codeInput="ngModel" [(ngModel)]="verifyCode.code" required maxlength="6" minlength="6">
             <nz-form-explain *ngIf="codeInput.dirty && codeInput.errors">
@@ -13,7 +13,7 @@
     </nz-form-item>
     <div class="modal-footer">
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!smsVerificationModal.valid||saving" [nzLoading]="saving">
-            <i nz-icon type="save"></i> {{l("Save")}}
+            <i nz-icon type="save"></i> {{"Save" | localize}}
         </button>
     </div>
 </form>

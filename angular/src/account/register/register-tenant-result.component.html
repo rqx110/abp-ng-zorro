@@ -1,29 +1,29 @@
 ﻿<nz-card class="ant-card__body-nopadding py-md">
-    <result type="success" [title]="l('SuccessfullyRegistered')" [extra]="resultExtra" [description]="resultDescription">
+    <result type="success" [title]="'SuccessfullyRegistered' | localize" [extra]="resultExtra" [description]="resultDescription">
         <ng-template #resultExtra>
             <div>
-                {{l("TenancyName")}}: <span class="font-weight-bold">{{model.tenancyName}}</span>
+                {{"TenancyName" | localize}}: <span class="font-weight-bold">{{model.tenancyName}}</span>
             </div>
             <div>
-                {{l("Name")}}: <span class="font-weight-bold">{{model.name}}</span>
+                {{"Name" | localize}}: <span class="font-weight-bold">{{model.name}}</span>
             </div>
             <div>
-                {{l("UserName")}}: <span class="font-weight-bold">{{model.userName}}</span>
+                {{"UserName" | localize}}: <span class="font-weight-bold">{{model.userName}}</span>
             </div>
             <div>
-                {{l("EmailAddress")}}: <span class="font-weight-bold">{{model.emailAddress}}</span>
+                {{"EmailAddress" | localize}}: <span class="font-weight-bold">{{model.emailAddress}}</span>
             </div>
         </ng-template>
         <ng-template #resultDescription>
             <div *ngIf="model.isEmailConfirmationRequired">
-                {{l("ConfirmationMailSentPleaseClickLinkInTheEmail", model.emailAddress)}}
+                {{"ConfirmationMailSentPleaseClickLinkInTheEmail" | localize:model.emailAddress}}
             </div>
             <div *ngIf="!model.isActive">
-                {{l("YourAccountIsWaitingToBeActivatedByAdmin")}}
+                {{"YourAccountIsWaitingToBeActivatedByAdmin" | localize}}
             </div>
         </ng-template>
         <div *ngIf="tenantUrl">
-            {{l("TenantRegistrationLoginInfo")}}<br />
+            {{"TenantRegistrationLoginInfo" | localize}}<br />
             <a href="{{tenantUrl}}">{{tenantUrl}}</a>
         </div>
     </result>

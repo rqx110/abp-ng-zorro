@@ -2,21 +2,21 @@
     <ng-template #nzTitleTemplate>
         <span>
             <i nz-icon type="share-alt"></i>
-            {{l('OrganizationTree')}}
+            {{'OrganizationTree' | localize}}
         </span>
     </ng-template>
     <ng-template #extraTemplate>
         <ng-container *ngIf="isGranted('Pages.Administration.OrganizationUnits.ManageOrganizationTree')">
             <a (click)="addUnit(null)">
-                <i nz-icon type="plus"></i> {{l("AddRootUnit")}}
+                <i nz-icon type="plus"></i> {{"AddRootUnit" | localize}}
             </a>
             <nz-divider nzType="vertical"></nz-divider>
         </ng-container>
         <a class="ml-sm">
-            <i nz-icon type="reload" nz-tooltip [nzTitle]="l('Refresh')" (click)="reload()"></i>
+            <i nz-icon type="reload" nz-tooltip [nzTitle]="'Refresh' | localize" (click)="reload()"></i>
         </a>
     </ng-template>
-    <nz-spin [nzTip]="l('MovingWithThreeDot')" [nzSpinning]="draging">
+    <nz-spin [nzTip]="'MovingWithThreeDot' | localize" [nzSpinning]="draging">
         <nz-tree [(ngModel)]="_treeData" [nzShowExpand]="true" [nzDraggable]="true" (nzClick)="activeNode($event)"
             (nzDblClick)="openFolder($event)" (nzOnDragEnter)="dragEnter($event)" (nzOnDrop)="dragSaveData($event)"
             (nzOnDragEnd)="dragSaveData($event)">
@@ -24,15 +24,15 @@
                 <ul nz-menu nzInDropDown *ngIf="isGranted('Pages.Administration.OrganizationUnits.ManageOrganizationTree')">
                     <li nz-menu-item (click)="editUnit()">
                         <i nz-icon type="edit"></i>
-                        {{l('Edit')}}
+                        {{'Edit' | localize}}
                     </li>
                     <li nz-menu-item (click)="addSubUnit()">
                         <i nz-icon type="file-add"></i>
-                        {{l('AddSubUnit')}}
+                        {{'AddSubUnit' | localize}}
                     </li>
                     <li nz-menu-item (click)="deleteUnit()" *ngIf="isGranted('Pages.Administration.OrganizationUnits.ManageOrganizationTree')">
                         <i nz-icon type="delete"></i>
-                        {{l('Delete')}}
+                        {{'Delete' | localize}}
                     </li>
                 </ul>
             </ng-template>
@@ -60,7 +60,7 @@
         </nz-tree>
     </nz-spin>
     <div class="text-center" *ngIf="!totalUnitCount">
-        <no-data [text]="l('NoOrganizationUnitDefinedYet')"></no-data>
+        <no-data [text]="'NoOrganizationUnitDefinedYet' | localize"></no-data>
     </div>
 
 </nz-card>

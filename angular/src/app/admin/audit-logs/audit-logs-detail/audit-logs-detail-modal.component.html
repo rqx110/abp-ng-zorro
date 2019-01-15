@@ -1,14 +1,14 @@
 <div class="modal-header">
     <div class="modal-title">
-        {{l("AuditLogDetail")}}
+        {{"AuditLogDetail" | localize}}
     </div>
 </div>
 <div>
     <div>
-        <h3>{{l("UserInformations")}}</h3>
+        <h3>{{"UserInformations" | localize}}</h3>
         <div nz-row [nzGutter]="8">
             <div nz-col [nzSpan]="4">
-                <label>{{l("UserName")}}:</label>
+                <label>{{"UserName" | localize}}:</label>
             </div>
             <div nz-col [nzSpan]="10">
                 <span>{{auditLog.userName}}</span>
@@ -16,7 +16,7 @@
         </div>
         <div nz-row [nzGutter]="8">
             <div nz-col [nzSpan]="4">
-                <label>{{l("IpAddress")}}:</label>
+                <label>{{"IpAddress" | localize}}:</label>
             </div>
             <div nz-col [nzSpan]="10">
                 <span>{{auditLog.clientIpAddress}}</span>
@@ -24,7 +24,7 @@
         </div>
         <div nz-row [nzGutter]="8">
             <div nz-col [nzSpan]="4">
-                <label>{{l("Client")}}:</label>
+                <label>{{"Client" | localize}}:</label>
             </div>
             <div nz-col [nzSpan]="10">
                 <span>{{auditLog.clientName}}</span>
@@ -32,7 +32,7 @@
         </div>
         <div nz-row [nzGutter]="8">
             <div nz-col [nzSpan]="4">
-                <label>{{l("Browser")}}:</label>
+                <label>{{"Browser" | localize}}:</label>
             </div>
             <div nz-col [nzSpan]="10">
                 <span>{{auditLog.browserInfo}}</span>
@@ -49,10 +49,10 @@
     </div>
 
     <div>
-        <h3>{{l("ActionInformations")}}</h3>
+        <h3>{{"ActionInformations" | localize}}</h3>
         <div nz-row [nzGutter]="8">
             <div nz-col [nzSpan]="4">
-                <label>{{l("Service")}}:</label>
+                <label>{{"Service" | localize}}:</label>
             </div>
             <div nz-col [nzSpan]="10">
                 <span>{{auditLog.serviceName}}</span>
@@ -60,7 +60,7 @@
         </div>
         <div nz-row [nzGutter]="8">
             <div nz-col [nzSpan]="4">
-                <label>{{l("Action")}}:</label>
+                <label>{{"Action" | localize}}:</label>
             </div>
             <div nz-col [nzSpan]="10">
                 <span>{{auditLog.methodName}}</span>
@@ -68,7 +68,7 @@
         </div>
         <div nz-row [nzGutter]="8">
             <div nz-col [nzSpan]="4">
-                <label>{{l("Time")}}:</label>
+                <label>{{"Time" | localize}}:</label>
             </div>
             <div nz-col [nzSpan]="10">
                 <span>{{getExecutionTime()}}</span>
@@ -76,7 +76,7 @@
         </div>
         <div nz-row [nzGutter]="8">
             <div nz-col [nzSpan]="4">
-                <label>{{l("Duration")}}:</label>
+                <label>{{"Duration" | localize}}:</label>
             </div>
             <div nz-col [nzSpan]="10">
                 <span>{{getDurationAsMs()}}</span>
@@ -84,7 +84,7 @@
         </div>
         <div nz-row [nzGutter]="8">
             <div nz-col [nzSpan]="4">
-                <label>{{l("Parameters")}}:</label>
+                <label>{{"Parameters" | localize}}:</label>
             </div>
             <div nz-col [nzSpan]="10">
                 <pre lang="js">{{getFormattedParameters()}}</pre>
@@ -93,10 +93,10 @@
     </div>
 
     <div>
-        <h3>{{l("CustomData")}}</h3>
+        <h3>{{"CustomData" | localize}}</h3>
         <div nz-row [nzGutter]="8">
             <div nz-col [nzSpan]="8">
-                <label> {{l("None")}}:</label>
+                <label> {{"None" | localize}}:</label>
             </div>
             <div nz-col [nzSpan]="10">
                 <span>{{auditLog.customData}}</span>
@@ -105,11 +105,11 @@
     </div>
 
     <div>
-        <h3>{{l("ErrorState")}}</h3>
+        <h3>{{"ErrorState" | localize}}</h3>
         <div nz-row [nzGutter]="8">
             <div nz-col [nzSpan]="4">
-                <nz-badge *ngIf="auditLog.exception " [nzStatus]="'error'" [nzText]="l('Error')"></nz-badge>
-                <nz-badge *ngIf="!auditLog.exception " [nzStatus]="'success'" [nzText]="l('Success')"></nz-badge>
+                <nz-badge *ngIf="auditLog.exception " [nzStatus]="'error'" [nzText]="'Error' | localize"></nz-badge>
+                <nz-badge *ngIf="!auditLog.exception " [nzStatus]="'success'" [nzText]="'Success' | localize"></nz-badge>
             </div>
         </div>
     </div>
@@ -117,6 +117,6 @@
 </div>
 <div class="modal-footer">
     <button nz-button type="button" (click)="close()">
-        {{l("Cancel")}}
+        {{"Cancel" | localize}}
     </button>
 </div>

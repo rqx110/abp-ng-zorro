@@ -1,16 +1,16 @@
 <div class="modal-header">
     <div class="modal-title">
-        <span>{{l("Detail")}} - {{l(entityChange.entityTypeFullName)}}</span> <br />
-        <small [innerHTML]="l('CreatedAtByUser', entityChange.changeTime, entityChange.userName)"></small>
+        <span>{{"Detail"| localize}} - {{entityChange.entityTypeFullName | localize}}</span> <br />
+        <small [innerHTML]="'CreatedAtByUser' | localize:entityChange.changeTime:entityChange.userName"></small>
     </div>
 </div>
 
 <nz-table>
     <thead>
         <tr>
-            <th>{{l("Property")}}</th>
-            <th>{{l("OriginalValue")}}</th>
-            <th>{{l("NewValue")}}</th>
+            <th>{{"Property" | localize}}</th>
+            <th>{{"OriginalValue" | localize}}</th>
+            <th>{{"NewValue" | localize}}</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +24,6 @@
 
 <div class="modal-footer">
     <button nz-button type="button" (click)="close()">
-        {{l("Cancel")}}
+        {{"Cancel" | localize}}
     </button>
 </div>

@@ -3,14 +3,14 @@
         <ellipsis lines="1" style="width: 400px">
             <i nz-icon type="team" class="mr-sm"></i>
             <span *ngIf="organizationUnit">{{organizationUnit.title}}</span>
-            <span *ngIf="!organizationUnit">{{l("Members")}}</span>
+            <span *ngIf="!organizationUnit">{{"Members" | localize}}</span>
         </ellipsis>
     </ng-template>
     <ng-template #extraTemplate>
         <ng-container *ngIf="organizationUnit">
             <ng-container *ngIf="isGranted('Pages.Administration.OrganizationUnits.ManageMembers')">
                 <a (click)="addMembers()">
-                    <i nz-icon type="plus"></i> {{l("AddMember")}}
+                    <i nz-icon type="plus"></i> {{"AddMember" | localize}}
                 </a>
                 <nz-divider nzType="vertical"></nz-divider>
             </ng-container>
@@ -21,7 +21,7 @@
                 <nz-divider nzType="vertical"></nz-divider>
             </ng-container>
             <a class="ml-sm">
-                <i nz-icon type="reload" nz-tooltip [nzTitle]="l('Refresh')" (click)="refresh()"></i>
+                <i nz-icon type="reload" nz-tooltip [nzTitle]="'Refresh' | localize" (click)="refresh()"></i>
             </a>
         </ng-container>
     </ng-template>
@@ -30,7 +30,7 @@
         <form nz-form [nzLayout]="'vertical'" (ngSubmit)="refresh()" autocomplete="off">
             <nz-form-control>
                 <nz-input-group nzSearch [nzSuffix]="suffixButton">
-                    <input type="text" nz-input [(ngModel)]="filterText" name="filterText" [placeholder]="l('SearchWithThreeDot')">
+                    <input type="text" nz-input [(ngModel)]="filterText" name="filterText" [placeholder]="'SearchWithThreeDot' | localize">
                     <ng-template #suffixButton>
                         <button nz-button nzType="primary" nzSearch type="submit">
                             <i nz-icon type="search"></i>
@@ -46,7 +46,7 @@
                         <strong class="text-primary">{{selectedDataItems.length}}</strong> items selected
                     </span>
                     <a (click)="restCheckStatus(dataList)" class="ml-md" *ngIf="selectedDataItems.length>0">
-                        {{l('Clear')}}
+                        {{'Clear' | localize}}
                     </a>
                 </ng-template>
             </nz-alert>
@@ -60,20 +60,20 @@
                     <no-data></no-data>
                 </ng-template>
                 <ng-template #totalTemplate let-total>
-                    {{l('TotalRecordsCount', total)}}
+                    {{'TotalRecordsCount' | localize:total}}
                 </ng-template>
                 <thead (nzSortChange)="gridSort($event)">
                     <tr>
                         <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled"
                             [nzIndeterminate]="checkboxIndeterminate" (nzCheckedChange)="checkAll($event)"></th>
                         <th nzWidth="150px" class="text-center">
-                            {{l('Actions')}}
+                            {{'Actions' | localize}}
                         </th>
                         <th nzShowSort nzSortKey="userName">
-                            {{l('UserName')}}
+                            {{'UserName' | localize}}
                         </th>
                         <th nzShowSort nzSortKey="addedTime" class="text-center">
-                            {{l('AddedTime')}}
+                            {{'AddedTime' | localize}}
                         </th>
                     </tr>
                 </thead>
@@ -82,11 +82,11 @@
                         <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshCheckStatus($event)"></td>
                         <td class="text-center">
                             <ng-container *ngIf="isGranted('Pages.Administration.OrganizationUnits.ManageUsers')">
-                                <nz-popconfirm [nzTitle]="l('RemoveUserFromOuWarningMessage',item.userName,organizationUnit.title)"
-                                    (nzOnConfirm)="removeMember(item)" [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
+                                <nz-popconfirm [nzTitle]="'RemoveUserFromOuWarningMessage' | localize:item.userName:organizationUnit.title"
+                                    (nzOnConfirm)="removeMember(item)" [nzOkText]="'Ok' | localize" [nzCancelText]="'Cancel' | localize">
                                     <a nz-popconfirm>
                                         <i nz-icon type="delete"></i>
-                                        {{l('Delete')}}
+                                        {{'Delete' | localize}}
                                     </a>
                                 </nz-popconfirm>
                             </ng-container>
@@ -104,6 +104,6 @@
     </ng-container>
 
     <div class="text-center" *ngIf="!organizationUnit">
-        <no-data [text]="l('SelectAnOrganizationUnitToSeeMembers')"></no-data>
+        <no-data [text]="'SelectAnOrganizationUnitToSeeMembers' | localize"></no-data>
     </div>
 </nz-card>

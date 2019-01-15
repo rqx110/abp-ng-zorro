@@ -5,7 +5,7 @@
                 <nz-form-control>
                     <nz-input-group nzPrefixIcon="anticon anticon-user">
                         <input nz-input name="userNameOrEmailAddress" #userNameOrEmailAddressInput="ngModel"
-                            [(ngModel)]="loginService.authenticateModel.userNameOrEmailAddress" [placeholder]="l('UserNameOrEmail')"
+                            [(ngModel)]="loginService.authenticateModel.userNameOrEmailAddress" [placeholder]="'UserNameOrEmail' | localize"
                             [nzSize]="'large'" required maxlength="255">
                     </nz-input-group>
                 </nz-form-control>
@@ -14,7 +14,7 @@
                 <nz-form-control>
                     <nz-input-group nzPrefixIcon="anticon anticon-lock">
                         <input nz-input name="password" #passwordInput="ngModel" [(ngModel)]="loginService.authenticateModel.password"
-                            [placeholder]="l('Password')" type="password" [nzSize]="'large'" required maxlength="32">
+                            [placeholder]="'Password' | localize" type="password" [nzSize]="'large'" required maxlength="32">
                     </nz-input-group>
                 </nz-form-control>
             </nz-form-item>
@@ -23,33 +23,33 @@
     <nz-form-item>
         <nz-col [nzSpan]="12">
             <label nz-checkbox [(ngModel)]="loginService.rememberMe" name="rememberMe" id="rememberme">
-                <span>{{l("RememberMe")}}</span>
+                <span>{{"RememberMe" | localize}}</span>
             </label>
         </nz-col>
         <nz-col [nzSpan]="12" class="text-right">
-            <a routerLink="/account/forgot-password" class="forgot forget-password">{{l("ForgotPassword")}}</a>
+            <a routerLink="/account/forgot-password" class="forgot forget-password">{{"ForgotPassword" | localize}}</a>
 
         </nz-col>
     </nz-form-item>
     <nz-form-item>
-        <button nz-button type="submit" nzType="primary" nzSize="large" [nzLoading]="submitting" nzBlock>{{l("LogIn")}}</button>
+        <button nz-button type="submit" nzType="primary" nzSize="large" [nzLoading]="submitting" nzBlock>{{"LogIn" | localize}}</button>
     </nz-form-item>
 </form>
 <div class="other" *ngIf="(multiTenancySideIsTeanant || !isMultiTenancyEnabled) && loginService.externalLoginProviders.length > 0">
-    {{l("LoginWith")}}
+    {{"LoginWith" | localize}}
     <i *ngFor="let provider of loginService.externalLoginProviders" title="{{provider.name}}" (click)="externalLogin(provider)"
         nz-icon [type]="provider.icon" class="icon"></i>
 </div>
 <div class="text-center">
     <span *ngIf="isSelfRegistrationAllowed">
-        <a class="register" routerLink="/account/register">{{l("CreateAnAccount")}}</a>
+        <a class="register" routerLink="/account/register">{{"CreateAnAccount" | localize}}</a>
         <nz-divider nzType="vertical"></nz-divider>
     </span>
     <span *ngIf="!multiTenancySideIsTeanant && isTenantSelfRegistrationAllowed">
-            <a class="register" routerLink="/account/register-tenant">{{l("NewTenant")}}</a>
+            <a class="register" routerLink="/account/register-tenant">{{"NewTenant" | localize}}</a>
             <nz-divider nzType="vertical"></nz-divider>
         </span>
     <span>
-        <a class="register" routerLink="/account/email-activation">{{l("EmailActivation")}}</a>
+        <a class="register" routerLink="/account/email-activation">{{"EmailActivation" | localize}}</a>
     </span>
 </div>

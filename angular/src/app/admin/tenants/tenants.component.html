@@ -1,9 +1,9 @@
 <page-header [title]="title">
     <ng-template #title>
-        {{l('Tenants')}}
+        {{'Tenants' | localize}}
         <span class="text-sm text-grey-dark">
             <nz-divider nzType="vertical"></nz-divider>
-            {{l('TenantsHeaderInfo')}}
+            {{'TenantsHeaderInfo' | localize}}
         </span>
     </ng-template>
 </page-header>
@@ -14,12 +14,12 @@
             <nz-col nzSm="12">
                 <nz-form-item>
                     <nz-form-label>
-                        {{l('TenantNameOrTenancyCode')}}
+                        {{'TenantNameOrTenancyCode' | localize}}
                     </nz-form-label>
                     <nz-form-control>
                         <nz-input-group nzSearch [nzSuffix]="suffixButton">
                             <input type="text" nz-input [(ngModel)]="filters.filterText" name="filterText"
-                                [placeholder]="l('SearchWithThreeDot')">
+                                [placeholder]="'SearchWithThreeDot' | localize">
                             <ng-template #suffixButton>
                                 <button nz-button nzType="primary" nzSearch (click)="refresh()">
                                     <i nz-icon type="search"></i>
@@ -32,7 +32,7 @@
             <nz-col nzSm="12">
                 <nz-form-item>
                     <nz-form-label>
-                        {{l('Edition')}}
+                        {{'Edition' | localize}}
                     </nz-form-label>
                     <nz-form-control>
                         <edition-combo [(selectedEdition)]="filters.selectedEditionId" (selectedEditionChange)="refresh()"></edition-combo>
@@ -46,12 +46,12 @@
                 <nz-form-item>
                     <nz-form-control>
                         <label nz-checkbox [(ngModel)]="filters.subscriptionEndDateRangeActive" name="SubscriptionEndDateRangeActive">
-                            {{l('SubscriptionEndDate')}}
+                            {{'SubscriptionEndDate' | localize}}
                         </label>
                     </nz-form-control>
                     <nz-form-control>
                         <nz-range-picker name="SubscriptionEndDateRange" [(ngModel)]="subscriptionDateRange"
-                            [nzDisabled]="!filters.subscriptionEndDateRangeActive" [nzPlaceHolder]="[l('StartDateTime'),l('EndDateTime')]"
+                            [nzDisabled]="!filters.subscriptionEndDateRangeActive" [nzPlaceHolder]="['StartDateTime' | localize, 'EndDateTime' | localize]"
                             (ngModelChange)="refresh()"></nz-range-picker>
                     </nz-form-control>
                 </nz-form-item>
@@ -60,12 +60,12 @@
                 <nz-form-item>
                     <nz-form-control>
                         <label nz-checkbox [(ngModel)]="filters.creationDateRangeActive" name="CreationDateRangeActive">
-                            {{l('CreationTime')}}
+                            {{'CreationTime' | localize}}
                         </label>
                     </nz-form-control>
                     <nz-form-control>
                         <nz-range-picker name="CreationDateRange" [(ngModel)]="creationDateRange"
-                            [nzDisabled]="!filters.creationDateRangeActive" [nzPlaceHolder]="[l('StartDateTime'),l('EndDateTime')]"
+                            [nzDisabled]="!filters.creationDateRangeActive" [nzPlaceHolder]="['StartDateTime' | localize, 'EndDateTime' | localize]"
                             (ngModelChange)="refresh()"></nz-range-picker>
                     </nz-form-control>
                 </nz-form-item>
@@ -77,7 +77,7 @@
             <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Tenants.Create')" (click)="create()">
                 <i nz-icon type="plus"></i>
                 <span>
-                    {{l("CreateNewTenant")}}
+                    {{"CreateNewTenant" | localize}}
                 </span>
             </button>
             <button nz-button [nzType]="'danger'" *ngIf="isGranted('Pages.Tenants.Delete')&&selectedDataItems.length>0"
@@ -96,11 +96,11 @@
                     <strong class="text-primary">{{selectedDataItems.length}}</strong> items selected
                 </span>
                 <a (click)="restCheckStatus(dataList)" *ngIf="selectedDataItems.length>0" class="ml-md">
-                    {{l('Clear')}}
+                    {{'Clear' | localize}}
                 </a>
                 <nz-divider nzType="vertical"></nz-divider>
                 <a (click)="refresh()">
-                    {{l('Refresh')}}
+                    {{'Refresh' | localize}}
                 </a>
             </ng-template>
         </nz-alert>
@@ -114,7 +114,7 @@
                 <no-data></no-data>
             </ng-template>
             <ng-template #totalTemplate let-total>
-                {{l('TotalRecordsCount', total)}}
+                {{'TotalRecordsCount' | localize:total}}
             </ng-template>
             <thead (nzSortChange)="gridSort($event)">
                 <tr>
@@ -122,25 +122,25 @@
                         (nzCheckedChange)="checkAll($event)"></th>
 
                     <th nzShowSort nzSortKey="tenancyName">
-                        {{l('TenancyCodeName')}}
+                        {{'TenancyCodeName' | localize}}
                     </th>
                     <th nzShowSort nzSortKey="name">
-                        {{l('Name')}}
+                        {{'Name' | localize}}
                     </th>
                     <th nzShowSort nzSortKey="editionDisplayName">
-                        {{l('Edition')}}
+                        {{'Edition' | localize}}
                     </th>
                     <th nzShowSort nzSortKey="subscriptionEndDateUtc" class="text-center">
-                        {{l('SubscriptionEndDateUtc')}}
+                        {{'SubscriptionEndDateUtc' | localize}}
                     </th>
                     <th nzShowSort nzSortKey="isActive" class="text-center">
-                        {{l('Active')}}
+                        {{'Active' | localize}}
                     </th>
                     <th nzShowSort nzSortKey="creationTime" class="text-center">
-                        {{l('CreationTime')}}
+                        {{'CreationTime' | localize}}
                     </th>
                     <th nzWidth="240px" nzRight="0px" class="text-center">
-                        {{l('Actions')}}
+                        {{'Actions' | localize}}
                     </th>
                 </tr>
             </thead>
@@ -149,7 +149,7 @@
                     <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshCheckStatus($event)"></td>
 
                     <td>
-                        <span *ngIf="item.connectionString" nz-tooltip [nzTitle]="l('HasOwnDatabase')">
+                        <span *ngIf="item.connectionString" nz-tooltip [nzTitle]="'HasOwnDatabase' | localize">
                             <i nz-icon type="database"></i>
                         </span>
                         {{item.tenancyName}}
@@ -164,8 +164,8 @@
                         {{item.subscriptionEndDateUtc?(item.subscriptionEndDateUtc | momentFormat:'L'):'-'}}
                     </td>
                     <td class="text-center">
-                        <span class="badge badge-success" *ngIf="item.isActive">{{l('Yes')}}</span>
-                        <span class="badge badge-error" *ngIf="!item.isActive">{{l('No')}}</span>
+                        <span class="badge badge-success" *ngIf="item.isActive">{{'Yes' | localize}}</span>
+                        <span class="badge badge-error" *ngIf="!item.isActive">{{'No' | localize}}</span>
                     </td>
                     <td class="text-center">
                         {{item.creationTime | momentFormat:'L'}}
@@ -174,16 +174,16 @@
                         <ng-container *ngIf="isGranted('Pages.Tenants.Edit')">
                             <a (click)="editTenant(item)">
                                 <i nz-icon type="edit"></i>
-                                {{l('Edit')}}
+                                {{'Edit' | localize}}
                             </a>
                             <nz-divider nzType="vertical"></nz-divider>
                         </ng-container>
                         <ng-container *ngIf="isGranted('Pages.Tenants.Delete')">
-                            <nz-popconfirm [nzTitle]="l('TenantDeleteWarningMessage', item.name)" (nzOnConfirm)="delete(item)"
-                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
+                            <nz-popconfirm [nzTitle]="'TenantDeleteWarningMessage'| localize:item.name" (nzOnConfirm)="delete(item)"
+                                [nzOkText]="'Ok'| localize" [nzCancelText]="'Cancel' | localize">
                                 <a nz-popconfirm>
                                     <i nz-icon type="delete"></i>
-                                    {{l('Delete')}}
+                                    {{'Delete' | localize}}
                                 </a>
                             </nz-popconfirm>
                             <nz-divider nzType="vertical"></nz-divider>
@@ -191,22 +191,22 @@
                         <ng-container>
                             <nz-dropdown [nzPlacement]="'bottomRight'">
                                 <a nz-dropdown>
-                                    {{l('More')}}
+                                    {{'More' | localize}}
                                     <i nz-icon type="down"></i>
                                 </a>
                                 <ul nz-menu>
                                     <li nz-menu-item [nzDisabled]="!item.isActive" *ngIf="isGranted('Pages.Tenants.Impersonation')"
                                         (click)="item.isActive && showTenantImpersonateModal(item)">
                                         <i nz-icon type="login"></i>
-                                        {{l('LoginAsThisTenant')}}
+                                        {{'LoginAsThisTenant' | localize}}
                                     </li>
                                     <li nz-menu-item *ngIf="isGranted('Pages.Tenants.ChangeFeatures')" (click)="changeFeatures(item)">
                                         <i nz-icon type="codepen"></i>
-                                        {{l('Features')}}
+                                        {{'Features' | localize}}
                                     </li>
                                     <li nz-menu-item (click)="unlockUser(item)">
                                         <i nz-icon type="unlock"></i>
-                                        {{l('Unlock')}}
+                                        {{'Unlock' | localize}}
                                     </li>
                                 </ul>
                             </nz-dropdown>

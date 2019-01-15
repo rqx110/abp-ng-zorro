@@ -2,40 +2,40 @@
     <div class="modal-header">
         <div class="modal-title">
             <i nz-icon type="medicine-box" class="mr-sm"></i>
-            <span *ngIf="roleId">{{l('EditRole')}}:{{role.displayName}}</span>
-            <span *ngIf="!roleId">{{l('CreateNewRole')}}</span>
+            <span *ngIf="roleId">{{'EditRole' | localize}}:{{role.displayName}}</span>
+            <span *ngIf="!roleId">{{'CreateNewRole' | localize}}</span>
         </div>
     </div>
     <fieldset>
-        <nz-alert nzType="info" nzCloseable [nzShowIcon]="true" [nzMessage]="l('Note_RefreshPageForPermissionChanges')"></nz-alert>
+        <nz-alert nzType="info" nzCloseable [nzShowIcon]="true" [nzMessage]="'Note_RefreshPageForPermissionChanges' | localize"></nz-alert>
         <nz-tabset>
             <nz-tab [nzTitle]="roleTabTitleTpl">
                 <ng-template #roleTabTitleTpl>
-                    <i nz-icon type="medicine-box"></i>{{l('RoleName')}}
+                    <i nz-icon type="medicine-box"></i>{{'RoleName' | localize}}
                 </ng-template>
 
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="RoleName" nzRequired>
-                        {{l("RoleName")}}
+                        {{"RoleName" | localize}}
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input #roleNameInput="ngModel" name="RoleName" [(ngModel)]="role.displayName"
-                        [placeholder]="l('RoleName')" required maxlength="64">
+                        [placeholder]="'RoleName' | localize" required maxlength="64">
                         <nz-form-explain *ngIf="roleNameInput.dirty && roleNameInput.errors">
                             <validation-messages [formCtrl]="roleNameInput"></validation-messages>
                         </nz-form-explain>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item nz-row>
-                    <label nz-checkbox name="Default" [(ngModel)]="role.isDefault">{{l("Default")}}</label>
+                    <label nz-checkbox name="Default" [(ngModel)]="role.isDefault">{{"Default" | localize}}</label>
                     <em>
-                        <i nz-icon type="info-circle" nz-tooltip [nzTitle]="l('DefaultRole_Description')"></i>
+                        <i nz-icon type="info-circle" nz-tooltip [nzTitle]="'DefaultRole_Description' | localize"></i>
                     </em>
                 </nz-form-item>
             </nz-tab>
             <nz-tab [nzTitle]="permissionsTitleTpl">
                 <ng-template #permissionsTitleTpl>
-                    <i nz-icon type="safety"></i>{{l('Permissions')}}
+                    <i nz-icon type="safety"></i>{{'Permissions' | localize}}
                 </ng-template>
                 <permission-tree #permissionTree></permission-tree>
             </nz-tab>
@@ -43,11 +43,11 @@
     </fieldset>
     <div class="modal-footer">
         <button nz-button [nzType]="'default'" type="button" (click)="close($event)" [disabled]="saving">
-            {{l("Cancel")}}
+            {{"Cancel" | localize}}
         </button>
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!roleCreateOrEditForm.form.valid|| saving"
             [nzLoading]="saving">
-            <i nz-icon type="save" *ngIf="!saving"></i> {{l("Save")}}
+            <i nz-icon type="save" *ngIf="!saving"></i> {{"Save" | localize}}
         </button>
     </div>
 </form>

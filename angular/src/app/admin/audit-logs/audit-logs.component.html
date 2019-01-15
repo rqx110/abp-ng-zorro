@@ -1,7 +1,7 @@
-<page-header [title]="l('AuditLogs')"></page-header>
+<page-header [title]="'AuditLogs' | localize"></page-header>
 
 <nz-tabset>
-    <nz-tab [nzTitle]="l('OperationLogs')">
+    <nz-tab [nzTitle]="'OperationLogs' | localize">
         <nz-card [nzBordered]="false">
 
             <form nz-form [nzLayout]="'vertical'" class="search__form">
@@ -9,21 +9,21 @@
                     <nz-col nzSm="12">
                         <nz-form-item>
                             <nz-form-label nzFor="DateRange">
-                                {{l("DateRange")}}
+                                {{"DateRange" | localize}}
                             </nz-form-label>
                             <nz-form-control>
                                 <nz-range-picker name="DateRange" [nzStyle]="{width:'100%'}" [(ngModel)]="startToEndDate"
-                                    [nzPlaceHolder]="[l('StartDateTime'),l('EndDateTime')]"></nz-range-picker>
+                                    [nzPlaceHolder]="['StartDateTime' | localize, 'EndDateTime' | localize]"></nz-range-picker>
                             </nz-form-control>
                         </nz-form-item>
                     </nz-col>
                     <nz-col [nzSm]="12">
                         <nz-form-item>
                             <nz-form-label nzFor="UserName">
-                                {{l("UserName")}}
+                                {{"UserName" | localize}}
                             </nz-form-label>
                             <nz-form-control>
-                                <input type="text" nz-input [(ngModel)]="username" name="UserName" [placeholder]="l('UserName')">
+                                <input type="text" nz-input [(ngModel)]="username" name="UserName" [placeholder]="'UserName' | localize">
                             </nz-form-control>
                         </nz-form-item>
                     </nz-col>
@@ -33,10 +33,10 @@
                     <nz-col nzSm="12">
                         <nz-form-item>
                             <nz-form-label>
-                                {{l("Service")}}
+                                {{"Service" | localize}}
                             </nz-form-label>
                             <nz-form-control>
-                                <input nz-input name="Service" [(ngModel)]="serviceName" [placeholder]="l('Service')">
+                                <input nz-input name="Service" [(ngModel)]="serviceName" [placeholder]="'Service' | localize">
                             </nz-form-control>
                         </nz-form-item>
                     </nz-col>
@@ -44,7 +44,7 @@
                     <nz-col [nzSm]="12">
                         <nz-form-item>
                             <nz-form-label>
-                                {{l("Duration")}}
+                                {{"Duration" | localize}}
                             </nz-form-label>
                             <nz-form-control>
                                 <nz-input-group nzCompact>
@@ -62,24 +62,24 @@
                     <nz-col nzSm="12">
                         <nz-form-item>
                             <nz-form-label>
-                                {{l("MethodName")}}
+                                {{"MethodName" | localize}}
                             </nz-form-label>
                             <nz-form-control>
-                                <input nz-input name="MethodName" [(ngModel)]="methodName" [placeholder]="l('Action')">
+                                <input nz-input name="MethodName" [(ngModel)]="methodName" [placeholder]="'Action' | localize">
                             </nz-form-control>
                         </nz-form-item>
                     </nz-col>
                     <nz-col [nzSm]="12">
                         <nz-form-item>
                             <nz-form-label>
-                                {{l("ErrorState")}}
+                                {{"ErrorState" | localize}}
                             </nz-form-label>
                             <nz-form-control>
-                                <nz-select [(ngModel)]="hasException" name="HasException" [nzPlaceHolder]="l('ErrorState')"
+                                <nz-select [(ngModel)]="hasException" name="HasException" [nzPlaceHolder]="'ErrorState' | localize"
                                     nzAllowClear>
-                                    <nz-option [nzLabel]="l('All')" nzValue=""></nz-option>
-                                    <nz-option [nzLabel]="l('Success')" nzValue="false"></nz-option>
-                                    <nz-option [nzLabel]="l('HasError')" nzValue="true"></nz-option>
+                                    <nz-option [nzLabel]="'All' | localize" nzValue=""></nz-option>
+                                    <nz-option [nzLabel]="'Success' | localize" nzValue="false"></nz-option>
+                                    <nz-option [nzLabel]="'HasError' | localize" nzValue="true"></nz-option>
                                 </nz-select>
                             </nz-form-control>
                         </nz-form-item>
@@ -89,10 +89,10 @@
                     <nz-col [nzSm]="12">
                         <nz-form-item>
                             <nz-form-label>
-                                {{l("Browser")}}
+                                {{"Browser" | localize}}
                             </nz-form-label>
                             <nz-form-control>
-                                <input nz-input name="BrowserInfo" [(ngModel)]="browserInfo" [placeholder]="l('Browser')">
+                                <input nz-input name="BrowserInfo" [(ngModel)]="browserInfo" [placeholder]="'Browser' | localize">
                             </nz-form-control>
                         </nz-form-item>
                     </nz-col>
@@ -103,14 +103,14 @@
                     <button nz-button nzType="primary" (click)="exportToExcelAuditLogs()" [nzLoading]="exporting">
                         <i nz-icon type="file-excel" *ngIf="!exporting"></i>
                         <span>
-                            {{l("ExportToExcel")}}
+                            {{"ExportToExcel" | localize}}
                         </span>
                     </button>
-                    <button nz-button [nzType]="'default'" (click)="refresh()"><i nz-icon type="reload"></i>{{l('Refresh')}}</button>
+                    <button nz-button [nzType]="'default'" (click)="refresh()"><i nz-icon type="reload"></i>{{'Refresh' | localize}}</button>
                 </nz-col>
                 <nz-col nzMd="4" nzSm="12" class="text-right">
                     <a (click)="advancedFiltersVisible=!advancedFiltersVisible">
-                        {{advancedFiltersVisible ? l('HideAdvancedFilters') : l('ShowAdvancedFilters')}}
+                        {{(advancedFiltersVisible ? 'HideAdvancedFilters' : 'ShowAdvancedFilters') | localize}}
                         <i class="anticon" [class.anticon-down]="!advancedFiltersVisible" [class.anticon-up]="advancedFiltersVisible"></i>
                     </a>
                 </nz-col>
@@ -124,35 +124,35 @@
                         <no-data></no-data>
                     </ng-template>
                     <ng-template #totalTemplate let-total>
-                        {{l('TotalRecordsCount', total)}}
+                        {{'TotalRecordsCount' | localize:total}}
                     </ng-template>
                     <thead (nzSortChange)="gridSort($event)">
                         <tr>
                             <th nzWidth="75px" nzLeft="0px" class="text-center"></th>
                             <th nzWidth="75px" class="text-center"></th>
                             <th nzShowSort nzSortKey="executionTime">
-                                {{l('Time')}}
+                                {{'Time' | localize}}
                             </th>
                             <th nzShowSort nzSortKey="userName">
-                                {{l('UserName')}}
+                                {{'UserName' | localize}}
                             </th>
                             <th>
-                                {{l('Service')}}
+                                {{'Service' | localize}}
                             </th>
                             <th>
-                                {{l('Action')}}
+                                {{'Action' | localize}}
                             </th>
                             <th nzShowSort nzSortKey="executionDuration">
-                                {{l('Duration')}}
+                                {{'Duration' | localize}}
                             </th>
                             <th>
-                                {{l('IpAddress')}}
+                                {{'IpAddress' | localize}}
                             </th>
                             <th>
-                                {{l('Client')}}
+                                {{'Client' | localize}}
                             </th>
                             <th>
-                                {{l('Browser')}}
+                                {{'Browser' | localize}}
                             </th>
                         </tr>
                     </thead>
@@ -160,12 +160,12 @@
                         <tr *ngFor="let item of ajaxTable.data">
                             <td nzWidth="75px" nzLeft="0px" class="text-center">
                                 <a (click)="showDetails(item)">
-                                    <i nz-icon type="search" nz-tooltip [nzTitle]="l('Search')"></i>
+                                    <i nz-icon type="search" nz-tooltip [nzTitle]="'Search' | localize"></i>
                                 </a>
                             </td>
                             <td class="text-center">
-                                <i *ngIf="item.exception" nz-tooltip [nzTitle]="l('HasError')" class="anticon anticon-warning text-warning"></i>
-                                <i *ngIf="!item.exception" nz-tooltip [nzTitle]="l('Success')" class="anticon anticon-check-circle text-green"></i>
+                                <i *ngIf="item.exception" nz-tooltip [nzTitle]="'HasError' | localize" class="anticon anticon-warning text-warning"></i>
+                                <i *ngIf="!item.exception" nz-tooltip [nzTitle]="'Success' | localize" class="anticon anticon-check-circle text-green"></i>
                             </td>
 
                             <td>
@@ -189,7 +189,7 @@
                                 </ellipsis>
                             </td>
                             <td>
-                                {{l('Xms', item.executionDuration)}}
+                                {{'Xms' | localize:item.executionDuration}}
                             </td>
                             <td>
                                 {{item.clientIpAddress}}
@@ -210,7 +210,7 @@
             </nz-row>
         </nz-card>
     </nz-tab>
-    <nz-tab [nzTitle]="l('ChangeLogs')">
+    <nz-tab [nzTitle]="'ChangeLogs' | localize">
         <app-entity-change></app-entity-change>
     </nz-tab>
 </nz-tabset>

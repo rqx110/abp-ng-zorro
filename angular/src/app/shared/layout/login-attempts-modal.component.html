@@ -1,23 +1,23 @@
 <div>
 
   <h3 class="modal-header">
-    <span>{{l('LoginAttempts')}}</span>
+    <span>{{'LoginAttempts' | localize}}</span>
   </h3>
 
   <nz-card *ngFor="let item of userLoginAttempts" style="margin-top: 15px;">
     <div nz-row [nzGutter]="8">
       <div nz-col [nzSpan]="3">
-        <label>{{l('LoginState')}}</label>
+        <label>{{'LoginState' | localize}}</label>
       </div>
 
       <div nz-col [nzSpan]="10">
-        <nz-badge *ngIf="item.result == 'Success'" [nzStatus]="'success'" [nzText]="l('Success')"></nz-badge>
-        <nz-badge *ngIf="item.result != 'Success'" [nzStatus]="'error'" [nzText]="l('Failed')"></nz-badge>
+        <nz-badge *ngIf="item.result == 'Success'" [nzStatus]="'success'" [nzText]="'Success' | localize"></nz-badge>
+        <nz-badge *ngIf="item.result != 'Success'" [nzStatus]="'error'" [nzText]="'Failed' | localize"></nz-badge>
       </div>
     </div>
     <div nz-row [nzGutter]="8">
       <div nz-col [nzSpan]="3">
-        <label>{{l('IpAddress')}}:</label>
+        <label>{{'IpAddress' | localize}}:</label>
       </div>
 
       <div nz-col [nzSpan]="10">
@@ -27,7 +27,7 @@
 
     <div nz-row [nzGutter]="8">
       <div nz-col [nzSpan]="3">
-        <label>{{l('Client')}}:</label>
+        <label>{{'Client' | localize}}:</label>
       </div>
 
       <div nz-col [nzSpan]="10">
@@ -37,7 +37,7 @@
 
     <div nz-row [nzGutter]="8">
       <div nz-col [nzSpan]="3">
-        <label>{{l('Browser')}}:</label>
+        <label>{{'Browser' | localize}}:</label>
       </div>
 
       <div nz-col [nzSpan]="10">
@@ -47,7 +47,7 @@
 
     <div nz-row [nzGutter]="8">
       <div nz-col [nzSpan]="3">
-        <label>{{l('Time')}}:</label>
+        <label>{{'Time' | localize}}:</label>
       </div>
 
       <div nz-col [nzSpan]="10">

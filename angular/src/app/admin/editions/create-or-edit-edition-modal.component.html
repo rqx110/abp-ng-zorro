@@ -2,16 +2,16 @@
     <div class="modal-header">
         <div class="modal-title">
             <i nz-icon type="medicine-box" class="mr-sm"></i>
-            <span *ngIf="edition.id">{{l('EditEdition')}}:{{edition.displayName}}</span>
-            <span *ngIf="!edition.id">{{l('CreateNewEdition')}}</span>
+            <span *ngIf="edition.id">{{'EditEdition' | localize}}:{{edition.displayName}}</span>
+            <span *ngIf="!edition.id">{{'CreateNewEdition' | localize}}</span>
         </div>
     </div>
     <fieldset>
         <nz-tabset>
-            <nz-tab [nzTitle]="l('EditionProperties')">
+            <nz-tab [nzTitle]="'EditionProperties' | localize">
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="EditionDisplayName" nzRequired>
-                        {{l("EditionName")}}
+                        {{"EditionName" | localize}}
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input id="EditionDisplayName" #editionNameInput="ngModel" name="EditionDisplayName"
@@ -23,17 +23,17 @@
                 </nz-form-item>
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="SubscriptionPrice">
-                        {{l("SubscriptionPrice")}}
+                        {{"SubscriptionPrice" | localize}}
                     </nz-form-label>
                     <nz-form-control>
                         <nz-radio-group name="SubscriptionPrice" [(ngModel)]="isFree" (ngModelChange)="resetPrices($event)">
-                            <label nz-radio [nzValue]="true">{{l("Free")}}</label>
-                            <label nz-radio [nzValue]="false">{{l("Paid")}}</label>
+                            <label nz-radio [nzValue]="true">{{"Free" | localize}}</label>
+                            <label nz-radio [nzValue]="false">{{"Paid" | localize}}</label>
                         </nz-radio-group>
                         <div nz-row *ngIf="!isFree" nzGutter="8">
                             <div nz-col nzSpan="12">
                                 <nz-form-label nzFor="MonthlyPrice" [nzRequired]="!isFree">
-                                    {{l("MonthlyPrice")}}
+                                    {{"MonthlyPrice" | localize}}
                                 </nz-form-label>
                                 <nz-form-control nzHasFeedback>
                                     <nz-input-group nzAddOnBefore="$">
@@ -47,7 +47,7 @@
                             </div>
                             <div nz-col nzSpan="12">
                                 <nz-form-label nzFor="AnnualPrice" [nzRequired]="!isFree">
-                                    {{l("AnnualPrice")}}
+                                    {{"AnnualPrice" | localize}}
                                 </nz-form-label>
                                 <nz-form-control nzHasFeedback>
                                     <nz-input-group nzAddOnBefore="$">
@@ -62,10 +62,10 @@
                         </div>
                         <div [hidden]="isFree">
                             <div>
-                                <label nz-checkbox name="IsTrialActive" [(ngModel)]="isTrialActive">{{l("IsTrialActive")}}</label>
+                                <label nz-checkbox name="IsTrialActive" [(ngModel)]="isTrialActive">{{"IsTrialActive" | localize}}</label>
                                 <div *ngIf="isTrialActive">
                                     <nz-form-label nzFor="TrialDayCount" [nzRequired]="isTrialActive">
-                                        {{l("TrialDayCount")}}
+                                        {{"TrialDayCount" | localize}}
                                     </nz-form-label>
                                     <nz-form-control nzHasFeedback>
                                         <input nz-input id="TrialDayCount" #trialDayCountInput="ngModel" name="TrialDayCount"
@@ -77,10 +77,10 @@
                                 </div>
                             </div>
                             <div>
-                                <label nz-checkbox name="IsWaitingDayActive" [(ngModel)]="isWaitingDayActive">{{l("WaitAfterSubscriptionExpireDate")}}</label>
+                                <label nz-checkbox name="IsWaitingDayActive" [(ngModel)]="isWaitingDayActive">{{"WaitAfterSubscriptionExpireDate" | localize}}</label>
                                 <div *ngIf="isWaitingDayActive">
                                     <nz-form-label nzFor="WaitingDayAfterExpire" [nzRequired]="isWaitingDayActive">
-                                        {{l("WaitingDayAfterExpire")}}
+                                        {{"WaitingDayAfterExpire" | localize}}
                                     </nz-form-label>
                                     <nz-form-control nzHasFeedback>
                                         <input nz-input id="WaitingDayAfterExpire" #waitingDayAfterExpireInput="ngModel"
@@ -94,12 +94,12 @@
                             </div>
                             <div nz-row>
                                 <nz-form-label nzFor="ExpireAction">
-                                    {{l("WhatWillDoneAfterSubscriptionExpiry")}}
+                                    {{"WhatWillDoneAfterSubscriptionExpiry" | localize}}
                                 </nz-form-label>
                                 <nz-form-control>
                                     <nz-radio-group name="ExpireAction" [(ngModel)]="expireAction" (ngModelChange)="removeExpiringEdition($event)">
-                                        <label nz-radio [nzValue]="expireActionEnum.DeactiveTenant">{{l("DeactiveTenant")}}</label>
-                                        <label nz-radio [nzValue]="expireActionEnum.AssignToAnotherEdition">{{l("AssignToAnotherEdition")}}</label>
+                                        <label nz-radio [nzValue]="expireActionEnum.DeactiveTenant">{{"DeactiveTenant" | localize}}</label>
+                                        <label nz-radio [nzValue]="expireActionEnum.AssignToAnotherEdition">{{"AssignToAnotherEdition" | localize}}</label>
                                     </nz-radio-group>
                                     <nz-select *ngIf="expireAction == expireActionEnum.AssignToAnotherEdition"
                                         [(ngModel)]="edition.expiringEditionId" id="expiringEdition" name="ExpiringEdition">
@@ -112,14 +112,14 @@
                     </nz-form-control>
                 </nz-form-item>
             </nz-tab>
-            <nz-tab [nzTitle]="l('Features')">
+            <nz-tab [nzTitle]="'Features' | localize">
                 <feature-tree #featureTree></feature-tree>
             </nz-tab>
         </nz-tabset>
     </fieldset>
     <div class="modal-footer">
-        <button nz-button type="button" [disabled]="saving" (click)="close()"> {{l("Cancel")}} </button>
+        <button nz-button type="button" [disabled]="saving" (click)="close()"> {{"Cancel" | localize}} </button>
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!editionCreateOrEditForm.form.valid||saving">
-            <i nz-icon type="save"></i> {{l("Save")}} </button>
+            <i nz-icon type="save"></i> {{"Save" | localize}} </button>
     </div>
 </form>

@@ -1,12 +1,12 @@
 <div class="modal-header">
     <div class="modal-title">
         <i nz-icon type="form"></i>
-        {{l("EditText")}}
+        {{"EditText" | localize}}
     </div>
 </div>
 <div>
     <div>
-        <p>{{l("Key")}}</p>
+        <p>{{"Key" | localize}}</p>
         <p>
             <strong>{{data.key}}</strong>
         </p>
@@ -31,9 +31,9 @@
 
 <div class="modal-footer">
     <button nz-button type="button" [disabled]="saving" (click)="close()">
-        {{l("Cancel")}}
+        {{"Cancel" | localize}}
     </button>
     <button nz-button [nzType]="'primary'" type="button" (click)="save()">
-        <i nz-icon type="save"></i> {{l("Save")}}
+        <i nz-icon type="save"></i> {{"Save" | localize}}
     </button>
 </div>

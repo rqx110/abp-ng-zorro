@@ -7,8 +7,8 @@
 					{
 					"type" : "enum",
 					"content" : "                    <div>
-                        <h6>{{l(\"{{property_Name_Here}}\")}} :</h6>
-                        {{l('Enum_{{Property_Type_Here}}' + {{property_Type_Here}}[item.{{entity_Name_Here}}.{{property_Name_Here}}])}}
+                        <h6>{{\"{{property_Name_Here}}\" | localize}} :</h6>
+                        {{'Enum_{{Property_Type_Here}}' + {{property_Type_Here}}[item.{{entity_Name_Here}}.{{property_Name_Here}}] | localize}}
                     </div>
                     <nz-divider nzDashed></nz-divider>
 "
@@ -16,7 +16,7 @@
 					{
 					"type" : "default",
 					"content" : "                    <div>
-                        <h6>{{l(\"{{Property_Name_Here}}\")}} :</h6>
+                        <h6>{{\"{{Property_Name_Here}}\" | localize}} :</h6>
                         {{item.{{entity_Name_Here}}.{{property_Name_Here}}}}
                     </div>
                     <nz-divider nzDashed></nz-divider>
@@ -32,7 +32,7 @@
 					{
 					"relation" : "single",
 					"content" : "                    <div>
-                        <h6>({{l(\"{{NP_Foreign_Entity_Name_Here}}\")}}) {{l(\"{{NP_Display_Property_Name_Here}}\")}} :</h6>
+                        <h6>({{\"{{NP_Foreign_Entity_Name_Here}}\" | localize}}) {{\"{{NP_Display_Property_Name_Here}}\" | localize}} :</h6>
                         {{item.{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}}}
                     </div>
                     <nz-divider nzDashed></nz-divider>

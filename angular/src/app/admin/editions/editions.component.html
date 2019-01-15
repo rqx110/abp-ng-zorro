@@ -1,9 +1,9 @@
 <page-header [title]="title">
     <ng-template #title>
-        {{l('Editions')}}
+        {{'Editions' | localize}}
         <span class="text-sm text-grey-dark">
             <nz-divider nzType="vertical"></nz-divider>
-            {{l('EditionsHeaderInfo')}}
+            {{'EditionsHeaderInfo' | localize}}
         </span>
     </ng-template>
 </page-header>
@@ -14,7 +14,7 @@
             <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Editions.Create')" (click)="createEdition()">
                 <i nz-icon type="plus"></i>
                 <span>
-                    {{l("CreateNewEdition")}}
+                    {{"CreateNewEdition" | localize}}
                 </span>
             </button>
         </nz-col>
@@ -28,13 +28,13 @@
             <thead (nzSortChange)="gridSort($event)">
                 <tr>
                     <th nzShowSort nzSortKey="tenancyName">
-                        {{l('EditionName')}}
+                        {{'EditionName' | localize}}
                     </th>
                     <th nzShowSort nzSortKey="creationTime" class="text-center">
-                        {{l('CreationTime')}}
+                        {{'CreationTime' | localize}}
                     </th>
                     <th class="text-center">
-                        {{l('Actions')}}
+                        {{'Actions' | localize}}
                     </th>
                 </tr>
             </thead>
@@ -50,16 +50,16 @@
                         <ng-container *ngIf="isGranted('Pages.Editions.Edit')">
                             <a (click)="editEdition(item)">
                                 <i nz-icon type="edit"></i>
-                                {{l('Edit')}}
+                                {{'Edit' | localize}}
                             </a>
                             <nz-divider nzType="vertical"></nz-divider>
                         </ng-container>
                         <ng-container *ngIf="isGranted('Pages.Editions.Delete')">
-                            <nz-popconfirm [nzTitle]="l('EditionDeleteWarningMessage', item.displayName)" (nzOnConfirm)="deleteEdition(item)"
-                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
+                            <nz-popconfirm [nzTitle]="'EditionDeleteWarningMessage'| localize:item.displayName" (nzOnConfirm)="deleteEdition(item)"
+                                [nzOkText]="'Ok'| localize" [nzCancelText]="'Cancel' | localize">
                                 <a nz-popconfirm>
                                     <i nz-icon type="delete"></i>
-                                    {{l('Delete')}}
+                                    {{'Delete' | localize}}
                                 </a>
                             </nz-popconfirm>
                         </ng-container>

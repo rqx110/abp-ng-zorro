@@ -1,9 +1,9 @@
 <page-header [title]="title">
     <ng-template #title>
-        {{l('Users')}}
+        {{'Users' | localize}}
         <span class="text-sm text-grey-dark">
             <nz-divider nzType="vertical"></nz-divider>
-            {{l('UsersHeaderInfo')}}
+            {{'UsersHeaderInfo' | localize}}
         </span>
     </ng-template>
 </page-header>
@@ -14,7 +14,7 @@
                 <nz-form-item>
                     <nz-form-control>
                         <nz-input-group nzSearch [nzSuffix]="suffixSearchButton">
-                            <input type="text" nz-input [(ngModel)]="filterText" name="filterText" [placeholder]="l('SearchWithThreeDot')">
+                            <input type="text" nz-input [(ngModel)]="filterText" name="filterText" [placeholder]="'SearchWithThreeDot' | localize">
                             <ng-template #suffixSearchButton>
                                 <button nz-button nzType="primary" nzSearch (click)="onSearch($event)">
                                     <i nz-icon type="search"></i>
@@ -47,7 +47,7 @@
             <nz-col nzSm="12">
                 <nz-form-item>
                     <nz-form-control>
-                        <label nz-checkbox name="OnlyLockedUsers" [(ngModel)]="onlyLockedUsers" (ngModelChange)="refresh()">{{l("OnlyLockedUsers")}}</label>
+                        <label nz-checkbox name="OnlyLockedUsers" [(ngModel)]="onlyLockedUsers" (ngModelChange)="refresh()">{{"OnlyLockedUsers" | localize}}</label>
                     </nz-form-control>
                 </nz-form-item>
             </nz-col>
@@ -58,7 +58,7 @@
             <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Administration.Users.Create')" (click)="createOrEdit()">
                 <i nz-icon type="plus"></i>
                 <span>
-                    {{l("CreateNewUser")}}
+                    {{"CreateNewUser" | localize}}
                 </span>
             </button>
             <ng-container *ngIf="selectedDataItems.length > 0">
@@ -72,13 +72,13 @@
             <button nz-button nzType="default" (click)="exportToExcel()">
                 <i nz-icon type="file-excel"></i>
                 <span>
-                    {{l("ExportToExcel")}}
+                    {{"ExportToExcel" | localize}}
                 </span>
             </button>
         </nz-col>
         <nz-col nzMd="4" nzSm="12" class="text-right">
             <a (click)="advancedFiltersVisible=!advancedFiltersVisible">
-                {{advancedFiltersVisible ? l('HideAdvancedFilters') : l('ShowAdvancedFilters')}}
+                {{(advancedFiltersVisible ? 'HideAdvancedFilters' : 'ShowAdvancedFilters') | localize}}
                 <i class="anticon" [class.anticon-down]="!advancedFiltersVisible" [class.anticon-up]="advancedFiltersVisible"></i>
             </a>
         </nz-col>
@@ -90,11 +90,11 @@
                     <strong class="text-primary">{{selectedDataItems.length}}</strong> items selected
                 </span>
                 <a (click)="restCheckStatus(dataList)" class="ml-md" *ngIf="selectedDataItems.length>0">
-                    {{l('Clear')}}
+                    {{'Clear' | localize}}
                 </a>
                 <nz-divider nzType="vertical"></nz-divider>
                 <a (click)="refresh()">
-                    {{l('Refresh')}}
+                    {{'Refresh' | localize}}
                 </a>
             </ng-template>
         </nz-alert>
@@ -108,7 +108,7 @@
                 <no-data></no-data>
             </ng-template>
             <ng-template #totalTemplate let-total>
-                {{l('TotalRecordsCount', total)}}
+                {{'TotalRecordsCount' | localize:total}}
             </ng-template>
             <thead (nzSortChange)="gridSort($event)">
                 <tr>
@@ -116,35 +116,35 @@
                         (nzCheckedChange)="checkAll($event)" nzWidth="60px" nzLeft="0px"></th>
 
                     <th nzShowSort nzSortKey="userName">
-                        {{l('UserName')}}
+                        {{'UserName' | localize}}
                     </th>
                     <th>
-                        {{l('Name')}}
+                        {{'Name' | localize}}
                     </th>
                     <th>
-                        {{l('SureName')}}
+                        {{'SureName' | localize}}
                     </th>
                     <th>
-                        {{l('Roles')}}
+                        {{'Roles' | localize}}
                     </th>
 
                     <th nzShowSort nzSortKey="emailAddress">
-                        {{l('EmailAddress')}}
+                        {{'EmailAddress' | localize}}
                     </th>
                     <th nzShowSort nzSortKey="isEmailConfirmed" class="text-center">
-                        {{l('EmailConfirm')}}
+                        {{'EmailConfirm' | localize}}
                     </th>
                     <th nzShowSort nzSortKey="isActive" class="text-center">
-                        {{l('Active')}}
+                        {{'Active' | localize}}
                     </th>
                     <th nzShowSort nzSortKey="lastLoginTime" class="text-center">
-                        {{l('LastLoginTime')}}
+                        {{'LastLoginTime' | localize}}
                     </th>
                     <th nzShowSort nzSortKey="creationTime" class="text-center">
-                        {{l('CreationTime')}}
+                        {{'CreationTime' | localize}}
                     </th>
                     <th nzWidth="240px" nzRight="0px" class="text-center">
-                        {{l('Actions')}}
+                        {{'Actions' | localize}}
                     </th>
                 </tr>
             </thead>
@@ -172,12 +172,12 @@
                         {{item.emailAddress}}
                     </td>
                     <td class="text-center">
-                        <span class="badge badge-success" *ngIf="item.isEmailConfirmed">{{l('Yes')}}</span>
-                        <span class="badge badge-error" *ngIf="!item.isEmailConfirmed">{{l('No')}}</span>
+                        <span class="badge badge-success" *ngIf="item.isEmailConfirmed">{{'Yes' | localize}}</span>
+                        <span class="badge badge-error" *ngIf="!item.isEmailConfirmed">{{'No' | localize}}</span>
                     </td>
                     <td class="text-center">
-                        <span class="badge badge-success" *ngIf="item.isActive">{{l('Yes')}}</span>
-                        <span class="badge badge-error" *ngIf="!item.isActive">{{l('No')}}</span>
+                        <span class="badge badge-success" *ngIf="item.isActive">{{'Yes' | localize}}</span>
+                        <span class="badge badge-error" *ngIf="!item.isActive">{{'No' | localize}}</span>
                     </td>
                     <td class="text-center">
                         {{item.lastLoginTime?(item.lastLoginTime | momentFormat:'L'):'-'}}
@@ -189,16 +189,16 @@
                         <ng-container *ngIf="isGranted('Pages.Administration.Users.Edit')">
                             <a (click)="createOrEdit(item.id)">
                                 <i nz-icon type="edit"></i>
-                                {{l('Edit')}}
+                                {{'Edit' | localize}}
                             </a>
                             <nz-divider nzType="vertical"></nz-divider>
                         </ng-container>
                         <ng-container *ngIf="isGranted('Pages.Administration.Users.Delete')">
-                            <nz-popconfirm [nzTitle]="l('UserDeleteWarningMessage', item.userName)" (nzOnConfirm)="deleteUser(item)"
-                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
+                            <nz-popconfirm [nzTitle]="'UserDeleteWarningMessage' | localize:item.userName" (nzOnConfirm)="deleteUser(item)"
+                                [nzOkText]="'Ok' | localize" [nzCancelText]="'Cancel' | localize">
                                 <a nz-popconfirm>
                                     <i nz-icon type="delete"></i>
-                                    {{l('Delete')}}
+                                    {{'Delete' | localize}}
                                 </a>
                             </nz-popconfirm>
                         </ng-container>
@@ -206,18 +206,18 @@
                             <nz-divider nzType="vertical"></nz-divider>
                             <nz-dropdown>
                                 <a nz-dropdown>
-                                    {{l('More')}}
+                                    {{'More' | localize}}
                                     <i nz-icon type="down"></i>
                                 </a>
                                 <ul nz-menu>
 
                                     <li nz-menu-item *ngIf="isGranted('Pages.Administration.Users.Edit')" (click)="editUserPermissions(item) ">
                                         <i nz-icon type="safety"></i>
-                                        {{l('Permissions')}}
+                                        {{'Permissions' | localize}}
                                     </li>
                                     <li nz-menu-item *ngIf="isGranted('Pages.Administration.Users.Edit') " (click)="unlockUser(item) ">
                                         <i nz-icon type="unlock"></i>
-                                        {{l('Unlock')}}
+                                        {{'Unlock' | localize}}
                                     </li>
 
                                 </ul>

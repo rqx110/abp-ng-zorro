@@ -1,8 +1,8 @@
 ﻿<form nz-form #{{entity_Name_Here}}Form="ngForm" (ngSubmit)="save()" autocomplete="off">
     <div class="modal-header">
         <div class="modal-title">
-            <span *ngIf="{{entity_Name_Here}}Id">{{l("Edit{{Entity_Name_Here}}")}}</span>
-            <span *ngIf="!{{entity_Name_Here}}Id">{{l("CreateNew{{Entity_Name_Here}}")}}</span>
+            <span *ngIf="{{entity_Name_Here}}Id">{{"Edit{{Entity_Name_Here}}" | localize}}</span>
+            <span *ngIf="!{{entity_Name_Here}}Id">{{"CreateNew{{Entity_Name_Here}}" | localize}}</span>
         </div>
     </div>
 
@@ -13,11 +13,11 @@
 
     <div class="modal-footer">
         <button nz-button [nzType]="'default'" type="button" (click)="close($event)" [disabled]="saving">
-            {{l("Cancel")}}
+            {{"Cancel" | localize}}
         </button>
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!{{entity_Name_Here}}Form.form.valid || saving"
             [nzLoading]="saving">
-            <i nz-icon type="save" *ngIf="!saving"></i> {{l("Save")}}
+            <i nz-icon type="save" *ngIf="!saving"></i> {{"Save" | localize}}
         </button>
     </div>
 

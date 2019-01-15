@@ -1,6 +1,6 @@
 ﻿<div class="modal-header">
     <div class="modal-title">
-        {{l("Pick{{NP_Foreign_Entity_Name_Here}}")}}
+        {{"Pick{{NP_Foreign_Entity_Name_Here}}" | localize}}
     </div>
 </div>
 <fieldset>
@@ -9,7 +9,7 @@
             <nz-form-control>
                 <nz-input-group nzSearch [nzSuffix]="suffixSearchButton">
                     <input type="text" nz-input [(ngModel)]="filterText" (keyup.enter)="refresh()" name="filterText"
-                        [placeholder]="l('SearchWithThreeDot')">
+                        [placeholder]="'SearchWithThreeDot' | localize">
                     <ng-template #suffixSearchButton>
                         <button nz-button nzType="primary" nzSearch (click)="refresh()">
                             <i nz-icon type="search"></i>
@@ -29,15 +29,15 @@
                     <no-data></no-data>
                 </ng-template>
                 <ng-template #totalTemplate let-total>
-                    {{l('TotalRecordsCount', total)}}
+                    {{'TotalRecordsCount' | localize:total}}
                 </ng-template>
                 <thead (nzSortChange)="gridSort($event)">
                     <tr>
                         <th nzWidth="130px" class="text-center">
-                            {{l('Actions')}}
+                            {{'Actions' | localize}}
                         </th>
                         <th>
-                            {{l('{{NP_Display_Property_Name_Here}}')}}
+                            {{'{{NP_Display_Property_Name_Here}}' | localize}}
                         </th>
                     </tr>
                 </thead>
@@ -46,7 +46,7 @@
                         <td nzWidth="130px" class="text-center">
                             <a (click)="setAndSave(item)">
                                 <i nz-icon type="check-circle" theme="outline"></i>
-                                {{l("Select")}}
+                                {{"Select" | localize}}
                             </a>
                         </td>
                         <td>
@@ -61,6 +61,6 @@
 </fieldset>
 <div class="modal-footer">
     <button nz-button [nzType]="'primary'" type="button" (click)="close($event)">
-        {{l("Close")}}
+        {{"Close" | localize}}
     </button>
 </div>

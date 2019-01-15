@@ -1,9 +1,9 @@
 <div class="modal-header">
-    <div class="modal-title">{{l('MySettings')}}</div>
+    <div class="modal-title">{{'MySettings' | localize}}</div>
 </div>
 <form nz-form #validateForm="ngForm" (ngSubmit)="save()">
     <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="Name">{{l('Name')}}</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="Name">{{'Name' | localize}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
             <input nz-input name="Name" #nameInput="ngModel" [(ngModel)]="user.name" required maxlength="32">
             <nz-form-explain *ngIf="nameInput.dirty && nameInput.errors">
@@ -12,7 +12,7 @@
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="Surname">{{l('Surname')}}</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="Surname">{{'Surname' | localize}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
             <input nz-input name="Surname" #surnameInput="ngModel" [(ngModel)]="user.surname" required maxlength="32">
             <nz-form-explain *ngIf="surnameInput.dirty && surnameInput.errors">
@@ -21,42 +21,42 @@
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="EmailAddress">{{l('EmailAddress')}}</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="EmailAddress">{{'EmailAddress' | localize}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
             <input nz-input name="EmailAddress" #emailAddressInput="ngModel" [(ngModel)]="user.emailAddress"
-                [placeholder]="l('EmailAddress')" autocomplete="email" required email maxlength="256">
+                [placeholder]="'EmailAddress' | localize" autocomplete="email" required email maxlength="256">
             <nz-form-explain *ngIf="emailAddressInput.dirty && emailAddressInput.errors">
                 <validation-messages [formCtrl]="emailAddressInput"></validation-messages>
             </nz-form-explain>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item *ngIf="smsEnabled && !isPhoneNumberEmpty">
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="PhoneNumber">{{l('PhoneNumber')}}</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="PhoneNumber">{{'PhoneNumber' | localize}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24">
             <nz-input-group nzSearch [nzSuffix]="suffixButton">
-                <input type="text" nz-input name="PhoneNumber" [(ngModel)]="user.phoneNumber" [placeholder]="l('PhoneNumber')"
+                <input type="text" nz-input name="PhoneNumber" [(ngModel)]="user.phoneNumber" [placeholder]="'PhoneNumber' | localize"
                     autocomplete="tel" maxlength="24">
             </nz-input-group>
             <ng-template #suffixButton>
                 <button *ngIf="!isPhoneNumberConfirmed" nz-button nzType="primary" type="button" (click)="smsVerify()"
-                    nz-tooltip [nzTitle]="l('YourPhoneNumberIsNotVerified')"><i nz-icon type="warning"></i>{{l('Verify')}}</button>
-                <i *ngIf="isPhoneNumberConfirmed" nz-icon type="check" nz-tooltip [nzTitle]="l('YourPhoneNumberIsVerified')"></i>
+                    nz-tooltip [nzTitle]="'YourPhoneNumberIsNotVerified' | localize"><i nz-icon type="warning"></i>{{'Verify' | localize}}</button>
+                <i *ngIf="isPhoneNumberConfirmed" nz-icon type="check" nz-tooltip [nzTitle]="'YourPhoneNumberIsVerified' | localize"></i>
             </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item *ngIf="!smsEnabled || isPhoneNumberEmpty">
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="PhoneNumber">{{l('PhoneNumber')}}</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="PhoneNumber">{{'PhoneNumber' | localize}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24">
-            <input nz-input name="PhoneNumber" [(ngModel)]="user.phoneNumber" [placeholder]="l('PhoneNumber')"
+            <input nz-input name="PhoneNumber" [(ngModel)]="user.phoneNumber" [placeholder]="'PhoneNumber' | localize"
                 autocomplete="tel" maxlength="24">
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="UserName">{{l('UserName')}}</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="UserName">{{'UserName' | localize}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
             <input nz-input name="UserName" #userNameInput="ngModel" [(ngModel)]="user.userName" [disabled]="!canChangeUserName"
                 required>
-            <nz-form-explain *ngIf="!canChangeUserName">{{l('CanNotChangeAdminUserName')}}</nz-form-explain>
+            <nz-form-explain *ngIf="!canChangeUserName">{{'CanNotChangeAdminUserName' | localize}}</nz-form-explain>
             <nz-form-explain *ngIf="userNameInput.dirty && userNameInput.errors">
                 <validation-messages [formCtrl]="userNameInput"></validation-messages>
             </nz-form-explain>
@@ -64,7 +64,7 @@
     </nz-form-item>
     <nz-form-item *ngIf="showTimezoneSelection">
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="Timezone">
-            {{l("Timezone")}}
+            {{"Timezone" | localize}}
         </nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24">
             <timezone-combo name="Timezone" [(ngModel)]="user.timezone" defaultTimezoneScope="{{defaultTimezoneScope}}"></timezone-combo>
@@ -72,10 +72,10 @@
     </nz-form-item>
     <div class="modal-footer">
         <button nz-button type="button" [disabled]="saving" (click)="close()">
-            {{l("Cancel")}}
+            {{"Cancel" | localize}}
         </button>
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!validateForm.valid||saving" [nzLoading]="saving">
-            <i nz-icon type="save"></i> {{l("Save")}}
+            <i nz-icon type="save"></i> {{"Save" | localize}}
         </button>
     </div>
 </form>

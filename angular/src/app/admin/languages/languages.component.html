@@ -1,9 +1,9 @@
 <page-header [title]="title">
     <ng-template #title>
-        {{l('Languages')}}
+        {{'Languages' | localize}}
         <span class="text-sm text-grey-dark">
             <nz-divider nzType="vertical"></nz-divider>
-            {{l('LanguagesHeaderInfo')}}
+            {{'LanguagesHeaderInfo' | localize}}
         </span>
     </ng-template>
 </page-header>
@@ -14,7 +14,7 @@
                 <nz-form-item>
                     <nz-form-control>
                         <nz-input-group nzSearch [nzSuffix]="suffixSearchButton">
-                            <input type="text" nz-input [(ngModel)]="filterText" name="filterText" [placeholder]="l('SearchWithThreeDot')">
+                            <input type="text" nz-input [(ngModel)]="filterText" name="filterText" [placeholder]="'SearchWithThreeDot' | localize">
                             <ng-template #suffixSearchButton>
                                 <button nz-button nzType="primary" nzSearch (click)="refresh()">
                                     <i nz-icon type="search"></i>
@@ -29,7 +29,7 @@
     <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Administration.Languages.Create')" (click)="createOrEditLanguage()">
         <i nz-icon type="plus"></i>
         <span>
-            {{l("CreateNewLanguage")}}
+            {{"CreateNewLanguage" | localize}}
         </span>
     </button>
     <button nz-button [nzType]="'danger'" *ngIf="isGranted('Pages.Administration.Languages.Delete') && selectedDataItems.length>0"
@@ -47,11 +47,11 @@
                     <strong class="text-primary">{{selectedDataItems.length}}</strong> items selected
                 </span>
                 <a (click)="restCheckStatus(dataList)" class="ml-md" *ngIf="selectedDataItems.length>0">
-                    {{l('Clear')}}
+                    {{'Clear' | localize}}
                 </a>
                 <nz-divider nzType="vertical"></nz-divider>
                 <a (click)="refresh()">
-                    {{l('Refresh')}}
+                    {{'Refresh' | localize}}
                 </a>
             </ng-template>
         </nz-alert>
@@ -71,23 +71,23 @@
                     <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled" [nzIndeterminate]="checkboxIndeterminate"
                         (nzCheckedChange)="checkAll($event)"></th>
                     <th>
-                        {{l("Name")}}
+                        {{"Name" | localize}}
                     </th>
                     <th>
-                        {{l("Code")}}
+                        {{"Code" | localize}}
                     </th>
                     <th *ngIf="appSession.tenantId ? true : false">
-                        {{l('Default')}} *
+                        {{'Default' | localize}} *
                     </th>
                     <th class="text-center">
-                        {{l("CreationTime")}}
+                        {{"CreationTime" | localize}}
                     </th>
                     <th class="text-center">
-                        {{l("IsEnabled")}}
+                        {{"IsEnabled" | localize}}
                     </th>
 
                     <th nzWidth="240px" class="text-center">
-                        {{l('Actions')}}
+                        {{'Actions' | localize}}
                     </th>
                 </tr>
             </thead>
@@ -98,37 +98,37 @@
                         <span [ngClass]="{'font-weight-bold' : defaultLanguageName === item.name}">
                             <i class="anticon {{item.icon}}"></i>
                             {{item.displayName}}
-                            <span *ngIf="defaultLanguageName === item.name">({{l('Default')}})</span>
+                            <span *ngIf="defaultLanguageName === item.name">({{'Default' | localize}})</span>
                         </span>
                     </td>
                     <td>
                         {{item.name}}
                     </td>
                     <td *ngIf="appSession.tenantId ? true : false">
-                        <span class="badge badge-success" *ngIf="item.tenantId !== appSession.tenantId">{{l('Yes')}}</span>
-                        <span class="badge badge-grey" *ngIf="item.tenantId === appSession.tenantId">{{l('No')}}</span>
+                        <span class="badge badge-success" *ngIf="item.tenantId !== appSession.tenantId">{{'Yes' | localize}}</span>
+                        <span class="badge badge-grey" *ngIf="item.tenantId === appSession.tenantId">{{'No' | localize}}</span>
                     </td>
                     <td class="text-center">
                         {{item.creationTime | momentFormat:'L'}}
                     </td>
                     <td class="text-center">
-                        <span class="badge badge-success" *ngIf="!item.isDisabled">{{l('Yes')}}</span>
-                        <span class="badge badge-grey" *ngIf="item.isDisabled">{{l('No')}}</span>
+                        <span class="badge badge-success" *ngIf="!item.isDisabled">{{'Yes' | localize}}</span>
+                        <span class="badge badge-grey" *ngIf="item.isDisabled">{{'No' | localize}}</span>
                     </td>
                     <td class="text-center">
                         <ng-container *ngIf="isGranted('Pages.Administration.Languages.Edit') && item.tenantId === appSession.tenantId">
                             <a (click)="createOrEditLanguage(item.id)">
                                 <i nz-icon type="edit"></i>
-                                {{l('Edit')}}
+                                {{'Edit' | localize}}
                             </a>
                             <nz-divider nzType="vertical"></nz-divider>
                         </ng-container>
                         <ng-container *ngIf="isGranted('Pages.Administration.Languages.Delete') && item.tenantId === appSession.tenantId">
-                            <nz-popconfirm [nzTitle]="l('LanguageDeleteWarningMessage', item.displayName)"
-                                (nzOnConfirm)="delete(item)" [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
+                            <nz-popconfirm [nzTitle]="'LanguageDeleteWarningMessage' | localize:item.displayName"
+                                (nzOnConfirm)="delete(item)" [nzOkText]="'Ok' | localize" [nzCancelText]="'Cancel' | localize">
                                 <a nz-popconfirm>
                                     <i nz-icon type="delete"></i>
-                                    {{l('Delete')}}
+                                    {{'Delete' | localize}}
                                 </a>
                             </nz-popconfirm>
                             <nz-divider nzType="vertical"></nz-divider>
@@ -137,15 +137,15 @@
                         <ng-container *ngIf="isGrantedAny('Pages.Administration.Languages.ChangeTexts', 'Pages.Administration.Languages.Edit')">
                             <nz-dropdown [nzPlacement]="'bottomRight'">
                                 <a nz-dropdown>
-                                    {{l('Actions')}}
+                                    {{'Actions' | localize}}
                                     <i nz-icon type="down"></i>
                                 </a>
                                 <ul nz-menu>
                                     <li nz-menu-item (click)="changeTexts(item)" *ngIf="isGranted('Pages.Administration.Languages.ChangeTexts')">
-                                        {{l('ChangeTexts')}}
+                                        {{'ChangeTexts' | localize}}
                                     </li>
                                     <li nz-menu-item (click)="setAsDefaultLanguage(item)" *ngIf="isGranted('Pages.Administration.Languages.Edit')">
-                                        {{l('SetAsDefaultLanguage')}}
+                                        {{'SetAsDefaultLanguage' | localize}}
                                     </li>
                                 </ul>
                             </nz-dropdown>

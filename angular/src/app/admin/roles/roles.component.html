@@ -1,9 +1,9 @@
 <page-header [title]="title">
     <ng-template #title>
-        {{l('Roles')}}
+        {{'Roles' | localize}}
         <span class="text-sm text-grey-dark">
             <nz-divider nzType="vertical"></nz-divider>
-            {{l('RolesHeaderInfo')}}
+            {{'RolesHeaderInfo' | localize}}
         </span>
     </ng-template>
 </page-header>
@@ -20,7 +20,7 @@
     <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Administration.Roles.Create')" (click)="createOrEdit()">
         <i nz-icon type="plus"></i>
         <span>
-            {{l("CreateNewRole")}}
+            {{"CreateNewRole" | localize}}
         </span>
     </button>
     <ng-container *ngIf="selectedDataItems.length > 0">
@@ -38,11 +38,11 @@
                     <strong class="text-primary">{{selectedDataItems.length}}</strong> items selected
                 </span>
                 <a (click)="restCheckStatus(dataList)" *ngIf="selectedDataItems.length>0" class="ml-md">
-                    {{l('Clear')}}
+                    {{'Clear' | localize}}
                 </a>
                 <nz-divider nzType="vertical"></nz-divider>
                 <a (click)="refresh()">
-                    {{l('Refresh')}}
+                    {{'Refresh' | localize}}
                 </a>
             </ng-template>
         </nz-alert>
@@ -62,14 +62,14 @@
                     </th>
 
                     <th>
-                        {{l('RoleName')}}
+                        {{'RoleName' | localize}}
                     </th>
                     <th class="text-center">
-                        {{l('CreationTime')}}
+                        {{'CreationTime' | localize}}
                     </th>
 
                     <th nzWidth="230px" class="text-center">
-                        {{l('Actions')}}
+                        {{'Actions' | localize}}
                     </th>
                 </tr>
             </thead>
@@ -79,8 +79,8 @@
 
                     <td>
                         <span class="mr-sm"> {{item.displayName}}</span>
-                        <nz-tag *ngIf="item.isStatic" [nzColor]="'#108ee9'" nz-tooltip [nzTitle]="l('StaticRole_Tooltip')">{{l('Static')}}</nz-tag>
-                        <nz-tag *ngIf="item.isDefault" [nzColor]="'#2db7f5'" nz-tooltip [nzTitle]="l('DefaultRole_Description')">{{l('Default')}}</nz-tag>
+                        <nz-tag *ngIf="item.isStatic" [nzColor]="'#108ee9'" nz-tooltip [nzTitle]="'StaticRole_Tooltip' | localize">{{'Static' | localize}}</nz-tag>
+                        <nz-tag *ngIf="item.isDefault" [nzColor]="'#2db7f5'" nz-tooltip [nzTitle]="'DefaultRole_Description' | localize">{{'Default' | localize}}</nz-tag>
                     </td>
                     <td class="text-center">
                         {{item.creationTime | momentFormat:'L'}}
@@ -89,16 +89,16 @@
                         <ng-container *ngIf="isGranted('Pages.Administration.Roles.Edit')">
                             <a (click)="createOrEdit(item.id)">
                                 <i nz-icon type="edit"></i>
-                                {{l('Edit')}}
+                                {{'Edit' | localize}}
                             </a>
                         </ng-container>
                         <ng-container *ngIf="!item.isStatic&&isGranted('Pages.Administration.Roles.Delete')">
                             <nz-divider nzType="vertical"></nz-divider>
-                            <nz-popconfirm [nzTitle]="l('RoleDeleteWarningMessage', item.displayName)" (nzOnConfirm)="delete(item)"
-                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
+                            <nz-popconfirm [nzTitle]="'RoleDeleteWarningMessage'| localize:item.displayName" (nzOnConfirm)="delete(item)"
+                                [nzOkText]="'Ok'| localize" [nzCancelText]="'Cancel' | localize">
                                 <a nz-popconfirm>
                                     <i nz-icon type="delete"></i>
-                                    {{l('Delete')}}
+                                    {{'Delete' | localize}}
                                 </a>
                             </nz-popconfirm>
                         </ng-container>

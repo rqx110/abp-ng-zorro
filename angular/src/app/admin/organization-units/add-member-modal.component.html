@@ -1,12 +1,12 @@
 <div class="modal-header">
     <div class="modal-title">
         <i nz-icon type="team"></i>
-        {{l("SelectUsers")}}
+        {{"SelectUsers" | localize}}
     </div>
 </div>
 <fieldset>
     <nz-input-group nzSearch [nzSuffix]="suffixSearchButton">
-        <input type="text" nz-input [(ngModel)]="filterText" (keyup.enter)="refresh()" name="filterText" [placeholder]="l('SearchWithThreeDot')">
+        <input type="text" nz-input [(ngModel)]="filterText" (keyup.enter)="refresh()" name="filterText" [placeholder]="'SearchWithThreeDot' | localize">
         <ng-template #suffixSearchButton>
             <button nz-button nzType="primary" nzSearch (click)="refresh()">
                 <i nz-icon type="search"></i>
@@ -20,7 +20,7 @@
                     <strong class="text-primary">{{selectedDataItems.length}}</strong> items selected
                 </span>
                 <a (click)="restCheckStatus(dataList)" class="ml-md">
-                    {{l('Clear')}}
+                    {{'Clear' | localize}}
                 </a>
             </ng-template>
         </nz-alert>
@@ -35,14 +35,14 @@
                     <no-data></no-data>
                 </ng-template>
                 <ng-template #totalTemplate let-total>
-                    {{l('TotalRecordsCount', total)}}
+                    {{'TotalRecordsCount' | localize:total}}
                 </ng-template>
                 <thead>
                     <tr>
                         <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled"
                             [nzIndeterminate]="checkboxIndeterminate" (nzCheckedChange)="checkAll($event)"></th>
                         <th>
-                            {{l('Name')}}
+                            {{'Name' | localize}}
                         </th>
                     </tr>
                 </thead>
@@ -61,9 +61,9 @@
 </fieldset>
 <div class="modal-footer">
     <button nz-button [nzType]="'default'" type="button" (click)="close($event)" [disabled]="saving">
-        {{l("Cancel")}}
+        {{"Cancel" | localize}}
     </button>
     <button nz-button [nzType]="'primary'" [disabled]="saving" [nzLoading]="saving" (click)="addUsersToOrganizationUnit()">
-        <i nz-icon type="save" *ngIf="!saving"></i> {{l("Save")}}
+        <i nz-icon type="save" *ngIf="!saving"></i> {{"Save" | localize}}
     </button>
 </div>

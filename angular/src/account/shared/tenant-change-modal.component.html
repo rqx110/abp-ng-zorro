@@ -1,26 +1,26 @@
 <form nz-form #changeTenantForm="ngForm" (ngSubmit)="save()">
     <div class="modal-header">
         <div class="modal-title">
-            <i nz-icon type="home"></i> {{l("ChangeTenant")}}
+            <i nz-icon type="home"></i> {{"ChangeTenant" | localize}}
         </div>
     </div>
     <fieldset>
         <nz-form-item nz-row>
             <nz-form-label nz-col [nzSm]="6" nzFor="TenancyName">
-                {{l("TenancyName")}}
+                {{"TenancyName" | localize}}
             </nz-form-label>
             <nz-form-control nz-col [nzSm]="14">
-                <input nz-input name="TenancyName" [(ngModel)]="tenancyName" type="text" [placeholder]="l('TenancyName')" />
-                <nz-form-extra>{{l("LeaveEmptyToSwitchToHost")}}</nz-form-extra> 
+                <input nz-input name="TenancyName" [(ngModel)]="tenancyName" type="text" [placeholder]="'TenancyName' | localize" />
+                <nz-form-extra>{{"LeaveEmptyToSwitchToHost" | localize}}</nz-form-extra> 
             </nz-form-control>
         </nz-form-item>
     </fieldset>
     <div class="modal-footer">
         <button nz-button [nzType]="'default'" type="button" (click)="close()" [disabled]="saving">
-            {{l("Cancel")}}
+            {{"Cancel" | localize}}
         </button>
         <button nz-button [nzType]="'primary'" type="submit" [nzLoading]="saving">
-            <i nz-icon type="save"></i> {{l("Save")}}
+            <i nz-icon type="save"></i> {{"Save" | localize}}
         </button>
     </div>
 </form>

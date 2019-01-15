@@ -1,4 +1,4 @@
-<nz-select  style="width: 100%;" nzAllowClear [nzPlaceHolder]="l('FilterByRole')" [nzDropdownStyle]="dropDownStyle" [(ngModel)]="selectedRole"
+<nz-select  style="width: 100%;" nzAllowClear [nzPlaceHolder]="'FilterByRole' | localize" [nzDropdownStyle]="dropDownStyle" [(ngModel)]="selectedRole"
   (ngModelChange)="selectedChange($event)">
   <nz-option *ngFor="let role of roles" [nzLabel]="role.displayName" [nzValue]="role.id"></nz-option>
 </nz-select>

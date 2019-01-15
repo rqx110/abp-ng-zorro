@@ -8,6 +8,7 @@ import { EqualValidator } from './validation/equal-validator.directive';
 import { PasswordComplexityValidator } from './validation/password-complexity-validator.directive';
 import { MomentFromNowPipe } from './moment-from-now.pipe';
 import { MomentFormatPipe } from './moment-format.pipe';
+import { LocalizePipe } from './localize.pipe';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { MomentFormatPipe } from './moment-format.pipe';
         AutoFocusDirective,
         MomentFromNowPipe,
         MomentFormatPipe,
-        ValidationMessagesComponent
+        ValidationMessagesComponent,
+        LocalizePipe
     ],
     exports: [
         EqualValidator,
@@ -31,7 +33,8 @@ import { MomentFormatPipe } from './moment-format.pipe';
         AutoFocusDirective,
         MomentFromNowPipe,
         MomentFormatPipe,
-        ValidationMessagesComponent
+        ValidationMessagesComponent,
+        LocalizePipe
     ]
 })
 export class UtilsModule { }

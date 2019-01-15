@@ -1,13 +1,13 @@
-<nz-card [nzTitle]="l('EmailActivation')">
+<nz-card [nzTitle]="'EmailActivation' | localize">
     <form nz-form #emailActivationForm="ngForm" method="post" novalidate (ngSubmit)="save()" role="form">
-        <nz-alert class="mb-md" nzType="info" nzCloseable [nzMessage]="l('SendEmailActivationLink_Information')"
+        <nz-alert class="mb-md" nzType="info" nzCloseable [nzMessage]="'SendEmailActivationLink_Information' | localize"
             nzShowIcon>
         </nz-alert>
 
         <nz-form-item>
             <nz-form-control nzHasFeedback>
                 <input nz-input name="emailAddress" #emailAddressInput="ngModel" [(ngModel)]="model.emailAddress"
-                    [placeholder]="l('EmailAddress')" autoFocus required maxlength="255" type="email" email>
+                    [placeholder]="'EmailAddress' | localize" autoFocus required maxlength="255" type="email" email>
                 <nz-form-explain class="text-left" *ngIf="emailAddressInput.dirty && emailAddressInput.errors">
                     <validation-messages [formCtrl]="emailAddressInput"></validation-messages>
                 </nz-form-explain>
@@ -16,12 +16,12 @@
         <nz-form-item nz-row nzGutter="8">
             <nz-col nzSm="12">
                 <button nz-button nzType="primary" nzSize="large" type="submit" [nzLoading]="saving" nzBlock [disabled]="!emailActivationForm.form.valid || saving">
-                    {{l("Submit")}}
+                    {{"Submit" | localize}}
                 </button>
             </nz-col>
             <nz-col nzSm="12">
                 <button nz-button nzType="default" nzSize="large" type="button" [disabled]="saving" routerLink="/account/login"
-                    nzBlock>{{l("Back")}}</button>
+                    nzBlock>{{"Back" | localize}}</button>
             </nz-col>
         </nz-form-item>
     </form>

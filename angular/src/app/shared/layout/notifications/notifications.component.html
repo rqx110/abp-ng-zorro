@@ -1,4 +1,4 @@
-<page-header [title]="l('Notifications')">
+<page-header [title]="'Notifications' | localize">
 </page-header>
 <nz-card [nzBordered]="false">
     <div>
@@ -8,8 +8,8 @@
                     <nz-form-control>
                         <nz-select style="width: 100%;" [(ngModel)]="readStateFilter"
                             (ngModelChange)="onSearch()">
-                            <nz-option nzValue="ALL" [nzLabel]="l('All')"></nz-option>
-                            <nz-option nzValue="UNREAD" [nzLabel]="l('Unread')"></nz-option>
+                            <nz-option nzValue="ALL" [nzLabel]="'All' | localize"></nz-option>
+                            <nz-option nzValue="UNREAD" [nzLabel]="'Unread' | localize"></nz-option>
                         </nz-select>
                     </nz-form-control>
                 </nz-form-item>
@@ -21,13 +21,13 @@
             <button nz-button [nzType]="'default'" (click)="openNotificationSettingsModal()">
                 <i nz-icon type="setting"></i>
                 <span>
-                    {{l("NotificationSettings")}}
+                    {{"NotificationSettings" | localize}}
                 </span>
             </button>
             <button nz-button [nzType]="'primary'" (click)="setAllNotificationsAsRead()">
                 <i nz-icon type="check"></i>
                 <span>
-                    {{l("SetAllAsRead")}}
+                    {{"SetAllAsRead" | localize}}
                 </span>
             </button>
         </nz-col>
@@ -41,18 +41,18 @@
                 <no-data></no-data>
             </ng-template>
             <ng-template #totalTemplate let-total>
-                {{l('TotalRecordsCount', total)}}
+                {{'TotalRecordsCount' | localize:total}}
             </ng-template>
             <thead (nzSortChange)="gridSort($event)">
                 <tr>
                     <th>
-                        {{l('Notification')}}
+                        {{'Notification' | localize}}
                     </th>
                     <th>
-                        {{l('CreationTime')}}
+                        {{'CreationTime' | localize}}
                     </th>
                     <th nzWidth="200px" class="text-center">
-                        {{l('Actions')}}
+                        {{'Actions' | localize}}
                     </th>
                 </tr>
             </thead>
@@ -74,16 +74,16 @@
                         <ng-container *ngIf="!isRead(item)">
                             <a (click)="setAsRead(item)">
                                 <i nz-icon type="check"></i>
-                                {{l('SetAsRead')}}
+                                {{'SetAsRead' | localize}}
                             </a>
                             <nz-divider nzType="vertical"></nz-divider>
                         </ng-container>
                         <ng-container>
-                            <nz-popconfirm [nzTitle]="l('NotificationDeleteWarningMessage')" (nzOnConfirm)="deleteNotification(item)"
-                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
+                            <nz-popconfirm [nzTitle]="'NotificationDeleteWarningMessage' | localize" (nzOnConfirm)="deleteNotification(item)"
+                                [nzOkText]="'Ok' | localize" [nzCancelText]="'Cancel' | localize">
                                 <a nz-popconfirm>
                                     <i nz-icon type="delete"></i>
-                                    {{l('Delete')}}
+                                    {{'Delete' | localize}}
                                 </a>
                             </nz-popconfirm>
                         </ng-container>
