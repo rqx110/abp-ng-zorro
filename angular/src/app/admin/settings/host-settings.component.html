@@ -32,7 +32,7 @@
                 </nz-form-item>
                 <nz-form-item nz-row [hidden]="!hostSettings.tenantManagement.allowSelfRegistration">
                     <div nz-col><label nz-checkbox name="IsNewRegisteredTenantActiveByDefault" [(ngModel)]="hostSettings.tenantManagement.isNewRegisteredTenantActiveByDefault">{{"NewRegisteredTenantsIsActiveByDefault" | localize}}</label></div>
-                    <nz-form-extra>{{"NewRegisteredTenantsIsActiveByDefault" | localize}}</nz-form-extra>
+                    <nz-form-extra>{{"NewRegisteredTenantsIsActiveByDefault_Hint" | localize}}</nz-form-extra>
                 </nz-form-item>
                 <nz-form-item nz-row [hidden]="!hostSettings.tenantManagement.allowSelfRegistration">
                     <div nz-col><label nz-checkbox name="UseCaptchaOnRegistration" [(ngModel)]="hostSettings.tenantManagement.useCaptchaOnRegistration">{{"UseCaptchaOnRegistration" | localize}}</label></div>
