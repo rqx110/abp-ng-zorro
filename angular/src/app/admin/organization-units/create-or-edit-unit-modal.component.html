@@ -15,7 +15,7 @@
             </nz-form-label>
             <nz-form-control nzHasFeedback>
                 <input nz-input #organizationUnitDisplayName="ngModel" name="OrganizationUnitDisplayName" [(ngModel)]="organizationUnit.displayName"
-                    [placeholder]="'Name' | localize" required maxlength="128">
+                    placeholder="{{'Name' | localize}}" required maxlength="128">
                 <nz-form-explain *ngIf="organizationUnitDisplayName.dirty && organizationUnitDisplayName.errors">
                     <validation-messages [formCtrl]="organizationUnitDisplayName"></validation-messages>
                 </nz-form-explain>

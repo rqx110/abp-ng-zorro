@@ -1,4 +1,4 @@
-<page-header [title]="'Notifications' | localize">
+<page-header [title]="l('Notifications')">
 </page-header>
 <nz-card [nzBordered]="false">
     <div>
@@ -8,8 +8,8 @@
                     <nz-form-control>
                         <nz-select style="width: 100%;" [(ngModel)]="readStateFilter"
                             (ngModelChange)="onSearch()">
-                            <nz-option nzValue="ALL" [nzLabel]="'All' | localize"></nz-option>
-                            <nz-option nzValue="UNREAD" [nzLabel]="'Unread' | localize"></nz-option>
+                            <nz-option nzValue="ALL" [nzLabel]="l('All')"></nz-option>
+                            <nz-option nzValue="UNREAD" [nzLabel]="l('Unread')"></nz-option>
                         </nz-select>
                     </nz-form-control>
                 </nz-form-item>
@@ -79,8 +79,8 @@
                             <nz-divider nzType="vertical"></nz-divider>
                         </ng-container>
                         <ng-container>
-                            <nz-popconfirm [nzTitle]="'NotificationDeleteWarningMessage' | localize" (nzOnConfirm)="deleteNotification(item)"
-                                [nzOkText]="'Ok' | localize" [nzCancelText]="'Cancel' | localize">
+                            <nz-popconfirm [nzTitle]="l('NotificationDeleteWarningMessage')" (nzOnConfirm)="deleteNotification(item)"
+                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
                                 <a nz-popconfirm>
                                     <i nz-icon type="delete"></i>
                                     {{'Delete' | localize}}

@@ -8,7 +8,7 @@
                     </nz-form-label>
                     <nz-form-control>
                         <nz-range-picker name="DateRange" [nzStyle]="{width:'100%'}" [(ngModel)]="startToEndDate"
-                            [nzPlaceHolder]="['StartDateTime' | localize, 'EndDateTime' | localize]"></nz-range-picker>
+                            [nzPlaceHolder]="[l('StartDateTime'), l('EndDateTime')]"></nz-range-picker>
                     </nz-form-control>
                 </nz-form-item>
             </div>
@@ -18,7 +18,7 @@
                         {{"UserName" | localize}}
                     </nz-form-label>
                     <nz-form-control>
-                        <input type="text" nz-input [(ngModel)]="username" name="UserName" [placeholder]="'UserName' | localize">
+                        <input type="text" nz-input [(ngModel)]="username" name="UserName" placeholder="{{'UserName' | localize}}">
                     </nz-form-control>
                 </nz-form-item>
             </div>
@@ -28,9 +28,9 @@
                         {{"Object" | localize}}
                     </nz-form-label>
                     <nz-form-control>
-                        <nz-select [(ngModel)]="entityTypeFullName" name="EntityTypeFullName" [nzPlaceHolder]="'Object' | localize"
+                        <nz-select [(ngModel)]="entityTypeFullName" name="EntityTypeFullName" [nzPlaceHolder]="l('Object')"
                             nzAllowClear>
-                            <nz-option [nzLabel]="'All' | localize" nzValue=""></nz-option>
+                            <nz-option [nzLabel]="l('All')" nzValue=""></nz-option>
                             <nz-option *ngFor="let objectType of objectTypes" [nzLabel]="objectType.name" [nzValue]="objectType.value"></nz-option>
                         </nz-select>
                     </nz-form-control>
@@ -81,7 +81,7 @@
                 <tr *ngFor="let item of ajaxTable.data">
                     <td nzWidth="75px" nzLeft="0px" class="text-center">
                         <a (click)="showEntityChangeDetails(item)">
-                            <i nz-icon type="search" nz-tooltip [nzTitle]="'Search' | localize"></i>
+                            <i nz-icon type="search" nz-tooltip [nzTitle]="l('Search')"></i>
                         </a>
                     </td>
                     <td>

@@ -1,6 +1,6 @@
-<nz-card [nzTitle]="'VerifySecurityCode' | localize">
+<nz-card [nzTitle]="l('VerifySecurityCode')">
     <form nz-form #twoFactorForm="ngForm" method="post" novalidate (ngSubmit)="submit()" role="form" *ngIf="loginService.authenticateResult">
-        <nz-alert class="mb-md" nzType="info" nzCloseable [nzMessage]="'SendSecurityCode_Information' | localize" nzShowIcon>
+        <nz-alert class="mb-md" nzType="info" nzCloseable [nzMessage]="l('SendSecurityCode_Information')" nzShowIcon>
         </nz-alert>
         <nz-form-item>
             <nz-form-control>

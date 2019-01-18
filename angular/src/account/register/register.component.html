@@ -1,8 +1,8 @@
-<nz-card [nzTitle]="'SignUp' | localize">
+<nz-card [nzTitle]="l('SignUp')">
     <form nz-form #registerForm="ngForm" (ngSubmit)="save()" role="form" novalidate method="post">
         <nz-form-item>
             <nz-form-control nzHasFeedback>
-                <input nz-input name="Name" #nameInput='ngModel' [(ngModel)]="model.name" [placeholder]="'Name' | localize"
+                <input nz-input name="Name" #nameInput='ngModel' [(ngModel)]="model.name" placeholder="{{'Name' | localize}}"
                     required maxlength="32">
                 <nz-form-explain *ngIf="nameInput.dirty && nameInput.errors">
                     <validation-messages [formCtrl]="nameInput"></validation-messages>
@@ -12,7 +12,7 @@
 
         <nz-form-item>
             <nz-form-control nzHasFeedback>
-                <input nz-input name="Surname" #surnameInput="ngModel" [(ngModel)]="model.surname" [placeholder]="'Surname' | localize"
+                <input nz-input name="Surname" #surnameInput="ngModel" [(ngModel)]="model.surname" placeholder="{{'Surname' | localize}}"
                     required maxlength="32">
                 <nz-form-explain *ngIf="surnameInput.dirty && surnameInput.errors">
                     <validation-messages [formCtrl]="surnameInput"></validation-messages>
@@ -23,7 +23,7 @@
         <nz-form-item>
             <nz-form-control nzHasFeedback>
                 <input nz-input type="email" name="EmailAddress" #emailAddressInput="ngModel" [(ngModel)]="model.emailAddress"
-                    [placeholder]="'EmailAddress' | localize" required email>
+                    placeholder="{{'EmailAddress' | localize}}" required email>
                 <nz-form-explain *ngIf="emailAddressInput.dirty && emailAddressInput.errors">
                     <validation-messages [formCtrl]="emailAddressInput"></validation-messages>
                 </nz-form-explain>
@@ -33,7 +33,7 @@
         <nz-form-item>
             <nz-form-control nzHasFeedback>
                 <input nz-input name="UserName" autocomplete="off" #userNameInput="ngModel" [(ngModel)]="model.userName"
-                    [placeholder]="'UserName' | localize" required maxlength="32">
+                    placeholder="{{'UserName' | localize}}" required maxlength="32">
                 <nz-form-explain *ngIf="userNameInput.dirty && userNameInput.errors">
                     <validation-messages [formCtrl]="userNameInput"></validation-messages>
                 </nz-form-explain>

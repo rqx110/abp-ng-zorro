@@ -5,7 +5,7 @@
                 <nz-form-control>
                     <nz-input-group nzPrefixIcon="anticon anticon-user">
                         <input nz-input name="userNameOrEmailAddress" #userNameOrEmailAddressInput="ngModel"
-                            [(ngModel)]="loginService.authenticateModel.userNameOrEmailAddress" [placeholder]="'UserNameOrEmail' | localize"
+                            [(ngModel)]="loginService.authenticateModel.userNameOrEmailAddress" placeholder="{{'UserNameOrEmail' | localize}}"
                             [nzSize]="'large'" required maxlength="255">
                     </nz-input-group>
                 </nz-form-control>
@@ -14,7 +14,7 @@
                 <nz-form-control>
                     <nz-input-group nzPrefixIcon="anticon anticon-lock">
                         <input nz-input name="password" #passwordInput="ngModel" [(ngModel)]="loginService.authenticateModel.password"
-                            [placeholder]="'Password' | localize" type="password" [nzSize]="'large'" required maxlength="32">
+                            placeholder="{{'Password' | localize}}" type="password" [nzSize]="'large'" required maxlength="32">
                     </nz-input-group>
                 </nz-form-control>
             </nz-form-item>

@@ -23,7 +23,7 @@
                                 {{"Name" | localize}}
                             </nz-form-label>
                             <nz-form-control nzHasFeedback>
-                                <input nz-input #nameInput="ngModel" name="name" [(ngModel)]="user.name" [placeholder]="'Name' | localize"
+                                <input nz-input #nameInput="ngModel" name="name" [(ngModel)]="user.name" placeholder="{{'Name' | localize}}"
                                     required maxlength="32">
                                 <nz-form-explain *ngIf="nameInput.dirty && nameInput.errors">
                                     <validation-messages [formCtrl]="nameInput"></validation-messages>
@@ -36,7 +36,7 @@
                             </nz-form-label>
                             <nz-form-control nzHasFeedback>
                                 <input nz-input #surnameInput="ngModel" name="Surname" [(ngModel)]="user.surname"
-                                    [placeholder]="'Surname' | localize" id="Surname" required maxlength="24">
+                                    placeholder="{{'Surname' | localize}}" id="Surname" required maxlength="24">
                                 <nz-form-explain *ngIf="surnameInput.dirty && surnameInput.errors">
                                     <validation-messages [formCtrl]="surnameInput"></validation-messages>
                                 </nz-form-explain>
@@ -50,7 +50,7 @@
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input #emailAddressInput="ngModel" name="emailAddress" [(ngModel)]="user.emailAddress"
-                            [placeholder]="'EmailAddress' | localize" id="emailAddress" type="email" required maxlength="256"
+                            placeholder="{{'EmailAddress' | localize}}" id="emailAddress" type="email" required maxlength="256"
                             email>
                         <nz-form-explain *ngIf="emailAddressInput.dirty && emailAddressInput.errors">
                             <validation-messages [formCtrl]="emailAddressInput"></validation-messages>
@@ -63,7 +63,7 @@
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input #phoneNumberInput="ngModel" name="PhoneNumber" [(ngModel)]="user.phoneNumber"
-                            [placeholder]="'PhoneNumber' | localize" id="PhoneNumber" maxlength="24">
+                            placeholder="{{'PhoneNumber' | localize}}" id="PhoneNumber" maxlength="24">
                         <nz-form-explain *ngIf="phoneNumberInput.dirty && phoneNumberInput.errors">
                             <validation-messages [formCtrl]="phoneNumberInput"></validation-messages>
                         </nz-form-explain>
@@ -73,12 +73,12 @@
                     <nz-form-label nzFor="userName" nzRequired>
                         {{"UserName" | localize}}
                         <em *ngIf="!canChangeUserName">
-                            <i nz-icon type="info-circle" nz-tooltip [nzTitle]="'CanNotChangeAdminUserName' | localize"></i>
+                            <i nz-icon type="info-circle" nz-tooltip [nzTitle]="l('CanNotChangeAdminUserName')"></i>
                         </em>
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input #userNameInput="ngModel" name="userName" [disabled]="!canChangeUserName"
-                            [(ngModel)]="user.userName" [placeholder]="'UserName' | localize" required maxlength="32">
+                            [(ngModel)]="user.userName" placeholder="{{'UserName' | localize}}" required maxlength="32">
                         <nz-form-extra *ngIf="!canChangeUserName">{{'CanNotChangeAdminUserName' | localize}}</nz-form-extra>
                         <nz-form-explain *ngIf="userNameInput.dirty && userNameInput.errors">
                             <validation-messages [formCtrl]="userNameInput"></validation-messages>
@@ -96,7 +96,7 @@
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input type="password" #Password="ngModel" id="Password" name="Password" [(ngModel)]="user.password"
-                            [placeholder]="'Password' | localize" minlength="8" validateEqual="PasswordRepeat" reverse="true"
+                            placeholder="{{'Password' | localize}}" minlength="8" validateEqual="PasswordRepeat" reverse="true"
                             [required]="!user.id && !setRandomPassword" maxlength="32" [requireDigit]="passwordComplexitySetting.requireDigit"
                             [requireLowercase]="passwordComplexitySetting.requireLowercase" [requireUppercase]="passwordComplexitySetting.requireUppercase"
                             [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric"
@@ -122,7 +122,7 @@
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input name="PasswordRepeat" #PasswordRepeat="ngModel" [(ngModel)]="user.passwordRepeat"
-                            [placeholder]="'PasswordRepeat' | localize" type="password" validateEqual="Password" reverse="false"
+                            placeholder="{{'PasswordRepeat' | localize}}" type="password" validateEqual="Password" reverse="false"
                             [required]="!user.id && !setRandomPassword" maxlength="32" [requireDigit]="passwordComplexitySetting.requireDigit"
                             [requireLowercase]="passwordComplexitySetting.requireLowercase" [requireUppercase]="passwordComplexitySetting.requireUppercase"
                             [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric"

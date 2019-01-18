@@ -1,4 +1,4 @@
-<nz-card [nzTitle]="'TenantSignUp' | localize">
+<nz-card [nzTitle]="l('TenantSignUp')">
     <div *ngIf="model.edition" class="text-center">({{"Edition" | localize}}: {{model.edition.displayName}})</div>
     <form nz-form #registerForm="ngForm" method="post" novalidate (ngSubmit)="save()" role="form">
         <h4>{{"TenantInformations" | localize}}</h4>

@@ -1,10 +1,10 @@
-<nz-spin [nzTip]="'LoadWithThreeDot' | localize" [nzSpinning]="loading">
+<nz-spin [nzTip]="l('LoadWithThreeDot')" [nzSpinning]="loading">
     <nz-input-group [nzSuffix]="suffixIcon">
-        <input type="text" nz-input [placeholder]="'SearchWithThreeDot' | localize" [(ngModel)]="filterText" (keyup.enter)="reload()"
+        <input type="text" nz-input placeholder="{{'SearchWithThreeDot' | localize}}" [(ngModel)]="filterText" (keyup.enter)="reload()"
             (ngModelChange)="filterTextEmptyChange()">
     </nz-input-group>
     <ng-template #suffixIcon>
-        <i nz-icon type="reload" class="point" (click)="reload()" nz-tooltip [nzTitle]="'Refresh' | localize"></i>
+        <i nz-icon type="reload" class="point" (click)="reload()" nz-tooltip [nzTitle]="l('Refresh')"></i>
     </ng-template>
 
     <nz-tree #nzTreePermission [nzData]="_treeData" [nzSearchValue]="filterText" [nzCheckable]="true" [nzShowLine]="false"

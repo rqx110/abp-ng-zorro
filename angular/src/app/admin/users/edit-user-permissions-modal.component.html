@@ -10,14 +10,14 @@
     </div>
 
     <fieldset>
-        <nz-alert nzType="warning" nzCloseable [nzShowIcon]="true" [nzMessage]="'Note_RefreshPageForPermissionChanges' | localize"
+        <nz-alert nzType="warning" nzCloseable [nzShowIcon]="true" [nzMessage]="l('Note_RefreshPageForPermissionChanges')"
             class="mb-md"></nz-alert>
         <permission-tree #permissionTree></permission-tree>
     </fieldset>
 
     <div class="modal-footer">
         <button nz-button [nzType]="'default'" type="button" (click)="resetPermissions()" [disabled]="saving"
-            [nzLoading]="resettingPermissions" nz-tooltip [nzTitle]="'ResetPermissionsTooltip' | localize" class="mr-sm">
+            [nzLoading]="resettingPermissions" nz-tooltip [nzTitle]="l('ResetPermissionsTooltip')" class="mr-sm">
             <i nz-icon type="rollback" *ngIf="!resettingPermissions"></i>
             {{"ResetSpecialPermissions" | localize}}
         </button>

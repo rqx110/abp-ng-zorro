@@ -108,8 +108,8 @@
         <h3>{{"ErrorState" | localize}}</h3>
         <div nz-row [nzGutter]="8">
             <div nz-col [nzSpan]="4">
-                <nz-badge *ngIf="auditLog.exception " [nzStatus]="'error'" [nzText]="'Error' | localize"></nz-badge>
-                <nz-badge *ngIf="!auditLog.exception " [nzStatus]="'success'" [nzText]="'Success' | localize"></nz-badge>
+                <nz-badge *ngIf="auditLog.exception " [nzStatus]="'error'" [nzText]="l('Error')"></nz-badge>
+                <nz-badge *ngIf="!auditLog.exception " [nzStatus]="'success'" [nzText]="l('Success')"></nz-badge>
             </div>
         </div>
     </div>

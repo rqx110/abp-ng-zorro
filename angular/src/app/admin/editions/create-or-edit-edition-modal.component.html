@@ -8,7 +8,7 @@
     </div>
     <fieldset>
         <nz-tabset>
-            <nz-tab [nzTitle]="'EditionProperties' | localize">
+            <nz-tab [nzTitle]="l('EditionProperties')">
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="EditionDisplayName" nzRequired>
                         {{"EditionName" | localize}}
@@ -112,7 +112,7 @@
                     </nz-form-control>
                 </nz-form-item>
             </nz-tab>
-            <nz-tab [nzTitle]="'Features' | localize">
+            <nz-tab [nzTitle]="l('Features')">
                 <feature-tree #featureTree></feature-tree>
             </nz-tab>
         </nz-tabset>

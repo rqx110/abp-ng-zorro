@@ -1,7 +1,7 @@
 <div class="modal-header">
     <div class="modal-title">
         <span>{{"Detail"| localize}} - {{entityChange.entityTypeFullName | localize}}</span> <br />
-        <small [innerHTML]="'CreatedAtByUser' | localize:entityChange.changeTime:entityChange.userName"></small>
+        <small [innerHTML]="l('CreatedAtByUser', entityChange.changeTime, entityChange.userName)"></small>
     </div>
 </div>
 

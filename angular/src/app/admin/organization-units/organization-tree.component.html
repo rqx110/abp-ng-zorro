@@ -13,10 +13,10 @@
             <nz-divider nzType="vertical"></nz-divider>
         </ng-container>
         <a class="ml-sm">
-            <i nz-icon type="reload" nz-tooltip [nzTitle]="'Refresh' | localize" (click)="reload()"></i>
+            <i nz-icon type="reload" nz-tooltip [nzTitle]="l('Refresh')" (click)="reload()"></i>
         </a>
     </ng-template>
-    <nz-spin [nzTip]="'MovingWithThreeDot' | localize" [nzSpinning]="draging">
+    <nz-spin [nzTip]="l('MovingWithThreeDot')" [nzSpinning]="draging">
         <nz-tree [(ngModel)]="_treeData" [nzShowExpand]="true" [nzDraggable]="true" (nzClick)="activeNode($event)"
             (nzDblClick)="openFolder($event)" (nzOnDragEnter)="dragEnter($event)" (nzOnDrop)="dragSaveData($event)"
             (nzOnDragEnd)="dragSaveData($event)">
@@ -60,7 +60,7 @@
         </nz-tree>
     </nz-spin>
     <div class="text-center" *ngIf="!totalUnitCount">
-        <no-data [text]="'NoOrganizationUnitDefinedYet' | localize"></no-data>
+        <no-data [text]="l('NoOrganizationUnitDefinedYet')"></no-data>
     </div>
 
 </nz-card>

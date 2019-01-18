@@ -79,8 +79,8 @@
 
                     <td>
                         <span class="mr-sm"> {{item.displayName}}</span>
-                        <nz-tag *ngIf="item.isStatic" [nzColor]="'#108ee9'" nz-tooltip [nzTitle]="'StaticRole_Tooltip' | localize">{{'Static' | localize}}</nz-tag>
-                        <nz-tag *ngIf="item.isDefault" [nzColor]="'#2db7f5'" nz-tooltip [nzTitle]="'DefaultRole_Description' | localize">{{'Default' | localize}}</nz-tag>
+                        <nz-tag *ngIf="item.isStatic" [nzColor]="'#108ee9'" nz-tooltip [nzTitle]="l('StaticRole_Tooltip')">{{'Static' | localize}}</nz-tag>
+                        <nz-tag *ngIf="item.isDefault" [nzColor]="'#2db7f5'" nz-tooltip [nzTitle]="l('DefaultRole_Description')">{{'Default' | localize}}</nz-tag>
                     </td>
                     <td class="text-center">
                         {{item.creationTime | momentFormat:'L'}}
@@ -95,7 +95,7 @@
                         <ng-container *ngIf="!item.isStatic&&isGranted('Pages.Administration.Roles.Delete')">
                             <nz-divider nzType="vertical"></nz-divider>
                             <nz-popconfirm [nzTitle]="'RoleDeleteWarningMessage'| localize:item.displayName" (nzOnConfirm)="delete(item)"
-                                [nzOkText]="'Ok'| localize" [nzCancelText]="'Cancel' | localize">
+                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
                                 <a nz-popconfirm>
                                     <i nz-icon type="delete"></i>
                                     {{'Delete' | localize}}

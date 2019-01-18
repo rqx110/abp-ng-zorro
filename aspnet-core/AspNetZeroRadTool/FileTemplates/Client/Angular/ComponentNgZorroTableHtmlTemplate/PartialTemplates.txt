@@ -63,7 +63,7 @@
 									</nz-form-label>
 									<nz-form-control>
 										<nz-select [(ngModel)]=\"{{property_Name_Here}}Filter\" name=\"{{Property_Name_Here}}Filter\" id=\"{{Property_Name_Here}}FilterSelect\" nzAllowClear>
-										<nz-option [nzLabel]=\"'All' | localize\" nzValue=\"-1\"></nz-option>
+										<nz-option [nzLabel]=\"l('All')\" nzValue=\"-1\"></nz-option>
 										{{Enum_Option_Looped_Template_Here}}
 									</nz-select>
 									</nz-form-control>
@@ -80,9 +80,9 @@
 									</nz-form-label>
 									<nz-form-control>
 										<nz-select [(ngModel)]=\"{{property_Name_Here}}Filter\" name=\"{{Property_Name_Here}}Filter\" id=\"{{Property_Name_Here}}FilterSelect\" nzAllowClear>
-										<nz-option [nzLabel]=\"'All' | localize\" nzValue=\"-1\"></nz-option>
-										<nz-option [nzLabel]=\"'False' | localize\" nzValue=\"0\"></nz-option>
-										<nz-option [nzLabel]=\"'True' | localize\" nzValue=\"1\"></nz-option>
+										<nz-option [nzLabel]=\"l('All')\" nzValue=\"-1\"></nz-option>
+										<nz-option [nzLabel]=\"l('False')\" nzValue=\"0\"></nz-option>
+										<nz-option [nzLabel]=\"l('True')\" nzValue=\"1\"></nz-option>
 									</nz-select>
 									</nz-form-control>
 								</nz-form-item>
@@ -98,7 +98,7 @@
 									</nz-form-label>
 									<nz-form-control>
 										<range-picker name=\"{{property_Name_Here}}Filter\" id=\"{{Property_Name_Here}}Filter\" [(ngModel)]=\"min{{Property_Name_Here}}Filter\" [(ngModelEnd)]=\"max{{Property_Name_Here}}Filter\"
-											[nzPlaceHolder]=\"['StartDateTime' | localize, 'EndDateTime' | localize]\"></range-picker>
+											[nzPlaceHolder]=\"[l('StartDateTime'), l('EndDateTime')]\"></range-picker>
 									</nz-form-control>
 								</nz-form-item>
 							</nz-col>"
@@ -112,8 +112,8 @@
 										{{\"{{Property_Name_Here}}\" | localize}}
 									</nz-form-label>
 									<nz-form-control>
-										<nz-input-number id=\"Min{{Property_Name_Here}}Filter\" name=\"min{{Property_Name_Here}}Filter\" [(ngModel)]=\"min{{Property_Name_Here}}Filter\" [nzPlaceHolder]=\"{{'MinValue' | localize}}\"></nz-input-number>
-										<nz-input-number id=\"Max{{Property_Name_Here}}Filter\" name=\"max{{Property_Name_Here}}Filter\" [(ngModel)]=\"max{{Property_Name_Here}}Filter\" [nzPlaceHolder]=\"{{'MaxValue' | localize}}\"></nz-input-number>
+										<nz-input-number id=\"Min{{Property_Name_Here}}Filter\" name=\"min{{Property_Name_Here}}Filter\" [(ngModel)]=\"min{{Property_Name_Here}}Filter\" [nzPlaceHolder]=\"l('MinValue')\"></nz-input-number>
+										<nz-input-number id=\"Max{{Property_Name_Here}}Filter\" name=\"max{{Property_Name_Here}}Filter\" [(ngModel)]=\"max{{Property_Name_Here}}Filter\" [nzPlaceHolder]=\"l('MaxValue')\"></nz-input-number>
 									</nz-form-control>
 								</nz-form-item>
 							</nz-col>"
@@ -185,7 +185,7 @@
 		{
 			"placeholder" : "{{Enum_Option_Looped_Template_Here}}",
 			"content" : "
-			<nz-option [nzLabel]=\"'Enum_{{Enum_Name_Here}}_{{Enum_Property_Value_Here}}' | localize\" nzValue=\"{{Enum_Property_Value_Here}}\"></nz-option>"
+			<nz-option [nzLabel]=\"l('Enum_{{Enum_Name_Here}}_{{Enum_Property_Value_Here}}')\" nzValue=\"{{Enum_Property_Value_Here}}\"></nz-option>"
 		}
 	],
 "conditionalTemplates":[

@@ -10,7 +10,7 @@
     </page-header>
 
     <nz-tabset *ngIf="hostSettings" [nzTabBarExtraContent]="extraTemplate">
-        <nz-tab [nzTitle]="'General' | localize" *ngIf="showTimezoneSelection">
+        <nz-tab [nzTitle]="l('General')" *ngIf="showTimezoneSelection">
             <nz-card [nzBordered]="false">
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="Timezone">
@@ -23,7 +23,7 @@
                 </nz-form-item>
             </nz-card>
         </nz-tab>
-        <nz-tab [nzTitle]="'TenantManagement' | localize" *ngIf="hostSettings.tenantManagement">
+        <nz-tab [nzTitle]="l('TenantManagement')" *ngIf="hostSettings.tenantManagement">
             <nz-card [nzBordered]="false">
                 <h3>{{"FormBasedRegistration" | localize}}</h3>
                 <nz-form-item nz-row>
@@ -49,7 +49,7 @@
                 </nz-form-item>
             </nz-card>
         </nz-tab>
-        <nz-tab [nzTitle]="'UserManagement' | localize" *ngIf="hostSettings.userManagement">
+        <nz-tab [nzTitle]="l('UserManagement')" *ngIf="hostSettings.userManagement">
             <nz-card [nzBordered]="false">
                 <nz-form-item nz-row>
                     <div nz-col><label nz-checkbox name="IsEmailConfirmationRequiredForLogin" [(ngModel)]="hostSettings.userManagement.isEmailConfirmationRequiredForLogin">{{"EmailConfirmationRequiredForLogin" | localize}}</label></div>
@@ -59,7 +59,7 @@
                 </nz-form-item>
             </nz-card>
         </nz-tab>
-        <nz-tab [nzTitle]="'Security' | localize" *ngIf="hostSettings.security">
+        <nz-tab [nzTitle]="l('Security')" *ngIf="hostSettings.security">
             <nz-card [nzBordered]="false">
                 <h3>{{"PasswordComplexity" | localize}}</h3>
                 <div nz-row>
@@ -130,7 +130,7 @@
                 </div>
             </nz-card>
         </nz-tab>
-        <nz-tab [nzTitle]="'EmailSmtp' | localize" *ngIf="hostSettings.email">
+        <nz-tab [nzTitle]="l('EmailSmtp')" *ngIf="hostSettings.email">
             <nz-card [nzBordered]="false">
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="DefaultFromAddress">

@@ -19,7 +19,7 @@
                     <nz-form-control>
                         <nz-input-group nzSearch [nzSuffix]="suffixButton">
                             <input type="text" nz-input [(ngModel)]="filters.filterText" name="filterText"
-                                [placeholder]="'SearchWithThreeDot' | localize">
+                                placeholder="{{'SearchWithThreeDot' | localize}}">
                             <ng-template #suffixButton>
                                 <button nz-button nzType="primary" nzSearch (click)="refresh()">
                                     <i nz-icon type="search"></i>
@@ -51,7 +51,7 @@
                     </nz-form-control>
                     <nz-form-control>
                         <nz-range-picker name="SubscriptionEndDateRange" [(ngModel)]="subscriptionDateRange"
-                            [nzDisabled]="!filters.subscriptionEndDateRangeActive" [nzPlaceHolder]="['StartDateTime' | localize, 'EndDateTime' | localize]"
+                            [nzDisabled]="!filters.subscriptionEndDateRangeActive" [nzPlaceHolder]="[l('StartDateTime'), l('EndDateTime')]"
                             (ngModelChange)="refresh()"></nz-range-picker>
                     </nz-form-control>
                 </nz-form-item>
@@ -65,7 +65,7 @@
                     </nz-form-control>
                     <nz-form-control>
                         <nz-range-picker name="CreationDateRange" [(ngModel)]="creationDateRange"
-                            [nzDisabled]="!filters.creationDateRangeActive" [nzPlaceHolder]="['StartDateTime' | localize, 'EndDateTime' | localize]"
+                            [nzDisabled]="!filters.creationDateRangeActive" [nzPlaceHolder]="[l('StartDateTime'), l('EndDateTime')]"
                             (ngModelChange)="refresh()"></nz-range-picker>
                     </nz-form-control>
                 </nz-form-item>
@@ -149,7 +149,7 @@
                     <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshCheckStatus($event)"></td>
 
                     <td>
-                        <span *ngIf="item.connectionString" nz-tooltip [nzTitle]="'HasOwnDatabase' | localize">
+                        <span *ngIf="item.connectionString" nz-tooltip [nzTitle]="l('HasOwnDatabase')">
                             <i nz-icon type="database"></i>
                         </span>
                         {{item.tenancyName}}
@@ -180,7 +180,7 @@
                         </ng-container>
                         <ng-container *ngIf="isGranted('Pages.Tenants.Delete')">
                             <nz-popconfirm [nzTitle]="'TenantDeleteWarningMessage'| localize:item.name" (nzOnConfirm)="delete(item)"
-                                [nzOkText]="'Ok'| localize" [nzCancelText]="'Cancel' | localize">
+                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
                                 <a nz-popconfirm>
                                     <i nz-icon type="delete"></i>
                                     {{'Delete' | localize}}

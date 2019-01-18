@@ -56,7 +56,7 @@
                         </ng-container>
                         <ng-container *ngIf="isGranted('Pages.Editions.Delete')">
                             <nz-popconfirm [nzTitle]="'EditionDeleteWarningMessage'| localize:item.displayName" (nzOnConfirm)="deleteEdition(item)"
-                                [nzOkText]="'Ok'| localize" [nzCancelText]="'Cancel' | localize">
+                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
                                 <a nz-popconfirm>
                                     <i nz-icon type="delete"></i>
                                     {{'Delete' | localize}}

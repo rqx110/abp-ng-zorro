@@ -14,7 +14,7 @@
                 {{"Name" | localize}}
             </nz-form-label>
             <nz-form-control nz-col [nzSm]="20" nzHasFeedback>
-                <nz-select name="languageName" #languageName="ngModel" [(ngModel)]="selectedLanguage" [nzPlaceHolder]="'LanguageName' | localize"
+                <nz-select name="languageName" #languageName="ngModel" [(ngModel)]="selectedLanguage" [nzPlaceHolder]="l('LanguageName')"
                     [nzShowSearch]="true" [nzSize]="'large'" required>
                     <nz-option *ngFor="let option of languageNames" [nzLabel]="option.displayText" [nzValue]="option.value"></nz-option>
                 </nz-select>
@@ -25,7 +25,7 @@
                 {{"Flag" | localize}}
             </nz-form-label>
             <nz-form-control nz-col [nzSm]="20" nzHasFeedback>
-                <nz-select name="languageIcon" #languageIcon="ngModel" [(ngModel)]="language.icon" [nzPlaceHolder]="'Flag' | localize"
+                <nz-select name="languageIcon" #languageIcon="ngModel" [(ngModel)]="language.icon" [nzPlaceHolder]="l('Flag')"
                     [nzShowSearch]="true" [nzSize]="'large'" required>
                     <nz-option nzCustomContent *ngFor="let option of flags" [nzValue]="option.value" [nzLabel]="option.displayText">
                         <i class="anticon" [ngClass]="option.value"></i>                        
@@ -40,8 +40,8 @@
                 {{"IsEnabled" | localize}}
             </nz-form-label>
             <nz-form-control nz-col [nzSm]="20">
-                <nz-switch name="IsEnabled" [(ngModel)]="language.isEnabled" [nzCheckedChildren]="'Yes' | localize"
-                    [nzUnCheckedChildren]="'No' | localize"></nz-switch>
+                <nz-switch name="IsEnabled" [(ngModel)]="language.isEnabled" [nzCheckedChildren]="l('Yes')"
+                    [nzUnCheckedChildren]="l('No')"></nz-switch>
             </nz-form-control>
         </nz-form-item>
     </fieldset>

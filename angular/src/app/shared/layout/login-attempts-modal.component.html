@@ -11,8 +11,8 @@
       </div>
 
       <div nz-col [nzSpan]="10">
-        <nz-badge *ngIf="item.result == 'Success'" [nzStatus]="'success'" [nzText]="'Success' | localize"></nz-badge>
-        <nz-badge *ngIf="item.result != 'Success'" [nzStatus]="'error'" [nzText]="'Failed' | localize"></nz-badge>
+        <nz-badge *ngIf="item.result == 'Success'" [nzStatus]="'success'" [nzText]="l('Success')"></nz-badge>
+        <nz-badge *ngIf="item.result != 'Success'" [nzStatus]="'error'" [nzText]="l('Failed')"></nz-badge>
       </div>
     </div>
     <div nz-row [nzGutter]="8">

@@ -7,7 +7,7 @@
             <nz-form-item>
                 <nz-form-label nzFor="Name">{{'Name' | localize}}</nz-form-label>
                 <nz-form-control nzHasFeedback>
-                    <input nz-input name="name" #nameInput="ngModel" [(ngModel)]="tenant.name" [placeholder]="'Name' | localize"
+                    <input nz-input name="name" #nameInput="ngModel" [(ngModel)]="tenant.name" placeholder="{{'Name' | localize}}"
                         required maxlength="128">
                     <nz-form-explain *ngIf="nameInput.dirty&&nameInput.errors">
                         <validation-messages [formCtrl]="nameInput"></validation-messages>
@@ -19,12 +19,12 @@
                 <nz-form-label nzFor="connectionString">
                     {{'DatabaseConnectionString' | localize}}
                     <em>
-                        <i nz-icon type="warning" nz-tooltip [nzTitle]="'TenantDatabaseConnectionStringChangeWarningMessage' | localize"></i>
+                        <i nz-icon type="warning" nz-tooltip [nzTitle]="l('TenantDatabaseConnectionStringChangeWarningMessage')"></i>
                     </em>
                 </nz-form-label>
                 <nz-form-control nzHasFeedback>
                     <input nz-input name="connectionString" #connectionStringInput="ngModel" [(ngModel)]="tenant.connectionString"
-                        [placeholder]="'DatabaseConnectionString' | localize" required maxlength="1024">
+                        placeholder="{{'DatabaseConnectionString' | localize}}" required maxlength="1024">
                     <nz-form-explain *ngIf="connectionStringInput.dirty&&connectionStringInput.errors">
                         <validation-messages [formCtrl]="connectionStringInput"></validation-messages>
                     </nz-form-explain>

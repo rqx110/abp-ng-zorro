@@ -14,7 +14,7 @@
                 <nz-form-item>
                     <nz-form-control>
                         <nz-input-group nzSearch [nzSuffix]="suffixSearchButton">
-                            <input type="text" nz-input [(ngModel)]="filterText" name="filterText" [placeholder]="'SearchWithThreeDot' | localize">
+                            <input type="text" nz-input [(ngModel)]="filterText" name="filterText" placeholder="{{'SearchWithThreeDot' | localize}}">
                             <ng-template #suffixSearchButton>
                                 <button nz-button nzType="primary" nzSearch (click)="refresh()">
                                     <i nz-icon type="search"></i>
@@ -124,8 +124,8 @@
                             <nz-divider nzType="vertical"></nz-divider>
                         </ng-container>
                         <ng-container *ngIf="isGranted('Pages.Administration.Languages.Delete') && item.tenantId === appSession.tenantId">
-                            <nz-popconfirm [nzTitle]="'LanguageDeleteWarningMessage' | localize:item.displayName"
-                                (nzOnConfirm)="delete(item)" [nzOkText]="'Ok' | localize" [nzCancelText]="'Cancel' | localize">
+                            <nz-popconfirm [nzTitle]="l('LanguageDeleteWarningMessage', item.displayName)"
+                                (nzOnConfirm)="delete(item)" [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
                                 <a nz-popconfirm>
                                     <i nz-icon type="delete"></i>
                                     {{'Delete' | localize}}

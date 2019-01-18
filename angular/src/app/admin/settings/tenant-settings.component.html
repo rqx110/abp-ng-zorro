@@ -10,7 +10,7 @@
     </page-header>
 
     <nz-tabset *ngIf="settings" [nzTabBarExtraContent]="extraTemplate">
-        <nz-tab [nzTitle]="'General' | localize" *ngIf="showTimezoneSelection">
+        <nz-tab [nzTitle]="l('General')" *ngIf="showTimezoneSelection">
             <nz-card [nzBordered]="false">
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="Timezone">
@@ -23,7 +23,7 @@
                 </nz-form-item>
             </nz-card>
         </nz-tab>
-        <nz-tab [nzTitle]="'UserManagement' | localize" *ngIf="true">
+        <nz-tab [nzTitle]="l('UserManagement')" *ngIf="true">
             <nz-card [nzBordered]="false">
                 <h3>{{"FormBasedRegistration" | localize}}</h3>
                 <nz-form-item nz-row>
@@ -46,7 +46,7 @@
                         </nz-form-label>
                         <nz-form-control nzHasFeedback>
                             <input nz-input #ldapDomainNameInput="ngModel" name="LdapDomainName" [(ngModel)]="settings.ldap.domain"
-                                [placeholder]="'DomainName' | localize" id="LdapDomainName" maxlength="128">
+                                placeholder="{{'DomainName' | localize}}" id="LdapDomainName" maxlength="128">
                             <nz-form-explain *ngIf="ldapDomainNameInput.dirty && ldapDomainNameInput.errors">
                                 <validation-messages [formCtrl]="ldapDomainNameInput"></validation-messages>
                             </nz-form-explain>
@@ -58,7 +58,7 @@
                         </nz-form-label>
                         <nz-form-control nzHasFeedback>
                             <input nz-input #ldapUserNameInput="ngModel" name="LdapUserName" [(ngModel)]="settings.ldap.userName"
-                                [placeholder]="'UserName' | localize" id="LdapUserName" maxlength="128">
+                                placeholder="{{'UserName' | localize}}" id="LdapUserName" maxlength="128">
                             <nz-form-explain *ngIf="ldapUserNameInput.dirty && ldapUserNameInput.errors">
                                 <validation-messages [formCtrl]="ldapUserNameInput"></validation-messages>
                             </nz-form-explain>
@@ -70,7 +70,7 @@
                         </nz-form-label>
                         <nz-form-control nzHasFeedback>
                             <input nz-input #ldapPasswordInput="ngModel" name="LdapPassword" [(ngModel)]="settings.ldap.password"
-                                [placeholder]="'Password' | localize" id="LdapPassword" maxlength="128">
+                                placeholder="{{'Password' | localize}}" id="LdapPassword" maxlength="128">
                             <nz-form-explain *ngIf="ldapPasswordInput.dirty && ldapPasswordInput.errors">
                                 <validation-messages [formCtrl]="ldapPasswordInput"></validation-messages>
                             </nz-form-explain>
@@ -85,7 +85,7 @@
                 </div>
             </nz-card>
         </nz-tab>
-        <nz-tab [nzTitle]="'Security' | localize" *ngIf="true">
+        <nz-tab [nzTitle]="l('Security')" *ngIf="true">
             <nz-card [nzBordered]="false">
                 <h3>{{"PasswordComplexity" | localize}}</h3>
                 <div nz-row>
@@ -156,7 +156,7 @@
                 </div>
             </nz-card>
         </nz-tab>
-        <nz-tab [nzTitle]="'EmailSmtp' | localize" *ngIf="!isMultiTenancyEnabled">
+        <nz-tab [nzTitle]="l('EmailSmtp')" *ngIf="!isMultiTenancyEnabled">
             <nz-card [nzBordered]="false">
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="DefaultFromAddress">

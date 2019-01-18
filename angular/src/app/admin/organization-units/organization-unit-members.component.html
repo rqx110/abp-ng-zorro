@@ -21,7 +21,7 @@
                 <nz-divider nzType="vertical"></nz-divider>
             </ng-container>
             <a class="ml-sm">
-                <i nz-icon type="reload" nz-tooltip [nzTitle]="'Refresh' | localize" (click)="refresh()"></i>
+                <i nz-icon type="reload" nz-tooltip [nzTitle]="l('Refresh')" (click)="refresh()"></i>
             </a>
         </ng-container>
     </ng-template>
@@ -30,7 +30,7 @@
         <form nz-form [nzLayout]="'vertical'" (ngSubmit)="refresh()" autocomplete="off">
             <nz-form-control>
                 <nz-input-group nzSearch [nzSuffix]="suffixButton">
-                    <input type="text" nz-input [(ngModel)]="filterText" name="filterText" [placeholder]="'SearchWithThreeDot' | localize">
+                    <input type="text" nz-input [(ngModel)]="filterText" name="filterText" placeholder="{{'SearchWithThreeDot' | localize}}">
                     <ng-template #suffixButton>
                         <button nz-button nzType="primary" nzSearch type="submit">
                             <i nz-icon type="search"></i>
@@ -82,8 +82,8 @@
                         <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshCheckStatus($event)"></td>
                         <td class="text-center">
                             <ng-container *ngIf="isGranted('Pages.Administration.OrganizationUnits.ManageUsers')">
-                                <nz-popconfirm [nzTitle]="'RemoveUserFromOuWarningMessage' | localize:item.userName:organizationUnit.title"
-                                    (nzOnConfirm)="removeMember(item)" [nzOkText]="'Ok' | localize" [nzCancelText]="'Cancel' | localize">
+                                <nz-popconfirm [nzTitle]="l('RemoveUserFromOuWarningMessage', item.userName, organizationUnit.title)"
+                                    (nzOnConfirm)="removeMember(item)" [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
                                     <a nz-popconfirm>
                                         <i nz-icon type="delete"></i>
                                         {{'Delete' | localize}}
@@ -104,6 +104,6 @@
     </ng-container>
 
     <div class="text-center" *ngIf="!organizationUnit">
-        <no-data [text]="'SelectAnOrganizationUnitToSeeMembers' | localize"></no-data>
+        <no-data [text]="l('SelectAnOrganizationUnitToSeeMembers')"></no-data>
     </div>
 </nz-card>

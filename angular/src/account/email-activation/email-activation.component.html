@@ -1,13 +1,13 @@
-<nz-card [nzTitle]="'EmailActivation' | localize">
+<nz-card [nzTitle]="l('EmailActivation')">
     <form nz-form #emailActivationForm="ngForm" method="post" novalidate (ngSubmit)="save()" role="form">
-        <nz-alert class="mb-md" nzType="info" nzCloseable [nzMessage]="'SendEmailActivationLink_Information' | localize"
+        <nz-alert class="mb-md" nzType="info" nzCloseable [nzMessage]="l('SendEmailActivationLink_Information')"
             nzShowIcon>
         </nz-alert>
 
         <nz-form-item>
             <nz-form-control nzHasFeedback>
                 <input nz-input name="emailAddress" #emailAddressInput="ngModel" [(ngModel)]="model.emailAddress"
-                    [placeholder]="'EmailAddress' | localize" autoFocus required maxlength="255" type="email" email>
+                    placeholder="{{'EmailAddress' | localize}}" autoFocus required maxlength="255" type="email" email>
                 <nz-form-explain class="text-left" *ngIf="emailAddressInput.dirty && emailAddressInput.errors">
                     <validation-messages [formCtrl]="emailAddressInput"></validation-messages>
                 </nz-form-explain>

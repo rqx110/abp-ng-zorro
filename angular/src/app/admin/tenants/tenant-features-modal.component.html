@@ -7,7 +7,7 @@
     <feature-tree #featureTree></feature-tree>
     <div class="modal-footer">
         <button nz-button type="button" [disabled]="saving" [nzLoading]="saving" (click)="resetFeatures()" nz-tooltip
-            [nzTitle]="'ResetFeaturesTooltip' | localize">{{"ResetSpecialFeatures" | localize}}</button>
+            [nzTitle]="l('ResetFeaturesTooltip')">{{"ResetSpecialFeatures" | localize}}</button>
         <button nz-button type="button" [disabled]="saving || resettingFeatures" (click)="close()">{{"Cancel" | localize}}</button>
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="resettingFeatures">
             <i nz-icon type="save"></i> {{"Save" | localize}}

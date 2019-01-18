@@ -7,7 +7,7 @@
         </div>
     </div>
     <fieldset>
-        <nz-alert nzType="info" nzCloseable [nzShowIcon]="true" [nzMessage]="'Note_RefreshPageForPermissionChanges' | localize"></nz-alert>
+        <nz-alert nzType="info" nzCloseable [nzShowIcon]="true" [nzMessage]="l('Note_RefreshPageForPermissionChanges')"></nz-alert>
         <nz-tabset>
             <nz-tab [nzTitle]="roleTabTitleTpl">
                 <ng-template #roleTabTitleTpl>
@@ -20,7 +20,7 @@
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input #roleNameInput="ngModel" name="RoleName" [(ngModel)]="role.displayName"
-                        [placeholder]="'RoleName' | localize" required maxlength="64">
+                        placeholder="{{'RoleName' | localize}}" required maxlength="64">
                         <nz-form-explain *ngIf="roleNameInput.dirty && roleNameInput.errors">
                             <validation-messages [formCtrl]="roleNameInput"></validation-messages>
                         </nz-form-explain>
@@ -29,7 +29,7 @@
                 <nz-form-item nz-row>
                     <label nz-checkbox name="Default" [(ngModel)]="role.isDefault">{{"Default" | localize}}</label>
                     <em>
-                        <i nz-icon type="info-circle" nz-tooltip [nzTitle]="'DefaultRole_Description' | localize"></i>
+                        <i nz-icon type="info-circle" nz-tooltip [nzTitle]="l('DefaultRole_Description')"></i>
                     </em>
                 </nz-form-item>
             </nz-tab>

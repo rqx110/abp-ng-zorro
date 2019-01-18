@@ -24,7 +24,7 @@
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="EmailAddress">{{'EmailAddress' | localize}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
             <input nz-input name="EmailAddress" #emailAddressInput="ngModel" [(ngModel)]="user.emailAddress"
-                [placeholder]="'EmailAddress' | localize" autocomplete="email" required email maxlength="256">
+                placeholder="{{'EmailAddress' | localize}}" autocomplete="email" required email maxlength="256">
             <nz-form-explain *ngIf="emailAddressInput.dirty && emailAddressInput.errors">
                 <validation-messages [formCtrl]="emailAddressInput"></validation-messages>
             </nz-form-explain>
@@ -34,20 +34,20 @@
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="PhoneNumber">{{'PhoneNumber' | localize}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24">
             <nz-input-group nzSearch [nzSuffix]="suffixButton">
-                <input type="text" nz-input name="PhoneNumber" [(ngModel)]="user.phoneNumber" [placeholder]="'PhoneNumber' | localize"
+                <input type="text" nz-input name="PhoneNumber" [(ngModel)]="user.phoneNumber" placeholder="{{'PhoneNumber' | localize}}"
                     autocomplete="tel" maxlength="24">
             </nz-input-group>
             <ng-template #suffixButton>
                 <button *ngIf="!isPhoneNumberConfirmed" nz-button nzType="primary" type="button" (click)="smsVerify()"
-                    nz-tooltip [nzTitle]="'YourPhoneNumberIsNotVerified' | localize"><i nz-icon type="warning"></i>{{'Verify' | localize}}</button>
-                <i *ngIf="isPhoneNumberConfirmed" nz-icon type="check" nz-tooltip [nzTitle]="'YourPhoneNumberIsVerified' | localize"></i>
+                    nz-tooltip [nzTitle]="l('YourPhoneNumberIsNotVerified')"><i nz-icon type="warning"></i>{{'Verify' | localize}}</button>
+                <i *ngIf="isPhoneNumberConfirmed" nz-icon type="check" nz-tooltip [nzTitle]="l('YourPhoneNumberIsVerified')"></i>
             </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item *ngIf="!smsEnabled || isPhoneNumberEmpty">
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="PhoneNumber">{{'PhoneNumber' | localize}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24">
-            <input nz-input name="PhoneNumber" [(ngModel)]="user.phoneNumber" [placeholder]="'PhoneNumber' | localize"
+            <input nz-input name="PhoneNumber" [(ngModel)]="user.phoneNumber" placeholder="{{'PhoneNumber' | localize}}"
                 autocomplete="tel" maxlength="24">
         </nz-form-control>
     </nz-form-item>

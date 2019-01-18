@@ -93,7 +93,7 @@
 "enumTemplates":[
 		{
 			"placeholder" : "{{Enum_Option_Looped_Template_Here}}",
-			"content" : "<nz-option [nzLabel]=\"\'Enum_{{Enum_Name_Here}}_{{Enum_Property_Value_Here}}\' | localize\" [nzValue]=\"{{Enum_Property_Value_Here}}\"></nz-option>
+			"content" : "<nz-option [nzLabel]=\"l('Enum_{{Enum_Name_Here}}_{{Enum_Property_Value_Here}}')\" [nzValue]=\"{{Enum_Property_Value_Here}}\"></nz-option>
 "
 		}
 	],

@@ -1,9 +1,9 @@
-<page-header [title]="'Maintenance' | localize"></page-header>
+<page-header [title]="l('Maintenance')"></page-header>
 
 
 <nz-tabset>
-    <nz-tab [nzTitle]="'Caches' | localize">
-        <nz-card [nzBordered]="false" [nzExtra]="cachingExtra" [nzTitle]="'CachesHeaderInfo' | localize">
+    <nz-tab [nzTitle]="l('Caches')">
+        <nz-card [nzBordered]="false" [nzExtra]="cachingExtra" [nzTitle]="l('CachesHeaderInfo')">
             <ng-template #cachingExtra>
                 <button nz-button [nzType]="'primary'" (click)="clearAllCaches()">
                     <i nz-icon type="delete"></i>
@@ -28,8 +28,8 @@
         </nz-card>
     </nz-tab>
 
-    <nz-tab [nzTitle]="'WebSiteLogs' | localize">
-        <nz-card [nzBordered]="false" [nzExtra]="webSiteLogExtra" [nzTitle]="'WebSiteLogsHeaderInfo' | localize">
+    <nz-tab [nzTitle]="l('WebSiteLogs')">
+        <nz-card [nzBordered]="false" [nzExtra]="webSiteLogExtra" [nzTitle]="l('WebSiteLogsHeaderInfo')">
             <ng-template #webSiteLogExtra>
                 <button nz-button [nzType]="'primary'" (click)="downloadWebLogs()">
                     <i nz-icon type="download"></i>
