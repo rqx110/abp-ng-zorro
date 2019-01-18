@@ -51,8 +51,7 @@
                     </nz-form-control>
                     <nz-form-control>
                         <nz-range-picker name="SubscriptionEndDateRange" [(ngModel)]="subscriptionDateRange"
-                            [nzDisabled]="!filters.subscriptionEndDateRangeActive" [nzPlaceHolder]="[l('StartDateTime'), l('EndDateTime')]"
-                            (ngModelChange)="refresh()"></nz-range-picker>
+                            [nzDisabled]="!filters.subscriptionEndDateRangeActive" (ngModelChange)="refresh()"></nz-range-picker>
                     </nz-form-control>
                 </nz-form-item>
             </nz-col>
@@ -65,8 +64,7 @@
                     </nz-form-control>
                     <nz-form-control>
                         <nz-range-picker name="CreationDateRange" [(ngModel)]="creationDateRange"
-                            [nzDisabled]="!filters.creationDateRangeActive" [nzPlaceHolder]="[l('StartDateTime'), l('EndDateTime')]"
-                            (ngModelChange)="refresh()"></nz-range-picker>
+                            [nzDisabled]="!filters.creationDateRangeActive" (ngModelChange)="refresh()"></nz-range-picker>
                     </nz-form-control>
                 </nz-form-item>
             </nz-col>

@@ -97,8 +97,7 @@
 										{{\"{{Property_Name_Here}}\" | localize}}
 									</nz-form-label>
 									<nz-form-control>
-										<range-picker name=\"{{property_Name_Here}}Filter\" id=\"{{Property_Name_Here}}Filter\" [(ngModel)]=\"min{{Property_Name_Here}}Filter\" [(ngModelEnd)]=\"max{{Property_Name_Here}}Filter\"
-											[nzPlaceHolder]=\"[l('StartDateTime'), l('EndDateTime')]\"></range-picker>
+										<range-picker name=\"{{property_Name_Here}}Filter\" id=\"{{Property_Name_Here}}Filter\" [(ngModel)]=\"min{{Property_Name_Here}}Filter\" [(ngModelEnd)]=\"max{{Property_Name_Here}}Filter\"></range-picker>
 									</nz-form-control>
 								</nz-form-item>
 							</nz-col>"
