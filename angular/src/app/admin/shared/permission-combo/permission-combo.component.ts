@@ -66,6 +66,6 @@ export class PermissionComboComponent extends AppComponentBase implements OnInit
     }
 
     selectedChange(selectKey: any) {
-        this.selectedPermissionChange.emit(selectKey);
+        this.selectedPermissionChange.emit(selectKey || undefined);
     }
 }
