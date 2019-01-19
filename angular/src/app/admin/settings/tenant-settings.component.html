@@ -114,11 +114,11 @@
                     <input nz-input type="number" name="RequiredLength" class="form-control" [(ngModel)]="settings.security.defaultPasswordComplexity.requiredLength"
                         *ngIf="settings.security.useDefaultPasswordComplexitySettings" disabled>
                 </div>
-                <h3>{{"UserLockOut" | localize}}</h3>
+                <h3 class="mt-md">{{"UserLockOut" | localize}}</h3>
                 <nz-form-item nz-row class="m0">
                     <label nz-checkbox name="Setting_UserLockOut_IsEnabled" [(ngModel)]="settings.security.userLockOut.isEnabled">{{"EnableUserAccountLockingOnFailedLoginAttemts" | localize}}</label>
                 </nz-form-item>
-                <nz-form-item nz-row *ngIf="settings.security.userLockOut.isEnabled">
+                <nz-form-item nz-row class="m0" *ngIf="settings.security.userLockOut.isEnabled">
                     <nz-form-label nzFor="MaxFailedAccessAttemptsBeforeLockout">
                         {{"MaxFailedAccessAttemptsBeforeLockout" | localize}}
                     </nz-form-label>
@@ -127,7 +127,7 @@
                             id="MaxFailedAccessAttemptsBeforeLockout">
                     </nz-form-control>
                 </nz-form-item>
-                <nz-form-item nz-row *ngIf="settings.security.userLockOut.isEnabled">
+                <nz-form-item nz-row class="m0" *ngIf="settings.security.userLockOut.isEnabled">
                     <nz-form-label nzFor="DefaultAccountLockoutSeconds">
                         {{"DefaultAccountLockoutDurationAsSeconds" | localize}}
                     </nz-form-label>
@@ -137,7 +137,7 @@
                     </nz-form-control>
                 </nz-form-item>
                 <div *ngIf="!isMultiTenancyEnabled || settings.security.twoFactorLogin.isEnabledForApplication">
-                    <h3>{{"TwoFactorLogin" | localize}}</h3>
+                    <h3 class="mt-md">{{"TwoFactorLogin" | localize}}</h3>
                     <div nz-row>
                         <label nz-checkbox name="Setting_TwoFactorLogin_IsEnabled" [(ngModel)]="settings.security.twoFactorLogin.isEnabled">{{"EnableTwoFactorLogin" | localize}}</label>
                     </div>

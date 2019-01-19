@@ -21,7 +21,7 @@ export class CreateOrEditEditionModalComponent extends ModalComponentBase implem
 
     expireAction: AppEditionExpireAction = AppEditionExpireAction.DeactiveTenant;
     expireActionEnum: typeof AppEditionExpireAction = AppEditionExpireAction;
-    isFree = false;
+    isFree = true;
     isTrialActive = false;
     isWaitingDayActive = false;
 

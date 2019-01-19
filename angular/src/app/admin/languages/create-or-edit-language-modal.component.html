@@ -11,10 +11,10 @@
     <fieldset>
         <nz-form-item nz-row>
             <nz-form-label nz-col [nzSm]="4" nzFor="languageName" nzRequired>
-                {{"Name" | localize}}
+                {{"Language" | localize}}
             </nz-form-label>
             <nz-form-control nz-col [nzSm]="20" nzHasFeedback>
-                <nz-select name="languageName" #languageName="ngModel" [(ngModel)]="selectedLanguage" [nzPlaceHolder]="l('LanguageName')"
+                <nz-select name="languageName" #languageName="ngModel" [(ngModel)]="selectedLanguage" [nzPlaceHolder]="l('Language')"
                     [nzShowSearch]="true" [nzSize]="'large'" required>
                     <nz-option *ngFor="let option of languageNames" [nzLabel]="option.displayText" [nzValue]="option.value"></nz-option>
                 </nz-select>

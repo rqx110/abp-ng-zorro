@@ -19,6 +19,8 @@ import { TenantFeaturesModalComponent } from './tenant-features-modal.component'
     styles: [],
 })
 export class TenantsComponent extends PagedListingComponentBase<TenantListDto> {
+    advancedFiltersVisible = false;
+    
     subscriptionDateRange = [];
     creationDateRange = [];
 

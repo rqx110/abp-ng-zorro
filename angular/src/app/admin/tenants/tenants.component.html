@@ -10,26 +10,24 @@
 
 <nz-card [nzBordered]="false">
     <form nz-form [nzLayout]="'vertical'" class="search__form">
-        <nz-row nzGutter="8">
-            <nz-col nzSm="12">
-                <nz-form-item>
-                    <nz-form-label>
-                        {{'TenantNameOrTenancyCode' | localize}}
-                    </nz-form-label>
-                    <nz-form-control>
-                        <nz-input-group nzSearch [nzSuffix]="suffixButton">
-                            <input type="text" nz-input [(ngModel)]="filters.filterText" name="filterText"
-                                placeholder="{{'SearchWithThreeDot' | localize}}">
-                            <ng-template #suffixButton>
-                                <button nz-button nzType="primary" nzSearch (click)="refresh()">
-                                    <i nz-icon type="search"></i>
-                                </button>
-                            </ng-template>
-                        </nz-input-group>
-                    </nz-form-control>
-                </nz-form-item>
-            </nz-col>
-            <nz-col nzSm="12">
+        <nz-form-item nz-row>
+            <nz-form-label>
+                {{'TenantNameOrTenancyCode' | localize}}
+            </nz-form-label>
+            <nz-form-control>
+                <nz-input-group nzSearch [nzSuffix]="suffixButton">
+                    <input type="text" nz-input [(ngModel)]="filters.filterText" name="filterText"
+                        placeholder="{{'SearchWithThreeDot' | localize}}">
+                    <ng-template #suffixButton>
+                        <button nz-button nzType="primary" nzSearch (click)="refresh()">
+                            <i nz-icon type="search"></i>
+                        </button>
+                    </ng-template>
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-row nzGutter="24" *ngIf="advancedFiltersVisible">
+            <nz-col nzSm="8">
                 <nz-form-item>
                     <nz-form-label>
                         {{'Edition' | localize}}
@@ -39,10 +37,7 @@
                     </nz-form-control>
                 </nz-form-item>
             </nz-col>
-        </nz-row>
-
-        <nz-row nzGutter="8">
-            <nz-col nzSm="12">
+            <nz-col nzSm="8">
                 <nz-form-item>
                     <nz-form-control>
                         <label nz-checkbox [(ngModel)]="filters.subscriptionEndDateRangeActive" name="SubscriptionEndDateRangeActive">
@@ -55,7 +50,7 @@
                     </nz-form-control>
                 </nz-form-item>
             </nz-col>
-            <nz-col nzSm="12">
+            <nz-col nzSm="8">
                 <nz-form-item>
                     <nz-form-control>
                         <label nz-checkbox [(ngModel)]="filters.creationDateRangeActive" name="CreationDateRangeActive">
@@ -85,6 +80,12 @@
                     Delete Selected
                 </span>
             </button>
+        </nz-col>
+        <nz-col nzMd="4" nzSm="12" class="text-right">
+            <a (click)="advancedFiltersVisible=!advancedFiltersVisible">
+                {{(advancedFiltersVisible ? 'HideAdvancedFilters' : 'ShowAdvancedFilters') | localize}}
+                <i class="anticon" [class.anticon-down]="!advancedFiltersVisible" [class.anticon-up]="advancedFiltersVisible"></i>
+            </a>
         </nz-col>
     </nz-row>
     <div class="my-md">
