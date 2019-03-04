@@ -29,7 +29,7 @@
     <ng-container *ngIf="organizationUnit">
         <form nz-form [nzLayout]="'vertical'" (ngSubmit)="refresh()" autocomplete="off">
             <nz-form-control>
-                <nz-input-group nzSearch [nzSuffix]="suffixButton">
+                <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
                     <input type="text" nz-input [(ngModel)]="filterText" name="filterText" placeholder="{{'SearchWithThreeDot' | localize}}">
                     <ng-template #suffixButton>
                         <button nz-button nzType="primary" nzSearch type="submit">

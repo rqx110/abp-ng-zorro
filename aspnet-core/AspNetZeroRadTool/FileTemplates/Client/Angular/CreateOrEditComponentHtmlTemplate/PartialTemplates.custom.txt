@@ -73,7 +73,7 @@
 							{{\"{{NP_Foreign_Entity_Name_Here}}\" | localize}}
 						</nz-form-label>
 						<nz-form-control>
-							<nz-input-group nzSearch [nzSuffix]=\"suffixButton\">
+							<nz-input-group nzSearch [nzAddOnAfter]=\"suffixButton\">
 								<input nz-input id=\"{{NP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}\"
 									name=\"{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}\" 
 									[(ngModel)]=\"{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}\"

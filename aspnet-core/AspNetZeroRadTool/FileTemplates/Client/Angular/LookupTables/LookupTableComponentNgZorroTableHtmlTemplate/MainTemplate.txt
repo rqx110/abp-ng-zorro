@@ -7,7 +7,7 @@
     <form nz-form [nzLayout]="'inline'" class="search__form">
         <nz-form-item>
             <nz-form-control>
-                <nz-input-group nzSearch [nzSuffix]="suffixSearchButton">
+                <nz-input-group nzSearch [nzAddOnAfter]="suffixSearchButton">
                     <input type="text" nz-input [(ngModel)]="filterText" (keyup.enter)="refresh()" name="filterText"
                         placeholder="{{'SearchWithThreeDot' | localize}}">
                     <ng-template #suffixSearchButton>

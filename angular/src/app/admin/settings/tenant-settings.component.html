@@ -247,7 +247,7 @@
                 </nz-form-item>
                 <hr />
                 <h3>{{"TestEmailSettingsHeader" | localize}}</h3>
-                <nz-input-group nzSearch [nzSuffix]="suffixButton">
+                <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
                     <input type="text" nz-input [(ngModel)]="testEmailAddress" name="TestEmailAddress">
                 </nz-input-group>
                 <ng-template #suffixButton>

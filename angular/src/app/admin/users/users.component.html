@@ -13,7 +13,7 @@
             <nz-col nzSm="24">
                 <nz-form-item>
                     <nz-form-control>
-                        <nz-input-group nzSearch [nzSuffix]="suffixSearchButton">
+                        <nz-input-group nzSearch [nzAddOnAfter]="suffixSearchButton">
                             <input type="text" nz-input [(ngModel)]="filterText" name="filterText" placeholder="{{'SearchWithThreeDot' | localize}}">
                             <ng-template #suffixSearchButton>
                                 <button nz-button nzType="primary" nzSearch (click)="onSearch($event)">

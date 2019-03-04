@@ -15,7 +15,7 @@
                 {{'TenantNameOrTenancyCode' | localize}}
             </nz-form-label>
             <nz-form-control>
-                <nz-input-group nzSearch [nzSuffix]="suffixButton">
+                <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
                     <input type="text" nz-input [(ngModel)]="filters.filterText" name="filterText"
                         placeholder="{{'SearchWithThreeDot' | localize}}">
                     <ng-template #suffixButton>
