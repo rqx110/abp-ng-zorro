@@ -1,5 +1,5 @@
 ﻿import { Component, Injector } from '@angular/core';
-import { {{Entity_Name_Plural_Here}}ServiceProxy, {{Entity_Name_Here}}Dto {{Enum_Import_Here}}, Get{{Entity_Name_Here}}ForView } from '@shared/service-proxies/service-proxies';
+import { {{Entity_Name_Plural_Here}}ServiceProxy, {{Entity_Name_Here}}Dto {{Enum_Import_After_V060600_Here}}{{Enum_Import_Before_V060600_Here}}, Get{{Entity_Name_Here}}ForView } from '@shared/service-proxies/service-proxies';
 import { PagedListingComponentBase, PagedRequestDto } from '@shared/common/paged-listing-component-base';
 import { CreateOrEdit{{Entity_Name_Here}}ModalComponent } from './create-or-edit-{{entity_Name_Here}}-modal.component';{{View_Component_Import_Here}}
 {{View_Component_Import_Here}}
@@ -17,7 +17,7 @@ export class {{Entity_Name_Plural_Here}}Component extends PagedListingComponentB
     advancedFiltersAreShown = false;
 	filterText = '';
 {{Property_Filter_Def_Here}}{{NP_Filter_Def_Here}}
-	{{enum_Def_Here}}
+	{{Enum_Def_After_V060600_Here}}{{Enum_Def_Before_V060600_Here}}
 
     constructor(
         injector: Injector,

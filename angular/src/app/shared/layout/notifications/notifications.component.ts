@@ -1,7 +1,6 @@
 import { Component, Injector, ViewEncapsulation, OnInit } from '@angular/core';
-import { AppUserNotificationState } from '@shared/AppEnums';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
-import { NotificationServiceProxy, UserNotification } from '@shared/service-proxies/service-proxies';
+import { NotificationServiceProxy, UserNotification, UserNotificationState } from '@shared/service-proxies/service-proxies';
 import * as moment from 'moment';
 import { IFormattedUserNotification, UserNotificationHelper } from './UserNotificationHelper';
 import { PagedListingComponentBase, PagedRequestDto } from '@shared/common/paged-listing-component-base';
@@ -72,7 +71,7 @@ export class NotificationsComponent extends PagedListingComponentBase<any> imple
         finishedCallback: () => void,
     ): void {
         this._notificationService.getUserNotifications(
-            this.readStateFilter === 'ALL' ? undefined : AppUserNotificationState.Unread,
+            this.readStateFilter === 'ALL' ? undefined : UserNotificationState.Unread,
             request.maxResultCount,
             request.skipCount,
         )

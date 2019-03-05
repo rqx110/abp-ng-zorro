@@ -4,9 +4,8 @@ import {
     Injector,
     Input,
 } from '@angular/core';
-import { AccountServiceProxy } from '@shared/service-proxies/service-proxies';
+import { AccountServiceProxy, TenantAvailabilityState } from '@shared/service-proxies/service-proxies';
 import { IsTenantAvailableInput } from '@shared/service-proxies/service-proxies';
-import { AppTenantAvailabilityState } from '@shared/AppEnums';
 import { ModalComponentBase } from '@shared/common/modal-component-base';
 import { finalize } from 'rxjs/operators';
 
@@ -53,15 +52,15 @@ export class TenantChangeModalComponent extends ModalComponentBase
             .pipe(finalize(() => this.saving = false))
             .subscribe(result => {
                 switch (result.state) {
-                    case AppTenantAvailabilityState.Available:
+                    case TenantAvailabilityState.Available:
                         abp.multiTenancy.setTenantIdCookie(result.tenantId);
                         this.success();
                         location.reload();
                         return;
-                    case AppTenantAvailabilityState.InActive:
+                    case TenantAvailabilityState.InActive:
                         this.message.warn(this.l('TenantIsNotActive', this.tenancyName));
                         break;
-                    case AppTenantAvailabilityState.NotFound: // NotFound
+                    case TenantAvailabilityState.NotFound: // NotFound
                         this.message.warn(
                             this.l('ThereIsNoTenantDefinedWithName{0}', this.tenancyName),
                         );

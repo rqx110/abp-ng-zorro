@@ -1,9 +1,8 @@
-<form nz-form #editionCreateOrEditForm="ngForm" (ngSubmit)="save()" autocomplete="off">
+<form nz-form #editionCreateForm="ngForm" (ngSubmit)="save()" autocomplete="off">
     <div class="modal-header">
         <div class="modal-title">
             <i nz-icon type="medicine-box" class="mr-sm"></i>
-            <span *ngIf="edition.id">{{'EditEdition' | localize}}:{{edition.displayName}}</span>
-            <span *ngIf="!edition.id">{{'CreateNewEdition' | localize}}</span>
+            <span>{{'CreateNewEdition' | localize}}</span>
         </div>
     </div>
     <fieldset>
@@ -15,7 +14,7 @@
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input id="EditionDisplayName" #editionNameInput="ngModel" name="EditionDisplayName"
-                            [(ngModel)]="edition.displayName" required maxlength="64">
+                            [(ngModel)]="edition.edition.DisplayName" required maxlength="64">
                         <nz-form-explain *ngIf="editionNameInput.dirty && editionNameInput.errors">
                             <validation-messages [formCtrl]="editionNameInput"></validation-messages>
                         </nz-form-explain>
@@ -38,7 +37,7 @@
                                 <nz-form-control nzHasFeedback>
                                     <nz-input-group nzAddOnBefore="$">
                                         <input nz-input type="number" id="MonthlyPrice" #monthlyPriceInput="ngModel" name="MonthlyPrice"
-                                            [(ngModel)]="edition.monthlyPrice" [required]="!isFree">
+                                            [(ngModel)]="edition.edition.monthlyPrice" [required]="!isFree">
                                     </nz-input-group>
                                     <nz-form-explain *ngIf="monthlyPriceInput.dirty && monthlyPriceInput.errors">
                                         <validation-messages [formCtrl]="monthlyPriceInput"></validation-messages>
@@ -52,7 +51,7 @@
                                 <nz-form-control nzHasFeedback>
                                     <nz-input-group nzAddOnBefore="$">
                                         <input nz-input type="number" id="AnnualPrice" #annualPriceInput="ngModel" name="AnnualPrice"
-                                            [(ngModel)]="edition.annualPrice" [required]="!isFree">
+                                            [(ngModel)]="edition.edition.annualPrice" [required]="!isFree">
                                     </nz-input-group>
                                     <nz-form-explain *ngIf="annualPriceInput.dirty && annualPriceInput.errors">
                                         <validation-messages [formCtrl]="annualPriceInput"></validation-messages>
@@ -69,7 +68,7 @@
                                     </nz-form-label>
                                     <nz-form-control nzHasFeedback>
                                         <input nz-input id="TrialDayCount" #trialDayCountInput="ngModel" name="TrialDayCount"
-                                            [(ngModel)]="edition.trialDayCount" [required]="isTrialActive">
+                                            [(ngModel)]="edition.edition.trialDayCount" [required]="isTrialActive">
                                         <nz-form-explain *ngIf="trialDayCountInput.dirty && trialDayCountInput.errors">
                                             <validation-messages [formCtrl]="trialDayCountInput"></validation-messages>
                                         </nz-form-explain>
@@ -84,7 +83,7 @@
                                     </nz-form-label>
                                     <nz-form-control nzHasFeedback>
                                         <input nz-input id="WaitingDayAfterExpire" #waitingDayAfterExpireInput="ngModel"
-                                            name="WaitingDayAfterExpire" [(ngModel)]="edition.waitingDayAfterExpire"
+                                            name="WaitingDayAfterExpire" [(ngModel)]="edition.edition.waitingDayAfterExpire"
                                             [required]="isWaitingDayActive">
                                         <nz-form-explain *ngIf="waitingDayAfterExpireInput.dirty && waitingDayAfterExpireInput.errors">
                                             <validation-messages [formCtrl]="waitingDayAfterExpireInput"></validation-messages>
@@ -102,7 +101,7 @@
                                         <label nz-radio [nzValue]="expireActionEnum.AssignToAnotherEdition">{{"AssignToAnotherEdition" | localize}}</label>
                                     </nz-radio-group>
                                     <nz-select *ngIf="expireAction == expireActionEnum.AssignToAnotherEdition"
-                                        [(ngModel)]="edition.expiringEditionId" id="expiringEdition" name="ExpiringEdition">
+                                        [(ngModel)]="edition.edition.expiringEditionId" id="expiringEdition" name="ExpiringEdition">
                                         <nz-option *ngFor="let expiringEdition of expiringEditions" [nzLabel]="expiringEdition.displayText"
                                             [nzValue]="expiringEdition.value"></nz-option>
                                     </nz-select>
@@ -119,7 +118,7 @@
     </fieldset>
     <div class="modal-footer">
         <button nz-button type="button" [disabled]="saving" (click)="close()"> {{"Cancel" | localize}} </button>
-        <button nz-button [nzType]="'primary'" type="submit" [disabled]="!editionCreateOrEditForm.form.valid||saving">
+        <button nz-button [nzType]="'primary'" type="submit" [disabled]="!editionCreateForm.form.valid||saving">
             <i nz-icon type="save"></i> {{"Save" | localize}} </button>
     </div>
 </form>

@@ -22,7 +22,7 @@
 					"type" : "enum",
 					"content" : "
 					<td>
-						{{'Enum_{{Property_Type_Here}}' + {{property_Type_Here}}[item.{{entity_Name_Here}}.{{property_Name_Here}}] | localize}}
+						{{Enum_Localization_Before_060600}} {{property_Type_Here}}[item.{{entity_Name_Here}}.{{property_Name_Here}}] | localize}}
                     </td>"
 					},
 					{
@@ -204,6 +204,11 @@
 			"placeholder": "{{Get_Excel_Button_Here}}",
 			"condition": "{{Create_Excel_Export_Here}} == true",
 			"content": "<button nz-button nzType=\"default\" (click)=\"exportToExcel()\"><i nz-icon type=\"file-excel\"></i><span>{{'ExportToExcel' | localize}}</span></button>"
+		},
+		{
+			"placeholder": "{{Enum_Localization_Before_060600}}",
+			"condition": "{{Project_Version_Here}} < 060600",
+			"content": "'Enum_{{Property_Type_Here}}' + "
 		}
 	]
 }

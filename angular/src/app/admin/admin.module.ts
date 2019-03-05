@@ -30,7 +30,8 @@ import { AddMemberModalComponent } from './organization-units/add-member-modal.c
 import { CreateOrEditLanguageModalComponent } from './languages/create-or-edit-language-modal.component';
 import { EditLanguageTextComponent } from './languages/edit-language-text.component';
 import { CreateTenantModalComponent } from './tenants/create-tenant-modal.component';
-import { CreateOrEditEditionModalComponent } from './editions/create-or-edit-edition-modal.component';
+import { CreateEditionModalComponent } from './editions/create-edition-modal.component';
+import { EditEditionModalComponent } from './editions/edit-edition-modal.component';
 import { EditTenantModalComponent } from './tenants/edit-tenant-modal.component';
 import {TenantFeaturesModalComponent} from './tenants/tenant-features-modal.component';
 import { CreateOrEditUnitModalComponent } from './organization-units/create-or-edit-unit-modal.component';
@@ -82,7 +83,8 @@ import { InstallStep3Component } from './install/install-step3.component';
     CreateOrEditLanguageModalComponent,
     EditLanguageTextComponent,
     CreateTenantModalComponent,
-    CreateOrEditEditionModalComponent,
+    CreateEditionModalComponent,
+    EditEditionModalComponent,
     OrganizationTreeComponent,
     OrganizationUnitMembersComponent,
     EditTenantModalComponent,
@@ -105,7 +107,8 @@ import { InstallStep3Component } from './install/install-step3.component';
     CreateOrEditLanguageModalComponent,
     EditLanguageTextComponent,
     CreateTenantModalComponent,
-    CreateOrEditEditionModalComponent,
+    CreateEditionModalComponent,
+    EditEditionModalComponent,
     EditTenantModalComponent,
     TenantFeaturesModalComponent
   ]

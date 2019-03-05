@@ -1,7 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { ComboboxItemDto, CommonLookupServiceProxy, DefaultTimezoneScope, HostSettingsEditDto, HostSettingsServiceProxy, SendTestEmailInput } from '@shared/service-proxies/service-proxies';
+import { ComboboxItemDto, CommonLookupServiceProxy, HostSettingsEditDto, HostSettingsServiceProxy, SendTestEmailInput, SettingScopes } from '@shared/service-proxies/service-proxies';
 import { AppComponentBase } from '@shared/common/app-component-base';
-import { AppTimezoneScope } from '@shared/AppEnums';
 
 @Component({
     templateUrl: './host-settings.component.html',
@@ -12,7 +11,7 @@ export class HostSettingsComponent extends AppComponentBase implements OnInit {
     editions: ComboboxItemDto[] = undefined;
     testEmailAddress: string = undefined;
     showTimezoneSelection = abp.clock.provider.supportsMultipleTimezone;
-    defaultTimezoneScope: DefaultTimezoneScope = AppTimezoneScope.Application;
+    defaultTimezoneScope: SettingScopes = SettingScopes.Application;
 
     usingDefaultTimeZone = false;
     initialTimeZone: string = undefined;

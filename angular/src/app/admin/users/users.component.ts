@@ -26,7 +26,7 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> imple
     filterText = '';
     advancedFiltersVisible = false;
     selectedPermission = '';
-    role: number = undefined;
+    role = '';
     onlyLockedUsers = false;
 
     constructor(
@@ -88,7 +88,7 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> imple
             .getUsers(
                 this.filterText,
                 this.permission ? this.selectedPermission : undefined,
-                this.role || undefined,
+                this.role !== '' ? parseInt(this.role) : undefined,
                 this.onlyLockedUsers,
                 request.sorting,
                 request.maxResultCount,
@@ -123,10 +123,15 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> imple
         // );
     }
     exportToExcel(): void {
-        this._userServiceProxy.getUsersToExcel()
-            .subscribe(result => {
-                this._fileDownloadService.downloadTempFile(result);
-            });
+        this._userServiceProxy.getUsersToExcel(
+            this.filterText,
+            this.permission ? this.selectedPermission : undefined,
+            this.role !== '' ? parseInt(this.role) : undefined,
+            this.onlyLockedUsers,
+            undefined)
+        .subscribe(result => {
+            this._fileDownloadService.downloadTempFile(result);
+        });
     }
 
     protected deleteUser(user: UserListDto): void {

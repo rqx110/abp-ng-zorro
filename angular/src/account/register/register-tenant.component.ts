@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, Injector, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PaymentPeriodType, SubscriptionPaymentGatewayType, SubscriptionStartType } from '@shared/AppEnums';
 import { accountModuleAnimation } from '@shared/animations/routerTransition';
 import { AppComponentBase } from '@shared/common/app-component-base';
-import { EditionSelectDto, PasswordComplexitySetting, ProfileServiceProxy, RegisterTenantOutput, TenantRegistrationServiceProxy } from '@shared/service-proxies/service-proxies';
+import { EditionSelectDto, PasswordComplexitySetting, ProfileServiceProxy, RegisterTenantOutput, TenantRegistrationServiceProxy, SubscriptionStartType, PaymentPeriodType, SubscriptionPaymentGatewayType } from '@shared/service-proxies/service-proxies';
 import { RegisterTenantModel } from './register-tenant.model';
 import { TenantRegistrationHelperService } from './tenant-registration-helper.service';
 import { finalize } from 'rxjs/operators';

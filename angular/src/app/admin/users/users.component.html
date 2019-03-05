@@ -137,9 +137,6 @@
                     <th nzShowSort nzSortKey="isActive" class="text-center">
                         {{'Active' | localize}}
                     </th>
-                    <th nzShowSort nzSortKey="lastLoginTime" class="text-center">
-                        {{'LastLoginTime' | localize}}
-                    </th>
                     <th nzShowSort nzSortKey="creationTime" class="text-center">
                         {{'CreationTime' | localize}}
                     </th>
@@ -178,9 +175,6 @@
                     <td class="text-center">
                         <span class="badge badge-success" *ngIf="item.isActive">{{'Yes' | localize}}</span>
                         <span class="badge badge-error" *ngIf="!item.isActive">{{'No' | localize}}</span>
-                    </td>
-                    <td class="text-center">
-                        {{item.lastLoginTime?(item.lastLoginTime | momentFormat:'L'):'-'}}
                     </td>
                     <td class="text-center">
                         {{item.creationTime | momentFormat:'L'}}

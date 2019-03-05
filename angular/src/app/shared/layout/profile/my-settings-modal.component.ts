@@ -2,12 +2,11 @@ import { Component, OnInit, Injector } from '@angular/core';
 import {
     CurrentUserProfileEditDto,
     ProfileServiceProxy,
-    DefaultTimezoneScope,
+    SettingScopes,
 } from '@shared/service-proxies/service-proxies';
 import { AppConsts } from '@shared/AppConsts';
 import { ModalComponentBase } from '@shared/common/modal-component-base';
 import { finalize } from 'rxjs/operators';
-import { AppTimezoneScope } from '@shared/AppEnums';
 import { SmsVerificationModalComponent } from './sms-verification-modal.component';
 
 @Component({
@@ -23,7 +22,7 @@ export class MySettingsModalComponent extends ModalComponentBase implements OnIn
     user: CurrentUserProfileEditDto = new CurrentUserProfileEditDto();
     showTimezoneSelection: boolean = abp.clock.provider.supportsMultipleTimezone;
     canChangeUserName: boolean;
-    defaultTimezoneScope: DefaultTimezoneScope = AppTimezoneScope.User;
+    defaultTimezoneScope: SettingScopes = SettingScopes.User;
     private _initialTimezone: string = undefined;
 
     saving = false;

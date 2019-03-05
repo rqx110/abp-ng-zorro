@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
 import { AppComponentBase } from '@shared/common/app-component-base';
-import { DefaultTimezoneScope, NameValueDto, TimingServiceProxy } from '@shared/service-proxies/service-proxies';
+import { SettingScopes, NameValueDto, TimingServiceProxy } from '@shared/service-proxies/service-proxies';
 
 @Component({
     selector: 'timezone-combo',
@@ -16,7 +16,7 @@ export class TimeZoneComboComponent extends AppComponentBase implements OnInit {
     timeZones: NameValueDto[] = [];
 
     @Input() selectedTimeZone: string = undefined;
-    @Input() defaultTimezoneScope: DefaultTimezoneScope;
+    @Input() defaultTimezoneScope: SettingScopes;
 
     constructor(
         private _timingService: TimingServiceProxy,

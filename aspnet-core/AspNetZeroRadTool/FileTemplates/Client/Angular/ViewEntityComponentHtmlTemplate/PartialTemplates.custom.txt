@@ -8,7 +8,7 @@
 					"type" : "enum",
 					"content" : "                    <div>
                         <h6>{{\"{{property_Name_Here}}\" | localize}} :</h6>
-                        {{'Enum_{{Property_Type_Here}}' + {{property_Type_Here}}[item.{{entity_Name_Here}}.{{property_Name_Here}}] | localize}}
+                        {Enum_Localization_Before_060600}} {{property_Type_Here}}[item.{{entity_Name_Here}}.{{property_Name_Here}}] | localize}}
                     </div>
                     <nz-divider nzDashed></nz-divider>
 "
@@ -39,6 +39,13 @@
 "
 					}
 				]
+		}
+	],
+"conditionalTemplates":[
+		{
+			"placeholder": "{{Enum_Localization_Before_060600}}",
+			"condition": "{{Project_Version_Here}} < 060600",
+			"content": "'Enum_{{Property_Type_Here}}' + "
 		}
 	]
 }

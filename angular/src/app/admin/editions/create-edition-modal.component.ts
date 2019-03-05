@@ -1,22 +1,22 @@
 import { Component, Injector, ViewChild, OnInit } from '@angular/core';
 import { AppEditionExpireAction } from '@shared/AppEnums';
-import { ComboboxItemDto, CommonLookupServiceProxy, CreateOrUpdateEditionDto, EditionEditDto, EditionServiceProxy } from '@shared/service-proxies/service-proxies';
+import { ComboboxItemDto, CommonLookupServiceProxy, CreateEditionDto, EditionServiceProxy } from '@shared/service-proxies/service-proxies';
 import { FeatureTreeComponent } from '../shared/feature-tree/feature-tree.component';
 import { finalize } from 'rxjs/operators';
 import { ModalComponentBase } from '@shared/common/modal-component-base';
 
 
 @Component({
-    selector: 'createOrEditEditionModal',
-    templateUrl: './create-or-edit-edition-modal.component.html'
+    selector: 'createEditionModal',
+    templateUrl: './create-edition-modal.component.html'
 })
-export class CreateOrEditEditionModalComponent extends ModalComponentBase implements OnInit {
+export class CreateEditionModalComponent extends ModalComponentBase implements OnInit {
 
     @ViewChild('featureTree') featureTree: FeatureTreeComponent;
 
     saving = false;
     editionId?: number;
-    edition: EditionEditDto = new EditionEditDto();
+    edition: CreateEditionDto = new CreateEditionDto();
     expiringEditions: ComboboxItemDto[] = [];
 
     expireAction: AppEditionExpireAction = AppEditionExpireAction.DeactiveTenant;
@@ -44,32 +44,21 @@ export class CreateOrEditEditionModalComponent extends ModalComponentBase implem
             this.expiringEditions.unshift(new ComboboxItemDto({ value: '0', displayText: this.l('NotAssigned'), isSelected: true }));
 
             this._editionService.getEditionForEdit(this.editionId).subscribe(editionResult => {
-                this.edition = editionResult.edition;
                 this.featureTree.editData = editionResult;
-
-                if (this.edition.expiringEditionId === null) {
-                    this.edition.expiringEditionId = 0;
-                }
-
-                this.expireAction = this.edition.expiringEditionId > 0 ? AppEditionExpireAction.AssignToAnotherEdition : AppEditionExpireAction.DeactiveTenant;
-
-                this.isFree = !editionResult.edition.monthlyPrice && !editionResult.edition.annualPrice;
-                this.isTrialActive = editionResult.edition.trialDayCount > 0;
-                this.isWaitingDayActive = editionResult.edition.waitingDayAfterExpire > 0;
             });
         });
     }
 
     resetPrices(isFree) {
         if (isFree) {
-            this.edition.annualPrice = undefined;
-            this.edition.monthlyPrice = undefined;
+            this.edition.edition.annualPrice = undefined;
+            this.edition.edition.monthlyPrice = undefined;
         }
     }
 
     removeExpiringEdition(expireAction: AppEditionExpireAction) {
         if (expireAction === AppEditionExpireAction.DeactiveTenant) {
-            this.edition.expiringEditionId = null;
+            this.edition.edition.expiringEditionId = null;
         }
     }
 
@@ -79,16 +68,16 @@ export class CreateOrEditEditionModalComponent extends ModalComponentBase implem
             return;
         }
 
-        if (this.edition.expiringEditionId === 0) {
-            this.edition.expiringEditionId = null;
+        if (this.edition.edition.expiringEditionId === 0) {
+            this.edition.edition.expiringEditionId = null;
         }
 
-        const input = new CreateOrUpdateEditionDto();
-        input.edition = this.edition;
+        const input = new CreateEditionDto();
+        input.edition = this.edition.edition;
         input.featureValues = this.featureTree.getGrantedFeatures();
 
         this.saving = true;
-        this._editionService.createOrUpdateEdition(input)
+        this._editionService.createEdition(input)
             .pipe(finalize(() => this.saving = false))
             .subscribe(() => {
                 this.notify.info(this.l('SavedSuccessfully'));
