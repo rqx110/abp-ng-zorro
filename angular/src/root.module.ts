@@ -16,6 +16,7 @@ import { AppSessionService } from '@shared/common/session/app-session.service';
 import { UrlHelper } from '@shared/helpers/UrlHelper';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 import { API_BASE_URL } from '@shared/service-proxies/service-proxies';
+import { LocaleMappingService } from '@shared/locale-mapping.service';
 
 import { AbpHttpInterceptor } from '@abp/abpHttpInterceptor';
 
@@ -87,29 +88,11 @@ export function shouldLoadLocale(): boolean {
 }
 
 export function convertAbpLocaleToAngularLocale(locale: string): string {
-    if (!AppConsts.localeMappings) {
-        return locale;
-    }
-
-    let localeMapings = _.filter(AppConsts.localeMappings, { from: locale });
-    if (localeMapings && localeMapings.length) {
-        return localeMapings[0]['to'];
-    }
-
-    return locale;
+    return new LocaleMappingService().map('angular', locale);
 }
 
 export function convertAbpLocaleToNgZorroLocale(locale: string): string {
-    if (!AppConsts.ngZorroLocaleMappings) {
-        return locale;
-    }
-
-    let localeMapings = _.filter(AppConsts.ngZorroLocaleMappings, { from: locale });
-    if (localeMapings && localeMapings.length) {
-        return localeMapings[0]['to'];
-    }
-
-    return locale;
+    return new LocaleMappingService().map('ng_zorro', locale);
 }
 
 export function getRemoteServiceBaseUrl(): string {

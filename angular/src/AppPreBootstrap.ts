@@ -7,6 +7,7 @@ import { AppConsts } from '@shared/AppConsts';
 import { environment } from '@env/environment';
 import { SubdomainTenancyNameFinder } from '@shared/helpers/SubdomainTenancyNameFinder';
 import { XmlHttpRequestHelper } from '@shared/helpers/XMLHttpRequestHelper';
+import { LocaleMappingService } from '@shared/locale-mapping.service';
 
 export class AppPreBootstrap {
     static run(appRootUrl: string, callback: () => void): void {
@@ -86,8 +87,8 @@ export class AppPreBootstrap {
 
             abp.clock.provider = this.getCurrentClockProvider(result.clock.provider);
 
-            moment.locale(abp.localization.currentLanguage.name);
-            (window as any).moment.locale(abp.localization.currentLanguage.name);
+            moment.locale(new LocaleMappingService().map('moment', abp.localization.currentLanguage.name));
+            (window as any).moment.locale(new LocaleMappingService().map('moment', abp.localization.currentLanguage.name));
 
             if (abp.clock.provider.supportsMultipleTimezone) {
                 moment.tz.setDefault(abp.timing.timeZoneInfo.iana.timeZoneId);

@@ -649,6 +649,21 @@ after@0.8.2:
   resolved "http://registry.npm.taobao.org/after/download/after-0.8.2.tgz#fedb394f9f0e02aa9768e702bda23b505fae7e1f"
   integrity sha1-/ts5T58OAqqXaOcCvaI7UF+ufh8=
 
+ag-grid-angular@^20.1.0:
+  version "20.1.0"
+  resolved "http://registry.npm.taobao.org/ag-grid-angular/download/ag-grid-angular-20.1.0.tgz#c2fb5352090cd615a6eef47fe8f1258ee7a725c3"
+  integrity sha1-wvtTUgkM1hWm7vR/6PEljuenJcM=
+
+ag-grid-community@^20.1.0:
+  version "20.1.0"
+  resolved "http://registry.npm.taobao.org/ag-grid-community/download/ag-grid-community-20.1.0.tgz#38c11aaaf7418dc33627d7e67e00de3ba99786a8"
+  integrity sha1-OMEaqvdBjcM2J9fmfgDeO6mXhqg=
+
+ag-grid-enterprise@^20.1.0:
+  version "20.1.0"
+  resolved "http://registry.npm.taobao.org/ag-grid-enterprise/download/ag-grid-enterprise-20.1.0.tgz#e6784e45e89ab6f6778f768ee84ed7364e87fa2d"
+  integrity sha1-5nhOReiatvZ3j3aO6E7XNk6H+i0=
+
 agent-base@4, agent-base@^4.1.0, agent-base@~4.2.0:
   version "4.2.1"
   resolved "http://registry.npm.taobao.org/agent-base/download/agent-base-4.2.1.tgz#d89e5999f797875674c07d87f260fc41e83e8ca9"
