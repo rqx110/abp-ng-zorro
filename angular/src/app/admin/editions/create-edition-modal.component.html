@@ -14,7 +14,7 @@
                     </nz-form-label>
                     <nz-form-control nzHasFeedback>
                         <input nz-input id="EditionDisplayName" #editionNameInput="ngModel" name="EditionDisplayName"
-                            [(ngModel)]="edition.edition.DisplayName" required maxlength="64">
+                            [(ngModel)]="edition.edition.displayName" required maxlength="64">
                         <nz-form-explain *ngIf="editionNameInput.dirty && editionNameInput.errors">
                             <validation-messages [formCtrl]="editionNameInput"></validation-messages>
                         </nz-form-explain>
