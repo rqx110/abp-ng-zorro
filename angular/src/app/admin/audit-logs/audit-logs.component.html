@@ -110,7 +110,7 @@
                 <nz-col nzMd="4" nzSm="12" class="text-right">
                     <a (click)="advancedFiltersVisible=!advancedFiltersVisible">
                         {{(advancedFiltersVisible ? 'HideAdvancedFilters' : 'ShowAdvancedFilters') | localize}}
-                        <i class="anticon" [class.anticon-down]="!advancedFiltersVisible" [class.anticon-up]="advancedFiltersVisible"></i>
+                        <i nz-icon [nzType]="!advancedFiltersVisible? 'down' : 'up'"></i>
                     </a>
                 </nz-col>
             </nz-row>
@@ -163,8 +163,8 @@
                                 </a>
                             </td>
                             <td class="text-center">
-                                <i *ngIf="item.exception" nz-tooltip [nzTitle]="l('HasError')" class="anticon anticon-warning text-warning"></i>
-                                <i *ngIf="!item.exception" nz-tooltip [nzTitle]="l('Success')" class="anticon anticon-check-circle text-green"></i>
+                                <i *ngIf="item.exception" nz-tooltip [nzTitle]="l('HasError')" nz-icon nzType="warning" class="text-warning"></i>
+                                <i *ngIf="!item.exception" nz-tooltip [nzTitle]="l('Success')" nz-icon nzType="check-circle" class="text-green"></i>
                             </td>
 
                             <td>

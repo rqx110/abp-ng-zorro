@@ -23,23 +23,23 @@ export class AppNavigationService {
 
     getMenu(): AppMenu {
         return new AppMenu('MainMenu', 'MainMenu', [
-            new AppMenuItem('Notifications', 'Pages.Notifications', 'anticon anticon-bell', '/app/notifications'),
-            new AppMenuItem('Dashboard', 'Pages.Administration.Host.Dashboard', 'anticon anticon-dashboard', '/app/admin/hostDashboard'),
-            new AppMenuItem('Dashboard', 'Pages.Tenant.Dashboard', 'anticon anticon-dashboard', '/app/main/dashboard'),
-            new AppMenuItem('Tenants', 'Pages.Tenants', 'anticon anticon-bars', '/app/admin/tenants'),
-            new AppMenuItem('Editions', 'Pages.Editions', 'anticon anticon-shopping', '/app/admin/editions'),
-            new AppMenuItem('Administration', '', 'anticon anticon-appstore', '', [
-                new AppMenuItem('OrganizationUnits', 'Pages.Administration.OrganizationUnits', 'anticon anticon-team', '/app/admin/organization-units'),
-                new AppMenuItem('Roles', 'Pages.Administration.Roles', 'anticon anticon-safety', '/app/admin/roles'),
-                new AppMenuItem('Users', 'Pages.Administration.Users', 'anticon anticon-user', '/app/admin/users'),
-                new AppMenuItem('Languages', 'Pages.Administration.Languages', 'anticon anticon-global', '/app/admin/languages'),
-                new AppMenuItem('LanguageTexts', 'Pages.Administration.LanguageTexts', 'anticon anticon-global', '/app/admin/languagetexts'),
-                new AppMenuItem('AuditLogs', 'Pages.Administration.AuditLogs', 'anticon anticon-book', '/app/admin/auditLogs'),
-                new AppMenuItem('Maintenance', 'Pages.Administration.Host.Maintenance', 'anticon anticon-lock', '/app/admin/maintenance'),
+            new AppMenuItem('Notifications', 'Pages.Notifications', 'bell', '/app/notifications'),
+            new AppMenuItem('Dashboard', 'Pages.Administration.Host.Dashboard', 'dashboard', '/app/admin/hostDashboard'),
+            new AppMenuItem('Dashboard', 'Pages.Tenant.Dashboard', 'dashboard', '/app/main/dashboard'),
+            new AppMenuItem('Tenants', 'Pages.Tenants', 'bars', '/app/admin/tenants'),
+            new AppMenuItem('Editions', 'Pages.Editions', 'shopping', '/app/admin/editions'),
+            new AppMenuItem('Administration', '', 'appstore', '', [
+                new AppMenuItem('OrganizationUnits', 'Pages.Administration.OrganizationUnits', 'team', '/app/admin/organization-units'),
+                new AppMenuItem('Roles', 'Pages.Administration.Roles', 'safety', '/app/admin/roles'),
+                new AppMenuItem('Users', 'Pages.Administration.Users', 'user', '/app/admin/users'),
+                new AppMenuItem('Languages', 'Pages.Administration.Languages', 'global', '/app/admin/languages'),
+                new AppMenuItem('LanguageTexts', 'Pages.Administration.LanguageTexts', 'global', '/app/admin/languagetexts'),
+                new AppMenuItem('AuditLogs', 'Pages.Administration.AuditLogs', 'book', '/app/admin/auditLogs'),
+                new AppMenuItem('Maintenance', 'Pages.Administration.Host.Maintenance', 'lock', '/app/admin/maintenance'),
                 // new AppMenuItem('Subscription', 'Pages.Administration.Tenant.SubscriptionManagement', 'flaticon-refresh', '/app/admin/subscription-management'),
                 // new AppMenuItem('VisualSettings', 'Pages.Administration.UiCustomization', 'flaticon-medical', '/app/admin/ui-customization'),
-                new AppMenuItem('Settings', 'Pages.Administration.Host.Settings', 'anticon anticon-setting', '/app/admin/hostSettings'),
-                new AppMenuItem('Settings', 'Pages.Administration.Tenant.Settings', 'anticon anticon-setting', '/app/admin/tenantSettings')
+                new AppMenuItem('Settings', 'Pages.Administration.Host.Settings', 'setting', '/app/admin/hostSettings'),
+                new AppMenuItem('Settings', 'Pages.Administration.Tenant.Settings', 'setting', '/app/admin/tenantSettings')
             ]),
             // new AppMenuItem('DemoUiComponents', 'Pages.DemoUiComponents', 'flaticon-shapes', '/app/admin/demo-ui-components')
         ]);
@@ -68,7 +68,7 @@ export class AppNavigationService {
             ngAlainMenu = {
                 text: this._localizationService.l(item.name),
                 link: item.route,
-                icon: `${item.icon}`,
+                icon: { type: 'icon', value: item.icon },
                 hide: !this.showMenuItem(item)
             };
 

@@ -3,7 +3,7 @@
         <nz-tab nzTitle="账户密码登录">
             <nz-form-item>
                 <nz-form-control>
-                    <nz-input-group nzPrefixIcon="anticon anticon-user">
+                    <nz-input-group nzPrefixIcon="user">
                         <input nz-input name="userNameOrEmailAddress" #userNameOrEmailAddressInput="ngModel"
                             [(ngModel)]="loginService.authenticateModel.userNameOrEmailAddress" placeholder="{{'UserNameOrEmail' | localize}}"
                             [nzSize]="'large'" required maxlength="255">
@@ -12,7 +12,7 @@
             </nz-form-item>
             <nz-form-item>
                 <nz-form-control>
-                    <nz-input-group nzPrefixIcon="anticon anticon-lock">
+                    <nz-input-group nzPrefixIcon="lock">
                         <input nz-input name="password" #passwordInput="ngModel" [(ngModel)]="loginService.authenticateModel.password"
                             placeholder="{{'Password' | localize}}" type="password" [nzSize]="'large'" required maxlength="32">
                     </nz-input-group>

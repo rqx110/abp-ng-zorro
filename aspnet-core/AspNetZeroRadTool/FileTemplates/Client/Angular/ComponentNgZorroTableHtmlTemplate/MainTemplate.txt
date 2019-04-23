@@ -17,7 +17,7 @@
                             <input type="text" nz-input [(ngModel)]="filterText" name="filterText" placeholder="{{'SearchWithThreeDot' | localize}}">
                             <ng-template #suffixSearchButton>
                                 <button nz-button nzType="primary" nzSearch (click)="refresh($event)">
-                                    <i class="anticon anticon-search"></i>
+                                    <i nz-icon nzType="search"></i>
                                 </button>
                             </ng-template>
                         </nz-input-group>
@@ -32,14 +32,14 @@
     <nz-row nzGutter="8">
         <nz-col nzMd="20" nzSm="12">
             <button nz-button [nzType]="'primary'" *ngIf="isGranted('{{Permission_Value_Here}}.Create')" (click)="createOrEdit()">
-                <i class="anticon anticon-plus"></i>
+                <i nz-icon nzType="plus"></i>
                 <span>
                     {{"CreateNew{{Entity_Name_Here}}" | localize}}
                 </span>
             </button>
             <ng-container *ngIf="selectedDataItems.length > 0">
                 <button nz-button [nzType]="'danger'" *ngIf="isGranted('{{Permission_Value_Here}}.Delete')" (click)="batchDelete()">
-                    <i class="anticon anticon-delete"></i>
+                    <i nz-icon nzType="delete"></i>
                     <span>
                         Delete Selected
                     </span>
@@ -50,7 +50,7 @@
         <nz-col nzMd="4" nzSm="12" class="text-right">
             <a (click)="advancedFiltersVisible=!advancedFiltersVisible">
                 {{(advancedFiltersVisible ? 'HideAdvancedFilters' : 'ShowAdvancedFilters') | localize}}
-                <i class="anticon" [class.anticon-down]="!advancedFiltersVisible" [class.anticon-up]="advancedFiltersVisible"></i>
+                <i nz-icon [nzType]="!advancedFiltersVisible? 'down' : 'up'"></i>
             </a>
         </nz-col>
     </nz-row>
