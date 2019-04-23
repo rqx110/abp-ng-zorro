@@ -117,11 +117,8 @@
             <nz-row class="my-md">
                 <nz-table #ajaxTable [nzData]="dataList" [nzTotal]="totalItems" [(nzPageIndex)]="pageNumber"
                     [(nzPageSize)]="pageSize" [nzLoading]="isTableLoading" (nzPageIndexChange)="pageNumberChange()"
-                    (nzPageSizeChange)="refresh()" [nzShowSizeChanger]="true" [nzShowQuickJumper]="true" [nzNoResult]="noDataTemplate"
+                    (nzPageSizeChange)="refresh()" [nzShowSizeChanger]="true" [nzShowQuickJumper]="true"
                     [nzShowTotal]="totalTemplate" [nzFrontPagination]="false" [nzScroll]="{x: totalItems>0?'1500px':'auto'}">
-                    <ng-template #noDataTemplate>
-                        <no-data></no-data>
-                    </ng-template>
                     <ng-template #totalTemplate let-total>
                         {{'TotalRecordsCount' | localize:total}}
                     </ng-template>

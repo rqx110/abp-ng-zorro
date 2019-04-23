@@ -20,11 +20,7 @@
         </nz-col>
     </nz-row>
     <nz-row class="my-md">
-        <nz-table #nzDataTable [nzData]="dataList" [nzLoading]="isTableLoading" nzShowPagination="false"
-            [nzNoResult]="noDataTemplate">
-            <ng-template #noDataTemplate>
-                <no-data></no-data>
-            </ng-template>
+        <nz-table #nzDataTable [nzData]="dataList" [nzLoading]="isTableLoading" nzShowPagination="false">
             <thead (nzSortChange)="gridSort($event)">
                 <tr>
                     <th nzShowSort nzSortKey="tenancyName">

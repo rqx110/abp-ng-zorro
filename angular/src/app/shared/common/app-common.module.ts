@@ -8,7 +8,6 @@ import { UtilsModule } from '@shared/utils/utils.module';
 import { AppAuthService } from './auth/app-auth.service';
 import { AppRouteGuard } from './auth/auth-route-guard';
 import { TimeZoneComboComponent } from './timing/timezone-combo.component';
-import { NoDataComponent } from './no-data.component';
 
 @NgModule({
     imports: [
@@ -18,13 +17,11 @@ import { NoDataComponent } from './no-data.component';
         CommonModule
     ],
     declarations: [
-        TimeZoneComboComponent,
-        NoDataComponent
+        TimeZoneComboComponent
     ],
     exports: [
         CommonModule,
-        TimeZoneComboComponent,
-        NoDataComponent
+        TimeZoneComboComponent
     ],
     providers: [
         AppLocalizationService,

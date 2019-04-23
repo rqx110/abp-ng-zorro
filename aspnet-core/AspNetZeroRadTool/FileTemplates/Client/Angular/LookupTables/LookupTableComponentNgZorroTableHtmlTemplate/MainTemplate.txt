@@ -24,10 +24,7 @@
             <nz-table #nzDataTable [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]="true"
                 [nzData]="dataList" [nzTotal]="totalItems" [nzLoading]="isTableLoading" [(nzPageIndex)]="pageNumber"
                 [(nzPageSize)]="pageSize" (nzPageIndexChange)="refresh()" (nzPageSizeChange)="refresh()"
-                [nzNoResult]="noDataTemplate" [nzShowTotal]="totalTemplate">
-                <ng-template #noDataTemplate>
-                    <no-data></no-data>
-                </ng-template>
+                [nzShowTotal]="totalTemplate">
                 <ng-template #totalTemplate let-total>
                     {{'TotalRecordsCount' | localize:total}}
                 </ng-template>

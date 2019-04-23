@@ -60,12 +60,7 @@
     <nz-row class="my-md">
         <nz-table #ajaxTable [nzData]="dataList" [nzTotal]="totalItems" [nzLoading]="isTableLoading"
             (nzPageIndexChange)="pageNumberChange()" (nzPageSizeChange)="refresh()" [nzShowSizeChanger]="true"
-            [nzShowQuickJumper]="true" [nzFrontPagination]="false" [nzShowPagination]="false" [nzNoResult]="noDataTemplate">
-
-            <ng-template #noDataTemplate>
-                <no-data></no-data>
-            </ng-template>
-
+            [nzShowQuickJumper]="true" [nzFrontPagination]="false" [nzShowPagination]="false">
             <thead (nzSortChange)="gridSort($event)">
                 <tr>
                     <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled" [nzIndeterminate]="checkboxIndeterminate"

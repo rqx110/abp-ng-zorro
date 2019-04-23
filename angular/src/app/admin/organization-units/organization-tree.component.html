@@ -60,7 +60,7 @@
         </nz-tree>
     </nz-spin>
     <div class="text-center" *ngIf="!totalUnitCount">
-        <no-data [text]="l('NoOrganizationUnitDefinedYet')"></no-data>
+        <nz-empty class="ant-empty-normal" [nzNotFoundContent]="l('NoOrganizationUnitDefinedYet')"></nz-empty>
     </div>
 
 </nz-card>

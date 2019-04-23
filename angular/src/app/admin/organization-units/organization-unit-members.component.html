@@ -1,10 +1,8 @@
 <nz-card [nzTitle]="nzTitleTemplate" [nzExtra]="extraTemplate">
     <ng-template #nzTitleTemplate>
-        <ellipsis lines="1" style="width: 400px">
-            <i nz-icon type="team" class="mr-sm"></i>
-            <span *ngIf="organizationUnit">{{organizationUnit.title}}</span>
-            <span *ngIf="!organizationUnit">{{"Members" | localize}}</span>
-        </ellipsis>
+        <i nz-icon type="team" class="mr-sm"></i>
+        <span *ngIf="organizationUnit">{{organizationUnit.title}}</span>
+        <span *ngIf="!organizationUnit">{{"Members" | localize}}</span>
     </ng-template>
     <ng-template #extraTemplate>
         <ng-container *ngIf="organizationUnit">
@@ -54,11 +52,8 @@
         <nz-row class="my-md">
             <nz-table #ajaxTable [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]="true"
                 [nzData]="dataList" [nzTotal]="totalItems" [nzLoading]="isTableLoading" [(nzPageIndex)]="pageNumber"
-                [(nzPageSize)]="pageSize" (nzPageIndexChange)="refresh()" (nzPageSizeChange)="refresh()" [nzNoResult]="noDataTemplate"
+                [(nzPageSize)]="pageSize" (nzPageIndexChange)="refresh()" (nzPageSizeChange)="refresh()"
                 [nzShowTotal]="totalTemplate">
-                <ng-template #noDataTemplate>
-                    <no-data></no-data>
-                </ng-template>
                 <ng-template #totalTemplate let-total>
                     {{'TotalRecordsCount' | localize:total}}
                 </ng-template>
@@ -104,6 +99,6 @@
     </ng-container>
 
     <div class="text-center" *ngIf="!organizationUnit">
-        <no-data [text]="l('SelectAnOrganizationUnitToSeeMembers')"></no-data>
+        <nz-empty class="ant-empty-normal" [nzNotFoundContent]="l('SelectAnOrganizationUnitToSeeMembers')"></nz-empty>
     </div>
 </nz-card>
