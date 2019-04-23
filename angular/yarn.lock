@@ -218,13 +218,12 @@
   resolved "http://registry.npm.taobao.org/@angularclass/hmr/download/@angularclass/hmr-2.1.3.tgz#34e658ed3da37f23b0a200e2da5a89be92bb209f"
   integrity sha1-NOZY7T2jfyOwogDi2lqJvpK7IJ8=
 
-"@ant-design/icons-angular@2.0.1":
-  version "2.0.1"
-  resolved "http://registry.npm.taobao.org/@ant-design/icons-angular/download/@ant-design/icons-angular-2.0.1.tgz#ac1828f408fd513c6261f232f44d7c72cc62fdff"
-  integrity sha1-rBgo9Aj9UTxiYfIy9E18csxi/f8=
+"@ant-design/icons-angular@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@ant-design/icons-angular/-/icons-angular-2.0.2.tgz#ee81d7c098eb8e2a04dd82d3370511af26e46d13"
+  integrity sha512-Pk/9BY5/KmasrK1ViYwbZG0piL27IdKqWjAyTltqJbKrqqJi9DMXYKnXhmqGXQeZ2YCPi9eXGYkwaWEjwJRgzA==
   dependencies:
     ant-design-palettes "^1.1.3"
-    tslib "^1.9.0"
 
 "@aspnet/signalr@^1.1.2":
   version "1.1.2"
@@ -323,33 +322,33 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@delon/abc@^7.0.1":
-  version "7.0.1"
-  resolved "http://registry.npm.taobao.org/@delon/abc/download/@delon/abc-7.0.1.tgz#1c7378aa1ba5ce3a7cfcf4038108d79717fbdae4"
-  integrity sha1-HHN4qhulzjp8/PQDgQjXlxf72uQ=
+"@delon/abc@7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@delon/abc/-/abc-7.2.0.tgz#058c94380914129b5b1cd7957d81ad8c4275d305"
+  integrity sha512-kgYweykPKZiS/eOWdnLP1t/eD3JPk5Bds+FX5VI+y3jfy4VjcA7DLXL6+f3RQF/972c2sT9fI5S4DxLyaRHNPA==
   dependencies:
     file-saver "^1.3.3"
     ngx-countdown "^3.0.0"
     tslib "^1.9.0"
 
-"@delon/acl@^7.0.1":
-  version "7.0.1"
-  resolved "http://registry.npm.taobao.org/@delon/acl/download/@delon/acl-7.0.1.tgz#4f6f0548d6936f0f03a01b7fa347ec737a15a8a4"
-  integrity sha1-T28FSNaTbw8DoBt/o0fsc3oVqKQ=
+"@delon/acl@7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@delon/acl/-/acl-7.2.0.tgz#2a81f2ef9336d0b18903cf9a277e1d99b6a501ae"
+  integrity sha512-xoZWjpPar7rXophx/cB6x6Neu+f/iPA05u7dtI7B3XgmfWqTkoyRCg9oyDch5275s5AuhEvolLK6Qzx4DRvWcA==
   dependencies:
     tslib "^1.9.0"
 
-"@delon/theme@^7.0.1":
-  version "7.0.1"
-  resolved "http://registry.npm.taobao.org/@delon/theme/download/@delon/theme-7.0.1.tgz#1b1263d297aa4f6d6bd552cbea20a28a246bb222"
-  integrity sha1-GxJj0peqT21r1VLL6iCiiiRrsiI=
+"@delon/theme@7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@delon/theme/-/theme-7.2.0.tgz#d122f3742cff11401c1fd693080aeebfc80568b2"
+  integrity sha512-bppPouk9qWwLuy09JrKvS8tZrPCzcZ0gJWchS3CFanLOD90QAPp+NhoLvk3DyjmMVHfwLrgfwcAUYujFfmeVVg==
   dependencies:
     tslib "^1.9.0"
 
-"@delon/util@^7.0.1":
-  version "7.0.1"
-  resolved "http://registry.npm.taobao.org/@delon/util/download/@delon/util-7.0.1.tgz#f34cf15ece415906681dc709b40ae03735e50025"
-  integrity sha1-80zxXs5BWQZoHccJtArgNzXlACU=
+"@delon/util@7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@delon/util/-/util-7.2.0.tgz#8c87d0db2ce19b2673f8daf07622cb76b5e678a5"
+  integrity sha512-al/PDOBqorMtlC15yrQEp+ll/VdPOHM2qke9XIRHd6h3q1VV+O4iRBJs2KM2SV5QGUgDORLcKXywU6GJiLbxgQ==
   dependencies:
     tslib "^1.9.0"
 
@@ -648,21 +647,6 @@ after@0.8.2:
   version "0.8.2"
   resolved "http://registry.npm.taobao.org/after/download/after-0.8.2.tgz#fedb394f9f0e02aa9768e702bda23b505fae7e1f"
   integrity sha1-/ts5T58OAqqXaOcCvaI7UF+ufh8=
-
-ag-grid-angular@^20.1.0:
-  version "20.1.0"
-  resolved "http://registry.npm.taobao.org/ag-grid-angular/download/ag-grid-angular-20.1.0.tgz#c2fb5352090cd615a6eef47fe8f1258ee7a725c3"
-  integrity sha1-wvtTUgkM1hWm7vR/6PEljuenJcM=
-
-ag-grid-community@^20.1.0:
-  version "20.1.0"
-  resolved "http://registry.npm.taobao.org/ag-grid-community/download/ag-grid-community-20.1.0.tgz#38c11aaaf7418dc33627d7e67e00de3ba99786a8"
-  integrity sha1-OMEaqvdBjcM2J9fmfgDeO6mXhqg=
-
-ag-grid-enterprise@^20.1.0:
-  version "20.1.0"
-  resolved "http://registry.npm.taobao.org/ag-grid-enterprise/download/ag-grid-enterprise-20.1.0.tgz#e6784e45e89ab6f6778f768ee84ed7364e87fa2d"
-  integrity sha1-5nhOReiatvZ3j3aO6E7XNk6H+i0=
 
 agent-base@4, agent-base@^4.1.0, agent-base@~4.2.0:
   version "4.2.1"
@@ -4547,13 +4531,13 @@ neo-async@^2.5.0:
   resolved "http://registry.npm.taobao.org/neo-async/download/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha1-udFeTXHGdikIZUtRg+04t1M0CDU=
 
-ng-zorro-antd@^7.0.1:
-  version "7.0.1"
-  resolved "http://registry.npm.taobao.org/ng-zorro-antd/download/ng-zorro-antd-7.0.1.tgz#4dd42f6c59e59e35238b1b2c503663c35ab0176d"
-  integrity sha1-TdQvbFnlnjUjixssUDZjw1qwF20=
+ng-zorro-antd@7.3.2:
+  version "7.3.2"
+  resolved "https://registry.yarnpkg.com/ng-zorro-antd/-/ng-zorro-antd-7.3.2.tgz#3eb1fe75efd6b97e08ec91fd3c60a82a9df8e0fa"
+  integrity sha512-2dhkSm+SKRj+Z/T0A5V7EiKCDQ2+76bbtS33R1I7xDRcyNeZ7FHFK8+yp09qlPYTYEHvMrKOwagQBilnSkFrTA==
   dependencies:
     "@angular/cdk" "^7.0.0"
-    "@ant-design/icons-angular" "2.0.1"
+    "@ant-design/icons-angular" "^2.0.2"
     date-fns "^1.29.0"
     tslib "^1.9.0"
 
