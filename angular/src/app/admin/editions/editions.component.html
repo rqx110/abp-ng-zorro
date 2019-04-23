@@ -30,8 +30,17 @@
                     <th nzShowSort nzSortKey="tenancyName">
                         {{'EditionName' | localize}}
                     </th>
-                    <th nzShowSort nzSortKey="creationTime" class="text-center">
-                        {{'CreationTime' | localize}}
+                    <th>
+                        {{'Price' | localize}}
+                    </th>
+                    <th>
+                        {{'IsTrialActive' | localize}}
+                    </th>
+                    <th>
+                        {{'WaitingDayAfterExpire' | localize}}
+                    </th>
+                    <th>
+                        {{'ExpiringEdition' | localize}}
                     </th>
                     <th class="text-center">
                         {{'Actions' | localize}}
@@ -43,8 +52,27 @@
                     <td>
                         {{item.displayName}}
                     </td>
-                    <td class="text-center">
-                        {{item.creationTime | momentFormat:'L'}}
+                    <td>
+                        <span *ngIf="item.monthlyPrice || item.annualPrice">
+                            $ {{item.monthlyPrice}} {{"Monthly" | localize }} / $ {{item.annualPrice}} {{"Annual" | localize }}
+                        </span>
+                        <span *ngIf="!item.monthlyPrice && !item.annualPrice">
+                            {{"Free" | localize}}
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngIf="item.trialDayCount">
+                            {{"Yes" | localize}}, {{item.trialDayCount}} {{"Days" | localize}}
+                        </span>
+                        <span *ngIf="!item.trialDayCount">
+                            {{"No" | localize}}
+                        </span>
+                    </td>
+                    <td>
+                        {{item.waitingDayAfterExpire}}
+                    </td>
+                    <td>
+                        {{item.expiringEditionDisplayName}}
                     </td>
                     <td class="text-center">
                         <ng-container *ngIf="isGranted('Pages.Editions.Edit')">
