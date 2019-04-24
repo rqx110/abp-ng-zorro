@@ -54,7 +54,7 @@ export class AddMemberModalComponent extends ModalPagedListingComponentBase<Name
     addUsersToOrganizationUnit(): void {
         const selectCount = this.selectedDataItems.length;
         if (selectCount <= 0) {
-            abp.message.warn(this.l('SelectAUser'));
+            this.message.warn(this.l('SelectAUser'));
             return;
         }
         this.saving = true;
