@@ -3,6 +3,7 @@ import {
     CurrentUserProfileEditDto,
     ProfileServiceProxy,
     SettingScopes,
+    SendVerificationSmsInputDto,
 } from '@shared/service-proxies/service-proxies';
 import { AppConsts } from '@shared/AppConsts';
 import { ModalComponentBase } from '@shared/common/modal-component-base';
@@ -41,7 +42,9 @@ export class MySettingsModalComponent extends ModalComponentBase implements OnIn
     }
 
     smsVerify(): void {
-        this._profileService.sendVerificationSms()
+        let input = new SendVerificationSmsInputDto();
+        input.phoneNumber = this.user.phoneNumber;
+        this._profileService.sendVerificationSms(input)
             .subscribe(() => {
                 this.modalHelper.createStatic(SmsVerificationModalComponent)
                     .subscribe(() => { this.isPhoneNumberConfirmed = true; });

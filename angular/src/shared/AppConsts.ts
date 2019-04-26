@@ -8,7 +8,7 @@ export class AppConsts {
     static appBaseUrlFormat: string;
 
     static localeMappings: any = [];
-    static ngZorroLocaleMappings: any = [];
+
     static readonly userManagement = {
         defaultAdminUserName: 'admin',
     };
@@ -20,7 +20,6 @@ export class AppConsts {
     static readonly authorization = {
         encrptedAuthTokenName: 'enc_auth_token',
     };
-    static maxProfilPictureMb = 1; // 个人头像上传最大MB
 
     static readonly grid = {
         defaultPageSize: 10,

@@ -22,13 +22,13 @@
 					"type" : "numeric",
 					"content" : "
 								<nz-form-item nz-row>
-								<nz-form-label nzFor=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\">
-									{{\"{{Property_Name_Here}}\" | localize}}
-								</nz-form-label>
-								<nz-form-control>
-									<nz-input-number id=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\" [(ngModel)]=\"{{entity_Name_Here}}.{{property_Name_Here}}\" name=\"{{Property_Name_Here}}\" [nzMin]=\"{{MinValue}}\" [nzMax]=\"{{MaxValue}}\" [nzStep]=\"1\"></nz-input-number>
-								</nz-form-control>
-					"
+									<nz-form-label nzFor=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\">
+										{{\"{{Property_Name_Here}}\" | localize}}
+									</nz-form-label>
+									<nz-form-control>
+										<nz-input-number id=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\" [(ngModel)]=\"{{entity_Name_Here}}.{{property_Name_Here}}\" name=\"{{Property_Name_Here}}\" {{MinValue}} {{MaxValue}} [nzStep]=\"1\"></nz-input-number>
+									</nz-form-control>
+								</nz-form-item>"
 					},
 					{
 					"type" : "bool",
@@ -121,12 +121,12 @@
 		{
 			"placeholder": "{{MaxValue}}",
 			"condition": "{{Property_Is_Range_Set_Here}} == true",
-			"content": " max=\"Property_RangeMax_Here\""
+			"content": " nzMax=\"Property_RangeMax_Here\""
 		},
 		{
 			"placeholder": "{{MinValue}}",
 			"condition": "{{Property_Is_Range_Set_Here}} == true",
-			"content": " min=\"Property_RangeMin_Here\""
+			"content": " nzMin=\"Property_RangeMin_Here\""
 		}
 	]
 }

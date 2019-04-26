@@ -42,7 +42,6 @@ export class AppPreBootstrap {
             AppConsts.appBaseUrlFormat = result.appBaseUrl;
             AppConsts.remoteServiceBaseUrlFormat = result.remoteServiceBaseUrl;
             AppConsts.localeMappings = result.localeMappings;
-            AppConsts.ngZorroLocaleMappings = result.ngZorroLocaleMappings;
 
             if (tenancyName == null) {
                 AppConsts.appBaseUrl = result.appBaseUrl.replace(AppConsts.tenancyNamePlaceHolderInUrl + '.', '');
