@@ -1,12 +1,15 @@
-<nz-popover nzTrigger="click" nzPlacement="bottomRight" nzOverlayClassName="notice-icon">
-    <div nz-popover class="alain-default__nav-item notice-icon__item">
-        <nz-badge [nzCount]="unreadNotificationCount">
-            <i nz-icon type="bell" class="alain-default__nav-item-icon"></i>
-        </nz-badge>
-    </div>
-    <ng-template #nzTemplate>
-        <nz-spin [nzSpinning]="loading" [nzDelay]="0">
-            <nz-card [nzTitle]="nzTitle" [nzLoading]="loading" [nzExtra]="extra" [nzBordered]="false" class="ant-card__body-nopadding mb0">
+<div class="alain-default__nav-item" nz-dropdown nzTrigger="click" nzPlacement="bottomRight"
+    [nzDropdownMenu]="noticeMenu">
+    <nz-badge [nzCount]="unreadNotificationCount">
+        <i nz-icon nzType="bell" class="alain-default__nav-item-icon"></i>
+    </nz-badge>
+    <nz-dropdown-menu #noticeMenu="nzDropdownMenu">
+        <div nz-menu class="width-lg">
+            <div *ngIf="loading" class="mx-lg p-lg">
+                <nz-spin></nz-spin>
+            </div>
+            <nz-card [nzTitle]="nzTitle" [nzLoading]="loading" [nzExtra]="extra" [nzBordered]="false"
+                class="ant-card__body-nopadding">
                 <ng-template #nzTitle>
                     {{unreadNotificationCount}} {{'NewNotifications' | localize}}
                 </ng-template>
@@ -22,7 +25,8 @@
                     <nz-list [nzDataSource]="notifications" [nzRenderItem]="item">
                         <ng-template #item let-item>
                             <nz-list-item (click)="gotoUrl(item.url)">
-                                <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription" [nzAvatar]="nzAvatar">
+                                <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription"
+                                    [nzAvatar]="nzAvatar">
                                     <ng-template #nzTitle>
                                         {{item.text}}
                                     </ng-template>
@@ -30,25 +34,27 @@
                                         <div *ngIf="item.time" class="notice-icon__item-time">
                                             {{item.time | momentFromNow}}
                                             <span *ngIf="item.isUnread">
-                                                <a href="javascript:;" *ngIf="item.state=='UNREAD'" class="notice-icon__item-extra"
+                                                <a href="javascript:;" *ngIf="item.state=='UNREAD'"
+                                                    class="notice-icon__item-extra"
                                                     (click)="setNotificationAsRead(item); $event.preventDefault(); $event.stopPropagation();">{{"SetAsRead" | localize}}</a>
                                             </span>
                                         </div>
                                     </ng-template>
                                     <ng-template #nzAvatar>
-                                        <i nz-icon [type]="item.icon" class="display-3"></i>
+                                        <i nz-icon [nzType]="item.icon" class="display-3"></i>
                                     </ng-template>
                                 </nz-list-item-meta>
                             </nz-list-item>
                         </ng-template>
                     </nz-list>
                     <div class="notice-icon__clear" *ngIf="notifications.length">
-                        <a href="javascript:;" (click)="setAllNotificationsAsRead();" *ngIf="unreadNotificationCount">{{"SetAllAsRead" | localize}}</a>
+                        <a href="javascript:;" (click)="setAllNotificationsAsRead();"
+                            *ngIf="unreadNotificationCount">{{"SetAllAsRead" | localize}}</a>
                         <nz-divider nzType="vertical" *ngIf="unreadNotificationCount"></nz-divider>
                         <a routerLink="notifications">{{"SeeAllNotifications" | localize}}</a>
                     </div>
                 </ng-template>
             </nz-card>
-        </nz-spin>
-    </ng-template>
-</nz-popover>
+        </div>
+    </nz-dropdown-menu>
+</div>

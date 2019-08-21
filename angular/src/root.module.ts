@@ -23,7 +23,7 @@ import { AbpHttpInterceptor } from '@abp/abpHttpInterceptor';
 import { DelonModule } from './delon.module';
 
 import * as _ from 'lodash';
-import { NzI18nService } from 'ng-zorro-antd';
+import { NzI18nService, NZ_I18N, en_US } from 'ng-zorro-antd';
 
 export function appInitializerFactory(
     injector: Injector,
@@ -62,7 +62,7 @@ function getDocumentOrigin() {
 function registerNgZorroLocales(injector: Injector) {
     if (shouldLoadLocale()) {
         let ngZorroLcale = convertAbpLocaleToNgZorroLocale(abp.localization.currentLanguage.name);
-        import(`ng-zorro-antd/esm5/i18n/languages/${ngZorroLcale}.js`)
+        import(`ng-zorro-antd/esm2015/i18n/languages/${ngZorroLcale}.js`)
             .then(module => {
                 let nzI18nService = injector.get(NzI18nService);
                 nzI18nService.setLocale(module.default);
@@ -100,7 +100,7 @@ export function getRemoteServiceBaseUrl(): string {
 }
 
 export function getCurrentLanguage(): string {
-    return abp.localization.currentLanguage.name;
+    return convertAbpLocaleToAngularLocale(abp.localization.currentLanguage.name);
 }
 
 export function getBaseHref(platformLocation: PlatformLocation): string {
@@ -144,7 +144,8 @@ function handleLogoutRequest(authService: AppAuthService) {
         {
             provide: LOCALE_ID,
             useFactory: getCurrentLanguage,
-        }
+        },
+        { provide: NZ_I18N, useValue: en_US }
     ],
     bootstrap: [RootComponent],
 })

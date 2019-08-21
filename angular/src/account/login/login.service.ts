@@ -11,7 +11,7 @@ import { ScriptLoaderService } from '@shared/utils/script-loader.service';
 import * as _ from 'lodash';
 import { finalize } from 'rxjs/operators';
 
-import { OAuthService, AuthConfig } from 'angular-oauth2-oidc';
+import { OAuthService, AuthConfig } from 'volo-angular-oauth2-oidc';
 
 declare const FB: any; // Facebook API
 declare const gapi: any; // Facebook API
@@ -33,18 +33,9 @@ export class ExternalLoginProvider extends ExternalLoginProviderInfoModel {
         this.name = providerInfo.name;
         this.clientId = providerInfo.clientId;
         this.additionalParams = providerInfo.additionalParams;
-        this.icon = ExternalLoginProvider.getSocialIcon(this.name);
+        this.icon = providerInfo.name.toLowerCase();
     }
 
-    private static getSocialIcon(providerName: string): string {
-        providerName = providerName.toLowerCase();
-
-        // if (providerName === 'google') {
-        //     providerName = 'googleplus';
-        // }
-
-        return providerName;
-    }
 }
 
 @Injectable()
@@ -269,7 +260,7 @@ export class LoginService {
         authConfig.clientId = loginProvider.clientId;
         authConfig.responseType = 'id_token';
         authConfig.redirectUri = window.location.origin + '/account/login';
-        authConfig.scope = 'openid';
+        authConfig.scope = 'openid profile';
         authConfig.requestAccessToken = false;
         return authConfig;
     }

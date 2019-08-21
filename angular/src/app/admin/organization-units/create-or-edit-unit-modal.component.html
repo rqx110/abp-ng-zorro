@@ -1,7 +1,7 @@
 <form nz-form #organizationCreateOrEditForm="ngForm" (ngSubmit)="save()">
     <div class="modal-header">
         <div class="modal-title">
-            <i nz-icon type="share-alt" class="mr-sm"></i>
+            <i nz-icon nzType="share-alt" class="mr-sm"></i>
             <span *ngIf="organizationUnit.id">{{"Edit" | localize}}: {{organizationUnit.displayName}}</span>
             <span *ngIf="!organizationUnit.id&&!organizationUnit.parentId">{{"NewOrganizationUnit" | localize}}</span>
             <span *ngIf="organizationUnit.parentId&&organizationUnit.parentDisplayName">{{'AddSubNodeForXParentNode' | localize:organizationUnit.parentDisplayName}}</span>
@@ -13,12 +13,12 @@
             <nz-form-label nzFor="OrganizationUnitDisplayName" nzRequired>
                 {{"Name" | localize}}
             </nz-form-label>
-            <nz-form-control nzHasFeedback>
+            <nz-form-control [nzErrorTip]="dispalyNameValidationTpl" nzHasFeedback>
                 <input nz-input #organizationUnitDisplayName="ngModel" name="OrganizationUnitDisplayName" [(ngModel)]="organizationUnit.displayName"
                     placeholder="{{'Name' | localize}}" required maxlength="128">
-                <nz-form-explain *ngIf="organizationUnitDisplayName.dirty && organizationUnitDisplayName.errors">
-                    <validation-messages [formCtrl]="organizationUnitDisplayName"></validation-messages>
-                </nz-form-explain>
+                <ng-template #dispalyNameValidationTpl let-control>
+                    <validation-messages [formCtrl]="control"></validation-messages>
+                </ng-template>
             </nz-form-control>
         </nz-form-item>
     </fieldset>
@@ -29,7 +29,7 @@
         </button>
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!organizationCreateOrEditForm.form.valid || saving"
             [nzLoading]="saving">
-            <i nz-icon type="save" *ngIf="!saving"></i> {{"Save" | localize}}
+            <i nz-icon nzType="save" *ngIf="!saving"></i> {{"Save" | localize}}
         </button>
     </div>
 

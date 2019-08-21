@@ -20,12 +20,12 @@ const routes: Routes = [
             },
             {
                 path: 'main',
-                loadChildren: 'app/main/main.module#MainModule', // Lazy load main module
+                loadChildren: () => import('app/main/main.module').then(m => m.MainModule), // Lazy load main module
                 data: { preload: true },
             },
             {
                 path: 'admin',
-                loadChildren: 'app/admin/admin.module#AdminModule', // Lazy load admin module
+                loadChildren: () => import('app/admin/admin.module').then(m => m.AdminModule), // Lazy load admin module
                 data: { preload: true },
                 canLoad: [AppRouteGuard]
             },

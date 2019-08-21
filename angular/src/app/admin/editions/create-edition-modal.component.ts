@@ -12,7 +12,7 @@ import { ModalComponentBase } from '@shared/common/modal-component-base';
 })
 export class CreateEditionModalComponent extends ModalComponentBase implements OnInit {
 
-    @ViewChild('featureTree') featureTree: FeatureTreeComponent;
+    @ViewChild('featureTree', { static: true }) featureTree: FeatureTreeComponent;
 
     saving = false;
     editionId?: number;

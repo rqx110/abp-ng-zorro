@@ -5,12 +5,12 @@
         </nz-alert>
 
         <nz-form-item>
-            <nz-form-control nzHasFeedback>
+            <nz-form-control [nzErrorTip]="emailAddressValidationTpl" nzHasFeedback>
                 <input nz-input name="emailAddress" #emailAddressInput="ngModel" [(ngModel)]="model.emailAddress"
                     placeholder="{{'EmailAddress' | localize}}" autoFocus required maxlength="255" type="email" email>
-                <nz-form-explain class="text-left" *ngIf="emailAddressInput.dirty && emailAddressInput.errors">
-                    <validation-messages [formCtrl]="emailAddressInput"></validation-messages>
-                </nz-form-explain>
+                <ng-template #emailAddressValidationTpl let-control>
+                    <validation-messages [formCtrl]="control"></validation-messages>
+                </ng-template>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item nz-row nzGutter="8">

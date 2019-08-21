@@ -8,13 +8,13 @@ import {
     EventEmitter,
     Output,
     Injector,
-    TemplateRef,
 } from '@angular/core';
 import {
     NzTreeNode,
     NzDropdownContextComponent,
-    NzDropdownService,
+    NzContextMenuService,
     NzFormatEmitEvent,
+    NzDropdownMenuComponent,
 } from 'ng-zorro-antd';
 import { AppComponentBase } from '@shared/common/app-component-base';
 import {
@@ -41,7 +41,6 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
     totalUnitCount = 0;
     _treeData: NzTreeNode[] = [];
     private _ouData: OrganizationUnitDto[] = [];
-    contextMenu: NzDropdownContextComponent;
     activedNode: NzTreeNode;
     private dragSrcNode: NzTreeNode;
     private dragTargetNode: NzTreeNode;
@@ -50,7 +49,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
     constructor(
         injector: Injector,
         private _organizationUnitService: OrganizationUnitServiceProxy,
-        private _nzDropdownService: NzDropdownService,
+        private _nzContextMenuService: NzContextMenuService,
         private _arrayService: ArrayService,
     ) {
         super(injector);
@@ -223,10 +222,10 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
 
     createContextMenu(
         $event: MouseEvent,
-        template: TemplateRef<void>,
+        menu: NzDropdownMenuComponent,
         node: NzTreeNode,
     ): void {
-        this.contextMenu = this._nzDropdownService.create($event, template);
+        this._nzContextMenuService.create($event, menu);
         this._setActiveNodeValue(node);
     }
 
@@ -295,7 +294,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
         if (this.activedNode.key) {
             this.addUnit(parseInt(this.activedNode.key));
         }
-        this.contextMenu.close();
+        this._nzContextMenuService.close();
     }
 
     editUnit(): void {
@@ -320,7 +319,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
                     }
                 });
         }
-        this.contextMenu.close();
+        this._nzContextMenuService.close();
     }
 
     deleteUnit(): void {
@@ -340,7 +339,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
                     }
                 });
         }
-        this.contextMenu.close();
+        this._nzContextMenuService.close();
     }
 
     private unitDeletedData(): void {

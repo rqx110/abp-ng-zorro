@@ -6,7 +6,7 @@
         <nz-card [nzBordered]="false" [nzExtra]="cachingExtra" [nzTitle]="l('CachesHeaderInfo')">
             <ng-template #cachingExtra>
                 <button nz-button [nzType]="'primary'" (click)="clearAllCaches()">
-                    <i nz-icon type="delete"></i>
+                    <i nz-icon nzType="delete"></i>
                     <span>{{"ClearAll" | localize}}</span>
                 </button>
             </ng-template>
@@ -32,11 +32,11 @@
         <nz-card [nzBordered]="false" [nzExtra]="webSiteLogExtra" [nzTitle]="l('WebSiteLogsHeaderInfo')">
             <ng-template #webSiteLogExtra>
                 <button nz-button [nzType]="'primary'" (click)="downloadWebLogs()">
-                    <i nz-icon type="download"></i>
+                    <i nz-icon nzType="download"></i>
                     <span>{{"DownloadAll" | localize}}</span>
                 </button>
                 <button nz-button [nzType]="'default'" (click)="getWebLogs()">
-                    <i nz-icon type="reload"></i>
+                    <i nz-icon nzType="reload"></i>
                     <span>{{"Refresh" | localize}}</span>
                 </button>
             </ng-template>

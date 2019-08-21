@@ -35,7 +35,7 @@ import { finalize } from 'rxjs/operators';
     styleUrls: ['./create-or-edit-user-modal.component.less'],
 })
 export class CreateOrEditUserModalComponent extends ModalComponentBase implements OnInit, AfterViewInit {
-    @ViewChild('organizationUnitTree')
+    @ViewChild('organizationUnitTree', { static: true })
     organizationUnitTree: OrganizationUnitsTreeComponent;
 
     saving = false;

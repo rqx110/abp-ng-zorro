@@ -102,13 +102,11 @@
                             <nz-divider nzType="vertical"></nz-divider>
                         </ng-container>
                         <ng-container *ngIf="isGranted('{{Permission_Value_Here}}.Delete')">
-                            <nz-popconfirm [nzTitle]="l('{{Entity_Name_Here}}DeleteWarningMessage', '')" (nzOnConfirm)="delete{{Entity_Name_Here}}(item.{{entity_Name_Here}})"
-                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
-                                <a nz-popconfirm>
-                                    <i nz-icon type="delete"></i>
-                                    {{'Delete' | localize}}
-                                </a>
-                            </nz-popconfirm>
+                            <a nz-popconfirm [nzPopconfirmTitle]="l('{{Entity_Name_Here}}DeleteWarningMessage', '')" (nzOnConfirm)="delete{{Entity_Name_Here}}(item.{{entity_Name_Here}})"
+                            [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
+                                <i nz-icon type="delete"></i>
+                                {{'Delete' | localize}}
+                            </a>
                         </ng-container>
                     </td>
                 </tr>

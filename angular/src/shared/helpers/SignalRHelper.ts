@@ -7,7 +7,8 @@ export class SignalRHelper {
         let encryptedAuthToken = new UtilsService().getCookieValue(AppConsts.authorization.encrptedAuthTokenName);
 
         abp.signalr = {
-            autoConnect: true,
+            autoConnect: false, // _zone.runOutsideAngular in ChatSignalrService
+            // autoReconnect: true,
             connect: undefined,
             hubs: undefined,
             qs: AppConsts.authorization.encrptedAuthTokenName + '=' + encodeURIComponent(encryptedAuthToken),

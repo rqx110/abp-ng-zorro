@@ -14,10 +14,11 @@
                 <nz-form-item>
                     <nz-form-control>
                         <nz-input-group nzSearch [nzAddOnAfter]="suffixSearchButton">
-                            <input type="text" nz-input [(ngModel)]="filterText" name="filterText" placeholder="{{'SearchWithThreeDot' | localize}}">
+                            <input type="text" nz-input [(ngModel)]="filterText" name="filterText"
+                                placeholder="{{'SearchWithThreeDot' | localize}}">
                             <ng-template #suffixSearchButton>
                                 <button nz-button nzType="primary" nzSearch (click)="onSearch($event)">
-                                    <i nz-icon type="search"></i>
+                                    <i nz-icon nzType="search"></i>
                                 </button>
                             </ng-template>
                         </nz-input-group>
@@ -38,7 +39,8 @@
             <nz-col nzSm="12">
                 <nz-form-item>
                     <nz-form-control>
-                        <role-combo [selectMode]="default" [(selectedRole)]="role" (selectedRoleChange)="refresh()"></role-combo>
+                        <role-combo [selectMode]="default" [(selectedRole)]="role" (selectedRoleChange)="refresh()">
+                        </role-combo>
                     </nz-form-control>
                 </nz-form-item>
             </nz-col>
@@ -47,7 +49,8 @@
             <nz-col nzSm="12">
                 <nz-form-item>
                     <nz-form-control>
-                        <label nz-checkbox name="OnlyLockedUsers" [(ngModel)]="onlyLockedUsers" (ngModelChange)="refresh()">{{"OnlyLockedUsers" | localize}}</label>
+                        <label nz-checkbox name="OnlyLockedUsers" [(ngModel)]="onlyLockedUsers"
+                            (ngModelChange)="refresh()">{{"OnlyLockedUsers" | localize}}</label>
                     </nz-form-control>
                 </nz-form-item>
             </nz-col>
@@ -55,22 +58,24 @@
     </form>
     <nz-row nzGutter="8">
         <nz-col nzMd="20" nzSm="12">
-            <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Administration.Users.Create')" (click)="createOrEdit()">
-                <i nz-icon type="plus"></i>
+            <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Administration.Users.Create')"
+                (click)="createOrEdit()">
+                <i nz-icon nzType="plus"></i>
                 <span>
                     {{"CreateNewUser" | localize}}
                 </span>
             </button>
             <ng-container *ngIf="selectedDataItems.length > 0">
-                <button nz-button [nzType]="'danger'" *ngIf="isGranted('Pages.Administration.Users.Delete')" (click)="batchDelete()">
-                    <i nz-icon type="delete"></i>
+                <button nz-button [nzType]="'danger'" *ngIf="isGranted('Pages.Administration.Users.Delete')"
+                    (click)="batchDelete()">
+                    <i nz-icon nzType="delete"></i>
                     <span>
                         Delete Selected
                     </span>
                 </button>
             </ng-container>
             <button nz-button nzType="default" (click)="exportToExcel()">
-                <i nz-icon type="file-excel"></i>
+                <i nz-icon nzType="file-excel"></i>
                 <span>
                     {{"ExportToExcel" | localize}}
                 </span>
@@ -100,17 +105,18 @@
         </nz-alert>
     </div>
     <nz-row class="my-md">
-        <nz-table #ajaxTable [nzData]="dataList" [nzTotal]="totalItems" [(nzPageIndex)]="pageNumber" [(nzPageSize)]="pageSize"
-            [nzLoading]="isTableLoading" (nzPageIndexChange)="pageNumberChange()" (nzPageSizeChange)="refresh()"
-            [nzShowSizeChanger]="true" [nzShowQuickJumper]="true" [nzShowTotal]="totalTemplate"
-            [nzFrontPagination]="false" [nzScroll]="{x: totalItems>0?'1500px':'auto'}">
+        <nz-table #ajaxTable [nzData]="dataList" [nzTotal]="totalItems" [(nzPageIndex)]="pageNumber"
+            [(nzPageSize)]="pageSize" [nzLoading]="isTableLoading" (nzPageIndexChange)="pageNumberChange()"
+            (nzPageSizeChange)="refresh()" [nzShowSizeChanger]="true" [nzShowQuickJumper]="true"
+            [nzShowTotal]="totalTemplate" [nzFrontPagination]="false" [nzScroll]="{x: totalItems>0?'1500px':'auto'}">
             <ng-template #totalTemplate let-total>
                 {{'TotalRecordsCount' | localize:total}}
             </ng-template>
             <thead (nzSortChange)="gridSort($event)">
                 <tr>
-                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled" [nzIndeterminate]="checkboxIndeterminate"
-                        (nzCheckedChange)="checkAll($event)" nzWidth="60px" nzLeft="0px"></th>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled"
+                        [nzIndeterminate]="checkboxIndeterminate" (nzCheckedChange)="checkAll($event)" nzWidth="60px"
+                        nzLeft="0px"></th>
 
                     <th nzShowSort nzSortKey="userName">
                         {{'UserName' | localize}}
@@ -179,40 +185,39 @@
                     <td nzRight="0px" class="text-center">
                         <ng-container *ngIf="isGranted('Pages.Administration.Users.Edit')">
                             <a (click)="createOrEdit(item.id)">
-                                <i nz-icon type="edit"></i>
+                                <i nz-icon nzType="edit"></i>
                                 {{'Edit' | localize}}
                             </a>
                             <nz-divider nzType="vertical"></nz-divider>
                         </ng-container>
                         <ng-container *ngIf="isGranted('Pages.Administration.Users.Delete')">
-                            <nz-popconfirm [nzTitle]="l('UserDeleteWarningMessage', item.userName)" (nzOnConfirm)="deleteUser(item)"
-                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
-                                <a nz-popconfirm>
-                                    <i nz-icon type="delete"></i>
-                                    {{'Delete' | localize}}
-                                </a>
-                            </nz-popconfirm>
+                            <a nz-popconfirm [nzPopconfirmTitle]="l('UserDeleteWarningMessage', item.userName)"
+                                (nzOnConfirm)="deleteUser(item)" [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
+                                <i nz-icon nzType="delete"></i>
+                                {{'Delete' | localize}}
+                            </a>
                         </ng-container>
-                        <ng-container *ngIf="isGrantedAny('Pages.Administration.Users.Impersonation', 'Pages.Administration.Users.ChangePermissions', 'Pages.Administration.Users.Unlock')">
+                        <ng-container
+                            *ngIf="isGrantedAny('Pages.Administration.Users.Impersonation', 'Pages.Administration.Users.ChangePermissions', 'Pages.Administration.Users.Unlock')">
                             <nz-divider nzType="vertical"></nz-divider>
-                            <nz-dropdown>
-                                <a nz-dropdown>
-                                    {{'More' | localize}}
-                                    <i nz-icon type="down"></i>
-                                </a>
+                            <a nz-dropdown nzPlacement="bottomRight" [nzDropdownMenu]="menuTpl">
+                                {{'More' | localize}}
+                                <i nz-icon nzType="down"></i>
+                            </a>
+                            <nz-dropdown-menu #menuTpl="nzDropdownMenu">
                                 <ul nz-menu>
-
-                                    <li nz-menu-item *ngIf="isGranted('Pages.Administration.Users.Edit')" (click)="editUserPermissions(item) ">
-                                        <i nz-icon type="safety"></i>
+                                    <li nz-menu-item *ngIf="isGranted('Pages.Administration.Users.Edit')"
+                                        (click)="editUserPermissions(item) ">
+                                        <i nz-icon nzType="safety"></i>
                                         {{'Permissions' | localize}}
                                     </li>
-                                    <li nz-menu-item *ngIf="isGranted('Pages.Administration.Users.Edit') " (click)="unlockUser(item) ">
-                                        <i nz-icon type="unlock"></i>
+                                    <li nz-menu-item *ngIf="isGranted('Pages.Administration.Users.Edit') "
+                                        (click)="unlockUser(item) ">
+                                        <i nz-icon nzType="unlock"></i>
                                         {{'Unlock' | localize}}
                                     </li>
-
                                 </ul>
-                            </nz-dropdown>
+                            </nz-dropdown-menu>
                         </ng-container>
                     </td>
                 </tr>

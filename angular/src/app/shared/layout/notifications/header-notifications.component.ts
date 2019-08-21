@@ -32,7 +32,7 @@ export class HeaderNotificationsComponent extends AppComponentBase implements On
     }
 
     loadNotifications(): void {
-        this._notificationService.getUserNotifications(undefined, 3, 0)
+        this._notificationService.getUserNotifications(undefined, undefined, undefined, 3, 0)
             .pipe(finalize(() => this.loading = false))
             .subscribe(result => {
                 this.unreadNotificationCount = result.unreadCount;

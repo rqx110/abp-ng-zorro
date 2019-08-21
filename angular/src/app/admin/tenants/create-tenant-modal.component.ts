@@ -75,7 +75,7 @@ export class CreateTenantModalComponent extends ModalComponentBase implements On
     }
 
     selectedEditionIsFree(): boolean {
-        let selectedEditions = _.filter(this.editions, { 'value': this.tenant.editionId })
+        let selectedEditions = _.filter(this.editions, { 'value': this.tenant.editionId.toString() })
             .map(u => Object.assign(new SubscribableEditionComboboxItemDto(), u));
 
         if (selectedEditions.length !== 1) {

@@ -1,7 +1,7 @@
 <form nz-form #editionCreateForm="ngForm" (ngSubmit)="save()" autocomplete="off">
     <div class="modal-header">
         <div class="modal-title">
-            <i nz-icon type="medicine-box" class="mr-sm"></i>
+            <i nz-icon nzType="medicine-box" class="mr-sm"></i>
             <span>{{'CreateNewEdition' | localize}}</span>
         </div>
     </div>
@@ -12,12 +12,12 @@
                     <nz-form-label nzFor="EditionDisplayName" nzRequired>
                         {{"EditionName" | localize}}
                     </nz-form-label>
-                    <nz-form-control nzHasFeedback>
+                    <nz-form-control [nzErrorTip]="displayNameValidationTpl" nzHasFeedback>
                         <input nz-input id="EditionDisplayName" #editionNameInput="ngModel" name="EditionDisplayName"
-                            [(ngModel)]="edition.edition.displayName" required maxlength="64">
-                        <nz-form-explain *ngIf="editionNameInput.dirty && editionNameInput.errors">
-                            <validation-messages [formCtrl]="editionNameInput"></validation-messages>
-                        </nz-form-explain>
+                            [(ngModel)]="edition.edition.displayName" required maxlength="64">                        
+                        <ng-template #displayNameValidationTpl let-control>
+                            <validation-messages [formCtrl]="control"></validation-messages>
+                        </ng-template>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item nz-row>
@@ -34,29 +34,29 @@
                                 <nz-form-label nzFor="MonthlyPrice" [nzRequired]="!isFree">
                                     {{"MonthlyPrice" | localize}}
                                 </nz-form-label>
-                                <nz-form-control nzHasFeedback>
+                                <nz-form-control [nzErrorTip]="monthPriceValidationTpl" nzHasFeedback>
                                     <nz-input-group nzAddOnBefore="$">
                                         <input nz-input type="number" id="MonthlyPrice" #monthlyPriceInput="ngModel" name="MonthlyPrice"
                                             [(ngModel)]="edition.edition.monthlyPrice" [required]="!isFree">
-                                    </nz-input-group>
-                                    <nz-form-explain *ngIf="monthlyPriceInput.dirty && monthlyPriceInput.errors">
-                                        <validation-messages [formCtrl]="monthlyPriceInput"></validation-messages>
-                                    </nz-form-explain>
-                                </nz-form-control>
+                                    </nz-input-group> 
+                                    <ng-template #monthPriceValidationTpl let-control>
+                                        <validation-messages [formCtrl]="control"></validation-messages>
+                                    </ng-template>
+                                </nz-form-control>                                
                             </div>
                             <div nz-col nzSpan="12">
                                 <nz-form-label nzFor="AnnualPrice" [nzRequired]="!isFree">
                                     {{"AnnualPrice" | localize}}
                                 </nz-form-label>
-                                <nz-form-control nzHasFeedback>
+                                <nz-form-control [nzErrorTip]="annualPriceValidationTpl" nzHasFeedback>
                                     <nz-input-group nzAddOnBefore="$">
                                         <input nz-input type="number" id="AnnualPrice" #annualPriceInput="ngModel" name="AnnualPrice"
                                             [(ngModel)]="edition.edition.annualPrice" [required]="!isFree">
                                     </nz-input-group>
-                                    <nz-form-explain *ngIf="annualPriceInput.dirty && annualPriceInput.errors">
-                                        <validation-messages [formCtrl]="annualPriceInput"></validation-messages>
-                                    </nz-form-explain>
-                                </nz-form-control>
+                                    <ng-template #annualPriceValidationTpl let-control>
+                                        <validation-messages [formCtrl]="control"></validation-messages>
+                                    </ng-template>
+                                </nz-form-control>                                
                             </div>
                         </div>
                         <div [hidden]="isFree">
@@ -66,12 +66,12 @@
                                     <nz-form-label nzFor="TrialDayCount" [nzRequired]="isTrialActive">
                                         {{"TrialDayCount" | localize}}
                                     </nz-form-label>
-                                    <nz-form-control nzHasFeedback>
+                                    <nz-form-control [nzErrorTip]="trialDayCountValidationTpl" nzHasFeedback>
                                         <input nz-input id="TrialDayCount" #trialDayCountInput="ngModel" name="TrialDayCount"
                                             [(ngModel)]="edition.edition.trialDayCount" [required]="isTrialActive">
-                                        <nz-form-explain *ngIf="trialDayCountInput.dirty && trialDayCountInput.errors">
-                                            <validation-messages [formCtrl]="trialDayCountInput"></validation-messages>
-                                        </nz-form-explain>
+                                        <ng-template #trialDayCountValidationTpl let-control>
+                                            <validation-messages [formCtrl]="control"></validation-messages>
+                                        </ng-template>
                                     </nz-form-control>
                                 </div>
                             </div>
@@ -81,14 +81,14 @@
                                     <nz-form-label nzFor="WaitingDayAfterExpire" [nzRequired]="isWaitingDayActive">
                                         {{"WaitingDayAfterExpire" | localize}}
                                     </nz-form-label>
-                                    <nz-form-control nzHasFeedback>
+                                    <nz-form-control [nzErrorTip]="waitingDayAfterExpireValidationTpl" nzHasFeedback>
                                         <input nz-input id="WaitingDayAfterExpire" #waitingDayAfterExpireInput="ngModel"
                                             name="WaitingDayAfterExpire" [(ngModel)]="edition.edition.waitingDayAfterExpire"
                                             [required]="isWaitingDayActive">
-                                        <nz-form-explain *ngIf="waitingDayAfterExpireInput.dirty && waitingDayAfterExpireInput.errors">
-                                            <validation-messages [formCtrl]="waitingDayAfterExpireInput"></validation-messages>
-                                        </nz-form-explain>
-                                    </nz-form-control>
+                                        <ng-template #waitingDayAfterExpireValidationTpl let-control>
+                                            <validation-messages [formCtrl]="control"></validation-messages>
+                                        </ng-template>    
+                                    </nz-form-control>                                    
                                 </div>
                             </div>
                             <div nz-row>
@@ -119,6 +119,6 @@
     <div class="modal-footer">
         <button nz-button type="button" [disabled]="saving" (click)="close()"> {{"Cancel" | localize}} </button>
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!editionCreateForm.form.valid||saving">
-            <i nz-icon type="save"></i> {{"Save" | localize}} </button>
+            <i nz-icon nzType="save"></i> {{"Save" | localize}} </button>
     </div>
 </form>

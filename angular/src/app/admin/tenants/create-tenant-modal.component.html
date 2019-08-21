@@ -6,22 +6,22 @@
     </div>
     <nz-form-item>
         <nz-form-label nzFor="tenancyName">{{'TenancyName' | localize}}</nz-form-label>
-        <nz-form-control nzHasFeedback>
+        <nz-form-control [nzErrorTip]="tenancyNameValidationTpl" nzHasFeedback>
             <input nz-input name="tenancyName" #tenancyNameInput="ngModel" [(ngModel)]="tenant.tenancyName"
                 placeholder="{{'TenancyName' | localize}}" required maxlength="64" pattern="^[a-zA-Z][a-zA-Z0-9_-]{1,}$">
-            <nz-form-explain *ngIf="tenancyNameInput.dirty && tenancyNameInput.errors">
-                <validation-messages [formCtrl]="tenancyNameInput"></validation-messages>
-            </nz-form-explain>
+            <ng-template #tenancyNameValidationTpl let-control>
+                <validation-messages [formCtrl]="control"></validation-messages>
+            </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-label nzFor="Name">{{'Name' | localize}}</nz-form-label>
-        <nz-form-control nzHasFeedback>
+        <nz-form-control [nzErrorTip]="nameValidationTpl" nzHasFeedback>
             <input nz-input name="name" #nameInput="ngModel" [(ngModel)]="tenant.name" placeholder="{{'Name' | localize}}"
                 required maxlength="128">
-            <nz-form-explain *ngIf="nameInput.dirty&&nameInput.errors">
-                <validation-messages [formCtrl]="nameInput"></validation-messages>
-            </nz-form-explain>
+            <ng-template #nameValidationTpl let-control>
+                <validation-messages [formCtrl]="control"></validation-messages>
+            </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-control>
@@ -30,22 +30,22 @@
 
     <nz-form-item *ngIf="!useHostDb">
         <nz-form-label nzFor="connectionString">{{'DatabaseConnectionString' | localize}}</nz-form-label>
-        <nz-form-control nzHasFeedback>
+        <nz-form-control [nzErrorTip]="connectionStringValidationTpl" nzHasFeedback>
             <input nz-input name="connectionString" #connectionStringInput="ngModel" [(ngModel)]="tenant.connectionString"
                 placeholder="{{'DatabaseConnectionString' | localize}}" required maxlength="1024">
-            <nz-form-explain *ngIf="connectionStringInput.dirty&&connectionStringInput.errors">
-                <validation-messages [formCtrl]="connectionStringInput"></validation-messages>
-            </nz-form-explain>
+            <ng-template #connectionStringValidationTpl let-control>
+                <validation-messages [formCtrl]="control"></validation-messages>
+            </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-label nzFor="AdminEmailAddress">{{'AdminEmailAddress' | localize}}</nz-form-label>
-        <nz-form-control nzHasFeedback>
+        <nz-form-control [nzErrorTip]="adminEmailAddressValidationTpl" nzHasFeedback>
             <input nz-input type="email" name="AdminEmailAddress" #adminEmailAddressInput="ngModel" [(ngModel)]="tenant.adminEmailAddress"
                 placeholder="{{'AdminEmailAddress' | localize}}" required email maxlength="256">
-            <nz-form-explain *ngIf="adminEmailAddressInput.dirty&&adminEmailAddressInput.errors">
-                <validation-messages [formCtrl]="adminEmailAddressInput"></validation-messages>
-            </nz-form-explain>
+            <ng-template #adminEmailAddressValidationTpl let-control>
+                <validation-messages [formCtrl]="control"></validation-messages>
+            </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-control>
@@ -53,41 +53,41 @@
     </nz-form-control>
     <nz-form-item *ngIf="!setRandomPassword">
         <nz-form-label nzFor="AdminPassword">{{'AdminPassword' | localize}}</nz-form-label>
-        <nz-form-control nzHasFeedback>
+        <nz-form-control [nzErrorTip]="adminPasswordValidationTpl" nzHasFeedback>
             <input nz-input name="AdminPassword" #adminPasswordInput="ngModel" [(ngModel)]="tenant.adminPassword"
                 placeholder="{{'AdminPassword' | localize}}" type="password" [required]="!setRandomPassword" validateEqual="adminPasswordRepeat"
                 reverse="true" maxlength="32" [requireDigit]="passwordComplexitySetting.requireDigit"
                 [requireLowercase]="passwordComplexitySetting.requireLowercase" [requireUppercase]="passwordComplexitySetting.requireUppercase"
                 [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric" [requiredLength]="passwordComplexitySetting.requiredLength">
-            <nz-form-explain [hidden]="setRandomPassword || adminPasswordInput.valid || adminPasswordInput.pristine">
-                <ul *ngIf="adminPasswordInput.errors">
-                    <li [hidden]="!adminPasswordInput.errors.requireDigit">{{"PasswordComplexity_RequireDigit_Hint" | localize}}</li>
-                    <li [hidden]="!adminPasswordInput.errors.requireLowercase">{{"PasswordComplexity_RequireLowercase_Hint" | localize}}</li>
-                    <li [hidden]="!adminPasswordInput.errors.requireUppercase">{{"PasswordComplexity_RequireUppercase_Hint" | localize}}</li>
-                    <li [hidden]="!adminPasswordInput.errors.requireNonAlphanumeric">{{"PasswordComplexity_RequireNonAlphanumeric_Hint" | localize}}</li>
-                    <li [hidden]="!adminPasswordInput.errors.requiredLength">{{"PasswordComplexity_RequiredLength_Hint" | localize:passwordComplexitySetting.requiredLength}}</li>
+            <ng-template #adminPasswordValidationTpl let-control>
+                <ul *ngIf="control.errors">
+                    <li [hidden]="!control.errors.requireDigit">{{"PasswordComplexity_RequireDigit_Hint" | localize}}</li>
+                    <li [hidden]="!control.errors.requireLowercase">{{"PasswordComplexity_RequireLowercase_Hint" | localize}}</li>
+                    <li [hidden]="!control.errors.requireUppercase">{{"PasswordComplexity_RequireUppercase_Hint" | localize}}</li>
+                    <li [hidden]="!control.errors.requireNonAlphanumeric">{{"PasswordComplexity_RequireNonAlphanumeric_Hint" | localize}}</li>
+                    <li [hidden]="!control.errors.requiredLength">{{"PasswordComplexity_RequiredLength_Hint" | localize:passwordComplexitySetting.requiredLength}}</li>
                 </ul>
-            </nz-form-explain>
+            </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item *ngIf="!setRandomPassword">
         <nz-form-label nzFor="AdminPasswordRepeat">{{'AdminPasswordRepeat' | localize}}</nz-form-label>
-        <nz-form-control nzHasFeedback>
+        <nz-form-control [nzErrorTip]="adminPasswordRepeatValidationTpl" nzHasFeedback>
             <input nz-input name="AdminPasswordRepeat" #adminPasswordRepeatInput='ngModel' [(ngModel)]="tenant.adminPasswordRepeat"
                 placeholder="{{'AdminPasswordRepeat' | localize}}" [required]="!setRandomPassword" [requireDigit]="passwordComplexitySetting.requireDigit"
                 [requireLowercase]="passwordComplexitySetting.requireLowercase" [requireUppercase]="passwordComplexitySetting.requireUppercase"
                 [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric" [requiredLength]="passwordComplexitySetting.requiredLength"
                 validateEqual="adminPassword" maxlength="32">
-            <nz-form-explain [hidden]="setRandomPassword || adminPasswordRepeatInput.valid || adminPasswordRepeatInput.pristine">
-                <ul *ngIf="adminPasswordRepeatInput.errors">
-                    <li [hidden]="!adminPasswordRepeatInput.errors.requireDigit">{{"PasswordComplexity_RequireDigit_Hint" | localize}}</li>
-                    <li [hidden]="!adminPasswordRepeatInput.errors.requireLowercase">{{"PasswordComplexity_RequireLowercase_Hint" | localize}}</li>
-                    <li [hidden]="!adminPasswordRepeatInput.errors.requireUppercase">{{"PasswordComplexity_RequireUppercase_Hint" | localize}}</li>
-                    <li [hidden]="!adminPasswordRepeatInput.errors.requireNonAlphanumeric">{{"PasswordComplexity_RequireNonAlphanumeric_Hint" | localize}}</li>
-                    <li [hidden]="!adminPasswordRepeatInput.errors.requiredLength">{{"PasswordComplexity_RequiredLength_Hint" | localize:passwordComplexitySetting.requiredLength}}</li>
-                    <li [hidden]="adminPasswordRepeatInput.valid">{{"PasswordsDontMatch" | localize}}</li>
+            <ng-template #adminPasswordRepeatValidationTpl let-control>
+                <ul *ngIf="control.errors">
+                    <li [hidden]="!control.errors.requireDigit">{{"PasswordComplexity_RequireDigit_Hint" | localize}}</li>
+                    <li [hidden]="!control.errors.requireLowercase">{{"PasswordComplexity_RequireLowercase_Hint" | localize}}</li>
+                    <li [hidden]="!control.errors.requireUppercase">{{"PasswordComplexity_RequireUppercase_Hint" | localize}}</li>
+                    <li [hidden]="!control.errors.requireNonAlphanumeric">{{"PasswordComplexity_RequireNonAlphanumeric_Hint" | localize}}</li>
+                    <li [hidden]="!control.errors.requiredLength">{{"PasswordComplexity_RequiredLength_Hint" | localize:passwordComplexitySetting.requiredLength}}</li>
+                    <li [hidden]="control.valid">{{"PasswordsDontMatch" | localize}}</li>
                 </ul>
-            </nz-form-explain>
+            </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item nz-row>
@@ -126,7 +126,7 @@
             {{"Cancel" | localize}}
         </button>
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!tenantCreateForm.form.valid||saving">
-            <i nz-icon type="save"></i> {{"Save" | localize}}
+            <i nz-icon nzType="save"></i> {{"Save" | localize}}
         </button>
     </div>
 </form>

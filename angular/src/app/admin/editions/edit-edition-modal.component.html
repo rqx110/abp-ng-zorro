@@ -1,7 +1,7 @@
 <form nz-form #editionEditForm="ngForm" (ngSubmit)="save()" autocomplete="off">
     <div class="modal-header">
         <div class="modal-title">
-            <i nz-icon type="medicine-box" class="mr-sm"></i>
+            <i nz-icon nzType="medicine-box" class="mr-sm"></i>
             <span>{{l("EditEdition")}}: {{edition.edition.displayName}}</span>
         </div>
     </div>
@@ -12,13 +12,13 @@
                     <nz-form-label nzFor="EditionDisplayName" nzRequired>
                         {{"EditionName" | localize}}
                     </nz-form-label>
-                    <nz-form-control nzHasFeedback>
+                    <nz-form-control [nzErrorTip]="displayNameValidationTpl" nzHasFeedback>
                         <input nz-input id="EditionDisplayName" #editionNameInput="ngModel" name="EditionDisplayName"
                             [(ngModel)]="edition.edition.displayName" required maxlength="64">
-                        <nz-form-explain *ngIf="editionNameInput.dirty && editionNameInput.errors">
-                            <validation-messages [formCtrl]="editionNameInput"></validation-messages>
-                        </nz-form-explain>
-                    </nz-form-control>
+                        <ng-template #displayNameValidationTpl let-control>
+                            <validation-messages [formCtrl]="control"></validation-messages>
+                        </ng-template>        
+                    </nz-form-control>                    
                 </nz-form-item>                
             </nz-tab>
             <nz-tab [nzTitle]="l('Features')">
@@ -29,6 +29,6 @@
     <div class="modal-footer">
         <button nz-button type="button" [disabled]="saving" (click)="close()"> {{"Cancel" | localize}} </button>
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!editionEditForm.form.valid||saving">
-            <i nz-icon type="save"></i> {{"Save" | localize}} </button>
+            <i nz-icon nzType="save"></i> {{"Save" | localize}} </button>
     </div>
 </form>

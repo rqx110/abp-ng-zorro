@@ -14,10 +14,11 @@
                 <nz-form-item>
                     <nz-form-control>
                         <nz-input-group nzSearch [nzAddOnAfter]="suffixSearchButton">
-                            <input type="text" nz-input [(ngModel)]="filterText" name="filterText" placeholder="{{'SearchWithThreeDot' | localize}}">
+                            <input type="text" nz-input [(ngModel)]="filterText" name="filterText"
+                                placeholder="{{'SearchWithThreeDot' | localize}}">
                             <ng-template #suffixSearchButton>
                                 <button nz-button nzType="primary" nzSearch (click)="refresh()">
-                                    <i nz-icon type="search"></i>
+                                    <i nz-icon nzType="search"></i>
                                 </button>
                             </ng-template>
                         </nz-input-group>
@@ -26,15 +27,17 @@
             </nz-col>
         </nz-row>
     </form>
-    <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Administration.Languages.Create')" (click)="createOrEditLanguage()">
-        <i nz-icon type="plus"></i>
+    <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Administration.Languages.Create')"
+        (click)="createOrEditLanguage()">
+        <i nz-icon nzType="plus"></i>
         <span>
             {{"CreateNewLanguage" | localize}}
         </span>
     </button>
-    <button nz-button [nzType]="'danger'" *ngIf="isGranted('Pages.Administration.Languages.Delete') && selectedDataItems.length>0"
+    <button nz-button [nzType]="'danger'"
+        *ngIf="isGranted('Pages.Administration.Languages.Delete') && selectedDataItems.length>0"
         (click)="batchDelete()">
-        <i nz-icon type="delete"></i>
+        <i nz-icon nzType="delete"></i>
         <span>
             Delete Selected
         </span>
@@ -63,8 +66,8 @@
             [nzShowQuickJumper]="true" [nzFrontPagination]="false" [nzShowPagination]="false">
             <thead (nzSortChange)="gridSort($event)">
                 <tr>
-                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled" [nzIndeterminate]="checkboxIndeterminate"
-                        (nzCheckedChange)="checkAll($event)"></th>
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled"
+                        [nzIndeterminate]="checkboxIndeterminate" (nzCheckedChange)="checkAll($event)"></th>
                     <th>
                         {{"Name" | localize}}
                     </th>
@@ -88,7 +91,8 @@
             </thead>
             <tbody>
                 <tr *ngFor="let item of ajaxTable.data">
-                    <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshCheckStatus(dataList)"></td>
+                    <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshCheckStatus(dataList)">
+                    </td>
                     <td>
                         <span [ngClass]="{'font-weight-bold' : defaultLanguageName === item.name}">
                             <i class="anticon {{item.icon}}"></i>
@@ -100,8 +104,10 @@
                         {{item.name}}
                     </td>
                     <td *ngIf="appSession.tenantId ? true : false">
-                        <span class="badge badge-success" *ngIf="item.tenantId !== appSession.tenantId">{{'Yes' | localize}}</span>
-                        <span class="badge badge-grey" *ngIf="item.tenantId === appSession.tenantId">{{'No' | localize}}</span>
+                        <span class="badge badge-success"
+                            *ngIf="item.tenantId !== appSession.tenantId">{{'Yes' | localize}}</span>
+                        <span class="badge badge-grey"
+                            *ngIf="item.tenantId === appSession.tenantId">{{'No' | localize}}</span>
                     </td>
                     <td class="text-center">
                         {{item.creationTime | momentFormat:'L'}}
@@ -111,39 +117,42 @@
                         <span class="badge badge-grey" *ngIf="item.isDisabled">{{'No' | localize}}</span>
                     </td>
                     <td class="text-center">
-                        <ng-container *ngIf="isGranted('Pages.Administration.Languages.Edit') && item.tenantId === appSession.tenantId">
+                        <ng-container
+                            *ngIf="isGranted('Pages.Administration.Languages.Edit') && item.tenantId === appSession.tenantId">
                             <a (click)="createOrEditLanguage(item.id)">
-                                <i nz-icon type="edit"></i>
+                                <i nz-icon nzType="edit"></i>
                                 {{'Edit' | localize}}
                             </a>
                             <nz-divider nzType="vertical"></nz-divider>
                         </ng-container>
-                        <ng-container *ngIf="isGranted('Pages.Administration.Languages.Delete') && item.tenantId === appSession.tenantId">
-                            <nz-popconfirm [nzTitle]="l('LanguageDeleteWarningMessage', item.displayName)"
+                        <ng-container
+                            *ngIf="isGranted('Pages.Administration.Languages.Delete') && item.tenantId === appSession.tenantId">
+                            <a nz-popconfirm [nzPopconfirmTitle]="l('LanguageDeleteWarningMessage', item.displayName)"
                                 (nzOnConfirm)="delete(item)" [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
-                                <a nz-popconfirm>
-                                    <i nz-icon type="delete"></i>
-                                    {{'Delete' | localize}}
-                                </a>
-                            </nz-popconfirm>
+                                <i nz-icon nzType="delete"></i>
+                                {{'Delete' | localize}}
+                            </a>
                             <nz-divider nzType="vertical"></nz-divider>
                         </ng-container>
 
-                        <ng-container *ngIf="isGrantedAny('Pages.Administration.Languages.ChangeTexts', 'Pages.Administration.Languages.Edit')">
-                            <nz-dropdown [nzPlacement]="'bottomRight'">
-                                <a nz-dropdown>
-                                    {{'Actions' | localize}}
-                                    <i nz-icon type="down"></i>
-                                </a>
+                        <ng-container
+                            *ngIf="isGrantedAny('Pages.Administration.Languages.ChangeTexts', 'Pages.Administration.Languages.Edit')">
+                            <a nz-dropdown nzPlacement="bottomRight" [nzDropdownMenu]="menuTpl">
+                                {{'Actions' | localize}}
+                                <i nz-icon nzType="down"></i>
+                            </a>
+                            <nz-dropdown-menu #menuTpl="nzDropdownMenu">
                                 <ul nz-menu>
-                                    <li nz-menu-item (click)="changeTexts(item)" *ngIf="isGranted('Pages.Administration.Languages.ChangeTexts')">
+                                    <li nz-menu-item (click)="changeTexts(item)"
+                                        *ngIf="isGranted('Pages.Administration.Languages.ChangeTexts')">
                                         {{'ChangeTexts' | localize}}
                                     </li>
-                                    <li nz-menu-item (click)="setAsDefaultLanguage(item)" *ngIf="isGranted('Pages.Administration.Languages.Edit')">
+                                    <li nz-menu-item (click)="setAsDefaultLanguage(item)"
+                                        *ngIf="isGranted('Pages.Administration.Languages.Edit')">
                                         {{'SetAsDefaultLanguage' | localize}}
                                     </li>
                                 </ul>
-                            </nz-dropdown>
+                            </nz-dropdown-menu>
                         </ng-container>
                     </td>
                 </tr>

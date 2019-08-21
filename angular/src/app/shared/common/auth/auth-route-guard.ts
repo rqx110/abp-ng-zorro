@@ -1,6 +1,6 @@
 import { PermissionCheckerService } from '@abp/auth/permission-checker.service';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Router, RouterStateSnapshot, Data, Route } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Router, RouterStateSnapshot } from '@angular/router';
 import { AppSessionService } from '@shared/common/session/app-session.service';
 import { UrlHelper } from '@shared/helpers/UrlHelper';
 import { Observable } from 'rxjs';
@@ -14,7 +14,7 @@ export class AppRouteGuard implements CanActivate, CanActivateChild, CanLoad {
         private _sessionService: AppSessionService
     ) { }
 
-    canActivateInternal(data: Data, state: RouterStateSnapshot): boolean {
+    canActivateInternal(data: any, state: RouterStateSnapshot): boolean {
         if (UrlHelper.isInstallUrl(location.href)) {
             return true;
         }
@@ -44,7 +44,7 @@ export class AppRouteGuard implements CanActivate, CanActivateChild, CanLoad {
         return this.canActivate(route, state);
     }
 
-    canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
+    canLoad(route: any): Observable<boolean> | Promise<boolean> | boolean {
         return this.canActivateInternal(route.data, null);
     }
 

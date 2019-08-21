@@ -16,6 +16,6 @@
     <div class="modal-footer">
         <button nz-button type="button" nzType="default" (click)="close()" [disabled]="saving">{{"Cancel" | localize}}</button>
         <button nz-button type="submit" nzType="primary" [disabled]="!changeProfilePictureModalForm.form.valid || saving"><i
-                nz-icon type="save"></i>{{"Save" | localize}}</button>
+                nz-icon nzType="save"></i>{{"Save" | localize}}</button>
     </div>
 </form>

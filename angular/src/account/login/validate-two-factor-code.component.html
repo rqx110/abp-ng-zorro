@@ -3,12 +3,12 @@
         <nz-alert class="mb-md" nzType="info" nzCloseable [nzMessage]="l('SendSecurityCode_Information')" nzShowIcon>
         </nz-alert>
         <nz-form-item>
-            <nz-form-control>
+            <nz-form-control [nzErrorTip]="passwordValidationTpl">
                 <input nz-input #passwordInput="ngModel" autoFocus [(ngModel)]="code" type="password" autocomplete="off"
                     placeholder="{{'Code' | localize}} *" name="code" required maxlength="16" />
-                <nz-form-explain>
-                    <validation-messages [formCtrl]="passwordInput"></validation-messages>
-                </nz-form-explain>
+                <ng-template #passwordValidationTpl let-control>
+                    <validation-messages [formCtrl]="control"></validation-messages>
+                </ng-template>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>

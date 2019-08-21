@@ -9,12 +9,12 @@ import * as _ from 'lodash';
 @Component({
     selector: 'language-switch',
     template: `
-    <nz-dropdown style='width:100%;'>
-        <div nz-dropdown class="alain-default__nav-item">
-            <i class="anticon {{currentLanguage.icon}}"></i>
-            {{currentLanguage.displayName}}
-            <i nz-icon type="down" style="font-size: 12px !important"></i>
-        </div>
+    <div nz-dropdown class="alain-default__nav-item" nzPlacement="bottomRight" [nzDropdownMenu]="languageMenuTpl">
+        <i class="anticon {{currentLanguage.icon}}"></i>
+        {{currentLanguage.displayName}}
+        <i nz-icon nzType="down" style="font-size: 12px !important"></i>
+    </div>
+    <nz-dropdown-menu #languageMenuTpl="nzDropdownMenu">
         <ul nz-menu>
             <li nz-menu-item *ngFor="let language of languages"
                 [nzSelected]="language.name == currentLanguage.name"
@@ -23,7 +23,7 @@ import * as _ from 'lodash';
                 {{language.displayName}}
             </li>
         </ul>
-    </nz-dropdown>
+    </nz-dropdown-menu>
     `
 })
 export class LanguageSwitchComponent extends AppComponentBase

@@ -2,7 +2,7 @@
 
     <div class="modal-header">
         <div class="modal-title">
-            <i nz-icon type="global" class="mr-sm"></i>
+            <i nz-icon nzType="global" class="mr-sm"></i>
             <span *ngIf="languageId">{{"EditLanguage" | localize}}: {{language.name}}</span>
             <span *ngIf="!languageId">{{"CreateNewLanguage" | localize}}</span>
         </div>
@@ -28,7 +28,7 @@
                 <nz-select name="languageIcon" #languageIcon="ngModel" [(ngModel)]="language.icon" [nzPlaceHolder]="l('Flag')"
                     [nzShowSearch]="true" [nzSize]="'large'" required>
                     <nz-option nzCustomContent *ngFor="let option of flags" [nzValue]="option.value" [nzLabel]="option.displayText">
-                        <i class="anticon" [ngClass]="option.value"></i>                        
+                        <i nz-icon [ngClass]="option.value"></i>                        
                         {{option.displayText}}
                     </nz-option>
                 </nz-select>
@@ -51,7 +51,7 @@
         </button>
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!languageCreateOrEditForm.form.valid || saving"
             [nzLoading]="saving">
-            <i nz-icon type="save" *ngIf="!saving"></i> {{"Save" | localize}}
+            <i nz-icon nzType="save" *ngIf="!saving"></i> {{"Save" | localize}}
         </button>
     </div>
 

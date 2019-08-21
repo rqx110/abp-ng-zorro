@@ -11,21 +11,23 @@
     <form nz-form [nzLayout]="'inline'" class="search__form">
         <nz-form-item>
             <nz-form-control>
-                <permission-combo [multiple]="false" [dropDownStyle]="{'max-height':'300px'}" [(selectedPermission)]="selectedPermission"
-                    (selectedPermissionChange)="refresh()">
+                <permission-combo [multiple]="false" [dropDownStyle]="{'max-height':'300px'}"
+                    [(selectedPermission)]="selectedPermission" (selectedPermissionChange)="refresh()">
                 </permission-combo>
             </nz-form-control>
         </nz-form-item>
     </form>
-    <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Administration.Roles.Create')" (click)="createOrEdit()">
-        <i nz-icon type="plus"></i>
+    <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Administration.Roles.Create')"
+        (click)="createOrEdit()">
+        <i nz-icon nzType="plus"></i>
         <span>
             {{"CreateNewRole" | localize}}
         </span>
     </button>
     <ng-container *ngIf="selectedDataItems.length > 0">
-        <button nz-button [nzType]="'danger'" *ngIf="isGranted('Pages.Administration.Roles.Delete')" (click)="batchDelete()">
-            <i nz-icon type="delete"></i>
+        <button nz-button [nzType]="'danger'" *ngIf="isGranted('Pages.Administration.Roles.Delete')"
+            (click)="batchDelete()">
+            <i nz-icon nzType="delete"></i>
             <span>
                 Delete Selected
             </span>
@@ -54,8 +56,8 @@
             [nzShowQuickJumper]="true" [nzFrontPagination]="false" [nzShowPagination]="false">
             <thead>
                 <tr>
-                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled" [nzIndeterminate]="checkboxIndeterminate"
-                        (nzCheckedChange)="checkAll($event)">
+                    <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled"
+                        [nzIndeterminate]="checkboxIndeterminate" (nzCheckedChange)="checkAll($event)">
                     </th>
 
                     <th>
@@ -72,12 +74,15 @@
             </thead>
             <tbody>
                 <tr *ngFor="let item of ajaxTable.data">
-                    <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshCheckStatus(dataList)"></td>
+                    <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshCheckStatus(dataList)">
+                    </td>
 
                     <td>
                         <span class="mr-sm"> {{item.displayName}}</span>
-                        <nz-tag *ngIf="item.isStatic" [nzColor]="'#108ee9'" nz-tooltip [nzTitle]="l('StaticRole_Tooltip')">{{'Static' | localize}}</nz-tag>
-                        <nz-tag *ngIf="item.isDefault" [nzColor]="'#2db7f5'" nz-tooltip [nzTitle]="l('DefaultRole_Description')">{{'Default' | localize}}</nz-tag>
+                        <nz-tag *ngIf="item.isStatic" [nzColor]="'#108ee9'" nz-tooltip
+                            [nzTitle]="l('StaticRole_Tooltip')">{{'Static' | localize}}</nz-tag>
+                        <nz-tag *ngIf="item.isDefault" [nzColor]="'#2db7f5'" nz-tooltip
+                            [nzTitle]="l('DefaultRole_Description')">{{'Default' | localize}}</nz-tag>
                     </td>
                     <td class="text-center">
                         {{item.creationTime | momentFormat:'L'}}
@@ -85,19 +90,17 @@
                     <td class="text-center">
                         <ng-container *ngIf="isGranted('Pages.Administration.Roles.Edit')">
                             <a (click)="createOrEdit(item.id)">
-                                <i nz-icon type="edit"></i>
+                                <i nz-icon nzType="edit"></i>
                                 {{'Edit' | localize}}
                             </a>
                         </ng-container>
                         <ng-container *ngIf="!item.isStatic&&isGranted('Pages.Administration.Roles.Delete')">
                             <nz-divider nzType="vertical"></nz-divider>
-                            <nz-popconfirm [nzTitle]="'RoleDeleteWarningMessage'| localize:item.displayName" (nzOnConfirm)="delete(item)"
-                                [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
-                                <a nz-popconfirm>
-                                    <i nz-icon type="delete"></i>
-                                    {{'Delete' | localize}}
-                                </a>
-                            </nz-popconfirm>
+                            <a nz-popconfirm [nzPopconfirmTitle]="'RoleDeleteWarningMessage'| localize:item.displayName"
+                                (nzOnConfirm)="delete(item)" [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
+                                <i nz-icon nzType="delete"></i>
+                                {{'Delete' | localize}}
+                            </a>
                         </ng-container>
                     </td>
                 </tr>

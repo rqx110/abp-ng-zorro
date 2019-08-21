@@ -15,6 +15,7 @@ import { finalize } from 'rxjs/operators';
 export class NotificationsComponent extends PagedListingComponentBase<any> implements OnInit {
 
     readStateFilter = 'ALL';
+    dateRange: Date[] = [moment().startOf('day').toDate(), moment().endOf('day').toDate()];
 
     constructor(
         injector: Injector,
@@ -57,7 +58,6 @@ export class NotificationsComponent extends PagedListingComponentBase<any> imple
             record.formattedNotification = this.formatRecord(record);
             formattedRecords.push(record);
         }
-        console.log(formattedRecords);
         return formattedRecords;
     }
 
@@ -72,6 +72,8 @@ export class NotificationsComponent extends PagedListingComponentBase<any> imple
     ): void {
         this._notificationService.getUserNotifications(
             this.readStateFilter === 'ALL' ? undefined : UserNotificationState.Unread,
+            moment(this.dateRange[0]),
+            moment(this.dateRange[1]).endOf('day'),
             request.maxResultCount,
             request.skipCount,
         )

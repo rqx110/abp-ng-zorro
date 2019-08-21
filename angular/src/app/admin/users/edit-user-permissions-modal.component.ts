@@ -14,7 +14,7 @@ import { finalize } from 'rxjs/operators';
     styles: [],
 })
 export class EditUserPermissionsModalComponent extends ModalComponentBase implements OnInit {
-    @ViewChild('permissionTree') permissionTree: PermissionTreeComponent;
+    @ViewChild('permissionTree', { static: true }) permissionTree: PermissionTreeComponent;
 
     userId: number;
     userName?: string;

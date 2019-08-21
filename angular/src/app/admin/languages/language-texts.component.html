@@ -2,11 +2,11 @@
 <nz-card [nzBordered]="false" [nzExtra]="extra" [nzTitle]="l('LanguagesHeaderInfo')">
     <ng-template #extra>
         <button nz-button (click)="refresh()">
-            <i nz-icon type="reload"></i>
+            <i nz-icon nzType="reload"></i>
             <span>{{'Refresh' | localize}}</span>
         </button>
         <button nz-button (click)="backToLanguageList()" [nzType]="'primary'">
-            <i nz-icon type="rollback"></i>
+            <i nz-icon nzType="rollback"></i>
             <span>{{'Back' | localize}}</span>
         </button>
     </ng-template>
@@ -84,7 +84,7 @@
                     <input type="text" nz-input [(ngModel)]="filterText" name="filterText" placeholder="{{'SearchWithThreeDot' | localize}}">
                     <ng-template #suffixSearchButton>
                         <button nz-button nzType="primary" nzSearch (click)="refresh()">
-                            <i nz-icon type="search"></i>
+                            <i nz-icon nzType="search"></i>
                         </button>
                     </ng-template>
                 </nz-input-group>
@@ -129,7 +129,7 @@
                     </td>
                     <td class="text-center">
                         <a (click)="edit(item)">
-                            <i nz-icon type="edit"></i>
+                            <i nz-icon nzType="edit"></i>
                             {{'Edit' | localize}}
                         </a>
                     </td>

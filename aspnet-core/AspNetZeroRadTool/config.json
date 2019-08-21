@@ -1,10 +1,31 @@
 {
   "CompanyName": "MyCompanyName",
   "ProjectName": "AbpZeroTemplate",
-  "ProjectType": "Angular",
+  "ProjectType": "ProjectType",
   "ProjectVersion":"ProjectVersion",
   "ApplicationAreaName": "AppAreaName",
+  "LicenseCode": "LicenseCodePlaceHolderToReplace",
   "AngularSrcPath": "\\..\\..\\angular\\src\\",
+  "AngularMergedSrcPath": "\\..\\src\\{{Namespace_Here}}.Web.Host\\src\\",
   "CoreSrcPath": "\\..\\src\\",
-  "LicenseCode": "LicenseCodePlaceHolderToReplace"
+  "FileLocations":{
+	"DbContext" : "{{Namespace_Here}}.EntityFrameworkCore\\EntityFrameworkCore\\{{Project_Name_Here}}DbContext.cs",
+	"CustomDtoMapper" : "{{Namespace_Here}}.Application\\CustomDtoMapper.cs",
+	"AppAuthorizationProvider" : "{{Namespace_Here}}.Core\\Authorization\\AppAuthorizationProvider.cs",
+	"EntityHistoryHelper" : "{{Namespace_Here}}.Core\\EntityHistory\\EntityHistoryHelper.cs",
+	"AppPermissions" : "{{Namespace_Here}}.Core\\Authorization\\AppPermissions.cs",
+	"LocalizationFile" : "{{Namespace_Here}}.Core\\Localization\\{{Project_Name_Here}}\\{{Project_Name_Here}}.xml",
+	"EntityFrameWorkProjectFolder" : "{{Namespace_Here}}.EntityFrameworkCore",
+	"Mvc":{
+		"AppNavigationProvider" : "{{Namespace_Here}}.Web.Mvc\\Areas\\{{App_Area_Name_Here}}\\Startup\\{{App_Area_Name_Here}}NavigationProvider.cs",
+		"AppPageNames" : "{{Namespace_Here}}.Web.Mvc\\Areas\\{{App_Area_Name_Here}}\\Startup\\{{App_Area_Name_Here}}PageNames.cs",
+		"BundleConfig" : "{{Namespace_Here}}.Web.Mvc\\bundles.json"
+	},
+	"Angular":{ 
+		"AppNavigationService" : "app\\shared\\layout\\nav\\app-navigation.service.ts",
+		"ServiceProxies" : "shared\\service-proxies\\service-proxy.module.ts",
+		"Module" : "app\\{{menu_Position_Here}}\\{{menu_Position_Here}}.module.ts",
+		"RoutingModule" : "app\\{{menu_Position_Here}}\\{{menu_Position_Here}}-routing.module.ts"
+	}
+  }
 }

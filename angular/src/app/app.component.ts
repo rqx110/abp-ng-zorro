@@ -20,7 +20,7 @@ import { AppNavigationService } from '@appshared/layout/nav/app-navigation.servi
 export class AppComponent extends AppComponentBase implements OnInit, AfterViewInit, OnDestroy {
     private notify$: Subscription;
     isFetching = false;
-    @ViewChild('settingHost', { read: ViewContainerRef })
+    @ViewChild('settingHost', { read: ViewContainerRef, static: true })
     settingHost: ViewContainerRef;
     installationMode = true;
 
@@ -90,8 +90,6 @@ export class AppComponent extends AppComponentBase implements OnInit, AfterViewI
     }
 
     ngAfterViewInit(): void {
-        abp.signalr.autoConnect = false;
-
         // Setting componet for only developer
         if (!environment.production) {
             setTimeout(() => {

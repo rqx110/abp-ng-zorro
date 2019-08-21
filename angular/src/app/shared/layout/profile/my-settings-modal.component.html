@@ -4,30 +4,30 @@
 <form nz-form #validateForm="ngForm" (ngSubmit)="save()">
     <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="Name">{{'Name' | localize}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
+        <nz-form-control [nzErrorTip]="nameValidationTpl" [nzSm]="14" [nzXs]="24" nzHasFeedback>
             <input nz-input name="Name" #nameInput="ngModel" [(ngModel)]="user.name" required maxlength="32">
-            <nz-form-explain *ngIf="nameInput.dirty && nameInput.errors">
-                <validation-messages [formCtrl]="nameInput"></validation-messages>
-            </nz-form-explain>
+            <ng-template #nameValidationTpl let-control>
+                <validation-messages [formCtrl]="control"></validation-messages>
+            </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="Surname">{{'Surname' | localize}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
+        <nz-form-control [nzErrorTip]="surnameValidationTpl" [nzSm]="14" [nzXs]="24" nzHasFeedback>
             <input nz-input name="Surname" #surnameInput="ngModel" [(ngModel)]="user.surname" required maxlength="32">
-            <nz-form-explain *ngIf="surnameInput.dirty && surnameInput.errors">
-                <validation-messages [formCtrl]="surnameInput"></validation-messages>
-            </nz-form-explain>
+            <ng-template #surnameValidationTpl let-control>
+                <validation-messages [formCtrl]="control"></validation-messages>
+            </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="EmailAddress">{{'EmailAddress' | localize}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
+        <nz-form-control [nzErrorTip]="emailAddressValidationTpl" [nzSm]="14" [nzXs]="24" nzHasFeedback>
             <input nz-input name="EmailAddress" #emailAddressInput="ngModel" [(ngModel)]="user.emailAddress"
                 placeholder="{{'EmailAddress' | localize}}" autocomplete="email" required email maxlength="256">
-            <nz-form-explain *ngIf="emailAddressInput.dirty && emailAddressInput.errors">
-                <validation-messages [formCtrl]="emailAddressInput"></validation-messages>
-            </nz-form-explain>
+            <ng-template #emailAddressValidationTpl let-control>
+                <validation-messages [formCtrl]="control"></validation-messages>
+            </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item *ngIf="smsEnabled && !isPhoneNumberEmpty">
@@ -39,8 +39,8 @@
             </nz-input-group>
             <ng-template #suffixButton>
                 <button *ngIf="!isPhoneNumberConfirmed" nz-button nzType="primary" type="button" (click)="smsVerify()"
-                    nz-tooltip [nzTitle]="l('YourPhoneNumberIsNotVerified')"><i nz-icon type="warning"></i>{{'Verify' | localize}}</button>
-                <i *ngIf="isPhoneNumberConfirmed" nz-icon type="check" nz-tooltip [nzTitle]="l('YourPhoneNumberIsVerified')"></i>
+                    nz-tooltip [nzTitle]="l('YourPhoneNumberIsNotVerified')"><i nz-icon nzType="warning"></i>{{'Verify' | localize}}</button>
+                <i *ngIf="isPhoneNumberConfirmed" nz-icon nzType="check" nz-tooltip [nzTitle]="l('YourPhoneNumberIsVerified')"></i>
             </ng-template>
         </nz-form-control>
     </nz-form-item>
@@ -53,13 +53,16 @@
     </nz-form-item>
     <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="UserName">{{'UserName' | localize}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
+        <nz-form-control [nzErrorTip]="userNameValidationTpl" [nzExtra]="userNameExtraTpl" [nzSm]="14" [nzXs]="24" nzHasFeedback>
             <input nz-input name="UserName" #userNameInput="ngModel" [(ngModel)]="user.userName" [disabled]="!canChangeUserName"
                 required>
-            <nz-form-explain *ngIf="!canChangeUserName">{{'CanNotChangeAdminUserName' | localize}}</nz-form-explain>
-            <nz-form-explain *ngIf="userNameInput.dirty && userNameInput.errors">
-                <validation-messages [formCtrl]="userNameInput"></validation-messages>
-            </nz-form-explain>
+            <ng-template #userNameExtraTpl>
+                <ng-container *ngIf="!canChangeUserName">{{'CanNotChangeAdminUserName' | localize}}
+                </ng-container>
+            </ng-template>
+            <ng-template #userNameValidationTpl let-control>
+                <validation-messages [formCtrl]="control"></validation-messages>
+            </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item *ngIf="showTimezoneSelection">
@@ -75,7 +78,7 @@
             {{"Cancel" | localize}}
         </button>
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!validateForm.valid||saving" [nzLoading]="saving">
-            <i nz-icon type="save"></i> {{"Save" | localize}}
+            <i nz-icon nzType="save"></i> {{"Save" | localize}}
         </button>
     </div>
 </form>

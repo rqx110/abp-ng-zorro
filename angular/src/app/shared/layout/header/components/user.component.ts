@@ -11,37 +11,37 @@ import { ProfileServiceProxy, TenantLoginInfoDto } from '@shared/service-proxies
 @Component({
     selector: 'header-user',
     template: `
-  <nz-dropdown nzPlacement="bottomRight">
-    <div class="alain-default__nav-item d-flex align-items-center px-sm" nz-dropdown>
+    <div nz-dropdown class="alain-default__nav-item d-flex align-items-center px-sm" nzPlacement="bottomRight" [nzDropdownMenu]="userMenuTpl">
         <div class="mr-sm">
             <strong>{{shownLoginName}}</strong>
         </div>
         <nz-avatar [nzSrc]="profilePicture" nzSize="small" class="mr-sm"></nz-avatar>
     </div>
-    <ul nz-menu>
-      <li nz-menu-item (click)="changePassword()">
-        <i nz-icon type="ellipsis"></i>
-        {{"ChangePassword" | localize}}
-      </li>
-      <li nz-menu-item (click)="showLoginAttempts()">
-        <i nz-icon type="bars"></i>
-        {{"LoginAttempts" | localize}}
-      </li>
-      <li nz-menu-item (click)="changeProfilePicture()">
-        <i nz-icon type="picture"></i>
-        {{"ChangeProfilePicture" | localize}}
-      </li>
-      <li nz-menu-item (click)="changeMySettings()">
-        <i nz-icon type="setting"></i>
-        {{"MySettings" | localize}}
-      </li>
-      <li nz-menu-divider></li>
-      <li nz-menu-item (click)="logout()">
-        <i nz-icon type="logout"></i>
-        {{'Logout' | localize}}
-      </li>
-    </ul>
-  </nz-dropdown>
+    <nz-dropdown-menu #userMenuTpl="nzDropdownMenu">
+        <ul nz-menu>
+            <li nz-menu-item (click)="changePassword()">
+                <i nz-icon nzType="ellipsis"></i>
+                {{"ChangePassword" | localize}}
+            </li>
+            <li nz-menu-item (click)="showLoginAttempts()">
+                <i nz-icon nzType="bars"></i>
+                {{"LoginAttempts" | localize}}
+            </li>
+            <li nz-menu-item (click)="changeProfilePicture()">
+                <i nz-icon nzType="picture"></i>
+                {{"ChangeProfilePicture" | localize}}
+            </li>
+            <li nz-menu-item (click)="changeMySettings()">
+                <i nz-icon nzType="setting"></i>
+                {{"MySettings" | localize}}
+            </li>
+            <li nz-menu-divider></li>
+            <li nz-menu-item (click)="logout()">
+                <i nz-icon nzType="logout"></i>
+                {{'Logout' | localize}}
+            </li>
+        </ul>
+    </nz-dropdown-menu>
   `,
 })
 export class HeaderUserComponent extends AppComponentBase implements OnInit {

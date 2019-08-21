@@ -100,12 +100,12 @@
             <nz-row nzGutter="8">
                 <nz-col nzMd="20" nzSm="12">
                     <button nz-button nzType="primary" (click)="exportToExcelAuditLogs()" [nzLoading]="exporting">
-                        <i nz-icon type="file-excel" *ngIf="!exporting"></i>
+                        <i nz-icon nzType="file-excel" *ngIf="!exporting"></i>
                         <span>
                             {{"ExportToExcel" | localize}}
                         </span>
                     </button>
-                    <button nz-button [nzType]="'default'" (click)="refresh()"><i nz-icon type="reload"></i>{{'Refresh' | localize}}</button>
+                    <button nz-button [nzType]="'default'" (click)="refresh()"><i nz-icon nzType="reload"></i>{{'Refresh' | localize}}</button>
                 </nz-col>
                 <nz-col nzMd="4" nzSm="12" class="text-right">
                     <a (click)="advancedFiltersVisible=!advancedFiltersVisible">
@@ -156,7 +156,7 @@
                         <tr *ngFor="let item of ajaxTable.data">
                             <td nzWidth="75px" nzLeft="0px" class="text-center">
                                 <a (click)="showDetails(item)">
-                                    <i nz-icon type="search" nz-tooltip [nzTitle]="l('Search')"></i>
+                                    <i nz-icon nzType="search" nz-tooltip [nzTitle]="l('Search')"></i>
                                 </a>
                             </td>
                             <td class="text-center">

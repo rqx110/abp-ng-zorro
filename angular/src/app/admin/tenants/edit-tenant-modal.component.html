@@ -6,12 +6,12 @@
         <form nz-form #tenantEditForm="ngForm" (ngSubmit)="save()" *ngIf="tenant">
             <nz-form-item>
                 <nz-form-label nzFor="Name">{{'Name' | localize}}</nz-form-label>
-                <nz-form-control nzHasFeedback>
+                <nz-form-control [nzErrorTip]="nameValidationTpl" nzHasFeedback>
                     <input nz-input name="name" #nameInput="ngModel" [(ngModel)]="tenant.name" placeholder="{{'Name' | localize}}"
                         required maxlength="128">
-                    <nz-form-explain *ngIf="nameInput.dirty&&nameInput.errors">
-                        <validation-messages [formCtrl]="nameInput"></validation-messages>
-                    </nz-form-explain>
+                    <ng-template #nameValidationTpl let-control>
+                        <validation-messages [formCtrl]="control"></validation-messages>
+                    </ng-template>
                 </nz-form-control>
             </nz-form-item>
 
@@ -19,15 +19,15 @@
                 <nz-form-label nzFor="connectionString">
                     {{'DatabaseConnectionString' | localize}}
                     <em>
-                        <i nz-icon type="warning" nz-tooltip [nzTitle]="l('TenantDatabaseConnectionStringChangeWarningMessage')"></i>
+                        <i nz-icon nzType="warning" nz-tooltip [nzTitle]="l('TenantDatabaseConnectionStringChangeWarningMessage')"></i>
                     </em>
                 </nz-form-label>
-                <nz-form-control nzHasFeedback>
+                <nz-form-control [nzErrorTip]="connectionStringValidationTpl" nzHasFeedback>
                     <input nz-input name="connectionString" #connectionStringInput="ngModel" [(ngModel)]="tenant.connectionString"
                         placeholder="{{'DatabaseConnectionString' | localize}}" required maxlength="1024">
-                    <nz-form-explain *ngIf="connectionStringInput.dirty&&connectionStringInput.errors">
-                        <validation-messages [formCtrl]="connectionStringInput"></validation-messages>
-                    </nz-form-explain>
+                    <ng-template #connectionStringValidationTpl let-control>
+                        <validation-messages [formCtrl]="control"></validation-messages>
+                    </ng-template>
                 </nz-form-control>
             </nz-form-item>
 
@@ -67,7 +67,7 @@
                     {{"Cancel" | localize}}
                 </button>
                 <button nz-button [nzType]="'primary'" type="submit" [disabled]="!tenantEditForm.form.valid||saving">
-                    <i nz-icon type="save"></i> {{"Save" | localize}}
+                    <i nz-icon nzType="save"></i> {{"Save" | localize}}
                 </button>
             </div>
         </form>

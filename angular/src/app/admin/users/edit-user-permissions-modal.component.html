@@ -1,7 +1,7 @@
 <form nz-form #editUserPermissionsForm="ngForm" (ngSubmit)="save()" nzLayout="horizontal">
     <div class="modal-header">
         <div class="modal-title">
-            <i nz-icon type="safety" class="mr-sm"></i>
+            <i nz-icon nzType="safety" class="mr-sm"></i>
             <span>
                 {{"Permissions" | localize}}
                 <span *ngIf="userName"> - {{userName}}</span>
@@ -18,7 +18,7 @@
     <div class="modal-footer">
         <button nz-button [nzType]="'default'" type="button" (click)="resetPermissions()" [disabled]="saving"
             [nzLoading]="resettingPermissions" nz-tooltip [nzTitle]="l('ResetPermissionsTooltip')" class="mr-sm">
-            <i nz-icon type="rollback" *ngIf="!resettingPermissions"></i>
+            <i nz-icon nzType="rollback" *ngIf="!resettingPermissions"></i>
             {{"ResetSpecialPermissions" | localize}}
         </button>
 
@@ -28,7 +28,7 @@
 
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!editUserPermissionsForm.form.valid || saving || resettingPermissions"
             [nzLoading]="saving">
-            <i nz-icon type="save" *ngIf="!saving"></i> {{"Save" | localize}}
+            <i nz-icon nzType="save" *ngIf="!saving"></i> {{"Save" | localize}}
         </button>
     </div>
 

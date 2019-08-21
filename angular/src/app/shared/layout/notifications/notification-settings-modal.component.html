@@ -4,14 +4,11 @@
 <form nz-form #editForm="ngForm" (ngSubmit)="save()" *ngIf="settings">
     <h4>{{"ReceiveNotifications" | localize}}</h4>
     <nz-form-item>
-        <nz-form-control>
+        <nz-form-control [nzExtra]="l('ReceiveNotifications_Definition')">
             <nz-switch name="ReceiveNotifications" [ngModel]="settings.receiveNotifications" [nzCheckedChildren]="checkedTemplate"
                 [nzUnCheckedChildren]="unCheckedTemplate"></nz-switch>
-            <ng-template #checkedTemplate><i nz-icon type="check"></i></ng-template>
-            <ng-template #unCheckedTemplate><i nz-icon type="close"></i></ng-template>
-            <nz-form-extra>
-                {{"ReceiveNotifications_Definition" | localize}}
-            </nz-form-extra>
+            <ng-template #checkedTemplate><i nz-icon nzType="check"></i></ng-template>
+            <ng-template #unCheckedTemplate><i nz-icon nzType="close"></i></ng-template>
         </nz-form-control>
     </nz-form-item>
 
@@ -19,12 +16,9 @@
     <p *ngIf="settings.notifications.length && !settings.receiveNotifications" class="text-red"><small>{{"ReceiveNotifications_DisableInfo" | localize}}</small>
     </p>
     <nz-form-item>
-        <nz-form-control *ngFor="let notification of settings.notifications">
+        <nz-form-control [nzExtra]="notification.description" *ngFor="let notification of settings.notifications">
             <label nz-checkbox name="Notification_{{notification.name}}" [nzDisabled]="!settings.receiveNotifications"
                 [(ngModel)]="notification.isSubscribed">{{notification.displayName}}</label>
-            <nz-form-explain *ngIf="notification.description">
-                {{notification.description}}
-            </nz-form-explain>
         </nz-form-control>
     </nz-form-item>
     <div class="modal-footer">
@@ -32,7 +26,7 @@
             {{"Cancel" | localize}}
         </button>
         <button nz-button [nzType]="'primary'" type="submit" [nzLoading]="saving">
-            <i nz-icon type="save"></i> {{"Save" | localize}}
+            <i nz-icon nzType="save"></i> {{"Save" | localize}}
         </button>
     </div>
 </form>

@@ -2,7 +2,7 @@ import { ForgotPasswordComponent } from './passwords/forgot-password.component';
 import * as ngCommon from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 import { AccountRoutingModule } from './account-routing.module';
 
@@ -22,7 +22,7 @@ import { LoginService } from './login/login.service';
 import { ResetPasswordComponent } from './passwords/reset-password.component';
 import { AccountRouteGuard } from './auth/account-route-guard';
 
-import { OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthModule } from 'volo-angular-oauth2-oidc';
 import { EmailActivationComponent } from './email-activation/email-activation.component';
 import { ConfirmEmailComponent } from './email-activation/confirm-email.component';
 
@@ -35,8 +35,8 @@ import { TenantRegistrationHelperService } from './register/tenant-registration-
         ngCommon.CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,
-        JsonpModule,
+        HttpClientModule,
+        HttpClientJsonpModule,
         CommonModule,
         UtilsModule,
         AccountRoutingModule,

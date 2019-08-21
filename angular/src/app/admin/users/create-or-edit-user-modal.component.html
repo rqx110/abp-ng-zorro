@@ -1,7 +1,7 @@
 <form nz-form #createOrEditModalForm="ngForm" (ngSubmit)="save()" autocomplete="off">
     <div class="modal-header">
         <div class="modal-title">
-            <i nz-icon type="user" class="mr-sm"></i>
+            <i nz-icon nzType="user" class="mr-sm"></i>
             <span *ngIf="userId">{{"EditUser" | localize}}: {{user.userName}}</span>
             <span *ngIf="!userId">{{"CreateNewUser" | localize}}</span>
         </div>
@@ -11,7 +11,7 @@
         <nz-tabset>
             <nz-tab [nzTitle]="userInfoTabTitleTpl">
                 <ng-template #userInfoTabTitleTpl>
-                    <i nz-icon type="user"></i>{{'UserInformations' | localize}}
+                    <i nz-icon nzType="user"></i>{{'UserInformations' | localize}}
                 </ng-template>
                 <nz-row>
                     <nz-col nzSpan="6" class="pt-lg text-center">
@@ -22,24 +22,24 @@
                             <nz-form-label nzFor="Name" nzRequired>
                                 {{"Name" | localize}}
                             </nz-form-label>
-                            <nz-form-control nzHasFeedback>
-                                <input nz-input #nameInput="ngModel" name="name" [(ngModel)]="user.name" placeholder="{{'Name' | localize}}"
-                                    required maxlength="32">
-                                <nz-form-explain *ngIf="nameInput.dirty && nameInput.errors">
-                                    <validation-messages [formCtrl]="nameInput"></validation-messages>
-                                </nz-form-explain>
+                            <nz-form-control [nzErrorTip]="nameValidationTpl" nzHasFeedback>
+                                <input nz-input #nameInput="ngModel" name="name" [(ngModel)]="user.name"
+                                    placeholder="{{'Name' | localize}}" required maxlength="32">
+                                <ng-template #nameValidationTpl let-control>
+                                    <validation-messages [formCtrl]="control"></validation-messages>
+                                </ng-template>
                             </nz-form-control>
                         </nz-form-item>
                         <nz-form-item nz-row>
                             <nz-form-label nzFor="Surname" nzRequired>
                                 {{"Surname" | localize}}
                             </nz-form-label>
-                            <nz-form-control nzHasFeedback>
+                            <nz-form-control [nzErrorTip]="surnameValidationTpl" nzHasFeedback>
                                 <input nz-input #surnameInput="ngModel" name="Surname" [(ngModel)]="user.surname"
                                     placeholder="{{'Surname' | localize}}" id="Surname" required maxlength="24">
-                                <nz-form-explain *ngIf="surnameInput.dirty && surnameInput.errors">
-                                    <validation-messages [formCtrl]="surnameInput"></validation-messages>
-                                </nz-form-explain>
+                                <ng-template #surnameValidationTpl let-control>
+                                    <validation-messages [formCtrl]="control"></validation-messages>
+                                </ng-template>
                             </nz-form-control>
                         </nz-form-item>
                     </nz-col>
@@ -48,71 +48,81 @@
                     <nz-form-label nzFor="emailAddress" nzRequired>
                         {{"EmailAddress" | localize}}
                     </nz-form-label>
-                    <nz-form-control nzHasFeedback>
+                    <nz-form-control [nzErrorTip]="emailAddressValidationTpl" nzHasFeedback>
                         <input nz-input #emailAddressInput="ngModel" name="emailAddress" [(ngModel)]="user.emailAddress"
-                            placeholder="{{'EmailAddress' | localize}}" id="emailAddress" type="email" required maxlength="256"
-                            email>
-                        <nz-form-explain *ngIf="emailAddressInput.dirty && emailAddressInput.errors">
-                            <validation-messages [formCtrl]="emailAddressInput"></validation-messages>
-                        </nz-form-explain>
+                            placeholder="{{'EmailAddress' | localize}}" id="emailAddress" type="email" required
+                            maxlength="256" email>
+                        <ng-template #emailAddressValidationTpl let-control>
+                            <validation-messages [formCtrl]="control"></validation-messages>
+                        </ng-template>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="PhoneNumber">
                         {{"PhoneNumber" | localize}}
                     </nz-form-label>
-                    <nz-form-control nzHasFeedback>
+                    <nz-form-control [nzErrorTip]="phoneNumberValidationTpl" nzHasFeedback>
                         <input nz-input #phoneNumberInput="ngModel" name="PhoneNumber" [(ngModel)]="user.phoneNumber"
                             placeholder="{{'PhoneNumber' | localize}}" id="PhoneNumber" maxlength="24">
-                        <nz-form-explain *ngIf="phoneNumberInput.dirty && phoneNumberInput.errors">
-                            <validation-messages [formCtrl]="phoneNumberInput"></validation-messages>
-                        </nz-form-explain>
+                        <ng-template #phoneNumberValidationTpl let-control>
+                            <validation-messages [formCtrl]="control"></validation-messages>
+                        </ng-template>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item nz-row>
                     <nz-form-label nzFor="userName" nzRequired>
                         {{"UserName" | localize}}
                         <em *ngIf="!canChangeUserName">
-                            <i nz-icon type="info-circle" nz-tooltip [nzTitle]="l('CanNotChangeAdminUserName')"></i>
+                            <i nz-icon nzType="info-circle" nz-tooltip [nzTitle]="l('CanNotChangeAdminUserName')"></i>
                         </em>
                     </nz-form-label>
-                    <nz-form-control nzHasFeedback>
+                    <nz-form-control [nzExtra]="usernameExtraTpl" [nzErrorTip]="usernameValidationTpl" nzHasFeedback>
                         <input nz-input #userNameInput="ngModel" name="userName" [disabled]="!canChangeUserName"
                             [(ngModel)]="user.userName" placeholder="{{'UserName' | localize}}" required maxlength="32">
-                        <nz-form-extra *ngIf="!canChangeUserName">{{'CanNotChangeAdminUserName' | localize}}</nz-form-extra>
-                        <nz-form-explain *ngIf="userNameInput.dirty && userNameInput.errors">
-                            <validation-messages [formCtrl]="userNameInput"></validation-messages>
-                        </nz-form-explain>
+                        <ng-template #usernameExtraTpl>
+                            <ng-container *ngIf="!canChangeUserName">{{'CanNotChangeAdminUserName' | localize}}
+                            </ng-container>
+                        </ng-template>
+                        <ng-template #usernameValidationTpl let-control>
+                            <validation-messages [formCtrl]="control"></validation-messages>
+                        </ng-template>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
                     <nz-form-control>
-                        <label nz-checkbox name="SetRandomPassword" [(ngModel)]="setRandomPassword">{{"SetRandomPassword" | localize}}</label>
+                        <label nz-checkbox name="SetRandomPassword"
+                            [(ngModel)]="setRandomPassword">{{"SetRandomPassword" | localize}}</label>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item nz-row *ngIf="!setRandomPassword">
                     <nz-form-label nzFor="Password" [nzRequired]="!user.id && !setRandomPassword">
                         {{"Password" | localize}}
                     </nz-form-label>
-                    <nz-form-control nzHasFeedback>
-                        <input nz-input type="password" #Password="ngModel" id="Password" name="Password" [(ngModel)]="user.password"
-                            placeholder="{{'Password' | localize}}" minlength="8" validateEqual="PasswordRepeat" reverse="true"
-                            [required]="!user.id && !setRandomPassword" maxlength="32" [requireDigit]="passwordComplexitySetting.requireDigit"
-                            [requireLowercase]="passwordComplexitySetting.requireLowercase" [requireUppercase]="passwordComplexitySetting.requireUppercase"
+                    <nz-form-control [nzErrorTip]="passwordValidationTpl" nzHasFeedback>
+                        <input nz-input type="password" #Password="ngModel" id="Password" name="Password"
+                            [(ngModel)]="user.password" placeholder="{{'Password' | localize}}" minlength="8"
+                            validateEqual="PasswordRepeat" reverse="true" [required]="!user.id && !setRandomPassword"
+                            maxlength="32" [requireDigit]="passwordComplexitySetting.requireDigit"
+                            [requireLowercase]="passwordComplexitySetting.requireLowercase"
+                            [requireUppercase]="passwordComplexitySetting.requireUppercase"
                             [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric"
                             [requiredLength]="passwordComplexitySetting.requiredLength" validateEqual="PasswordRepeat"
                             reverse="true">
-
-                        <nz-form-explain [hidden]="setRandomPassword || Password.valid || Password.pristine">
-                            <ul *ngIf="Password.errors">
-                                <li [hidden]="!Password.errors.requireDigit">{{"PasswordComplexity_RequireDigit_Hint" | localize}}</li>
-                                <li [hidden]="!Password.errors.requireLowercase">{{"PasswordComplexity_RequireLowercase_Hint" | localize}}</li>
-                                <li [hidden]="!Password.errors.requireUppercase">{{"PasswordComplexity_RequireUppercase_Hint" | localize}}</li>
-                                <li [hidden]="!Password.errors.requireNonAlphanumeric">{{"PasswordComplexity_RequireNonAlphanumeric_Hint" | localize}}</li>
-                                <li [hidden]="!Password.errors.requiredLength">{{"PasswordComplexity_RequiredLength_Hint" | localize:passwordComplexitySetting.requiredLength}}</li>
-
+                        <ng-template #passwordValidationTpl let-control>
+                            <ul *ngIf="control.errors">
+                                <li [hidden]="!control.errors.requireDigit">
+                                    {{"PasswordComplexity_RequireDigit_Hint" | localize}}</li>
+                                <li [hidden]="!control.errors.requireLowercase">
+                                    {{"PasswordComplexity_RequireLowercase_Hint" | localize}}</li>
+                                <li [hidden]="!control.errors.requireUppercase">
+                                    {{"PasswordComplexity_RequireUppercase_Hint" | localize}}</li>
+                                <li [hidden]="!control.errors.requireNonAlphanumeric">
+                                    {{"PasswordComplexity_RequireNonAlphanumeric_Hint" | localize}}</li>
+                                <li [hidden]="!control.errors.requiredLength">
+                                    {{"PasswordComplexity_RequiredLength_Hint" | localize:passwordComplexitySetting.requiredLength}}
+                                </li>
                             </ul>
-                        </nz-form-explain>
+                        </ng-template>
                     </nz-form-control>
                 </nz-form-item>
 
@@ -120,39 +130,53 @@
                     <nz-form-label nzFor="PasswordRepeat" [nzRequired]="!user.id && !setRandomPassword">
                         {{"PasswordRepeat" | localize}}
                     </nz-form-label>
-                    <nz-form-control nzHasFeedback>
-                        <input nz-input name="PasswordRepeat" #PasswordRepeat="ngModel" [(ngModel)]="user.passwordRepeat"
-                            placeholder="{{'PasswordRepeat' | localize}}" type="password" validateEqual="Password" reverse="false"
-                            [required]="!user.id && !setRandomPassword" maxlength="32" [requireDigit]="passwordComplexitySetting.requireDigit"
-                            [requireLowercase]="passwordComplexitySetting.requireLowercase" [requireUppercase]="passwordComplexitySetting.requireUppercase"
+                    <nz-form-control [nzErrorTip]="passwordRepeatValidationTpl" nzHasFeedback>
+                        <input nz-input name="PasswordRepeat" #PasswordRepeat="ngModel"
+                            [(ngModel)]="user.passwordRepeat" placeholder="{{'PasswordRepeat' | localize}}"
+                            type="password" validateEqual="Password" reverse="false"
+                            [required]="!user.id && !setRandomPassword" maxlength="32"
+                            [requireDigit]="passwordComplexitySetting.requireDigit"
+                            [requireLowercase]="passwordComplexitySetting.requireLowercase"
+                            [requireUppercase]="passwordComplexitySetting.requireUppercase"
                             [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric"
                             [requiredLength]="passwordComplexitySetting.requiredLength" validateEqual="Password"
                             reverse="false">
-
-                        <nz-form-explain [hidden]="setRandomPassword || PasswordRepeat.valid || PasswordRepeat.pristine">
-                            <ul *ngIf="PasswordRepeat.errors">
-                                <li [hidden]="!PasswordRepeat.errors.requireDigit">{{"PasswordComplexity_RequireDigit_Hint" | localize}}</li>
-                                <li [hidden]="!PasswordRepeat.errors.requireLowercase">{{"PasswordComplexity_RequireLowercase_Hint" | localize}}</li>
-                                <li [hidden]="!PasswordRepeat.errors.requireUppercase">{{"PasswordComplexity_RequireUppercase_Hint" | localize}}</li>
-                                <li [hidden]="!PasswordRepeat.errors.requireNonAlphanumeric">{{"PasswordComplexity_RequireNonAlphanumeric_Hint" | localize}}</li>
-                                <li [hidden]="!PasswordRepeat.errors.requiredLength">{{"PasswordComplexity_RequiredLength_Hint" | localize:passwordComplexitySetting.requiredLength}}</li>
-                                <li [hidden]="PasswordRepeat.valid">{{"PasswordsDontMatch" | localize}}</li>
+                        <ng-template #passwordRepeatValidationTpl let-control>
+                            <ul *ngIf="control.errors">
+                                <li [hidden]="!control.errors.requireDigit">
+                                    {{"PasswordComplexity_RequireDigit_Hint" | localize}}</li>
+                                <li [hidden]="!control.errors.requireLowercase">
+                                    {{"PasswordComplexity_RequireLowercase_Hint" | localize}}</li>
+                                <li [hidden]="!control.errors.requireUppercase">
+                                    {{"PasswordComplexity_RequireUppercase_Hint" | localize}}</li>
+                                <li [hidden]="!control.errors.requireNonAlphanumeric">
+                                    {{"PasswordComplexity_RequireNonAlphanumeric_Hint" | localize}}</li>
+                                <li [hidden]="!control.errors.requiredLength">
+                                    {{"PasswordComplexity_RequiredLength_Hint" | localize:passwordComplexitySetting.requiredLength}}
+                                </li>
+                                <li [hidden]="control.valid">{{"PasswordsDontMatch" | localize}}</li>
                             </ul>
-                        </nz-form-explain>
+                        </ng-template>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
                     <nz-form-control>
                         <nz-checkbox-wrapper>
-                                <div nz-col><label nz-checkbox name="ShouldChangePasswordOnNextLogin" [(ngModel)]="user.shouldChangePasswordOnNextLogin">{{"ShouldChangePasswordOnNextLogin" | localize}}</label></div>
-                                <div nz-col><label nz-checkbox name="SendActivationEmail" [(ngModel)]="sendActivationEmail">{{"SendActivationEmail" | localize}}</label></div>
-                                <div nz-col><label nz-checkbox name="Active" [(ngModel)]="user.isActive">{{"Active" | localize}}</label></div>
-                                <div *ngIf="isTwoFactorEnabled">
-                                    <label nz-checkbox name="IsTwoFactorEnabled" [(ngModel)]="user.isTwoFactorEnabled">{{"IsTwoFactorEnabled" | localize}}</label>
-                                </div>
-                                <div *ngIf="isLockoutEnabled">
-                                    <label nz-checkbox name="IsLockoutEnabled" [(ngModel)]="user.isLockoutEnabled">{{"IsLockoutEnabled" | localize}}</label>
-                                </div>
+                            <div nz-col><label nz-checkbox name="ShouldChangePasswordOnNextLogin"
+                                    [(ngModel)]="user.shouldChangePasswordOnNextLogin">{{"ShouldChangePasswordOnNextLogin" | localize}}</label>
+                            </div>
+                            <div nz-col><label nz-checkbox name="SendActivationEmail"
+                                    [(ngModel)]="sendActivationEmail">{{"SendActivationEmail" | localize}}</label></div>
+                            <div nz-col><label nz-checkbox name="Active"
+                                    [(ngModel)]="user.isActive">{{"Active" | localize}}</label></div>
+                            <div *ngIf="isTwoFactorEnabled">
+                                <label nz-checkbox name="IsTwoFactorEnabled"
+                                    [(ngModel)]="user.isTwoFactorEnabled">{{"IsTwoFactorEnabled" | localize}}</label>
+                            </div>
+                            <div *ngIf="isLockoutEnabled">
+                                <label nz-checkbox name="IsLockoutEnabled"
+                                    [(ngModel)]="user.isLockoutEnabled">{{"IsLockoutEnabled" | localize}}</label>
+                            </div>
                         </nz-checkbox-wrapper>
                     </nz-form-control>
                 </nz-form-item>
@@ -160,7 +184,7 @@
             <nz-tab [nzTitle]="roleTitleTpl">
                 <ng-template #roleTitleTpl>
                     <nz-badge [nzCount]="getAssignedRoleCount()">
-                        <i nz-icon type="medicine-box"></i>
+                        <i nz-icon nzType="medicine-box"></i>
                         <span>
                             {{'Roles' | localize}}
                         </span>
@@ -178,7 +202,7 @@
             </nz-tab>
             <nz-tab [nzTitle]="organizationUTitleTpl">
                 <ng-template #organizationUTitleTpl>
-                    <i nz-icon type="share-alt"></i>{{'OrganizationUnits' | localize}}
+                    <i nz-icon nzType="share-alt"></i>{{'OrganizationUnits' | localize}}
                 </ng-template>
                 <organization-unit-tree #organizationUnitTree></organization-unit-tree>
             </nz-tab>
@@ -191,7 +215,7 @@
         </button>
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!createOrEditModalForm.form.valid || saving"
             [nzLoading]="saving">
-            <i nz-icon type="save" *ngIf="!saving"></i> {{"Save" | localize}}
+            <i nz-icon nzType="save" *ngIf="!saving"></i> {{"Save" | localize}}
         </button>
     </div>
 

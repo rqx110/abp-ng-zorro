@@ -4,16 +4,16 @@
     </div>
     <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="YourCode">{{'YourCode' | localize}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
+        <nz-form-control [nzErrorTip]="codeValidationTpl" [nzSm]="14" [nzXs]="24" nzHasFeedback>
             <input nz-input name="Code" id="YourCode" #codeInput="ngModel" [(ngModel)]="verifyCode.code" required maxlength="6" minlength="6">
-            <nz-form-explain *ngIf="codeInput.dirty && codeInput.errors">
-                <validation-messages [formCtrl]="codeInput"></validation-messages>
-            </nz-form-explain>
+            <ng-template #codeValidationTpl let-control>
+                <validation-messages [formCtrl]="control"></validation-messages>
+            </ng-template>
         </nz-form-control>
     </nz-form-item>
     <div class="modal-footer">
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!smsVerificationModal.valid||saving" [nzLoading]="saving">
-            <i nz-icon type="save"></i> {{"Save" | localize}}
+            <i nz-icon nzType="save"></i> {{"Save" | localize}}
         </button>
     </div>
 </form>

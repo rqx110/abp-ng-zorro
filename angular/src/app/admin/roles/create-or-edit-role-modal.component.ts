@@ -16,7 +16,7 @@ import { ModalComponentBase } from '@shared/common/modal-component-base';
     styles: [],
 })
 export class CreateOrEditRoleModalComponent extends ModalComponentBase implements OnInit {
-    @ViewChild('permissionTree')
+    @ViewChild('permissionTree', { static: true })
     permissionTree: PermissionTreeComponent;
 
     roleId?: number;
