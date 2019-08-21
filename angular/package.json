@@ -57,6 +57,7 @@
     "@types/lodash": "^4.14.122",
     "@types/moment-timezone": "^0.5.10",
     "@types/node": "11.10.4",
+    "antd-theme-generator": "^1.1.7",
     "codelyzer": "^4.5.0",
     "jasmine-core": "^3.3.0",
     "jasmine-spec-reporter": "^4.2.1",
