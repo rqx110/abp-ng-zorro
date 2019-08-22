@@ -133,7 +133,7 @@ function handleLogoutRequest(authService: AppAuthService) {
     ],
     declarations: [RootComponent],
     providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true },
+        // { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true },
         { provide: API_BASE_URL, useFactory: getRemoteServiceBaseUrl },
         {
             provide: APP_INITIALIZER,
