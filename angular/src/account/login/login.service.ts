@@ -11,7 +11,7 @@ import { ScriptLoaderService } from '@shared/utils/script-loader.service';
 import * as _ from 'lodash';
 import { finalize } from 'rxjs/operators';
 
-import { OAuthService, AuthConfig } from 'volo-angular-oauth2-oidc';
+import { OAuthService, AuthConfig } from 'angular-oauth2-oidc';
 
 declare const FB: any; // Facebook API
 declare const gapi: any; // Facebook API

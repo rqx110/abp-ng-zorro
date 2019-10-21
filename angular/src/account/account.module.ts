@@ -22,7 +22,7 @@ import { LoginService } from './login/login.service';
 import { ResetPasswordComponent } from './passwords/reset-password.component';
 import { AccountRouteGuard } from './auth/account-route-guard';
 
-import { OAuthModule } from 'volo-angular-oauth2-oidc';
+import { OAuthModule } from 'angular-oauth2-oidc';
 import { EmailActivationComponent } from './email-activation/email-activation.component';
 import { ConfirmEmailComponent } from './email-activation/confirm-email.component';
 
