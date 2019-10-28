@@ -30,8 +30,8 @@
             <nz-col nzSm="12">
                 <nz-form-item>
                     <nz-form-control>
-                        <permission-combo [multiple]="false" [dropDownStyle]="{'max-height':'300px'}"
-                            [(selectedPermission)]="selectedPermission" (selectedPermissionChange)="refresh()">
+                        <permission-combo [multiple]="true" [dropDownStyle]="{'max-height':'300px'}"
+                            [(selectedPermission)]="selectedPermissions" (selectedPermissionChange)="refresh()">
                         </permission-combo>
                     </nz-form-control>
                 </nz-form-item>

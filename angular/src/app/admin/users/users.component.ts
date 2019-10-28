@@ -25,7 +25,7 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> imple
 
     filterText = '';
     advancedFiltersVisible = false;
-    selectedPermission = '';
+    selectedPermissions = [];
     role = '';
     onlyLockedUsers = false;
 
@@ -87,7 +87,7 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> imple
         this._userServiceProxy
             .getUsers(
                 this.filterText,
-                this.permission ? this.selectedPermission : undefined,
+                this.selectedPermissions,
                 this.role !== '' ? parseInt(this.role) : undefined,
                 this.onlyLockedUsers,
                 request.sorting,
@@ -125,7 +125,7 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> imple
     exportToExcel(): void {
         this._userServiceProxy.getUsersToExcel(
             this.filterText,
-            this.permission ? this.selectedPermission : undefined,
+            this.selectedPermissions,
             this.role !== '' ? parseInt(this.role) : undefined,
             this.onlyLockedUsers,
             undefined)

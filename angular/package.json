@@ -32,6 +32,7 @@
     "core-js": "^2.6.5",
     "famfamfam-flags": "^1.0.0",
     "file-saver": "^2.0.2",
+    "localforage": "^1.7.3",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.23",

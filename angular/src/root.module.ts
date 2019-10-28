@@ -25,6 +25,8 @@ import { DelonModule } from './delon.module';
 import * as _ from 'lodash';
 import { NzI18nService, NZ_I18N, en_US } from 'ng-zorro-antd';
 
+import * as localForage from 'localforage';
+
 export function appInitializerFactory(
     injector: Injector,
     platformLocation: PlatformLocation) {
@@ -35,6 +37,7 @@ export function appInitializerFactory(
 
             AppPreBootstrap.run(appBaseUrl, () => {
                 handleLogoutRequest(injector.get(AppAuthService));
+                initializeLocalForage();
 
                 const appSessionService: AppSessionService = injector.get(AppSessionService);
                 appSessionService.init().then(
@@ -49,6 +52,16 @@ export function appInitializerFactory(
             });
         });
     };
+}
+
+function initializeLocalForage() {
+    localForage.config({
+        driver: localForage.LOCALSTORAGE,
+        name: 'AbpZeroTemplate',
+        version: 1.0,
+        storeName: 'abpzerotemplate_local_storage',
+        description: 'Cached data for AbpZeroTemplate'
+    });
 }
 
 function getDocumentOrigin() {

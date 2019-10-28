@@ -71,6 +71,32 @@
                             [(ngModel)]="hostSettings.userManagement.smsVerificationEnabled">{{"SmsVerificationEnabled" | localize}}</label>
                     </div>
                 </nz-form-item>
+                <h3>{{"SessionTimeOut" | localize}}</h3>
+                <nz-form-item nz-row class="m0" >
+                    <div nz-col><label nz-checkbox name="SessionTimeOutSettingsIsEnabled"
+                            [(ngModel)]="hostSettings.userManagement.sessionTimeOutSettings.isEnabled">{{"IsSessionTimeOutEnabled" | localize}}</label>
+                    </div>
+                </nz-form-item>
+                <nz-form-item nz-row class="m0" *ngIf="hostSettings.userManagement.sessionTimeOutSettings.isEnabled">
+                    <nz-form-label nzFor="Setting_SessionTimeOutSecond">
+                        {{"SessionTimeOutSecond" | localize}}
+                    </nz-form-label>
+                    <nz-form-control>
+                        <input nz-input type="number" name="Setting_SessionTimeOutSecond"
+                            [(ngModel)]="hostSettings.userManagement.sessionTimeOutSettings.timeOutSecond"
+                            id="Setting_SessionTimeOutSecond">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item nz-row class="m0" *ngIf="hostSettings.userManagement.sessionTimeOutSettings.isEnabled">
+                    <nz-form-label nzFor="Setting_ShowTimeOutNotificationSecond">
+                        {{"DefaultAccountLockoutDurationAsSeconds" | localize}}
+                    </nz-form-label>
+                    <nz-form-control>
+                        <input nz-input type="number" name="Setting_ShowTimeOutNotificationSecond"
+                            [(ngModel)]="hostSettings.userManagement.sessionTimeOutSettings.showTimeOutNotificationSecond"
+                            id="Setting_ShowTimeOutNotificationSecond">
+                    </nz-form-control>
+                </nz-form-item>
             </nz-card>
         </nz-tab>
         <nz-tab [nzTitle]="l('Security')" *ngIf="hostSettings.security">
@@ -155,6 +181,11 @@
                 <div nz-row *ngIf="hostSettings.security.twoFactorLogin.isEnabled && !isMultiTenancyEnabled">
                     <label nz-checkbox name="Setting_TwoFactorLogin_IsRememberBrowserEnabled"
                         [(ngModel)]="hostSettings.security.twoFactorLogin.isRememberBrowserEnabled">{{"AllowToRememberBrowserForTwoFactorLogin" | localize}}</label>
+                </div>
+                <h3 class="mt-md">{{"OneConcurrentLoginPerUser" | localize}}</h3>
+                <div nz-row>
+                    <label nz-checkbox name="Setting_IsOneConcurrentLoginPerUserActive"
+                        [(ngModel)]="hostSettings.security.allowOneConcurrentLoginPerUser">{{"OneConcurrentLoginPerUserActive" | localize}}</label>
                 </div>
             </nz-card>
         </nz-tab>

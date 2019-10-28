@@ -18,7 +18,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class RolesComponent extends PagedListingComponentBase<RoleListDto> {
     advancedFiltersVisible = false;
-    selectedPermission = '';
+    selectedPermissions = [];
 
     constructor(injector: Injector, private _roleService: RoleServiceProxy) {
         super(injector);
@@ -29,9 +29,7 @@ export class RolesComponent extends PagedListingComponentBase<RoleListDto> {
         pageNumber: number,
         finishedCallback: () => void,
     ): void {
-        let permission = this.permission ? this.selectedPermission : undefined;
-
-        this._roleService.getRoles(permission)
+        this._roleService.getRoles(this.selectedPermissions)
             .pipe(finalize(finishedCallback))
             .subscribe(result => {
                 this.dataList = result.items;

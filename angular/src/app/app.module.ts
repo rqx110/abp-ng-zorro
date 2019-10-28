@@ -30,9 +30,12 @@ import { NotificationsComponent } from './shared/layout/notifications/notificati
 import { SettingDrawerComponent } from '@appshared/layout/setting-drawer/setting-drawer.component';
 import { SettingDrawerItemComponent } from '@appshared/layout/setting-drawer/setting-drawer-item.component';
 
-
 import { FileUploadModule } from 'ng2-file-upload';
 import { ImageCropperModule } from 'ngx-image-cropper';
+
+import { SessionTimeoutModalComponent } from './shared/common/session-timeout/session-timeout-modal-component';
+import { SessionTimeoutComponent } from './shared/common/session-timeout/session-timeout.component';
+
 
 const NAVCOMPONENTS = [
     HeaderComponent,
@@ -65,7 +68,9 @@ const NAVCOMPONENTS = [
         NotificationsComponent,
         NotificationSettingsModalComponent,
         SettingDrawerComponent,
-        SettingDrawerItemComponent
+        SettingDrawerItemComponent,
+        SessionTimeoutModalComponent,
+        SessionTimeoutComponent
     ],
     entryComponents: [
         LoginAttemptsModalComponent,
@@ -75,7 +80,7 @@ const NAVCOMPONENTS = [
         SmsVerificationModalComponent,
         NotificationSettingsModalComponent,
         SettingDrawerComponent,
-        SettingDrawerItemComponent
+        SettingDrawerItemComponent,
     ],
     providers: [UserNotificationHelper],
 })

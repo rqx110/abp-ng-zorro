@@ -9,6 +9,7 @@ import { PasswordComplexityValidator } from './validation/password-complexity-va
 import { MomentFromNowPipe } from './moment-from-now.pipe';
 import { MomentFormatPipe } from './moment-format.pipe';
 import { LocalizePipe } from './localize.pipe';
+import { LocalStorageService } from './local-storage.service';
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import { LocalizePipe } from './localize.pipe';
     ],
     providers: [
         FileDownloadService,
-        ScriptLoaderService
+        ScriptLoaderService,
+        LocalStorageService
     ],
     declarations: [
         EqualValidator,

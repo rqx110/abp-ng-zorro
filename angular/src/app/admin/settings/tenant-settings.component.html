@@ -42,6 +42,32 @@
                         </label>
                     </nz-form-control>
                 </nz-form-item>
+                <h3>{{"SessionTimeOut" | localize}}</h3>
+                <nz-form-item nz-row class="m0" >
+                    <div nz-col><label nz-checkbox name="SessionTimeOutSettingsIsEnabled"
+                            [(ngModel)]="settings.userManagement.sessionTimeOutSettings.isEnabled">{{"IsSessionTimeOutEnabled" | localize}}</label>
+                    </div>
+                </nz-form-item>
+                <nz-form-item nz-row class="m0" *ngIf="settings.userManagement.sessionTimeOutSettings.isEnabled">
+                    <nz-form-label nzFor="Setting_SessionTimeOutSecond">
+                        {{"SessionTimeOutSecond" | localize}}
+                    </nz-form-label>
+                    <nz-form-control>
+                        <input nz-input type="number" name="Setting_SessionTimeOutSecond"
+                            [(ngModel)]="settings.userManagement.sessionTimeOutSettings.timeOutSecond"
+                            id="Setting_SessionTimeOutSecond">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item nz-row class="m0" *ngIf="settings.userManagement.sessionTimeOutSettings.isEnabled">
+                    <nz-form-label nzFor="Setting_ShowTimeOutNotificationSecond">
+                        {{"DefaultAccountLockoutDurationAsSeconds" | localize}}
+                    </nz-form-label>
+                    <nz-form-control>
+                        <input nz-input type="number" name="Setting_ShowTimeOutNotificationSecond"
+                            [(ngModel)]="settings.userManagement.sessionTimeOutSettings.showTimeOutNotificationSecond"
+                            id="Setting_ShowTimeOutNotificationSecond">
+                    </nz-form-control>
+                </nz-form-item>
                 <div *ngIf="!isMultiTenancyEnabled && settings.ldap.isModuleEnabled">
                     <h3 class="">{{"LdapSettings" | localize}}</h3>
                     <nz-form-item nz-row>
@@ -183,6 +209,13 @@
                     <div nz-row *ngIf="settings.security.twoFactorLogin.isEnabled && !isMultiTenancyEnabled">
                         <label nz-checkbox name="Setting_TwoFactorLogin_IsRememberBrowserEnabled"
                             [(ngModel)]="settings.security.twoFactorLogin.isRememberBrowserEnabled">{{"AllowToRememberBrowserForTwoFactorLogin" | localize}}</label>
+                    </div>
+                </div>
+                <div *ngIf="!isMultiTenancyEnabled">
+                    <h3  class="mt-md">{{"OneConcurrentLoginPerUser" | localize}}</h3>
+                    <div nz-row>
+                        <label nz-checkbox name="Setting_IsOneConcurrentLoginPerUserActive"
+                            [(ngModel)]="settings.security.allowOneConcurrentLoginPerUser">{{"OneConcurrentLoginPerUserActive" | localize}}</label>
                     </div>
                 </div>
             </nz-card>

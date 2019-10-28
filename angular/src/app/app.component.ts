@@ -23,6 +23,7 @@ export class AppComponent extends AppComponentBase implements OnInit, AfterViewI
     @ViewChild('settingHost', { read: ViewContainerRef, static: true })
     settingHost: ViewContainerRef;
     installationMode = true;
+    IsSessionTimeOutEnabled: boolean = this.setting.getBoolean('App.UserManagement.SessionTimeOut.IsEnabled') && this.appSession.userId != null;
 
     constructor(
         injector: Injector,

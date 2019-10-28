@@ -5708,6 +5708,53 @@ export class ProfileServiceProxy {
     /**
      * @return Success
      */
+    disableGoogleAuthenticator(): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Profile/DisableGoogleAuthenticator";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDisableGoogleAuthenticator(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDisableGoogleAuthenticator(<any>response_);
+                } catch (e) {
+                    return <Observable<void>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<void>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processDisableGoogleAuthenticator(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return _observableOf<void>(<any>null);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<void>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
     updateGoogleAuthenticatorKey(): Observable<UpdateGoogleAuthenticatorKeyOutput> {
         let url_ = this.baseUrl + "/api/services/app/Profile/UpdateGoogleAuthenticatorKey";
         url_ = url_.replace(/[?&]$/, "");
@@ -6344,13 +6391,13 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param permission (optional) 
+     * @param permissions (optional) 
      * @return Success
      */
-    getRoles(permission: string | null | undefined): Observable<ListResultDtoOfRoleListDto> {
+    getRoles(permissions: string[] | null | undefined): Observable<ListResultDtoOfRoleListDto> {
         let url_ = this.baseUrl + "/api/services/app/Role/GetRoles?";
-        if (permission !== undefined)
-            url_ += "Permission=" + encodeURIComponent("" + permission) + "&"; 
+        if (permissions !== undefined)
+            permissions && permissions.forEach(item => { url_ += "Permissions=" + encodeURIComponent("" + item) + "&"; });
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -6896,56 +6943,6 @@ export class SubscriptionServiceProxy {
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
         this.baseUrl = baseUrl ? baseUrl : "";
-    }
-
-    /**
-     * @param upgradeEditionId (optional) 
-     * @return Success
-     */
-    upgradeTenantToEquivalentEdition(upgradeEditionId: number | null | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/services/app/Subscription/UpgradeTenantToEquivalentEdition?";
-        if (upgradeEditionId !== undefined)
-            url_ += "upgradeEditionId=" + encodeURIComponent("" + upgradeEditionId) + "&"; 
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-            })
-        };
-
-        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpgradeTenantToEquivalentEdition(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processUpgradeTenantToEquivalentEdition(<any>response_);
-                } catch (e) {
-                    return <Observable<void>><any>_observableThrow(e);
-                }
-            } else
-                return <Observable<void>><any>_observableThrow(response_);
-        }));
-    }
-
-    protected processUpgradeTenantToEquivalentEdition(response: HttpResponseBase): Observable<void> {
-        const status = response.status;
-        const responseBlob = 
-            response instanceof HttpResponse ? response.body : 
-            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
-            return _observableOf<void>(<any>null);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
-        }
-        return _observableOf<void>(<any>null);
     }
 
     /**
@@ -9162,7 +9159,7 @@ export class UserServiceProxy {
 
     /**
      * @param filter (optional) 
-     * @param permission (optional) 
+     * @param permissions (optional) 
      * @param role (optional) 
      * @param onlyLockedUsers (optional) 
      * @param sorting (optional) 
@@ -9170,12 +9167,12 @@ export class UserServiceProxy {
      * @param skipCount (optional) 
      * @return Success
      */
-    getUsers(filter: string | null | undefined, permission: string | null | undefined, role: number | null | undefined, onlyLockedUsers: boolean | null | undefined, sorting: string | null | undefined, maxResultCount: number | null | undefined, skipCount: number | null | undefined): Observable<PagedResultDtoOfUserListDto> {
+    getUsers(filter: string | null | undefined, permissions: string[] | null | undefined, role: number | null | undefined, onlyLockedUsers: boolean | null | undefined, sorting: string | null | undefined, maxResultCount: number | null | undefined, skipCount: number | null | undefined): Observable<PagedResultDtoOfUserListDto> {
         let url_ = this.baseUrl + "/api/services/app/User/GetUsers?";
         if (filter !== undefined)
             url_ += "Filter=" + encodeURIComponent("" + filter) + "&"; 
-        if (permission !== undefined)
-            url_ += "Permission=" + encodeURIComponent("" + permission) + "&"; 
+        if (permissions !== undefined)
+            permissions && permissions.forEach(item => { url_ += "Permissions=" + encodeURIComponent("" + item) + "&"; });
         if (role !== undefined)
             url_ += "Role=" + encodeURIComponent("" + role) + "&"; 
         if (onlyLockedUsers !== undefined)
@@ -9234,18 +9231,18 @@ export class UserServiceProxy {
 
     /**
      * @param filter (optional) 
-     * @param permission (optional) 
+     * @param permissions (optional) 
      * @param role (optional) 
      * @param onlyLockedUsers (optional) 
      * @param sorting (optional) 
      * @return Success
      */
-    getUsersToExcel(filter: string | null | undefined, permission: string | null | undefined, role: number | null | undefined, onlyLockedUsers: boolean | null | undefined, sorting: string | null | undefined): Observable<FileDto> {
+    getUsersToExcel(filter: string | null | undefined, permissions: string[] | null | undefined, role: number | null | undefined, onlyLockedUsers: boolean | null | undefined, sorting: string | null | undefined): Observable<FileDto> {
         let url_ = this.baseUrl + "/api/services/app/User/GetUsersToExcel?";
         if (filter !== undefined)
             url_ += "Filter=" + encodeURIComponent("" + filter) + "&"; 
-        if (permission !== undefined)
-            url_ += "Permission=" + encodeURIComponent("" + permission) + "&"; 
+        if (permissions !== undefined)
+            permissions && permissions.forEach(item => { url_ += "Permissions=" + encodeURIComponent("" + item) + "&"; });
         if (role !== undefined)
             url_ += "Role=" + encodeURIComponent("" + role) + "&"; 
         if (onlyLockedUsers !== undefined)
@@ -11843,6 +11840,8 @@ export interface IListResultDtoOfEditionListDto {
 export class EditionListDto implements IEditionListDto {
     name!: string | undefined;
     displayName!: string | undefined;
+    dailyPrice!: number | undefined;
+    weeklyPrice!: number | undefined;
     monthlyPrice!: number | undefined;
     annualPrice!: number | undefined;
     waitingDayAfterExpire!: number | undefined;
@@ -11863,6 +11862,8 @@ export class EditionListDto implements IEditionListDto {
         if (data) {
             this.name = data["name"];
             this.displayName = data["displayName"];
+            this.dailyPrice = data["dailyPrice"];
+            this.weeklyPrice = data["weeklyPrice"];
             this.monthlyPrice = data["monthlyPrice"];
             this.annualPrice = data["annualPrice"];
             this.waitingDayAfterExpire = data["waitingDayAfterExpire"];
@@ -11883,6 +11884,8 @@ export class EditionListDto implements IEditionListDto {
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
         data["displayName"] = this.displayName;
+        data["dailyPrice"] = this.dailyPrice;
+        data["weeklyPrice"] = this.weeklyPrice;
         data["monthlyPrice"] = this.monthlyPrice;
         data["annualPrice"] = this.annualPrice;
         data["waitingDayAfterExpire"] = this.waitingDayAfterExpire;
@@ -11896,6 +11899,8 @@ export class EditionListDto implements IEditionListDto {
 export interface IEditionListDto {
     name: string | undefined;
     displayName: string | undefined;
+    dailyPrice: number | undefined;
+    weeklyPrice: number | undefined;
     monthlyPrice: number | undefined;
     annualPrice: number | undefined;
     waitingDayAfterExpire: number | undefined;
@@ -12315,6 +12320,8 @@ export interface ICreateEditionDto {
 export class EditionCreateDto implements IEditionCreateDto {
     id!: number | undefined;
     displayName!: string;
+    dailyPrice!: number | undefined;
+    weeklyPrice!: number | undefined;
     monthlyPrice!: number | undefined;
     annualPrice!: number | undefined;
     trialDayCount!: number | undefined;
@@ -12334,6 +12341,8 @@ export class EditionCreateDto implements IEditionCreateDto {
         if (data) {
             this.id = data["id"];
             this.displayName = data["displayName"];
+            this.dailyPrice = data["dailyPrice"];
+            this.weeklyPrice = data["weeklyPrice"];
             this.monthlyPrice = data["monthlyPrice"];
             this.annualPrice = data["annualPrice"];
             this.trialDayCount = data["trialDayCount"];
@@ -12353,6 +12362,8 @@ export class EditionCreateDto implements IEditionCreateDto {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["displayName"] = this.displayName;
+        data["dailyPrice"] = this.dailyPrice;
+        data["weeklyPrice"] = this.weeklyPrice;
         data["monthlyPrice"] = this.monthlyPrice;
         data["annualPrice"] = this.annualPrice;
         data["trialDayCount"] = this.trialDayCount;
@@ -12365,6 +12376,8 @@ export class EditionCreateDto implements IEditionCreateDto {
 export interface IEditionCreateDto {
     id: number | undefined;
     displayName: string;
+    dailyPrice: number | undefined;
+    weeklyPrice: number | undefined;
     monthlyPrice: number | undefined;
     annualPrice: number | undefined;
     trialDayCount: number | undefined;
@@ -13162,6 +13175,8 @@ export class HostUserManagementSettingsEditDto implements IHostUserManagementSet
     smsVerificationEnabled!: boolean | undefined;
     isCookieConsentEnabled!: boolean | undefined;
     isQuickThemeSelectEnabled!: boolean | undefined;
+    useCaptchaOnLogin!: boolean | undefined;
+    sessionTimeOutSettings!: SessionTimeOutSettingsEditDto | undefined;
 
     constructor(data?: IHostUserManagementSettingsEditDto) {
         if (data) {
@@ -13178,6 +13193,8 @@ export class HostUserManagementSettingsEditDto implements IHostUserManagementSet
             this.smsVerificationEnabled = data["smsVerificationEnabled"];
             this.isCookieConsentEnabled = data["isCookieConsentEnabled"];
             this.isQuickThemeSelectEnabled = data["isQuickThemeSelectEnabled"];
+            this.useCaptchaOnLogin = data["useCaptchaOnLogin"];
+            this.sessionTimeOutSettings = data["sessionTimeOutSettings"] ? SessionTimeOutSettingsEditDto.fromJS(data["sessionTimeOutSettings"]) : <any>undefined;
         }
     }
 
@@ -13194,6 +13211,8 @@ export class HostUserManagementSettingsEditDto implements IHostUserManagementSet
         data["smsVerificationEnabled"] = this.smsVerificationEnabled;
         data["isCookieConsentEnabled"] = this.isCookieConsentEnabled;
         data["isQuickThemeSelectEnabled"] = this.isQuickThemeSelectEnabled;
+        data["useCaptchaOnLogin"] = this.useCaptchaOnLogin;
+        data["sessionTimeOutSettings"] = this.sessionTimeOutSettings ? this.sessionTimeOutSettings.toJSON() : <any>undefined;
         return data; 
     }
 }
@@ -13203,6 +13222,8 @@ export interface IHostUserManagementSettingsEditDto {
     smsVerificationEnabled: boolean | undefined;
     isCookieConsentEnabled: boolean | undefined;
     isQuickThemeSelectEnabled: boolean | undefined;
+    useCaptchaOnLogin: boolean | undefined;
+    sessionTimeOutSettings: SessionTimeOutSettingsEditDto | undefined;
 }
 
 export class EmailSettingsEditDto implements IEmailSettingsEditDto {
@@ -13322,6 +13343,7 @@ export interface ITenantManagementSettingsEditDto {
 }
 
 export class SecuritySettingsEditDto implements ISecuritySettingsEditDto {
+    allowOneConcurrentLoginPerUser!: boolean | undefined;
     useDefaultPasswordComplexitySettings!: boolean | undefined;
     passwordComplexity!: PasswordComplexitySetting | undefined;
     defaultPasswordComplexity!: PasswordComplexitySetting | undefined;
@@ -13339,6 +13361,7 @@ export class SecuritySettingsEditDto implements ISecuritySettingsEditDto {
 
     init(data?: any) {
         if (data) {
+            this.allowOneConcurrentLoginPerUser = data["allowOneConcurrentLoginPerUser"];
             this.useDefaultPasswordComplexitySettings = data["useDefaultPasswordComplexitySettings"];
             this.passwordComplexity = data["passwordComplexity"] ? PasswordComplexitySetting.fromJS(data["passwordComplexity"]) : <any>undefined;
             this.defaultPasswordComplexity = data["defaultPasswordComplexity"] ? PasswordComplexitySetting.fromJS(data["defaultPasswordComplexity"]) : <any>undefined;
@@ -13356,6 +13379,7 @@ export class SecuritySettingsEditDto implements ISecuritySettingsEditDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
+        data["allowOneConcurrentLoginPerUser"] = this.allowOneConcurrentLoginPerUser;
         data["useDefaultPasswordComplexitySettings"] = this.useDefaultPasswordComplexitySettings;
         data["passwordComplexity"] = this.passwordComplexity ? this.passwordComplexity.toJSON() : <any>undefined;
         data["defaultPasswordComplexity"] = this.defaultPasswordComplexity ? this.defaultPasswordComplexity.toJSON() : <any>undefined;
@@ -13366,6 +13390,7 @@ export class SecuritySettingsEditDto implements ISecuritySettingsEditDto {
 }
 
 export interface ISecuritySettingsEditDto {
+    allowOneConcurrentLoginPerUser: boolean | undefined;
     useDefaultPasswordComplexitySettings: boolean | undefined;
     passwordComplexity: PasswordComplexitySetting | undefined;
     defaultPasswordComplexity: PasswordComplexitySetting | undefined;
@@ -13447,6 +13472,50 @@ export class OtherSettingsEditDto implements IOtherSettingsEditDto {
 
 export interface IOtherSettingsEditDto {
     isQuickThemeSelectEnabled: boolean | undefined;
+}
+
+export class SessionTimeOutSettingsEditDto implements ISessionTimeOutSettingsEditDto {
+    isEnabled!: boolean | undefined;
+    timeOutSecond!: number | undefined;
+    showTimeOutNotificationSecond!: number | undefined;
+
+    constructor(data?: ISessionTimeOutSettingsEditDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.isEnabled = data["isEnabled"];
+            this.timeOutSecond = data["timeOutSecond"];
+            this.showTimeOutNotificationSecond = data["showTimeOutNotificationSecond"];
+        }
+    }
+
+    static fromJS(data: any): SessionTimeOutSettingsEditDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new SessionTimeOutSettingsEditDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["isEnabled"] = this.isEnabled;
+        data["timeOutSecond"] = this.timeOutSecond;
+        data["showTimeOutNotificationSecond"] = this.showTimeOutNotificationSecond;
+        return data; 
+    }
+}
+
+export interface ISessionTimeOutSettingsEditDto {
+    isEnabled: boolean | undefined;
+    timeOutSecond: number | undefined;
+    showTimeOutNotificationSecond: number | undefined;
 }
 
 export class PasswordComplexitySetting implements IPasswordComplexitySetting {
@@ -15578,6 +15647,8 @@ export class EditionSelectDto implements IEditionSelectDto {
     name!: string | undefined;
     displayName!: string | undefined;
     expiringEditionId!: number | undefined;
+    dailyPrice!: number | undefined;
+    weeklyPrice!: number | undefined;
     monthlyPrice!: number | undefined;
     annualPrice!: number | undefined;
     trialDayCount!: number | undefined;
@@ -15600,6 +15671,8 @@ export class EditionSelectDto implements IEditionSelectDto {
             this.name = data["name"];
             this.displayName = data["displayName"];
             this.expiringEditionId = data["expiringEditionId"];
+            this.dailyPrice = data["dailyPrice"];
+            this.weeklyPrice = data["weeklyPrice"];
             this.monthlyPrice = data["monthlyPrice"];
             this.annualPrice = data["annualPrice"];
             this.trialDayCount = data["trialDayCount"];
@@ -15622,6 +15695,8 @@ export class EditionSelectDto implements IEditionSelectDto {
         data["name"] = this.name;
         data["displayName"] = this.displayName;
         data["expiringEditionId"] = this.expiringEditionId;
+        data["dailyPrice"] = this.dailyPrice;
+        data["weeklyPrice"] = this.weeklyPrice;
         data["monthlyPrice"] = this.monthlyPrice;
         data["annualPrice"] = this.annualPrice;
         data["trialDayCount"] = this.trialDayCount;
@@ -15637,6 +15712,8 @@ export interface IEditionSelectDto {
     name: string | undefined;
     displayName: string | undefined;
     expiringEditionId: number | undefined;
+    dailyPrice: number | undefined;
+    weeklyPrice: number | undefined;
     monthlyPrice: number | undefined;
     annualPrice: number | undefined;
     trialDayCount: number | undefined;
@@ -15706,6 +15783,8 @@ export interface ICreatePaymentDto {
 }
 
 export enum PaymentPeriodType {
+    Daily = 1, 
+    Weekly = 7, 
     Monthly = 30, 
     Annual = 365, 
 }
@@ -18722,7 +18801,6 @@ export interface IRegisterTenantOutput {
 export class EditionsSelectOutput implements IEditionsSelectOutput {
     allFeatures!: FlatFeatureSelectDto[] | undefined;
     editionsWithFeatures!: EditionWithFeaturesDto[] | undefined;
-    tenantEditionId!: number | undefined;
 
     constructor(data?: IEditionsSelectOutput) {
         if (data) {
@@ -18745,7 +18823,6 @@ export class EditionsSelectOutput implements IEditionsSelectOutput {
                 for (let item of data["editionsWithFeatures"])
                     this.editionsWithFeatures!.push(EditionWithFeaturesDto.fromJS(item));
             }
-            this.tenantEditionId = data["tenantEditionId"];
         }
     }
 
@@ -18768,7 +18845,6 @@ export class EditionsSelectOutput implements IEditionsSelectOutput {
             for (let item of this.editionsWithFeatures)
                 data["editionsWithFeatures"].push(item.toJSON());
         }
-        data["tenantEditionId"] = this.tenantEditionId;
         return data; 
     }
 }
@@ -18776,7 +18852,6 @@ export class EditionsSelectOutput implements IEditionsSelectOutput {
 export interface IEditionsSelectOutput {
     allFeatures: FlatFeatureSelectDto[] | undefined;
     editionsWithFeatures: EditionWithFeaturesDto[] | undefined;
-    tenantEditionId: number | undefined;
 }
 
 export class FlatFeatureSelectDto implements IFlatFeatureSelectDto {
@@ -19012,8 +19087,10 @@ export class TenantUserManagementSettingsEditDto implements ITenantUserManagemen
     isNewRegisteredUserActiveByDefault!: boolean | undefined;
     isEmailConfirmationRequiredForLogin!: boolean | undefined;
     useCaptchaOnRegistration!: boolean | undefined;
+    useCaptchaOnLogin!: boolean | undefined;
     isCookieConsentEnabled!: boolean | undefined;
     isQuickThemeSelectEnabled!: boolean | undefined;
+    sessionTimeOutSettings!: SessionTimeOutSettingsEditDto | undefined;
 
     constructor(data?: ITenantUserManagementSettingsEditDto) {
         if (data) {
@@ -19030,8 +19107,10 @@ export class TenantUserManagementSettingsEditDto implements ITenantUserManagemen
             this.isNewRegisteredUserActiveByDefault = data["isNewRegisteredUserActiveByDefault"];
             this.isEmailConfirmationRequiredForLogin = data["isEmailConfirmationRequiredForLogin"];
             this.useCaptchaOnRegistration = data["useCaptchaOnRegistration"];
+            this.useCaptchaOnLogin = data["useCaptchaOnLogin"];
             this.isCookieConsentEnabled = data["isCookieConsentEnabled"];
             this.isQuickThemeSelectEnabled = data["isQuickThemeSelectEnabled"];
+            this.sessionTimeOutSettings = data["sessionTimeOutSettings"] ? SessionTimeOutSettingsEditDto.fromJS(data["sessionTimeOutSettings"]) : <any>undefined;
         }
     }
 
@@ -19048,8 +19127,10 @@ export class TenantUserManagementSettingsEditDto implements ITenantUserManagemen
         data["isNewRegisteredUserActiveByDefault"] = this.isNewRegisteredUserActiveByDefault;
         data["isEmailConfirmationRequiredForLogin"] = this.isEmailConfirmationRequiredForLogin;
         data["useCaptchaOnRegistration"] = this.useCaptchaOnRegistration;
+        data["useCaptchaOnLogin"] = this.useCaptchaOnLogin;
         data["isCookieConsentEnabled"] = this.isCookieConsentEnabled;
         data["isQuickThemeSelectEnabled"] = this.isQuickThemeSelectEnabled;
+        data["sessionTimeOutSettings"] = this.sessionTimeOutSettings ? this.sessionTimeOutSettings.toJSON() : <any>undefined;
         return data; 
     }
 }
@@ -19059,8 +19140,10 @@ export interface ITenantUserManagementSettingsEditDto {
     isNewRegisteredUserActiveByDefault: boolean | undefined;
     isEmailConfirmationRequiredForLogin: boolean | undefined;
     useCaptchaOnRegistration: boolean | undefined;
+    useCaptchaOnLogin: boolean | undefined;
     isCookieConsentEnabled: boolean | undefined;
     isQuickThemeSelectEnabled: boolean | undefined;
+    sessionTimeOutSettings: SessionTimeOutSettingsEditDto | undefined;
 }
 
 export class TenantEmailSettingsEditDto implements ITenantEmailSettingsEditDto {
@@ -19326,6 +19409,7 @@ export class AuthenticateModel implements IAuthenticateModel {
     twoFactorRememberClientToken!: string | undefined;
     singleSignIn!: boolean | undefined;
     returnUrl!: string | undefined;
+    captchaResponse!: string | undefined;
 
     constructor(data?: IAuthenticateModel) {
         if (data) {
@@ -19345,6 +19429,7 @@ export class AuthenticateModel implements IAuthenticateModel {
             this.twoFactorRememberClientToken = data["twoFactorRememberClientToken"];
             this.singleSignIn = data["singleSignIn"];
             this.returnUrl = data["returnUrl"];
+            this.captchaResponse = data["captchaResponse"];
         }
     }
 
@@ -19364,6 +19449,7 @@ export class AuthenticateModel implements IAuthenticateModel {
         data["twoFactorRememberClientToken"] = this.twoFactorRememberClientToken;
         data["singleSignIn"] = this.singleSignIn;
         data["returnUrl"] = this.returnUrl;
+        data["captchaResponse"] = this.captchaResponse;
         return data; 
     }
 }
@@ -19376,6 +19462,7 @@ export interface IAuthenticateModel {
     twoFactorRememberClientToken: string | undefined;
     singleSignIn: boolean | undefined;
     returnUrl: string | undefined;
+    captchaResponse: string | undefined;
 }
 
 export class AuthenticateResultModel implements IAuthenticateResultModel {
@@ -20115,6 +20202,7 @@ export class UserRoleDto implements IUserRoleDto {
     roleName!: string | undefined;
     roleDisplayName!: string | undefined;
     isAssigned!: boolean | undefined;
+    inheritedFromOrganizationUnit!: boolean | undefined;
 
     constructor(data?: IUserRoleDto) {
         if (data) {
@@ -20131,6 +20219,7 @@ export class UserRoleDto implements IUserRoleDto {
             this.roleName = data["roleName"];
             this.roleDisplayName = data["roleDisplayName"];
             this.isAssigned = data["isAssigned"];
+            this.inheritedFromOrganizationUnit = data["inheritedFromOrganizationUnit"];
         }
     }
 
@@ -20147,6 +20236,7 @@ export class UserRoleDto implements IUserRoleDto {
         data["roleName"] = this.roleName;
         data["roleDisplayName"] = this.roleDisplayName;
         data["isAssigned"] = this.isAssigned;
+        data["inheritedFromOrganizationUnit"] = this.inheritedFromOrganizationUnit;
         return data; 
     }
 }
@@ -20156,6 +20246,7 @@ export interface IUserRoleDto {
     roleName: string | undefined;
     roleDisplayName: string | undefined;
     isAssigned: boolean | undefined;
+    inheritedFromOrganizationUnit: boolean | undefined;
 }
 
 export class GetUserPermissionsForEditOutput implements IGetUserPermissionsForEditOutput {
