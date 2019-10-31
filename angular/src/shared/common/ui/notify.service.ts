@@ -11,19 +11,32 @@ export class NgZorroNotifyService extends NotifyService {
         super();
     }
 
+    normalize(message: string, title?: string) {
+        if (!title) {
+            title = message;
+            message = '';
+        }
+
+        return { message_normalize: message, title_normalize: title };
+    }
+
     info(message: string, title?: string, options?: any): void {
-        this._notifyService.info(title, message, options);
+        const { title_normalize, message_normalize } = this.normalize(message, title);
+        this._notifyService.info(title_normalize, message_normalize, options);
     }
 
     success(message: string, title?: string, options?: any): void {
-        this._notifyService.success(title, message, options);
+        const { title_normalize, message_normalize } = this.normalize(message, title);
+        this._notifyService.success(title_normalize, message_normalize, options);
     }
 
     warn(message: string, title?: string, options?: any): void {
-        this._notifyService.warning(title, message, options);
+        const { title_normalize, message_normalize } = this.normalize(message, title);
+        this._notifyService.warning(title_normalize, message_normalize, options);
     }
 
     error(message: string, title?: string, options?: any): void {
-        this._notifyService.error(title, message, options);
+        const { title_normalize, message_normalize } = this.normalize(message, title);
+        this._notifyService.error(title_normalize, message_normalize, options);
     }
 }
