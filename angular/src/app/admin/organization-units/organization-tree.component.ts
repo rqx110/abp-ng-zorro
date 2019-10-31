@@ -11,7 +11,6 @@ import {
 } from '@angular/core';
 import {
     NzTreeNode,
-    NzDropdownContextComponent,
     NzContextMenuService,
     NzFormatEmitEvent,
     NzDropdownMenuComponent,
@@ -21,7 +20,6 @@ import {
     OrganizationUnitServiceProxy,
     MoveOrganizationUnitInput,
 } from '@shared/service-proxies/service-proxies';
-import { ArrayService } from '@delon/util';
 import * as _ from 'lodash';
 import { finalize, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -50,7 +48,6 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
         injector: Injector,
         private _organizationUnitService: OrganizationUnitServiceProxy,
         private _nzContextMenuService: NzContextMenuService,
-        private _arrayService: ArrayService,
     ) {
         super(injector);
     }
@@ -278,7 +275,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
 
             this.activedNode.children.push(_treeNode);
         } else {
-            this._treeData.push(_treeNode);
+            this._treeData = [...this._treeData, _treeNode];
         }
 
         this.totalUnitCount += 1;
@@ -346,11 +343,10 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
         _.remove(this._ouData, oRemove => {
             return oRemove.id === parseInt(this.activedNode.key);
         });
-        this._treeData.forEach(item => {
+        this._treeData = this._treeData.filter(item => item.key !== this.activedNode.key);
+        this._treeData.forEach((item, idx) => {
             if (item.key === this.activedNode.key) {
-                _.remove(this._treeData, tRemove => {
-                    return tRemove.key === this.activedNode.key;
-                });
+                this._treeData = this._treeData.filter(tFilte => tFilte.key !== this.activedNode.key);
                 this._setActiveNodeNull();
                 return;
             }

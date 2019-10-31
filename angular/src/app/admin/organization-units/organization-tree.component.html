@@ -17,7 +17,7 @@
         </a>
     </ng-template>
     <nz-spin [nzTip]="l('MovingWithThreeDot')" [nzSpinning]="draging">
-        <nz-tree [(ngModel)]="_treeData" [nzShowExpand]="true" [nzDraggable]="true" (nzClick)="activeNode($event)"
+        <nz-tree [nzData]="_treeData" [nzShowExpand]="true" [nzDraggable]="true" (nzClick)="activeNode($event)"
             (nzDblClick)="openFolder($event)" (nzOnDragEnter)="dragEnter($event)" (nzOnDrop)="dragSaveData($event)"
             (nzOnDragEnd)="dragSaveData($event)">
             <nz-dropdown-menu #menu="nzDropdownMenu">
@@ -37,26 +37,17 @@
                 </ul>
             </nz-dropdown-menu>
             <ng-template #nzTreeTemplate let-node>
-
-
                 <span class="custom-node" draggable="true" aria-grabbed="true" [class.active]="activedNode?.key===node.key">
-                    <ellipsis lines="1" style="width: 490px">
                         <span [class.shine-animate]="node.origin.isLoading" (contextmenu)="createContextMenu($event, menu, node)">
-
                             <i nz-icon nzType="folder" *ngIf="!node.isExpanded" (click)="openFolder(node)" nz-tooltip
                                 [nzTitle]="node.origin.code"></i>
                             <i nz-icon nzType="folder-open" *ngIf="node.isExpanded" (click)="openFolder(node)" nz-tooltip
                                 [nzTitle]="node.origin.code"></i>
-
                             <span class="ou-title">{{node.title}}</span>
                             <span class="member-count" [class.member-count-hasvalue]="node?.origin?.memberCount">({{node?.origin?.memberCount}})</span>
-
                         </span>
-                    </ellipsis>
                 </span>
-
             </ng-template>
-
         </nz-tree>
     </nz-spin>
     <div class="text-center" *ngIf="!totalUnitCount">

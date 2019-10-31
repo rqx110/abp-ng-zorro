@@ -7,7 +7,7 @@
         <i nz-icon nzType="reload" class="point" (click)="reload()" nz-tooltip [nzTitle]="l('Refresh')"></i>
     </ng-template>
 
-    <nz-tree #nzTreeOrganizationUnit [(ngModel)]="_treeData" [nzSearchValue]="filterText" [nzCheckable]="true"
+    <nz-tree #nzTreeOrganizationUnit [nzData]="_treeData" [nzSearchValue]="filterText" [nzCheckable]="true"
         [nzShowLine]="false" [nzExpandAll]="true" [nzCheckedKeys]="defaultCheckedOrganizationUnits"
         [nzCheckStrictly]="checkStrictly"></nz-tree>
 </nz-spin>
