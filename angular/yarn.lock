@@ -393,15 +393,6 @@
   dependencies:
     tslib "^1.10.0"
 
-"@aspnet/signalr@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.npm.taobao.org/@aspnet/signalr/download/@aspnet/signalr-1.1.4.tgz#417cf808f4074a8aec45d27f03c4b8df9d96bb0b"
-  integrity sha1-QXz4CPQHSorsRdJ/A8S4352Wuws=
-  dependencies:
-    eventsource "^1.0.7"
-    request "^2.88.0"
-    ws "^6.0.0"
-
 "@babel/code-frame@^7.0.0":
   version "7.0.0"
   resolved "http://registry.npm.taobao.org/@babel/code-frame/download/@babel/code-frame-7.0.0.tgz#06e2ab19bdb535385559aabb5ba59729482800f8"
@@ -1300,6 +1291,15 @@
     loader-utils "^1.4.0"
     merge-source-map "^1.1.0"
     schema-utils "^2.6.4"
+
+"@microsoft/signalr@^3.1.3":
+  version "3.1.3"
+  resolved "https://registry.npm.taobao.org/@microsoft/signalr/download/@microsoft/signalr-3.1.3.tgz#250df3fcabe9e637a61e696edcd97f93a96bbcd3"
+  integrity sha1-JQ3z/Kvp5jemHmlu3Nl/k6lrvNM=
+  dependencies:
+    eventsource "^1.0.7"
+    request "^2.88.0"
+    ws "^6.0.0"
 
 "@ngtools/webpack@9.1.2":
   version "9.1.2"
@@ -9976,14 +9976,7 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
-ws@^6.0.0:
-  version "6.1.4"
-  resolved "http://registry.npm.taobao.org/ws/download/ws-6.1.4.tgz#5b5c8800afab925e94ccb29d153c8d02c1776ef9"
-  integrity sha1-W1yIAK+rkl6UzLKdFTyNAsF3bvk=
-  dependencies:
-    async-limiter "~1.0.0"
-
-ws@^6.2.1:
+ws@^6.0.0, ws@^6.2.1:
   version "6.2.1"
   resolved "https://registry.npm.taobao.org/ws/download/ws-6.2.1.tgz#442fdf0a47ed64f59b6a5d8ff130f4748ed524fb"
   integrity sha1-RC/fCkftZPWbal2P8TD0dI7VJPs=

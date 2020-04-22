@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Renderer2, Inject, OnDestroy, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2, Inject, OnDestroy, ComponentFactoryResolver, ViewContainerRef, ViewChild, NgZone } from '@angular/core';
 import { SignalRHelper } from '@shared/helpers/SignalRHelper';
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { Injector } from '@angular/core';
@@ -34,7 +34,7 @@ export class AppComponent extends AppComponentBase implements OnInit, AfterViewI
         private el: ElementRef,
         private renderer: Renderer2,
         @Inject(DOCUMENT) private doc: any,
-
+        public _zone: NgZone,
         private resolver: ComponentFactoryResolver,
         _appNavigationService: AppNavigationService
     ) {
@@ -83,7 +83,11 @@ export class AppComponent extends AppComponentBase implements OnInit, AfterViewI
         this.installationMode = UrlHelper.isInstallUrl(location.href);
 
         if (this.appSession.application) {
-            SignalRHelper.initSignalR(() => { });
+            SignalRHelper.initSignalR(() => {
+                this._zone.runOutsideAngular(() => {
+                    abp.signalr.connect();
+                });
+            });
         }
 
         this.notify$ = this.settings.notify.subscribe(() => this.setClass());

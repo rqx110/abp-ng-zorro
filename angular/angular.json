@@ -43,7 +43,7 @@
               "src/styles.less"
             ],
             "scripts": [
-              "node_modules/@aspnet/signalr/dist/browser/signalr.min.js",
+              "node_modules/@microsoft/signalr/dist/browser/signalr.min.js",
               "node_modules/moment/min/moment-with-locales.js",
               "node_modules/moment-timezone/builds/moment-timezone-with-data.js",
               "node_modules/push.js/bin/push.js",
