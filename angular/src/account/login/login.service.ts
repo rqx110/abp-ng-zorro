@@ -129,6 +129,8 @@ export class LoginService {
                 authenticateResult.accessToken,
                 authenticateResult.encryptedAccessToken,
                 authenticateResult.expireInSeconds,
+                authenticateResult.refreshToken,
+                authenticateResult.refreshTokenExpireInSeconds,
                 this.rememberMe,
                 authenticateResult.twoFactorRememberClientToken,
                 redirectUrl
@@ -143,7 +145,7 @@ export class LoginService {
         }
     }
 
-    private login(accessToken: string, encryptedAccessToken: string, expireInSeconds: number, rememberMe?: boolean, twoFactorRememberClientToken?: string, redirectUrl?: string): void {
+    private login(accessToken: string, encryptedAccessToken: string, expireInSeconds: number, refreshToken: string, refreshTokenExpireInSeconds: number, rememberMe?: boolean, twoFactorRememberClientToken?: string, redirectUrl?: string): void {
 
         let tokenExpireDate = rememberMe ? (new Date(new Date().getTime() + 1000 * expireInSeconds)) : undefined;
 
@@ -151,6 +153,14 @@ export class LoginService {
             accessToken,
             tokenExpireDate
         );
+
+        if (refreshToken && rememberMe) {
+            let refreshTokenExpireDate = rememberMe ? (new Date(new Date().getTime() + 1000 * refreshTokenExpireInSeconds)) : undefined;
+            this._tokenService.setRefreshToken(
+                refreshToken,
+                refreshTokenExpireDate
+            );
+        }
 
         this._utilsService.setCookieValue(
             AppConsts.authorization.encrptedAuthTokenName,
@@ -279,7 +289,14 @@ export class LoginService {
                         return;
                     }
 
-                    this.login(result.accessToken, result.encryptedAccessToken, result.expireInSeconds, false, '', result.returnUrl);
+                    this.login(result.accessToken,
+                        result.encryptedAccessToken,
+                        result.expireInSeconds,
+                        result.refreshToken,
+                        result.refreshTokenExpireInSeconds,
+                        false,
+                        '',
+                        result.returnUrl);
                 });
         }
     }
@@ -310,7 +327,14 @@ export class LoginService {
                             return;
                         }
 
-                        this.login(result.accessToken, result.encryptedAccessToken, result.expireInSeconds, false, '', result.returnUrl);
+                        this.login(result.accessToken,
+                            result.encryptedAccessToken,
+                            result.expireInSeconds,
+                            result.refreshToken,
+                            result.refreshTokenExpireInSeconds,
+                            false,
+                            '',
+                            result.returnUrl);
                     });
             });
         });
@@ -332,7 +356,14 @@ export class LoginService {
                         return;
                     }
 
-                    this.login(result.accessToken, result.encryptedAccessToken, result.expireInSeconds, false, '', result.returnUrl);
+                    this.login(result.accessToken,
+                        result.encryptedAccessToken,
+                        result.expireInSeconds,
+                        result.refreshToken,
+                        result.refreshTokenExpireInSeconds,
+                        false,
+                        '',
+                        result.returnUrl);
                 });
         }
     }
@@ -356,7 +387,14 @@ export class LoginService {
                     return;
                 }
 
-                this.login(result.accessToken, result.encryptedAccessToken, result.expireInSeconds, false, '', result.returnUrl);
+                this.login(result.accessToken,
+                    result.encryptedAccessToken,
+                    result.expireInSeconds,
+                    result.refreshToken,
+                    result.refreshTokenExpireInSeconds,
+                    false,
+                    '',
+                    result.returnUrl);
             });
     }
 }

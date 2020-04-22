@@ -17,24 +17,10 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@appshared/*": [
-        "app/shared/*"
-      ],
-      "@core/*": [
-        "app/core/*"
-      ],
-      "@testing/*": [
-        "testing/*"
-      ],
-      "@env/*": [
-        "environments/*"
-      ],
-      "@shared/*": [
-        "shared/*"
-      ],
-      "@app/*": [
-        "./app/*"
-      ]
+      "@app/*": [ "./app/*" ],
+      "@account/*": [ "./account/*" ],
+      "@env/*": [ "environments/*" ],
+      "@shared/*": [ "./shared/*" ]
     }
   },
   "angularCompilerOptions": {

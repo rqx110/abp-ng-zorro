@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { AppMenu } from './app-menu';
 import { AppMenuItem } from './app-menu-item';
 import { Menu, MenuService } from '@delon/theme';
-import { AppLocalizationService } from '@appshared/common/localization/app-localization.service';
+import { AppLocalizationService } from '@app/shared/common/localization/app-localization.service';
 import { AppSessionService } from '@shared/common/session/app-session.service';
 
 @Injectable()

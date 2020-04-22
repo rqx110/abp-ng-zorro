@@ -9,9 +9,9 @@ import { DOCUMENT } from '@angular/common';
 import { updateHostClass } from '@delon/util';
 import { Subscription } from 'rxjs';
 import { environment } from '@env/environment';
-import { SettingDrawerComponent } from '@appshared/layout/setting-drawer/setting-drawer.component';
+import { SettingDrawerComponent } from '@app/shared/layout/setting-drawer/setting-drawer.component';
 import { UrlHelper } from '@shared/helpers/UrlHelper';
-import { AppNavigationService } from '@appshared/layout/nav/app-navigation.service';
+import { AppNavigationService } from '@app/shared/layout/nav/app-navigation.service';
 
 @Component({
     selector: 'app-app',

@@ -17,6 +17,7 @@ export class AppAuthService {
             null,
             () => {
                 abp.auth.clearToken();
+                abp.auth.clearRefreshToken();
                 abp.utils.setCookieValue(AppConsts.authorization.encrptedAuthTokenName, undefined, undefined, abp.appPath);
 
                 if (reload !== false) {

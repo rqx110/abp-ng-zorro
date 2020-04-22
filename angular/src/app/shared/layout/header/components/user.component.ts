@@ -1,10 +1,10 @@
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { Component, Injector, OnInit } from '@angular/core';
-import { AppAuthService } from '@appshared/common/auth/app-auth.service';
-import { ChangePasswordModalComponent } from '@appshared/layout/profile/change-password-modal.component';
-import { LoginAttemptsModalComponent } from '@appshared/layout/login-attempts-modal.component';
-import { MySettingsModalComponent } from '@appshared/layout/profile/my-settings-modal.component';
-import { ChangeProfilePictureModalComponent } from '@appshared/layout/profile/change-profile-picture-modal.component';
+import { AppAuthService } from '@app/shared/common/auth/app-auth.service';
+import { ChangePasswordModalComponent } from '@app/shared/layout/profile/change-password-modal.component';
+import { LoginAttemptsModalComponent } from '@app/shared/layout/login-attempts-modal.component';
+import { MySettingsModalComponent } from '@app/shared/layout/profile/my-settings-modal.component';
+import { ChangeProfilePictureModalComponent } from '@app/shared/layout/profile/change-profile-picture-modal.component';
 import { AppConsts } from '@shared/AppConsts';
 import { ProfileServiceProxy, TenantLoginInfoDto } from '@shared/service-proxies/service-proxies';
 

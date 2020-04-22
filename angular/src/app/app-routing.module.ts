@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Router, RouteConfigLoadStart, RouteConfigLoadEnd } from '@angular/router';
 import { AppRouteGuard } from './shared/common/auth/auth-route-guard';
 import { AppComponent } from '@app/app.component';
-import { NotificationsComponent } from '@appshared/layout/notifications/notifications.component';
+import { NotificationsComponent } from '@app/shared/layout/notifications/notifications.component';
 
 const routes: Routes = [
     {

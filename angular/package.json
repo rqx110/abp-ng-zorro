@@ -8,7 +8,8 @@
     "test": "ng test",
     "e2e": "ng e2e",
     "hmr": "npm run color-less && ng serve -c=hmr",
-    "color-less": "node scripts/color-less.js"
+    "color-less": "node scripts/color-less.js",
+    "nswag": "cd nswag/ && refresh.bat"
   },
   "private": true,
   "dependencies": {
