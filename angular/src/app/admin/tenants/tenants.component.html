@@ -149,7 +149,7 @@
                     <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshCheckStatus($event)"></td>
 
                     <td>
-                        <span *ngIf="item.connectionString" nz-tooltip [nzTitle]="l('HasOwnDatabase')">
+                        <span *ngIf="item.connectionString" nz-tooltip [nzTooltipTitle]="l('HasOwnDatabase')">
                             <i nz-icon nzType="database"></i>
                         </span>
                         {{item.tenancyName}}
@@ -193,12 +193,12 @@
                             </a>
                             <nz-dropdown-menu #menuTpl="nzDropdownMenu">
                                 <ul nz-menu>
-                                    <li nz-menu-item [nzDisabled]="!item.isActive"
+                                    <!-- <li nz-menu-item [nzDisabled]="!item.isActive"
                                         *ngIf="isGranted('Pages.Tenants.Impersonation')"
                                         (click)="item.isActive && showTenantImpersonateModal(item)">
                                         <i nz-icon nzType="login"></i>
                                         {{'LoginAsThisTenant' | localize}}
-                                    </li>
+                                    </li> -->
                                     <li nz-menu-item *ngIf="isGranted('Pages.Tenants.ChangeFeatures')"
                                         (click)="changeFeatures(item)">
                                         <i nz-icon nzType="codepen"></i>

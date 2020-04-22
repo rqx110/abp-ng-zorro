@@ -12,7 +12,7 @@
                         placeholder="{{'SearchWithThreeDot' | localize}}">
                     <ng-template #suffixSearchButton>
                         <button nz-button nzType="primary" nzSearch (click)="refresh()">
-                            <i nz-icon type="search"></i>
+                            <i nz-icon nzType="search"></i>
                         </button>
                     </ng-template>
                 </nz-input-group>
@@ -42,7 +42,7 @@
                     <tr *ngFor="let item of nzDataTable.data">
                         <td nzWidth="130px" class="text-center">
                             <a (click)="setAndSave(item)">
-                                <i nz-icon type="check-circle" theme="outline"></i>
+                                <i nz-icon nzType="check-circle" theme="outline"></i>
                                 {{"Select" | localize}}
                             </a>
                         </td>

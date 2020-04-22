@@ -73,7 +73,7 @@
                     <nz-form-label nzFor="userName" nzRequired>
                         {{"UserName" | localize}}
                         <em *ngIf="!canChangeUserName">
-                            <i nz-icon nzType="info-circle" nz-tooltip [nzTitle]="l('CanNotChangeAdminUserName')"></i>
+                            <i nz-icon nzType="info-circle" nz-tooltip [nzTooltipTitle]="l('CanNotChangeAdminUserName')"></i>
                         </em>
                     </nz-form-label>
                     <nz-form-control [nzExtra]="usernameExtraTpl" [nzErrorTip]="usernameValidationTpl" nzHasFeedback>
@@ -132,7 +132,7 @@
                     </nz-form-label>
                     <nz-form-control [nzErrorTip]="passwordRepeatValidationTpl" nzHasFeedback>
                         <input nz-input name="PasswordRepeat" #PasswordRepeat="ngModel"
-                            [(ngModel)]="user.passwordRepeat" placeholder="{{'PasswordRepeat' | localize}}"
+                            [(ngModel)]="userPasswordRepeat" placeholder="{{'PasswordRepeat' | localize}}"
                             type="password" validateEqual="Password" reverse="false"
                             [required]="!user.id && !setRandomPassword" maxlength="32"
                             [requireDigit]="passwordComplexitySetting.requireDigit"

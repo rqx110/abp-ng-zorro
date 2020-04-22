@@ -156,12 +156,12 @@
                         <tr *ngFor="let item of ajaxTable.data">
                             <td nzWidth="75px" nzLeft="0px" class="text-center">
                                 <a (click)="showDetails(item)">
-                                    <i nz-icon nzType="search" nz-tooltip [nzTitle]="l('Search')"></i>
+                                    <i nz-icon nzType="search" nz-tooltip [nzTooltipTitle]="l('Search')"></i>
                                 </a>
                             </td>
                             <td class="text-center">
-                                <i *ngIf="item.exception" nz-tooltip [nzTitle]="l('HasError')" nz-icon nzType="warning" class="text-warning"></i>
-                                <i *ngIf="!item.exception" nz-tooltip [nzTitle]="l('Success')" nz-icon nzType="check-circle" class="text-green"></i>
+                                <i *ngIf="item.exception" nz-tooltip [nzTooltipTitle]="l('HasError')" nz-icon nzType="warning" class="text-warning"></i>
+                                <i *ngIf="!item.exception" nz-tooltip [nzTooltipTitle]="l('Success')" nz-icon nzType="check-circle" class="text-green"></i>
                             </td>
 
                             <td>
@@ -172,14 +172,14 @@
                             </td>
                             <td>
                                 <ellipsis lines="1">
-                                    <span nz-tooltip [nzTitle]="item.serviceName">
+                                    <span nz-tooltip [nzTooltipTitle]="item.serviceName">
                                         {{item.serviceName}}
                                     </span>
                                 </ellipsis>
                             </td>
                             <td>
                                 <ellipsis lines="1">
-                                    <span nz-tooltip [nzTitle]="item.serviceName">
+                                    <span nz-tooltip [nzTooltipTitle]="item.serviceName">
                                         {{item.methodName}}
                                     </span>
                                 </ellipsis>
@@ -195,7 +195,7 @@
                             </td>
                             <td>
                                 <ellipsis lines="1">
-                                    <span nz-tooltip [nzTitle]="item.browserInfo">
+                                    <span nz-tooltip [nzTooltipTitle]="item.browserInfo">
                                         {{truncateStringWithPostfix(item.browserInfo, 20)}}
                                     </span>
                                 </ellipsis>

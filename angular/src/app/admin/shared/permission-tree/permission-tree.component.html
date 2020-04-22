@@ -4,7 +4,7 @@
             (ngModelChange)="filterTextEmptyChange()">
     </nz-input-group>
     <ng-template #suffixIcon>
-        <i nz-icon nzType="reload" class="point" (click)="reload()" nz-tooltip [nzTitle]="l('Refresh')"></i>
+        <i nz-icon nzType="reload" class="point" (click)="reload()" nz-tooltip [nzTooltipTitle]="l('Refresh')"></i>
     </ng-template>
 
     <nz-tree #nzTreePermission [nzData]="_treeData" [nzSearchValue]="filterText" [nzCheckable]="true" [nzShowLine]="false"

@@ -2,8 +2,8 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { AppUrlService } from './nav/app-url.service';
 import { AppSessionService } from './session/app-session.service';
 
-import { MessageService } from '@abp/message/message.service';
-import { NotifyService } from '@abp/notify/notify.service';
+import { MessageService } from 'abp-ng2-module';
+import { NotifyService } from 'abp-ng2-module';
 import { NgZorroNotifyService } from './ui/notify.service';
 import { NgZorroMessageService } from './ui/message.service';
 
@@ -15,7 +15,7 @@ import { SharedModule } from '@shared/shared.module';
     ]
 })
 export class AbpProjectTemplateCommonModule {
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<AbpProjectTemplateCommonModule> {
         return {
             ngModule: AbpProjectTemplateCommonModule,
             providers: [

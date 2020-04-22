@@ -96,7 +96,7 @@
                         {{View_Button_Here}}
                         <ng-container *ngIf="isGranted('{{Permission_Value_Here}}.Edit')">
                             <a (click)="createOrEdit(item.{{entity_Name_Here}}.id)">
-                                <i nz-icon type="edit"></i>
+                                <i nz-icon nzType="edit"></i>
                                 {{'Edit' | localize}}
                             </a>
                             <nz-divider nzType="vertical"></nz-divider>
@@ -104,7 +104,7 @@
                         <ng-container *ngIf="isGranted('{{Permission_Value_Here}}.Delete')">
                             <a nz-popconfirm [nzPopconfirmTitle]="l('{{Entity_Name_Here}}DeleteWarningMessage', '')" (nzOnConfirm)="delete{{Entity_Name_Here}}(item.{{entity_Name_Here}})"
                             [nzOkText]="l('Ok')" [nzCancelText]="l('Cancel')">
-                                <i nz-icon type="delete"></i>
+                                <i nz-icon nzType="delete"></i>
                                 {{'Delete' | localize}}
                             </a>
                         </ng-container>

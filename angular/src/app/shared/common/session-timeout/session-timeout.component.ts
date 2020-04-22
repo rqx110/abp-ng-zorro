@@ -11,7 +11,7 @@ import { LocalStorageService } from '@shared/utils/local-storage.service';
 })
 export class SessionTimeoutComponent extends AppComponentBase implements AfterViewInit, OnDestroy {
 
-  @ViewChild(SessionTimeoutModalComponent, { static: false })
+  @ViewChild(SessionTimeoutModalComponent)
   private sessionTimeOutModal: SessionTimeoutModalComponent;
 
   destroy$ = new Subject();

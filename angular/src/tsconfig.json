@@ -1,13 +1,10 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
     "declaration": false,
-    "downlevelIteration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [
-      "es6",
-      "dom"
-    ],
+    "lib": [ "es2018", "dom" ],
     "mapRoot": "./",
     "module": "esnext",
     "skipLibCheck": true,
@@ -37,13 +34,11 @@
       ],
       "@app/*": [
         "./app/*"
-      ],
-      "@abp/*": [
-        "../node_modules/abp-ng2-module/dist/src/*"
       ]
     }
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
 }

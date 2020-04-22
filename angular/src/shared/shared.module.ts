@@ -4,10 +4,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { AlainThemeModule } from '@delon/theme';
-import { DelonABCModule } from '@delon/abc';
 
-import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { AbpModule } from '@abp/abp.module';
+import { SHARED_DELON_MODULES } from './shared-delon.module';
+import { SHARED_ZORRO_MODULES } from './shared-zorro.module';
 
 // #region your componets & directives
 const COMPONENTS = [];
@@ -20,10 +19,9 @@ const DIRECTIVES = [];
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    AbpModule,
     AlainThemeModule.forChild(),
-    DelonABCModule,
-    NgZorroAntdModule,
+    ...SHARED_DELON_MODULES,
+    ...SHARED_ZORRO_MODULES,
   ],
   declarations: [
     // your components
@@ -35,10 +33,9 @@ const DIRECTIVES = [];
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    AbpModule,
     AlainThemeModule,
-    DelonABCModule,
-    NgZorroAntdModule,
+    ...SHARED_DELON_MODULES,
+    ...SHARED_ZORRO_MODULES,
     // your components
     ...COMPONENTS,
     ...DIRECTIVES,

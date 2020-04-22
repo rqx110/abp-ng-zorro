@@ -39,8 +39,8 @@
             </nz-input-group>
             <ng-template #suffixButton>
                 <button *ngIf="!isPhoneNumberConfirmed" nz-button nzType="primary" type="button" (click)="smsVerify()"
-                    nz-tooltip [nzTitle]="l('YourPhoneNumberIsNotVerified')"><i nz-icon nzType="warning"></i>{{'Verify' | localize}}</button>
-                <i *ngIf="isPhoneNumberConfirmed" nz-icon nzType="check" nz-tooltip [nzTitle]="l('YourPhoneNumberIsVerified')"></i>
+                    nz-tooltip [nzTooltipTitle]="l('YourPhoneNumberIsNotVerified')"><i nz-icon nzType="warning"></i>{{'Verify' | localize}}</button>
+                <i *ngIf="isPhoneNumberConfirmed" nz-icon nzType="check" nz-tooltip [nzTooltipTitle]="l('YourPhoneNumberIsVerified')"></i>
             </ng-template>
         </nz-form-control>
     </nz-form-item>

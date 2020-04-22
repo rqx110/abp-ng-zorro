@@ -1,4 +1,4 @@
-import { UtilsService } from '@abp/utils/utils.service';
+import { UtilsService } from 'abp-ng2-module';
 import { AppConsts } from '@shared/AppConsts';
 
 export class SignalRHelper {

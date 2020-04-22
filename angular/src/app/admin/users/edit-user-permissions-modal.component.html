@@ -17,7 +17,7 @@
 
     <div class="modal-footer">
         <button nz-button [nzType]="'default'" type="button" (click)="resetPermissions()" [disabled]="saving"
-            [nzLoading]="resettingPermissions" nz-tooltip [nzTitle]="l('ResetPermissionsTooltip')" class="mr-sm">
+            [nzLoading]="resettingPermissions" nz-tooltip [nzTooltipTitle]="l('ResetPermissionsTooltip')" class="mr-sm">
             <i nz-icon nzType="rollback" *ngIf="!resettingPermissions"></i>
             {{"ResetSpecialPermissions" | localize}}
         </button>

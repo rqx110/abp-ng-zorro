@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { MessageService } from '@abp/message/message.service';
-import { NzMessageService, NzModalService } from 'ng-zorro-antd';
+import { MessageService } from 'abp-ng2-module';
 import { AppConsts } from '@shared/AppConsts';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Injectable()
 export class NgZorroMessageService extends MessageService {

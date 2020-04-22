@@ -194,7 +194,7 @@
 			"content": "
 					<ng-container>
                             <a (click)=\"view{{Entity_Name_Here}}(item.id)\">
-                                <i nz-icon type=\"search\"></i>
+                                <i nz-icon nzType=\"search\"></i>
                                 {{'View' | localize}}
                             </a>
                             <nz-divider nzType=\"vertical\"></nz-divider>
@@ -203,7 +203,7 @@
 		{
 			"placeholder": "{{Get_Excel_Button_Here}}",
 			"condition": "{{Create_Excel_Export_Here}} == true",
-			"content": "<button nz-button nzType=\"default\" (click)=\"exportToExcel()\"><i nz-icon type=\"file-excel\"></i><span>{{'ExportToExcel' | localize}}</span></button>"
+			"content": "<button nz-button nzType=\"default\" (click)=\"exportToExcel()\"><i nz-icon nzType=\"file-excel\"></i><span>{{'ExportToExcel' | localize}}</span></button>"
 		},
 		{
 			"placeholder": "{{Enum_Localization_Before_060600}}",

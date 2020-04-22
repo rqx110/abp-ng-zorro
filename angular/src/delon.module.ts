@@ -25,7 +25,7 @@ export class DelonModule {
         @SkipSelf()
         parentModule: DelonModule,
     ) { }
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<DelonModule> {
         return {
             ngModule: DelonModule,
             providers: [

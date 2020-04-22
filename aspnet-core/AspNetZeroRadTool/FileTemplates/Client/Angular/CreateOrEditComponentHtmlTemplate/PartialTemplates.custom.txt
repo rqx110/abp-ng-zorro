@@ -80,8 +80,8 @@
 									disabled>
 							</nz-input-group>
 							<ng-template #suffixButton>
-								<i nz-icon type=\"close\" class=\"mr-sm text-sm point\" (click)=\"set{{NP_Name_Here}}Null()\" *ngIf=\"{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}\"></i>
-								<button nz-button nzType=\"primary\" type=\"button\" style=\"margin-left:0\" (click)=\"openSelect{{NP_Foreign_Entity_Name_Here}}Modal{{NP_Duplication_Number_Here}}()\"><i nz-icon type=\"search\"></i>{{\"Pick\" | localize}}</button>
+								<i nz-icon nzType=\"close\" class=\"mr-sm text-sm point\" (click)=\"set{{NP_Name_Here}}Null()\" *ngIf=\"{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}\"></i>
+								<button nz-button nzType=\"primary\" type=\"button\" style=\"margin-left:0\" (click)=\"openSelect{{NP_Foreign_Entity_Name_Here}}Modal{{NP_Duplication_Number_Here}}()\"><i nz-icon nzType=\"search\"></i>{{\"Pick\" | localize}}</button>
 							</ng-template>
 						</nz-form-control>
 						<input nz-input name=\"{{entity_Name_Here}}.{{nP_Name_Here}}\" [(ngModel)]=\"{{entity_Name_Here}}.{{nP_Name_Here}}\" {{NP_IsNullable_Required_Here}} hidden>

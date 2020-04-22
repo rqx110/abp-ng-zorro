@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { NzNotificationService } from 'ng-zorro-antd';
-import { NotifyService } from '@abp/notify/notify.service';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NotifyService } from 'abp-ng2-module';
 
 @Injectable()
 export class NgZorroNotifyService extends NotifyService {

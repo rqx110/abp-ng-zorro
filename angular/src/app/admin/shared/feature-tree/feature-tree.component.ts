@@ -3,7 +3,7 @@ import { FeatureTreeEditModel } from '@app/admin/shared/feature-tree/feature-tre
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { FlatFeatureDto, NameValueDto } from '@shared/service-proxies/service-proxies';
 import * as _ from 'lodash';
-import { NzTreeNode } from 'ng-zorro-antd';
+import { NzTreeNode } from 'ng-zorro-antd/tree';
 import { ArrayService } from '@delon/util';
 
 @Component({

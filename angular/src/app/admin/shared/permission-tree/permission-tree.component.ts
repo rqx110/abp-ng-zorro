@@ -1,6 +1,6 @@
 import { ArrayService } from '@delon/util';
 import { Component, OnInit, Injector } from '@angular/core';
-import { NzTreeNode } from 'ng-zorro-antd';
+import { NzTreeNode } from 'ng-zorro-antd/tree';
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { PermissionTreeEditModel } from '@app/admin/shared/permission-tree/permission-tree-edit.model';
 

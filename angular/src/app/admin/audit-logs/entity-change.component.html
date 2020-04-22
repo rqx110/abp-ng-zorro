@@ -77,7 +77,7 @@
                 <tr *ngFor="let item of ajaxTable.data">
                     <td nzWidth="75px" nzLeft="0px" class="text-center">
                         <a (click)="showEntityChangeDetails(item)">
-                            <i nz-icon nzType="search" nz-tooltip [nzTitle]="l('Search')"></i>
+                            <i nz-icon nzType="search" nz-tooltip [nzTooltipTitle]="l('Search')"></i>
                         </a>
                     </td>
                     <td>
@@ -85,7 +85,7 @@
                     </td>
                     <td>
                         <ellipsis lines="1">
-                            <span nz-tooltip [nzTitle]="item.entityTypeFullName">
+                            <span nz-tooltip [nzTooltipTitle]="item.entityTypeFullName">
                                 {{item.entityTypeFullName}}
                             </span>
                         </ellipsis>

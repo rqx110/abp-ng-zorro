@@ -19,7 +19,7 @@
                 <nz-form-label nzFor="connectionString">
                     {{'DatabaseConnectionString' | localize}}
                     <em>
-                        <i nz-icon nzType="warning" nz-tooltip [nzTitle]="l('TenantDatabaseConnectionStringChangeWarningMessage')"></i>
+                        <i nz-icon nzType="warning" nz-tooltip [nzTooltipTitle]="l('TenantDatabaseConnectionStringChangeWarningMessage')"></i>
                     </em>
                 </nz-form-label>
                 <nz-form-control [nzErrorTip]="connectionStringValidationTpl" nzHasFeedback>
@@ -36,7 +36,7 @@
                     {{"Edition" | localize}}
                 </nz-form-label>
                 <nz-form-control>
-                    <nz-select [(ngModel)]="selectedEdtionId" id="edition" name="edition" (ngModelChange)="onEditionChange($event)">
+                    <nz-select [(ngModel)]="selectedEdtionId" id="edition" name="edition" (ngModelChange)="onEditionChange()">
                         <nz-option *ngFor="let edition of editions" [nzLabel]="edition.displayText" [nzValue]="edition.value"></nz-option>
                     </nz-select>
                 </nz-form-control>

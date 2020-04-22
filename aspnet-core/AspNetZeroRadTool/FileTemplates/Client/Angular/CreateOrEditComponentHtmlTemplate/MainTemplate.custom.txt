@@ -17,7 +17,7 @@
         </button>
         <button nz-button [nzType]="'primary'" type="submit" [disabled]="!{{entity_Name_Here}}Form.form.valid || saving"
             [nzLoading]="saving">
-            <i nz-icon type="save" *ngIf="!saving"></i> {{"Save" | localize}}
+            <i nz-icon nzType="save" *ngIf="!saving"></i> {{"Save" | localize}}
         </button>
     </div>
 

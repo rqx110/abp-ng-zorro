@@ -1,5 +1,5 @@
-import { PermissionCheckerService } from '@abp/auth/permission-checker.service';
-import { FeatureCheckerService } from '@abp/features/feature-checker.service';
+import { PermissionCheckerService } from 'abp-ng2-module';
+import { FeatureCheckerService } from 'abp-ng2-module';
 
 import { Injectable } from '@angular/core';
 import { AppMenu } from './app-menu';

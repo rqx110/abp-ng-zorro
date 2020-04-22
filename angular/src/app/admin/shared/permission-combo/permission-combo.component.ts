@@ -11,7 +11,7 @@ import {
     FlatPermissionWithLevelDto,
     PermissionServiceProxy,
 } from '@shared/service-proxies/service-proxies';
-import { NzTreeNode } from 'ng-zorro-antd';
+import { NzTreeNode } from 'ng-zorro-antd/tree';
 import { ArrayService } from '@delon/util';
 
 @Component({

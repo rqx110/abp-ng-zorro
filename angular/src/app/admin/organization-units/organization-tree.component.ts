@@ -9,12 +9,10 @@ import {
     Output,
     Injector,
 } from '@angular/core';
-import {
-    NzTreeNode,
-    NzContextMenuService,
-    NzFormatEmitEvent,
-    NzDropdownMenuComponent,
-} from 'ng-zorro-antd';
+
+import { NzTreeNode, NzFormatEmitEvent } from 'ng-zorro-antd/tree';
+import { NzContextMenuService, NzDropdownMenuComponent} from 'ng-zorro-antd/dropdown'
+
 import { AppComponentBase } from '@shared/common/app-component-base';
 import {
     OrganizationUnitServiceProxy,

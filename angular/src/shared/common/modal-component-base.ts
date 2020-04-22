@@ -1,5 +1,5 @@
 import { Injector } from '@angular/core';
-import { NzModalRef } from 'ng-zorro-antd';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 import { AppComponentBase } from '@shared/common/app-component-base';
 
 export abstract class ModalComponentBase extends AppComponentBase {

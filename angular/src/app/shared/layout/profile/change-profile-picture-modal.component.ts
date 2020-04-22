@@ -1,5 +1,5 @@
-import { IAjaxResponse } from '@abp/abpHttpInterceptor';
-import { TokenService } from '@abp/auth/token.service';
+import { IAjaxResponse } from 'abp-ng2-module';
+import { TokenService } from 'abp-ng2-module';
 import { Component, Injector, OnInit } from '@angular/core';
 import { AppConsts } from '@shared/AppConsts';
 import { ProfileServiceProxy, UpdateProfilePictureInput } from '@shared/service-proxies/service-proxies';

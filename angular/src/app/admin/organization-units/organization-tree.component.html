@@ -13,7 +13,7 @@
             <nz-divider nzType="vertical"></nz-divider>
         </ng-container>
         <a class="ml-sm">
-            <i nz-icon nzType="reload" nz-tooltip [nzTitle]="l('Refresh')" (click)="reload()"></i>
+            <i nz-icon nzType="reload" nz-tooltip [nzTooltipTitle]="l('Refresh')" (click)="reload()"></i>
         </a>
     </ng-template>
     <nz-spin [nzTip]="l('MovingWithThreeDot')" [nzSpinning]="draging">
@@ -40,9 +40,9 @@
                 <span class="custom-node" draggable="true" aria-grabbed="true" [class.active]="activedNode?.key===node.key">
                         <span [class.shine-animate]="node.origin.isLoading" (contextmenu)="createContextMenu($event, menu, node)">
                             <i nz-icon nzType="folder" *ngIf="!node.isExpanded" (click)="openFolder(node)" nz-tooltip
-                                [nzTitle]="node.origin.code"></i>
+                                [nzTooltipTitle]="node.origin.code"></i>
                             <i nz-icon nzType="folder-open" *ngIf="node.isExpanded" (click)="openFolder(node)" nz-tooltip
-                                [nzTitle]="node.origin.code"></i>
+                                [nzTooltipTitle]="node.origin.code"></i>
                             <span class="ou-title">{{node.title}}</span>
                             <span class="member-count" [class.member-count-hasvalue]="node?.origin?.memberCount">({{node?.origin?.memberCount}})</span>
                         </span>

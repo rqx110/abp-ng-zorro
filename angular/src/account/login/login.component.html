@@ -38,7 +38,7 @@
 <div class="other" *ngIf="(multiTenancySideIsTeanant || !isMultiTenancyEnabled) && loginService.externalLoginProviders.length > 0">
     {{"LoginWith" | localize}}
     <i *ngFor="let provider of loginService.externalLoginProviders" title="{{provider.name}}" (click)="externalLogin(provider)"
-        nz-icon [type]="provider.icon" class="icon"></i>
+        nz-icon [nzType]="provider.icon" class="icon"></i>
 </div>
 <div class="text-center">
     <span *ngIf="isSelfRegistrationAllowed">

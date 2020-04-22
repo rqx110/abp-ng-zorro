@@ -24,8 +24,8 @@ import {
     PasswordComplexitySetting,
     UpdateProfilePictureInput
 } from '@shared/service-proxies/service-proxies';
-import { UploadFile } from 'ng-zorro-antd';
-import { TokenService } from '@abp/auth/token.service';
+import { UploadFile } from 'ng-zorro-antd/upload';
+import { TokenService } from 'abp-ng2-module';
 import { Observable, of } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
@@ -51,7 +51,8 @@ export class CreateOrEditUserModalComponent extends ModalComponentBase implement
     passwordComplexityInfo = '';
     user: UserEditDto = new UserEditDto();
     roles: UserRoleDto[];
-    
+    userPasswordRepeat = '';
+
     profilePicture: string;
 
     constructor(
@@ -135,6 +136,7 @@ export class CreateOrEditUserModalComponent extends ModalComponentBase implement
             .pipe(finalize(() => this.saving = false))
             .subscribe(() => {
                 this.notify.success(this.l('SavedSuccessfully'));
+                this.userPasswordRepeat = '';
                 this.success();
             });
     }

@@ -1,6 +1,6 @@
 import { OrganizationUnitDto } from '@shared/service-proxies/service-proxies';
 import { Component, Injector } from '@angular/core';
-import { NzTreeNode } from 'ng-zorro-antd';
+import { NzTreeNode } from 'ng-zorro-antd/tree';
 import * as _ from 'lodash';
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { ArrayService } from '@delon/util';

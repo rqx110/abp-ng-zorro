@@ -17,7 +17,7 @@
                             <input type="text" nz-input [(ngModel)]="filterText" name="filterText"
                                 placeholder="{{'SearchWithThreeDot' | localize}}">
                             <ng-template #suffixSearchButton>
-                                <button nz-button nzType="primary" nzSearch (click)="onSearch($event)">
+                                <button nz-button nzType="primary" nzSearch (click)="onSearch()">
                                     <i nz-icon nzType="search"></i>
                                 </button>
                             </ng-template>
@@ -39,7 +39,7 @@
             <nz-col nzSm="12">
                 <nz-form-item>
                     <nz-form-control>
-                        <role-combo [selectMode]="default" [(selectedRole)]="role" (selectedRoleChange)="refresh()">
+                        <role-combo selectMode="default" [(selectedRole)]="role" (selectedRoleChange)="refresh()">
                         </role-combo>
                     </nz-form-control>
                 </nz-form-item>
@@ -162,7 +162,7 @@
                         {{item.surname}}
                     </td>
                     <td>
-                        <span nz-tooltip [nzTitle]="getRolesAsString(item.roles)">
+                        <span nz-tooltip [nzTooltipTitle]="getRolesAsString(item.roles)">
                             <nz-tag *ngFor="let role of item.roles">
                                 {{role.roleName}}
                             </nz-tag>
