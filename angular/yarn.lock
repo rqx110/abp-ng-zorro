@@ -331,50 +331,50 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@delon/abc@8.5.0":
-  version "8.5.0"
-  resolved "https://registry.npm.taobao.org/@delon/abc/download/@delon/abc-8.5.0.tgz#a682c62016648da729b8af9ccb67609ad203ff4c"
-  integrity sha1-poLGIBZkjacpuK+cy2dgmtID/0w=
+"@delon/abc@8.9.2":
+  version "8.9.2"
+  resolved "https://registry.npm.taobao.org/@delon/abc/download/@delon/abc-8.9.2.tgz#72c963ad945fce058c7ff94235731a5b86944804"
+  integrity sha1-csljrZRfzgWMf/lCNXMaW4aUSAQ=
   dependencies:
-    "@delon/acl" "^8.5.0"
-    "@delon/theme" "^8.5.0"
-    "@delon/util" "^8.5.0"
+    "@delon/acl" "^8.9.2"
+    "@delon/theme" "^8.9.2"
+    "@delon/util" "^8.9.2"
     file-saver "^1.3.3"
     ngx-countdown "^8.0.0"
     qrious "^4.0.2"
     tslib "^1.9.0"
 
-"@delon/acl@8.5.0", "@delon/acl@^8.5.0":
-  version "8.5.0"
-  resolved "https://registry.npm.taobao.org/@delon/acl/download/@delon/acl-8.5.0.tgz#d08cb923807a7b928644b49e5112c703823f30bd"
-  integrity sha1-0Iy5I4B6e5KGRLSeURLHA4I/ML0=
+"@delon/acl@8.9.2", "@delon/acl@^8.9.2":
+  version "8.9.2"
+  resolved "https://registry.npm.taobao.org/@delon/acl/download/@delon/acl-8.9.2.tgz#0a320808fd347b8fc03b2663dcc7f778b7c37700"
+  integrity sha1-CjIICP00e4/AOyZj3Mf3eLfDdwA=
   dependencies:
-    "@delon/util" "^8.5.0"
+    "@delon/util" "^8.9.2"
     tslib "^1.9.0"
 
-"@delon/chart@^8.5.0":
-  version "8.5.0"
-  resolved "https://registry.npm.taobao.org/@delon/chart/download/@delon/chart-8.5.0.tgz#424e6de4a4bf05f769b399c41401d1506338a43b"
-  integrity sha1-Qk5t5KS/Bfdps5nEFAHRUGM4pDs=
+"@delon/chart@8.9.2":
+  version "8.9.2"
+  resolved "https://registry.npm.taobao.org/@delon/chart/download/@delon/chart-8.9.2.tgz?cache=0&sync_timestamp=1587271900563&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40delon%2Fchart%2Fdownload%2F%40delon%2Fchart-8.9.2.tgz#0fb3d15736078259d865449563b1acd799158ce5"
+  integrity sha1-D7PRVzYHglnYZUSVY7Gs15kVjOU=
   dependencies:
-    "@delon/theme" "^8.5.0"
-    "@delon/util" "^8.5.0"
+    "@delon/theme" "^8.9.2"
+    "@delon/util" "^8.9.2"
     tslib "^1.9.0"
 
-"@delon/theme@8.5.0", "@delon/theme@^8.5.0":
-  version "8.5.0"
-  resolved "https://registry.npm.taobao.org/@delon/theme/download/@delon/theme-8.5.0.tgz#52b4191f9c5e62385f88aa2b5588c37e828183b4"
-  integrity sha1-UrQZH5xeYjhfiKorVYjDfoKBg7Q=
+"@delon/theme@8.9.2", "@delon/theme@^8.9.2":
+  version "8.9.2"
+  resolved "https://registry.npm.taobao.org/@delon/theme/download/@delon/theme-8.9.2.tgz#62a5a978665f3378050b79fab996ed56b0358a9b"
+  integrity sha1-YqWpeGZfM3gFC3n6uZbtVrA1ips=
   dependencies:
-    "@delon/acl" "^8.5.0"
-    "@delon/util" "^8.5.0"
-    ng-zorro-antd "^8.3.1"
+    "@delon/acl" "^8.9.2"
+    "@delon/util" "^8.9.2"
+    ng-zorro-antd "^8.5.2"
     tslib "^1.9.0"
 
-"@delon/util@8.5.0", "@delon/util@^8.5.0":
-  version "8.5.0"
-  resolved "https://registry.npm.taobao.org/@delon/util/download/@delon/util-8.5.0.tgz#ea05bc5620bedc6c8307b3583e888e83b1bddff5"
-  integrity sha1-6gW8ViC+3GyDB7NYPoiOg7G93/U=
+"@delon/util@8.9.2", "@delon/util@^8.9.2":
+  version "8.9.2"
+  resolved "https://registry.npm.taobao.org/@delon/util/download/@delon/util-8.9.2.tgz#c7d77eb11a114b27f298de7f322bc5947dae6524"
+  integrity sha1-x9d+sRoRSyfymN5/MivFlH2uZSQ=
   dependencies:
     extend "^3.0.0"
     tslib "^1.9.0"
@@ -1979,7 +1979,7 @@ core-js@3.1.4:
   resolved "https://registry.npm.taobao.org/core-js/download/core-js-3.1.4.tgz#3a2837fc48e582e1ae25907afcd6cf03b0cc7a07"
   integrity sha1-Oig3/EjlguGuJZB6/NbPA7DMegc=
 
-core-js@^2.2.0, core-js@^2.4.0, core-js@^2.6.5:
+core-js@^2.2.0, core-js@^2.4.0:
   version "2.6.5"
   resolved "http://registry.npm.taobao.org/core-js/download/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
   integrity sha1-RLyNJJ5/sv9dAOA0Gn/7lPv2eJU=
@@ -4772,10 +4772,10 @@ neo-async@^2.5.0:
   resolved "http://registry.npm.taobao.org/neo-async/download/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha1-udFeTXHGdikIZUtRg+04t1M0CDU=
 
-ng-zorro-antd@8.4.0, ng-zorro-antd@^8.3.1:
-  version "8.4.0"
-  resolved "https://registry.npm.taobao.org/ng-zorro-antd/download/ng-zorro-antd-8.4.0.tgz#633372fde8b62e523ecdb41b83ed2241d6878d7b"
-  integrity sha1-YzNy/ei2LlI+zbQbg+0iQdaHjXs=
+ng-zorro-antd@8.5.2, ng-zorro-antd@^8.5.2:
+  version "8.5.2"
+  resolved "https://registry.npm.taobao.org/ng-zorro-antd/download/ng-zorro-antd-8.5.2.tgz#575ea85a75df7bfcc8712e82f819b355fade6b2b"
+  integrity sha1-V16oWnXfe/zIcS6C+BmzVfreays=
   dependencies:
     "@angular/cdk" "^8.0.0"
     "@ant-design/icons-angular" "^8.0.2"

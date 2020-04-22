@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 import { AppCommonModule } from '@app/shared/common/app-common.module';
 import { UtilsModule } from '@shared/utils/utils.module';
@@ -45,11 +43,11 @@ import { InstallComponent } from './install/install.component';
 import { InstallStep1Component } from './install/install-step1.component';
 import { InstallStep2Component } from './install/install-step2.component';
 import { InstallStep3Component } from './install/install-step3.component';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
-  imports: [
-    FormsModule,
-    CommonModule,
+  imports: [    
+    SharedModule,
     UtilsModule,
     AppCommonModule,
     AdminRoutingModule

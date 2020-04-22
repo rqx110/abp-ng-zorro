@@ -1,12 +1,10 @@
 import { ForgotPasswordComponent } from './passwords/forgot-password.component';
-import * as ngCommon from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 import { AccountRoutingModule } from './account-routing.module';
 
-import { CommonModule } from '@shared/common/common.module';
+import { AbpProjectTemplateCommonModule } from '@shared/common/common.module';
 import { UtilsModule } from '@shared/utils/utils.module';
 
 import { AccountComponent } from './account.component';
@@ -29,15 +27,14 @@ import { ConfirmEmailComponent } from './email-activation/confirm-email.componen
 import { SendTwoFactorCodeComponent } from './login/send-two-factor-code.component';
 import { ValidateTwoFactorCodeComponent } from './login/validate-two-factor-code.component';
 import { TenantRegistrationHelperService } from './register/tenant-registration-helper.service';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
     imports: [
-        ngCommon.CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
         HttpClientModule,
         HttpClientJsonpModule,
-        CommonModule,
+        AbpProjectTemplateCommonModule,
+        SharedModule,
         UtilsModule,
         AccountRoutingModule,
         OAuthModule.forRoot()

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,6 +34,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { SessionTimeoutModalComponent } from './shared/common/session-timeout/session-timeout-modal-component';
 import { SessionTimeoutComponent } from './shared/common/session-timeout/session-timeout.component';
+import { SharedModule } from '@shared/shared.module';
 
 
 const NAVCOMPONENTS = [
@@ -46,11 +46,10 @@ const NAVCOMPONENTS = [
 ];
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
+    imports: [        
         BrowserModule,
         BrowserAnimationsModule,
+        SharedModule,
         AppRoutingModule,
         UtilsModule,
         AppCommonModule.forRoot(),

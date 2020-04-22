@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 import { AppCommonModule } from '@app/shared/common/app-common.module';
 import { UtilsModule } from '@shared/utils/utils.module';
@@ -9,14 +7,14 @@ import { MainRoutingModule } from './main-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { LocalizationService } from '@abp/localization/localization.service';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
+    imports: [        
+        SharedModule,
         MainRoutingModule,
         AppCommonModule,
-        UtilsModule,
+        UtilsModule
     ],
     declarations: [DashboardComponent],
     providers: [
