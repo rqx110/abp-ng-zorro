@@ -3,13 +3,7 @@ import { AppConsts } from '@shared/AppConsts';
 import { AppUrlService } from './nav/app-url.service';
 import { AppSessionService } from './session/app-session.service';
 import { ModalHelper } from '@delon/theme';
-import { LocalizationService } from 'abp-ng2-module';
-import { PermissionCheckerService } from 'abp-ng2-module';
-import { MessageService } from 'abp-ng2-module';
-import { FeatureCheckerService } from 'abp-ng2-module';
-import { AbpMultiTenancyService } from 'abp-ng2-module';
-import { NotifyService } from 'abp-ng2-module';
-import { SettingService } from 'abp-ng2-module';
+import { LocalizationService, PermissionCheckerService, FeatureCheckerService, NotifyService, SettingService, MessageService, AbpMultiTenancyService } from 'abp-ng2-module';
 
 export abstract class AppComponentBase {
     localizationSourceName = AppConsts.localization.defaultLocalizationSourceName;

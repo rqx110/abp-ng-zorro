@@ -1,7 +1,5 @@
-import { TokenService } from 'abp-ng2-module';
-import { LogService } from 'abp-ng2-module';
-import { MessageService } from 'abp-ng2-module';
-import { UtilsService } from 'abp-ng2-module';
+
+import { UtilsService, MessageService, TokenService, LogService } from 'abp-ng2-module';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppConsts } from '@shared/AppConsts';
