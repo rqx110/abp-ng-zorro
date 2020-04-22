@@ -112,7 +112,7 @@
         <nz-table #nzDataTable [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]="true"
             [nzData]="dataList" [nzTotal]="totalItems" [nzLoading]="isTableLoading" [(nzPageIndex)]="pageNumber"
             [(nzPageSize)]="pageSize" (nzPageIndexChange)="refresh()" (nzPageSizeChange)="refresh()"
-            [nzShowTotal]="totalTemplate" [nzScroll]="{x: totalItems>0?'1200px':'auto'}">
+            [nzShowTotal]="totalTemplate">
             <ng-template #totalTemplate let-total>
                 {{'TotalRecordsCount' | localize:total}}
             </ng-template>
@@ -139,7 +139,7 @@
                     <th nzShowSort nzSortKey="creationTime" class="text-center">
                         {{'CreationTime' | localize}}
                     </th>
-                    <th nzWidth="240px" nzRight="0px" class="text-center">
+                    <th nzWidth="240px" class="text-center">
                         {{'Actions' | localize}}
                     </th>
                 </tr>
@@ -170,7 +170,7 @@
                     <td class="text-center">
                         {{item.creationTime | momentFormat:'L'}}
                     </td>
-                    <td class="text-center" nzRight="0px">
+                    <td class="text-center">
                         <ng-container *ngIf="isGranted('Pages.Tenants.Edit')">
                             <a (click)="editTenant(item)">
                                 <i nz-icon nzType="edit"></i>

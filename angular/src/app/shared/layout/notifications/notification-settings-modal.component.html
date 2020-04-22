@@ -1,7 +1,7 @@
 <h3 class="modal-header">
     <span>{{'NotificationSettings' | localize}}</span>
 </h3>
-<form nz-form #editForm="ngForm" (ngSubmit)="save()" *ngIf="settings">
+<form nz-form nzLayout="vertical" #editForm="ngForm" (ngSubmit)="save()" *ngIf="settings">
     <h4>{{"ReceiveNotifications" | localize}}</h4>
     <nz-form-item>
         <nz-form-control [nzExtra]="l('ReceiveNotifications_Definition')">

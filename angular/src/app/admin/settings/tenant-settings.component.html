@@ -1,4 +1,4 @@
-<form nz-form #validateForm="ngForm" (ngSubmit)="saveAll()" autocomplete="off">
+<form nz-form nzLayout="vertical" #validateForm="ngForm" (ngSubmit)="saveAll()" autocomplete="off">
     <page-header [title]="title">
         <ng-template #title>
             {{'Settings' | localize}}
@@ -68,7 +68,7 @@
                             id="Setting_ShowTimeOutNotificationSecond">
                     </nz-form-control>
                 </nz-form-item>
-                <div *ngIf="!isMultiTenancyEnabled && settings.ldap.isModuleEnabled">
+                <div *ngIf="settings.ldap.isModuleEnabled">
                     <h3 class="">{{"LdapSettings" | localize}}</h3>
                     <nz-form-item nz-row>
                         <nz-form-control [nzExtra]="l('EnableLdapAuthentication')">
@@ -314,7 +314,7 @@
                         </ng-template>
                     </nz-form-control>
                 </nz-form-item>
-                <hr />
+                <nz-divider></nz-divider>
                 <h3>{{"TestEmailSettingsHeader" | localize}}</h3>
                 <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
                     <input type="text" nz-input [(ngModel)]="testEmailAddress" name="TestEmailAddress">

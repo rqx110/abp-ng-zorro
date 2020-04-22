@@ -1,4 +1,4 @@
-<form nz-form #createOrEditModalForm="ngForm" (ngSubmit)="save()" autocomplete="off">
+<form nz-form nzLayout="vertical" #createOrEditModalForm="ngForm" (ngSubmit)="save()" autocomplete="off">
     <div class="modal-header">
         <div class="modal-title">
             <i nz-icon nzType="user" class="mr-sm"></i>
@@ -14,11 +14,11 @@
                     <i nz-icon nzType="user"></i>{{'UserInformations' | localize}}
                 </ng-template>
                 <nz-row>
-                    <nz-col nzSpan="6" class="pt-lg text-center">
+                    <nz-col nzSpan="6" class="text-center">
                         <img src="{{profilePicture}}" width="128" height="128" class="img-thumbnail img-rounded" />
                     </nz-col>
                     <nz-col nzSpan="18" class="pl-lg">
-                        <nz-form-item nz-row>
+                        <nz-form-item>
                             <nz-form-label nzFor="Name" nzRequired>
                                 {{"Name" | localize}}
                             </nz-form-label>
@@ -30,7 +30,7 @@
                                 </ng-template>
                             </nz-form-control>
                         </nz-form-item>
-                        <nz-form-item nz-row>
+                        <nz-form-item>
                             <nz-form-label nzFor="Surname" nzRequired>
                                 {{"Surname" | localize}}
                             </nz-form-label>
@@ -44,7 +44,7 @@
                         </nz-form-item>
                     </nz-col>
                 </nz-row>
-                <nz-form-item nz-row>
+                <nz-form-item>
                     <nz-form-label nzFor="emailAddress" nzRequired>
                         {{"EmailAddress" | localize}}
                     </nz-form-label>
@@ -57,7 +57,7 @@
                         </ng-template>
                     </nz-form-control>
                 </nz-form-item>
-                <nz-form-item nz-row>
+                <nz-form-item>
                     <nz-form-label nzFor="PhoneNumber">
                         {{"PhoneNumber" | localize}}
                     </nz-form-label>
@@ -69,7 +69,7 @@
                         </ng-template>
                     </nz-form-control>
                 </nz-form-item>
-                <nz-form-item nz-row>
+                <nz-form-item>
                     <nz-form-label nzFor="userName" nzRequired>
                         {{"UserName" | localize}}
                         <em *ngIf="!canChangeUserName">
@@ -94,7 +94,7 @@
                             [(ngModel)]="setRandomPassword">{{"SetRandomPassword" | localize}}</label>
                     </nz-form-control>
                 </nz-form-item>
-                <nz-form-item nz-row *ngIf="!setRandomPassword">
+                <nz-form-item *ngIf="!setRandomPassword">
                     <nz-form-label nzFor="Password" [nzRequired]="!user.id && !setRandomPassword">
                         {{"Password" | localize}}
                     </nz-form-label>

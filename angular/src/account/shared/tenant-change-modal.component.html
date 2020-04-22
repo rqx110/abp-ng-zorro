@@ -10,8 +10,13 @@
                 {{"TenancyName" | localize}}
             </nz-form-label>
             <nz-form-control nz-col [nzSm]="14" [nzExtra]="l('LeaveEmptyToSwitchToHost')">
-                <input nz-input name="TenancyName" [(ngModel)]="tenancyName" type="text" placeholder="{{'TenancyName' | localize}}" />
-            </nz-form-control>
+                <nz-input-group [nzSuffix]="inputClearTpl">
+                    <input nz-input name="TenancyName" [(ngModel)]="tenancyName" type="text" placeholder="{{'TenancyName' | localize}}" />
+                </nz-input-group>
+                <ng-template #inputClearTpl>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="tenancyName" (click)="tenancyName = null"></i>
+                </ng-template>
+            </nz-form-control>            
         </nz-form-item>
     </fieldset>
     <div class="modal-footer">

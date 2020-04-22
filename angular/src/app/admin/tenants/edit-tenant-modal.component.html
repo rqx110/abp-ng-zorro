@@ -3,7 +3,7 @@
         <span>{{"EditTenant" | localize}}: {{tenant.tenancyName}}</span>
     </h3>
     <nz-spin [nzSpinning]="saving">
-        <form nz-form #tenantEditForm="ngForm" (ngSubmit)="save()" *ngIf="tenant">
+        <form nz-form nzLayout="vertical" #tenantEditForm="ngForm" (ngSubmit)="save()" *ngIf="tenant">
             <nz-form-item>
                 <nz-form-label nzFor="Name">{{'Name' | localize}}</nz-form-label>
                 <nz-form-control [nzErrorTip]="nameValidationTpl" nzHasFeedback>
