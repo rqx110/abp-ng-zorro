@@ -73,7 +73,7 @@
     <nz-form-item *ngIf="!setRandomPassword">
         <nz-form-label nzFor="AdminPasswordRepeat">{{'AdminPasswordRepeat' | localize}}</nz-form-label>
         <nz-form-control [nzErrorTip]="adminPasswordRepeatValidationTpl" nzHasFeedback>
-            <input nz-input name="AdminPasswordRepeat" #adminPasswordRepeatInput='ngModel' [(ngModel)]="tenant.adminPasswordRepeat"
+            <input nz-input name="AdminPasswordRepeat" #adminPasswordRepeatInput='ngModel' [(ngModel)]="tenantAdminPasswordRepeat"
                 placeholder="{{'AdminPasswordRepeat' | localize}}" [required]="!setRandomPassword" [requireDigit]="passwordComplexitySetting.requireDigit"
                 [requireLowercase]="passwordComplexitySetting.requireLowercase" [requireUppercase]="passwordComplexitySetting.requireUppercase"
                 [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric" [requiredLength]="passwordComplexitySetting.requiredLength"

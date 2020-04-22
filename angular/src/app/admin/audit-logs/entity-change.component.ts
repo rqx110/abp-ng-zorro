@@ -73,7 +73,7 @@ export class EntityChangeComponent extends PagedListingComponentBase<EntityChang
             });
     }
 
-    showDetails(item: EntityChangeListDto): void {
+    showEntityChangeDetails(item: EntityChangeListDto): void {
         this.modalHelper
             .create(EntityChangeDetailModalComponent, { entityChange: item })
             .subscribe(result => { });

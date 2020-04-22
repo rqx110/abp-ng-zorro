@@ -166,19 +166,19 @@
                     <label nz-checkbox name="Setting_TwoFactorLogin_IsEnabled"
                         [(ngModel)]="hostSettings.security.twoFactorLogin.isEnabled">{{"EnableTwoFactorLogin" | localize}}</label>
                 </div>
-                <div nz-row *ngIf="hostSettings.security.twoFactorLogin.isEnabled && !isMultiTenancyEnabled">
+                <div nz-row *ngIf="hostSettings.security.twoFactorLogin.isEnabled">
                     <label nz-checkbox name="Setting_TwoFactorLogin_IsEmailProviderEnabled"
                         [(ngModel)]="hostSettings.security.twoFactorLogin.isEmailProviderEnabled">{{"IsEmailVerificationEnabled" | localize}}</label>
                 </div>
-                <div nz-row *ngIf="hostSettings.security.twoFactorLogin.isEnabled && !isMultiTenancyEnabled">
+                <div nz-row *ngIf="hostSettings.security.twoFactorLogin.isEnabled">
                     <label nz-checkbox name="Setting_TwoFactorLogin_IsSmsProviderEnabled"
                         [(ngModel)]="hostSettings.security.twoFactorLogin.isSmsProviderEnabled">{{"IsSmsVerificationEnabled" | localize}}</label>
                 </div>
-                <div nz-row *ngIf="hostSettings.security.twoFactorLogin.isEnabled && !isMultiTenancyEnabled">
+                <div nz-row *ngIf="hostSettings.security.twoFactorLogin.isEnabled">
                     <label nz-checkbox name="Setting_TwoFactorLogin_IsGoogleAuthenticatorEnabled"
                         [(ngModel)]="hostSettings.security.twoFactorLogin.isGoogleAuthenticatorEnabled">{{"IsGoogleAuthenticatorEnabled" | localize}}</label>
                 </div>
-                <div nz-row *ngIf="hostSettings.security.twoFactorLogin.isEnabled && !isMultiTenancyEnabled">
+                <div nz-row *ngIf="hostSettings.security.twoFactorLogin.isEnabled">
                     <label nz-checkbox name="Setting_TwoFactorLogin_IsRememberBrowserEnabled"
                         [(ngModel)]="hostSettings.security.twoFactorLogin.isRememberBrowserEnabled">{{"AllowToRememberBrowserForTwoFactorLogin" | localize}}</label>
                 </div>

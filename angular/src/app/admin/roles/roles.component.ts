@@ -36,7 +36,7 @@ export class RolesComponent extends PagedListingComponentBase<RoleListDto> {
             });
     }
 
-    protected delete(entity: RoleListDto): void {
+    delete(entity: RoleListDto): void {
         this._roleService.deleteRole(entity.id).subscribe(() => {
             this.refresh();
             this.notify.success(this.l('SuccessfullyDeleted'));

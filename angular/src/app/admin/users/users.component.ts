@@ -134,7 +134,7 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> imple
         });
     }
 
-    protected deleteUser(user: UserListDto): void {
+    deleteUser(user: UserListDto): void {
         if (user.userName === AppConsts.userManagement.defaultAdminUserName) {
             this.message.warn(this.l('{0}UserCannotBeDeleted', AppConsts.userManagement.defaultAdminUserName));
             return;

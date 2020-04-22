@@ -81,7 +81,7 @@ export class TenantsComponent extends PagedListingComponentBase<TenantListDto> {
             .subscribe(() => { this.refresh(); });
     }
 
-    protected delete(tenant: TenantListDto): void {
+    delete(tenant: TenantListDto): void {
         this._tenantService.deleteTenant(tenant.id).subscribe(() => {
             this.refresh();
             this.notify.success(this.l('SuccessfullyDeleted'));

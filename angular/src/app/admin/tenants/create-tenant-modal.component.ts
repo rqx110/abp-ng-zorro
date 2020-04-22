@@ -27,6 +27,7 @@ export class CreateTenantModalComponent extends ModalComponentBase implements On
     isUnlimited = false;
     isSubscriptionFieldsVisible = false;
     isSelectedEditionFree = false;
+    tenantAdminPasswordRepeat = '';
 
     selectedEdtionId = '';
 
@@ -122,6 +123,7 @@ export class CreateTenantModalComponent extends ModalComponentBase implements On
             .pipe(finalize(() => this.saving = false))
             .subscribe(() => {
                 this.notify.info(this.l('SavedSuccessfully'));
+                this.tenantAdminPasswordRepeat = '';
                 this.success();
             });
     }
