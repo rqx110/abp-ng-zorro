@@ -27,6 +27,8 @@ import { NzI18nService, NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 
 import * as localForage from 'localforage';
 import { SharedModule } from '@shared/shared.module';
+import { NgZorroMessageService } from '@shared/common/ui/message.service';
+import { NgZorroNotifyService } from '@shared/common/ui/notify.service';
 
 export function appInitializerFactory(
     injector: Injector,
@@ -37,6 +39,8 @@ export function appInitializerFactory(
             let appBaseUrl = getDocumentOrigin() + AppConsts.appBaseHref;
 
             AppPreBootstrap.run(appBaseUrl, () => {
+                initializeNgZorroMessage(injector);
+                
                 handleLogoutRequest(injector.get(AppAuthService));
                 initializeLocalForage();
 
@@ -53,6 +57,13 @@ export function appInitializerFactory(
             });
         });
     };
+}
+
+function initializeNgZorroMessage(injector: Injector) {
+    const zorroMessage = injector.get(NgZorroMessageService);
+    zorroMessage.init();
+    const zorroNotify = injector.get(NgZorroNotifyService);
+    zorroNotify.init();
 }
 
 function initializeLocalForage() {

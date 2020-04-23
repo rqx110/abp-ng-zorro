@@ -1,55 +1,77 @@
-import { Injectable } from '@angular/core';
-import { MessageService } from 'abp-ng2-module';
-import { AppConsts } from '@shared/AppConsts';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { Injectable } from "@angular/core";
+import { AppConsts } from "@shared/AppConsts";
+import { NzModalService } from "ng-zorro-antd/modal";
 
 @Injectable()
-export class NgZorroMessageService extends MessageService {
+export class NgZorroMessageService {
+    constructor(private _modalService: NzModalService) {}
 
-    constructor(private _modalService: NzModalService, private _messageService: NzMessageService) {
-        super();
-    }
+    init() {
+        abp.message.info = (message: string, title?: string, options?: any) => {
+            let displayTitle = title == null ? message : title;
+            this._modalService.info({
+                nzTitle: displayTitle,
+                nzContent: message,
+            });
+        };
 
-    info(message: string, title?: string): any {
-        this._messageService.info(message);
-    }
+        abp.message.success = (
+            message: string,
+            title?: string,
+            options?: any
+        ) => {
+            let displayTitle = title == null ? message : title;
+            this._modalService.success({
+                nzTitle: displayTitle,
+                nzContent: message,
+            });
+        };
 
-    success(message: string, title?: string): any {
-        this._messageService.success(message);
-    }
+        abp.message.warn = (message: string, title?: string, options?: any) => {
+            let displayTitle = title == null ? message : title;
+            this._modalService.warning({
+                nzTitle: displayTitle,
+                nzContent: message,
+            });
+        };
 
-    warn(message: string, title?: string): any {
-        this._messageService.warning(message);
-    }
+        abp.message.error = (
+            message: string,
+            title?: string,
+            options?: any
+        ) => {
+            let displayTitle = title == null ? message : title;
+            this._modalService.error({
+                nzTitle: displayTitle,
+                nzContent: message,
+            });
+        };
 
-    error(message: string, title?: string): any {
-        this._messageService.error(message);
-    }
-
-    confirm(message: string, titleOrCallBack?: string | ((result: boolean) => void), callback?: (result: boolean) => void): any {
-        if (typeof titleOrCallBack === 'string') {
+        abp.message.confirm = (
+            message: string,
+            title?: string,
+            callback?: (result: boolean) => void,
+            options?: any
+        ) => {
             this._modalService.confirm({
-                nzTitle: titleOrCallBack,
+                nzTitle: <any>(
+                    abp.localization.localize(
+                        "AreYouSure",
+                        AppConsts.localization.defaultLocalizationSourceName
+                    )
+                ),
                 nzContent: message,
                 nzOnOk() {
-                    if (callback) { callback(true); }
+                    if (callback) {
+                        callback(true);
+                    }
                 },
                 nzOnCancel() {
-                    if (callback) { callback(false); }
-                }
-            });
-        } else {
-            this._modalService.confirm({
-                nzTitle: <any>abp.localization.localize('AreYouSure', AppConsts.localization.defaultLocalizationSourceName),
-                nzContent: message,
-                nzOnOk() {
-                    if (titleOrCallBack) { titleOrCallBack(true); }
+                    if (callback) {
+                        callback(false);
+                    }
                 },
-                nzOnCancel() {
-                    if (titleOrCallBack) { titleOrCallBack(false); }
-                }
             });
-        }
+        };
     }
 }

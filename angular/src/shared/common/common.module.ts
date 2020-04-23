@@ -21,8 +21,8 @@ export class AbpZeroTemplateCommonModule {
             providers: [
                 AppSessionService,
                 AppUrlService,
-                { provide: MessageService, useClass: NgZorroMessageService },
-                { provide: NotifyService, useClass: NgZorroNotifyService }
+                NgZorroMessageService,
+                NgZorroNotifyService
             ]
         };
     }
