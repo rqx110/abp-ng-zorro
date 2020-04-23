@@ -15,7 +15,7 @@ const routes: Routes = [
                 path: '',
                 children: [
                     { path: 'notifications', component: NotificationsComponent },
-                    { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+                    { path: '', redirectTo: '/app/main/dashboard', pathMatch: 'full' }
                 ]
             },
             {
@@ -29,11 +29,7 @@ const routes: Routes = [
                 data: { preload: true },
                 canLoad: [AppRouteGuard]
             },
-
-            {
-                path: '**',
-                redirectTo: 'notifications',
-            },
+            { path: '**', redirectTo: 'notifications' }
         ],
     },
 ];

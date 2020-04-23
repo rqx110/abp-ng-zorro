@@ -6,7 +6,9 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      { path: 'dashboard', component: DashboardComponent, data: { permission: 'Pages.Tenant.Dashboard' }}
+      { path: 'dashboard', component: DashboardComponent, data: { permission: 'Pages.Tenant.Dashboard' }},
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '**', redirectTo: 'dashboard' }
     ],
   },
 ];

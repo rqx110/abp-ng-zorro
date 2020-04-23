@@ -1,0 +1,42 @@
+<div class="ant-card width-lg" style="margin: 0 auto;">
+  <div class="ant-card-body">
+    <div class="avatar" *ngIf="userInfo && userInfo.profilePicture">
+      <nz-avatar [nzSrc]="userInfo.profilePicture" nzIcon="user" [nzSize]="64"></nz-avatar>
+    </div>
+    <form nz-form #loginForm="ngForm" (ngSubmit)="login()" role="form" class="mt-md">
+      <nz-alert nzType="info" [nzMessage]="l('YourSessionIsLocked')" nzShowIcon></nz-alert>
+      <span>
+        {{'UserNameOrEmail' | localize}}: <span class="font-weight-bold">{{userInfo.userName}}</span>
+      </span>
+      <div>
+        {{"CurrentTenant" | localize}}: <span class="font-weight-bold">{{userInfo.tenant}}</span>
+      </div>
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="passwordValidationTpl">
+          <input nz-input #passwordInput="ngModel" [(ngModel)]="loginService.authenticateModel.password" type="password"
+            autocomplete="new-password" placeholder="{{'Password' | localize}}*" name="password" required
+            maxlength="32" />
+          <ng-template #passwordValidationTpl let-control>
+            <validation-messages [formCtrl]="control"></validation-messages>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-col [nzSpan]="12">
+          <label nz-checkbox [(ngModel)]="loginService.rememberMe" name="rememberMe" id="rememberme">
+            <span>{{"RememberMe" | localize}}</span>
+          </label>
+        </nz-col>
+      </nz-form-item>
+      <nz-row nzType="flex" nzAlign="middle">
+        <nz-col [nzSpan]="12">
+          <a routerLink="/account/login">{{'GoToLoginPage' | localize}}</a>
+        </nz-col>
+        <nz-col [nzSpan]="12" style="text-align:right;">
+          <button nz-button [disabled]="!loginForm.form.valid||submitting"
+            nzType="primary">{{ "LogIn" | localize }}</button>
+        </nz-col>
+      </nz-row>
+    </form>
+  </div>
+</div>

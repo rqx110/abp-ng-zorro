@@ -1,5 +1,8 @@
 import { Component, Injector } from '@angular/core';
 import { AppComponentBase } from '@shared/common/app-component-base';
+import { Router } from '@angular/router';
+import { AppConsts } from '@shared/AppConsts';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'layout-account',
@@ -10,10 +13,15 @@ import { AppComponentBase } from '@shared/common/app-component-base';
 export class AccountComponent extends AppComponentBase {
     versionText: string;
     currentYear: number;
+    tenantChangeDisabledRoutes: string[] = [
+        'select-edition',
+        'register-tenant',
+        'session-locked'
+    ];
 
     links = [];
 
-    public constructor(injector: Injector) {
+    public constructor(injector: Injector, private _router: Router,) {
         super(injector);
         this.currentYear = new Date().getFullYear();
         this.versionText =
@@ -24,6 +32,18 @@ export class AccountComponent extends AppComponentBase {
     }
 
     showTenantChange(): boolean {
-        return abp.multiTenancy.isEnabled;
+        if (!this._router.url) {
+            return false;
+        }
+
+        if (_.filter(this.tenantChangeDisabledRoutes, route => this._router.url.indexOf('/account/' + route) >= 0).length) {
+            return false;
+        }
+
+        return abp.multiTenancy.isEnabled && !this.supportsTenancyNameInUrl();
+    }
+
+    private supportsTenancyNameInUrl() {
+        return (AppConsts.appBaseUrlFormat && AppConsts.appBaseUrlFormat.indexOf(AppConsts.tenancyNamePlaceHolderInUrl) >= 0);
     }
 }

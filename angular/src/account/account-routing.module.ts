@@ -12,6 +12,7 @@ import { SendTwoFactorCodeComponent } from './login/send-two-factor-code.compone
 import { ValidateTwoFactorCodeComponent } from './login/validate-two-factor-code.component';
 import { RegisterTenantComponent } from './register/register-tenant.component';
 import { RegisterTenantResultComponent } from './register/register-tenant-result.component';
+import { SessionLockScreenComponent } from './login/session-lock-screen.component';
 
 @NgModule({
     imports: [
@@ -19,8 +20,8 @@ import { RegisterTenantResultComponent } from './register/register-tenant-result
             {
                 path: '',
                 component: AccountComponent,
-
                 children: [
+                    { path: '', redirectTo: 'login' },
                     { path: 'login', component: LoginComponent, canActivate: [AccountRouteGuard] },
                     { path: 'register', component: RegisterComponent, canActivate: [AccountRouteGuard] },
                     { path: 'register-tenant', component: RegisterTenantComponent, canActivate: [AccountRouteGuard] },
@@ -31,7 +32,9 @@ import { RegisterTenantResultComponent } from './register/register-tenant-result
                     { path: 'confirm-email', component: ConfirmEmailComponent, canActivate: [AccountRouteGuard] },
                     { path: 'send-code', component: SendTwoFactorCodeComponent, canActivate: [AccountRouteGuard] },
                     { path: 'verify-code', component: ValidateTwoFactorCodeComponent, canActivate: [AccountRouteGuard] },
-],
+                    { path: 'session-locked', component: SessionLockScreenComponent },
+                    { path: '**', redirectTo: 'login' }
+                ],
             },
         ]),
     ],

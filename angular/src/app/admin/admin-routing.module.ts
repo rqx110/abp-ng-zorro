@@ -30,6 +30,8 @@ const routes: Routes = [
     { path: 'tenantSettings', component: TenantSettingsComponent, data: { permission: 'Pages.Administration.Tenant.Settings' } },
     { path: 'hostDashboard', component: HostDashboardComponent, data: { permission: 'Pages.Administration.Host.Dashboard' } },
     { path: 'install', component: InstallComponent },
+    { path: '', redirectTo: 'hostDashboard', pathMatch: 'full' },
+    { path: '**', redirectTo: 'hostDashboard' }
 ];
 
 @NgModule({

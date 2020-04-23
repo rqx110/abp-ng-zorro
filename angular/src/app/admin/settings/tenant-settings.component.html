@@ -43,12 +43,17 @@
                     </nz-form-control>
                 </nz-form-item>
                 <h3>{{"SessionTimeOut" | localize}}</h3>
-                <nz-form-item nz-row class="m0" >
-                    <div nz-col><label nz-checkbox name="SessionTimeOutSettingsIsEnabled"
+                <nz-form-item nz-row class="m0">
+                    <div nz-col>
+                        <label nz-checkbox name="SessionTimeOutSettingsIsEnabled"
                             [(ngModel)]="settings.userManagement.sessionTimeOutSettings.isEnabled">{{"IsSessionTimeOutEnabled" | localize}}</label>
                     </div>
                 </nz-form-item>
                 <nz-form-item nz-row class="m0" *ngIf="settings.userManagement.sessionTimeOutSettings.isEnabled">
+                    <div>
+                        <label nz-checkbox name="ShowLockScreenWhenTimedOut"
+                            [(ngModel)]="settings.userManagement.sessionTimeOutSettings.showLockScreenWhenTimedOut">{{"ShowLockScreenWhenTimedOut" | localize}}</label>
+                    </div>
                     <nz-form-label nzFor="Setting_SessionTimeOutSecond">
                         {{"SessionTimeOutSecond" | localize}}
                     </nz-form-label>

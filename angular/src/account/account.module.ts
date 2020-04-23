@@ -26,6 +26,7 @@ import { ConfirmEmailComponent } from './email-activation/confirm-email.componen
 
 import { SendTwoFactorCodeComponent } from './login/send-two-factor-code.component';
 import { ValidateTwoFactorCodeComponent } from './login/validate-two-factor-code.component';
+import { SessionLockScreenComponent } from './login/session-lock-screen.component';
 import { TenantRegistrationHelperService } from './register/tenant-registration-helper.service';
 import { SharedModule } from '@shared/shared.module';
 
@@ -53,7 +54,8 @@ import { SharedModule } from '@shared/shared.module';
         EmailActivationComponent,
         ConfirmEmailComponent,
         SendTwoFactorCodeComponent,
-        ValidateTwoFactorCodeComponent
+        ValidateTwoFactorCodeComponent,
+        SessionLockScreenComponent
     ],
     entryComponents: [TenantChangeModalComponent],
     providers: [

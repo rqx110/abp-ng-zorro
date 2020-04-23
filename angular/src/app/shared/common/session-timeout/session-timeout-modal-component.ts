@@ -2,6 +2,7 @@ import { Component, Injector, OnDestroy } from '@angular/core';
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { timer, Subscription } from 'rxjs';
 import { AppAuthService } from '../auth/app-auth.service';
+import { SessionServiceProxy } from '@shared/service-proxies/service-proxies';
 
 @Component({
     selector: 'session-timeout-modal',
@@ -18,6 +19,7 @@ export class SessionTimeoutModalComponent extends AppComponentBase implements On
     constructor(
         injector: Injector,
         private _appAuthService: AppAuthService,
+        private _sessionService: SessionServiceProxy
     ) {
         super(injector);
     }
@@ -46,7 +48,13 @@ export class SessionTimeoutModalComponent extends AppComponentBase implements On
 
     private done(): void {
         this.stop();
-        this._appAuthService.logout(true);
+
+        let isSessionLockScreenEnabled = abp.setting.getBoolean('App.UserManagement.SessionTimeOut.ShowLockScreenWhenTimedOut');
+        if (isSessionLockScreenEnabled) {
+            this.redirectToLockScreen();
+        } else {
+            this._appAuthService.logout(true);
+        }
     }
 
     private changeNotifyContent(): void {
@@ -57,5 +65,26 @@ export class SessionTimeoutModalComponent extends AppComponentBase implements On
         } else {
             this.progresbarPercent = this.currentSecond / this.timeOutSecond * 100;
         }
+    }
+
+    private redirectToLockScreen(): void {
+        this._sessionService.getCurrentLoginInformations()
+            .subscribe(
+                (info) => {
+                    if (info) {
+                        abp.utils.setCookieValue('userInfo', JSON.stringify(
+                            {
+                                userName: info.user.userName,
+                                profilePictureId: info.user.profilePictureId,
+                                tenant: info.tenant ? info.tenant.tenancyName : 'Host'
+                            }), null, abp.appPath);
+                        this._appAuthService.logout(true, '/account/session-locked');
+                    } else {
+                        this._appAuthService.logout(true);
+                    }
+                },
+                () => {
+                    this._appAuthService.logout(true);
+                });
     }
 }
