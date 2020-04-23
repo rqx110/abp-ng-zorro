@@ -6406,6 +6406,13 @@ ms@2.1.1, ms@^2.0.0, ms@^2.1.1:
   resolved "http://registry.npm.taobao.org/ms/download/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
   integrity sha1-MKWGTrPrsKZvLr5tcnrwagnYbgo=
 
+msal@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.npm.taobao.org/msal/download/msal-1.2.2.tgz#914b229df6d2c83c69d46a681aa95be7adf361b6"
+  integrity sha1-kUsinfbSyDxp1GpoGqlb563zYbY=
+  dependencies:
+    tslib "^1.9.3"
+
 multicast-dns-service-types@^1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/multicast-dns-service-types/download/multicast-dns-service-types-1.1.0.tgz#899f11d9686e5e05cb91b35d5f0e63b773cfc901"
@@ -9391,7 +9398,7 @@ ts-node@~8.0.2:
     source-map-support "^0.5.6"
     yn "^3.0.0"
 
-tslib@1.11.1, tslib@^1.10.0:
+tslib@1.11.1, tslib@^1.10.0, tslib@^1.9.3:
   version "1.11.1"
   resolved "https://registry.npm.taobao.org/tslib/download/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
   integrity sha1-6xXRKIJ/vuKEFUnhcfRe0zisfjU=

@@ -1,5 +1,5 @@
 
-import { UtilsService, MessageService, TokenService, LogService } from 'abp-ng2-module';
+import { UtilsService, MessageService, TokenService, LogService, LocalizationService } from 'abp-ng2-module';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppConsts } from '@shared/AppConsts';
@@ -10,10 +10,10 @@ import * as _ from 'lodash';
 import { finalize } from 'rxjs/operators';
 
 import { OAuthService, AuthConfig } from 'angular-oauth2-oidc';
+import { UserAgentApplication, AuthResponse } from 'msal';
 
 declare const FB: any; // Facebook API
-declare const gapi: any; // Facebook API
-declare const WL: any; // Microsoft API
+declare const gapi: any; // Google API
 
 export class ExternalLoginProvider extends ExternalLoginProviderInfoModel {
 
@@ -40,13 +40,14 @@ export class ExternalLoginProvider extends ExternalLoginProviderInfoModel {
 export class LoginService {
 
     static readonly twoFactorRememberClientTokenName = 'TwoFactorRememberClientToken';
-
+    
+    MSAL: UserAgentApplication; // Microsoft API
     authenticateModel: AuthenticateModel;
     authenticateResult: AuthenticateResultModel;
-
     externalLoginProviders: ExternalLoginProvider[] = [];
-
     rememberMe: boolean;
+    
+    localizationSourceName = AppConsts.localization.defaultLocalizationSourceName;
 
     constructor(
         private _tokenAuthService: TokenAuthServiceProxy,
@@ -55,7 +56,8 @@ export class LoginService {
         private _messageService: MessageService,
         private _tokenService: TokenService,
         private _logService: LogService,
-        private oauthService: OAuthService
+        private oauthService: OAuthService,
+        private _localizationService: LocalizationService
     ) {
         this.clear();
     }
@@ -70,9 +72,14 @@ export class LoginService {
 
         this._tokenAuthService
             .authenticate(this.authenticateModel)
-            .pipe(finalize(finallyCallback))
-            .subscribe((result: AuthenticateResultModel) => {
-                this.processAuthenticateResult(result, redirectUrl);
+            .subscribe({
+                next: (result: AuthenticateResultModel) => {
+                    this.processAuthenticateResult(result, redirectUrl);
+                    finallyCallback();
+                },
+                error: (err: any) => {
+                    finallyCallback();
+                }
             });
     }
 
@@ -87,8 +94,16 @@ export class LoginService {
                     this.googleLoginStatusChangeCallback(gapi.auth2.getAuthInstance().isSignedIn.get());
                 });
             } else if (provider.name === ExternalLoginProvider.MICROSOFT) {
-                WL.login({
-                    scope: ['wl.signin', 'wl.basic', 'wl.emails']
+                let scopes = ['user.read'];
+                this.MSAL.loginPopup({
+                    scopes: scopes
+                }).then((idTokenResponse: AuthResponse) => {
+                    this.MSAL.acquireTokenSilent({ scopes: scopes }).then((accessTokenResponse: AuthResponse) => {
+                        this.microsoftLoginCallback(accessTokenResponse);
+                    }).catch(error => {
+                        abp.log.error(error);
+                        abp.message.error(this._localizationService.localize('CouldNotValidateExternalUser', this.localizationSourceName));
+                    });
                 });
             }
         });
@@ -245,15 +260,13 @@ export class LoginService {
                     });
             });
         } else if (loginProvider.name === ExternalLoginProvider.MICROSOFT) {
-            new ScriptLoaderService().load('//js.live.net/v5.0/wl.js').then(() => {
-                WL.Event.subscribe('auth.login', this.microsoftLogin);
-                WL.init({
-                    client_id: loginProvider.clientId,
-                    scope: ['wl.signin', 'wl.basic', 'wl.emails'],
-                    redirect_uri: AppConsts.appBaseUrl,
-                    response_type: 'token'
-                });
+            this.MSAL = new UserAgentApplication({
+                auth: {
+                    clientId: loginProvider.clientId,
+                    redirectUri: AppConsts.appBaseUrl
+                }
             });
+            callback();
         } else if (loginProvider.name === ExternalLoginProvider.OPENID) {
             const authConfig = this.getOpenIdConnectConfig(loginProvider);
             this.oauthService.configure(authConfig);
@@ -307,8 +320,6 @@ export class LoginService {
             let authConfig = this.getOpenIdConnectConfig(openIdProvider);
             this.oauthService.configure(authConfig);
 
-            abp.ui.setBusy();
-
             this.oauthService.tryLogin().then(() => {
                 let claims = this.oauthService.getIdentityClaims();
 
@@ -320,7 +331,6 @@ export class LoginService {
                 model.returnUrl = UrlHelper.getReturnUrl();
 
                 this._tokenAuthService.externalAuthenticate(model)
-                    .pipe(finalize(() => { abp.ui.unblock(); }))
                     .subscribe((result: ExternalAuthenticateResultModel) => {
                         if (result.waitingForActivation) {
                             this._messageService.info('You have successfully registered. Waiting for activation!');
@@ -371,30 +381,32 @@ export class LoginService {
     /**
     * Microsoft login is not completed yet, because of an error thrown by zone.js: https://github.com/angular/zone.js/issues/290
     */
-    private microsoftLogin() {
-        this._logService.debug(WL.getSession());
-        const model = new ExternalAuthenticateModel();
-        model.authProvider = ExternalLoginProvider.MICROSOFT;
-        model.providerAccessCode = WL.getSession().access_token;
-        model.providerKey = WL.getSession().id; // How to get id?
-        model.singleSignIn = UrlHelper.getSingleSignIn();
-        model.returnUrl = UrlHelper.getReturnUrl();
+   private microsoftLoginCallback(response: AuthResponse) {
 
-        this._tokenAuthService.externalAuthenticate(model)
-            .subscribe((result: ExternalAuthenticateResultModel) => {
-                if (result.waitingForActivation) {
-                    this._messageService.info('You have successfully registered. Waiting for activation!');
-                    return;
-                }
+    const model = new ExternalAuthenticateModel();
+    model.authProvider = ExternalLoginProvider.MICROSOFT;
+    model.providerAccessCode = response.accessToken;
+    // remove dashes and starting 0 characters from objectId
+    // 000-000-111-222 will be converted to 111222
+    model.providerKey = response.idToken.objectId.replace(new RegExp('-', 'gm'), '').replace(/^0*/g, '');
+    model.singleSignIn = UrlHelper.getSingleSignIn();
+    model.returnUrl = UrlHelper.getReturnUrl();
+    
+    this._tokenAuthService.externalAuthenticate(model)
+        .subscribe((result: ExternalAuthenticateResultModel) => {
+            if (result.waitingForActivation) {
+                this._messageService.info('You have successfully registered. Waiting for activation!');
+                return;
+            }
 
-                this.login(result.accessToken,
-                    result.encryptedAccessToken,
-                    result.expireInSeconds,
-                    result.refreshToken,
-                    result.refreshTokenExpireInSeconds,
-                    false,
-                    '',
-                    result.returnUrl);
-            });
+            this.login(result.accessToken,
+                result.encryptedAccessToken,
+                result.expireInSeconds,
+                result.refreshToken,
+                result.refreshTokenExpireInSeconds,
+                false,
+                '',
+                result.returnUrl);
+        });
     }
 }
