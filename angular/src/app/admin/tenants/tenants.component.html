@@ -121,22 +121,22 @@
                     <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled"
                         [nzIndeterminate]="checkboxIndeterminate" (nzCheckedChange)="checkAll($event)"></th>
 
-                    <th nzShowSort nzSortKey="tenancyName">
+                    <th nzShowSort nzColumnKey="tenancyName">
                         {{'TenancyCodeName' | localize}}
                     </th>
-                    <th nzShowSort nzSortKey="name">
+                    <th nzShowSort nzColumnKey="name">
                         {{'Name' | localize}}
                     </th>
-                    <th nzShowSort nzSortKey="editionDisplayName">
+                    <th nzShowSort nzColumnKey="editionDisplayName">
                         {{'Edition' | localize}}
                     </th>
-                    <th nzShowSort nzSortKey="subscriptionEndDateUtc" class="text-center">
+                    <th nzShowSort nzColumnKey="subscriptionEndDateUtc" class="text-center">
                         {{'SubscriptionEndDateUtc' | localize}}
                     </th>
-                    <th nzShowSort nzSortKey="isActive" class="text-center">
+                    <th nzShowSort nzColumnKey="isActive" class="text-center">
                         {{'Active' | localize}}
                     </th>
-                    <th nzShowSort nzSortKey="creationTime" class="text-center">
+                    <th nzShowSort nzColumnKey="creationTime" class="text-center">
                         {{'CreationTime' | localize}}
                     </th>
                     <th nzWidth="240px" class="text-center">

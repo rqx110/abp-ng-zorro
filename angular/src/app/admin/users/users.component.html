@@ -118,7 +118,7 @@
                         [nzIndeterminate]="checkboxIndeterminate" (nzCheckedChange)="checkAll($event)" nzWidth="60px"
                         nzLeft="0px"></th>
 
-                    <th nzShowSort nzSortKey="userName">
+                    <th nzShowSort nzColumnKey="userName">
                         {{'UserName' | localize}}
                     </th>
                     <th>
@@ -131,16 +131,16 @@
                         {{'Roles' | localize}}
                     </th>
 
-                    <th nzShowSort nzSortKey="emailAddress">
+                    <th nzShowSort nzColumnKey="emailAddress">
                         {{'EmailAddress' | localize}}
                     </th>
-                    <th nzShowSort nzSortKey="isEmailConfirmed" class="text-center">
+                    <th nzShowSort nzColumnKey="isEmailConfirmed" class="text-center">
                         {{'EmailConfirm' | localize}}
                     </th>
-                    <th nzShowSort nzSortKey="isActive" class="text-center">
+                    <th nzShowSort nzColumnKey="isActive" class="text-center">
                         {{'Active' | localize}}
                     </th>
-                    <th nzShowSort nzSortKey="creationTime" class="text-center">
+                    <th nzShowSort nzColumnKey="creationTime" class="text-center">
                         {{'CreationTime' | localize}}
                     </th>
                     <th nzWidth="200px" nzRight="0px" class="text-center">

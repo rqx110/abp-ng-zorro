@@ -23,7 +23,7 @@
         <nz-table #nzDataTable [nzData]="dataList" [nzLoading]="isTableLoading" nzShowPagination="false">
             <thead (nzSortChange)="gridSort($event)">
                 <tr>
-                    <th nzShowSort nzSortKey="tenancyName">
+                    <th nzShowSort nzColumnKey="tenancyName">
                         {{'EditionName' | localize}}
                     </th>
                     <th>

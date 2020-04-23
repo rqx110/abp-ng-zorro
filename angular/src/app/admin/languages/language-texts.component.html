@@ -101,13 +101,13 @@
             </ng-template>
             <thead (nzSortChange)="gridSort($event)">
                 <tr>
-                    <th nzShowSort nzSortKey="key">
+                    <th nzShowSort nzColumnKey="key">
                         {{'Key' | localize}}
                     </th>
-                    <th nzShowSort nzSortKey="baseValue">
+                    <th nzShowSort nzColumnKey="baseValue">
                         {{'BaseValue' | localize}}
                     </th>
-                    <th nzShowSort nzSortKey="targetValue">
+                    <th nzShowSort nzColumnKey="targetValue">
                         {{'TargetValue' | localize}}
                     </th>
                     <th nzWidth="150px" class="text-center">

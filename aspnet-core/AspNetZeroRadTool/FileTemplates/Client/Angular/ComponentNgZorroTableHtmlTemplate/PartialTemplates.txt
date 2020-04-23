@@ -7,7 +7,7 @@
 					{
 					"type" : "default",
 					"content" : "
-							<th nzShowSort nzSortKey=\"{{entity_Name_Here}}.{{property_Name_Here}}\">
+							<th nzShowSort nzColumnKey=\"{{entity_Name_Here}}.{{property_Name_Here}}\">
 								{{'{{Property_Name_Here}}' | localize}}
 							</th>
 						"
@@ -141,7 +141,7 @@
 					{
 					"relation" : "single",
 					"content" : "
-								<th nzShowSort nzSortKey=\"{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}\">
+								<th nzShowSort nzColumnKey=\"{{nP_Foreign_Entity_Name_Here}}{{NP_Display_Property_Name_Here}}{{NP_Duplication_Number_Here}}\">
 									{{'{{NP_Display_Property_Name_Here}}' | localize}}
 								</th>
 							"
