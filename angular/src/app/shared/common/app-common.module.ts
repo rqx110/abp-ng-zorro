@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { AppLocalizationService } from '@app/shared/common/localization/app-localization.service';
 import { AppNavigationService } from '@app/shared/layout/nav/app-navigation.service';
-import { AbpProjectTemplateCommonModule } from '@shared/common/common.module';
+import { AbpZeroTemplateCommonModule } from '@shared/common/common.module';
 import { UtilsModule } from '@shared/utils/utils.module';
 import { AppAuthService } from './auth/app-auth.service';
 import { AppRouteGuard } from './auth/auth-route-guard';
@@ -12,7 +12,7 @@ import { SharedModule } from '@shared/shared.module';
     imports: [
         SharedModule,
         UtilsModule,
-        AbpProjectTemplateCommonModule
+        AbpZeroTemplateCommonModule
     ],
     declarations: [
         TimeZoneComboComponent

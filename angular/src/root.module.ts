@@ -11,7 +11,7 @@ import { AppPreBootstrap } from 'AppPreBootstrap';
 
 import { AppAuthService } from '@app/shared/common/auth/app-auth.service';
 import { AppConsts } from '@shared/AppConsts';
-import { AbpProjectTemplateCommonModule } from '@shared/common/common.module';
+import { AbpZeroTemplateCommonModule } from '@shared/common/common.module';
 import { AppSessionService } from '@shared/common/session/app-session.service';
 import { UrlHelper } from '@shared/helpers/UrlHelper';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
@@ -139,7 +139,7 @@ function handleLogoutRequest(authService: AppAuthService) {
         BrowserAnimationsModule,
         BrowserModule,
         HttpClientModule,
-        AbpProjectTemplateCommonModule.forRoot(),
+        AbpZeroTemplateCommonModule.forRoot(),
         DelonModule.forRoot(),
         SharedModule,
         ServiceProxyModule,

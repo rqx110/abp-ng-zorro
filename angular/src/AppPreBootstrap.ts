@@ -31,7 +31,7 @@ export class AppPreBootstrap {
         let url = appRootUrl + 'assets/' + environment.appConfig;
         let customHeaders = [
             {
-                name: 'Abp.TenantId',
+                name: abp.multiTenancy.tenantIdCookieName,
                 value: abp.multiTenancy.getTenantIdCookie() + ''
             }];
 
@@ -73,8 +73,12 @@ export class AppPreBootstrap {
 
         let requestHeaders = {
             '.AspNetCore.Culture': ('c=' + cookieLangValue + '|uic=' + cookieLangValue),
-            'Abp.TenantId': abp.multiTenancy.getTenantIdCookie()
+            [abp.multiTenancy.tenantIdCookieName]: abp.multiTenancy.getTenantIdCookie()
         };
+
+        if (!cookieLangValue) {
+            delete requestHeaders['.AspNetCore.Culture'];
+        }
 
         if (token) {
             requestHeaders['Authorization'] = 'Bearer ' + token;
@@ -92,6 +96,13 @@ export class AppPreBootstrap {
             if (abp.clock.provider.supportsMultipleTimezone) {
                 moment.tz.setDefault(abp.timing.timeZoneInfo.iana.timeZoneId);
                 (window as any).moment.tz.setDefault(abp.timing.timeZoneInfo.iana.timeZoneId);
+            } else {
+                moment.fn.toJSON = function () {
+                    return this.locale('en').format();
+                };
+                moment.fn.toISOString = function () {
+                    return this.locale('en').format();
+                };
             }
 
             abp.event.trigger('abp.dynamicScriptsInitialized');

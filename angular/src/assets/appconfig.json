@@ -6,11 +6,7 @@
       {
         "from": "pt-BR",
         "to": "pt"
-      },
-      {
-        "from": "zh-CN",
-        "to": "zh"
-      },
+      },     
       {
         "from": "he-IL",
         "to": "he"
@@ -22,10 +18,6 @@
       {
         "from": "vi",
         "to": "en"
-      },
-      {
-        "from": "zh-Hans",
-        "to": "zh"
       }
     ],
     "ng_zorro":[

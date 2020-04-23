@@ -14,10 +14,10 @@ import { SharedModule } from '@shared/shared.module';
         SharedModule
     ]
 })
-export class AbpProjectTemplateCommonModule {
-    static forRoot(): ModuleWithProviders<AbpProjectTemplateCommonModule> {
+export class AbpZeroTemplateCommonModule {
+    static forRoot(): ModuleWithProviders<AbpZeroTemplateCommonModule> {
         return {
-            ngModule: AbpProjectTemplateCommonModule,
+            ngModule: AbpZeroTemplateCommonModule,
             providers: [
                 AppSessionService,
                 AppUrlService,

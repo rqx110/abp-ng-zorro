@@ -1,11 +1,23 @@
 {
-  "remoteServiceBaseUrl": "http://localhost:5000",
+  "remoteServiceBaseUrl": "https://localhost:44301",
   "appBaseUrl": "http://localhost:4200",
   "localeMappings": {
     "angular": [
       {
-        "from": "zh-Hans",
-        "to": "zh"
+        "from": "pt-BR",
+        "to": "pt"
+      },     
+      {
+        "from": "he-IL",
+        "to": "he"
+      },
+      {
+        "from": "es-MX",
+        "to": "es"
+      },
+      {
+        "from": "vi",
+        "to": "en"
       }
     ],
     "ng_zorro":[

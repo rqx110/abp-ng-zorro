@@ -4,7 +4,7 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 import { AccountRoutingModule } from './account-routing.module';
 
-import { AbpProjectTemplateCommonModule } from '@shared/common/common.module';
+import { AbpZeroTemplateCommonModule } from '@shared/common/common.module';
 import { UtilsModule } from '@shared/utils/utils.module';
 
 import { AccountComponent } from './account.component';
@@ -34,7 +34,7 @@ import { SharedModule } from '@shared/shared.module';
     imports: [
         HttpClientModule,
         HttpClientJsonpModule,
-        AbpProjectTemplateCommonModule,
+        AbpZeroTemplateCommonModule,
         SharedModule,
         UtilsModule,
         AccountRoutingModule,

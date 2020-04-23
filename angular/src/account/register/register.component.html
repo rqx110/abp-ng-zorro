@@ -3,7 +3,7 @@
         <nz-form-item>
             <nz-form-control [nzErrorTip]="nameValidationTpl" nzHasFeedback>
                 <input nz-input name="Name" #nameInput='ngModel' [(ngModel)]="model.name" placeholder="{{'Name' | localize}}"
-                    required maxlength="32">
+                    required maxlength="64">
                 <ng-template #nameValidationTpl let-control>
                     <validation-messages [formCtrl]="control"></validation-messages>
                 </ng-template>
@@ -13,7 +13,7 @@
         <nz-form-item>
             <nz-form-control [nzErrorTip]="surnameValidationTpl" nzHasFeedback>
                 <input nz-input name="Surname" #surnameInput="ngModel" [(ngModel)]="model.surname" placeholder="{{'Surname' | localize}}"
-                    required maxlength="32">
+                    required maxlength="64">
                 <ng-template #surnameValidationTpl let-control>
                     <validation-messages [formCtrl]="control"></validation-messages>
                 </ng-template>
@@ -23,7 +23,7 @@
         <nz-form-item>
             <nz-form-control [nzErrorTip]="emailValidationTpl" nzHasFeedback>
                 <input nz-input type="email" name="EmailAddress" #emailAddressInput="ngModel" [(ngModel)]="model.emailAddress"
-                    placeholder="{{'EmailAddress' | localize}}" required email>
+                    placeholder="{{'EmailAddress' | localize}}" required maxlength="256" email>
                 <ng-template #emailValidationTpl let-control>
                     <validation-messages [formCtrl]="control"></validation-messages>
                 </ng-template>
@@ -33,7 +33,7 @@
         <nz-form-item>
             <nz-form-control [nzErrorTip]="usernameValidationTpl" nzHasFeedback>
                 <input nz-input name="UserName" autocomplete="off" #userNameInput="ngModel" [(ngModel)]="model.userName"
-                    placeholder="{{'UserName' | localize}}" required maxlength="32">
+                    placeholder="{{'UserName' | localize}}" required maxlength="256">
                 <ng-template #usernameValidationTpl let-control>
                     <validation-messages [formCtrl]="control"></validation-messages>
                 </ng-template>
