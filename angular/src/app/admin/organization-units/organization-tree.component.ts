@@ -1,23 +1,11 @@
-import {
-    ListResultDtoOfOrganizationUnitDto,
-    OrganizationUnitDto,
-} from '@shared/service-proxies/service-proxies';
-import {
-    Component,
-    OnInit,
-    EventEmitter,
-    Output,
-    Injector,
-} from '@angular/core';
+import { ListResultDtoOfOrganizationUnitDto, OrganizationUnitDto } from '@shared/service-proxies/service-proxies';
+import { Component, OnInit, EventEmitter, Output, Injector } from '@angular/core';
 
 import { NzTreeNode, NzFormatEmitEvent } from 'ng-zorro-antd/tree';
-import { NzContextMenuService, NzDropdownMenuComponent} from 'ng-zorro-antd/dropdown'
+import { NzContextMenuService, NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
 
 import { AppComponentBase } from '@shared/common/app-component-base';
-import {
-    OrganizationUnitServiceProxy,
-    MoveOrganizationUnitInput,
-} from '@shared/service-proxies/service-proxies';
+import { OrganizationUnitServiceProxy, MoveOrganizationUnitInput } from '@shared/service-proxies/service-proxies';
 import * as _ from 'lodash';
 import { finalize, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -26,10 +14,9 @@ import { CreateOrEditUnitModalComponent } from './create-or-edit-unit-modal.comp
 @Component({
     selector: 'organization-tree',
     templateUrl: './organization-tree.component.html',
-    styleUrls: ['./organization-tree.less'],
+    styleUrls: ['./organization-tree.component.less'],
 })
 export class OrganizationTreeComponent extends AppComponentBase implements OnInit {
-
     @Output()
     selectedChange = new EventEmitter<NzTreeNode>();
 
@@ -55,7 +42,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
     }
 
     reload(): void {
-        this.getTreeDataFromServer(treeData => {
+        this.getTreeDataFromServer((treeData) => {
             this.totalUnitCount = this._ouData.length;
             this._treeData = treeData;
         });
@@ -79,11 +66,8 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
 
     treeDataMap(): NzTreeNode[] {
         const _treeData: NzTreeNode[] = [];
-        const ouDtataParentIsNull = _.filter(
-            this._ouData,
-            item => (<OrganizationUnitDto>item).parentId === null,
-        );
-        ouDtataParentIsNull.forEach(item => {
+        const ouDtataParentIsNull = _.filter(this._ouData, (item) => (<OrganizationUnitDto>item).parentId === null);
+        ouDtataParentIsNull.forEach((item) => {
             const treeItem = this._recursionGenerateTree(item);
             _treeData.push(treeItem);
         });
@@ -91,14 +75,8 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
     }
 
     private _recursionGenerateTree(item: OrganizationUnitDto): NzTreeNode {
-        const childs = _.filter(
-            this._ouData,
-            child => (<OrganizationUnitDto>child).parentId === item.id,
-        );
-        const parentOu = _.find(
-            this._ouData,
-            p => (<OrganizationUnitDto>p).id === item.parentId,
-        );
+        const childs = _.filter(this._ouData, (child) => (<OrganizationUnitDto>child).parentId === item.id);
+        const parentOu = _.find(this._ouData, (p) => (<OrganizationUnitDto>p).id === item.parentId);
         const _treeNode = new NzTreeNode({
             title: item.displayName,
             key: item.id.toString(),
@@ -111,7 +89,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
             parent: parentOu,
         });
         if (childs && childs.length) {
-            childs.forEach(itemChild => {
+            childs.forEach((itemChild) => {
                 const childItem = this._recursionGenerateTree(itemChild);
                 _treeNode.children.push(childItem);
             });
@@ -156,6 +134,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
 
     private _setActiveNodeNull(isEmit: boolean = true) {
         if (this.activedNode) {
+            this.activedNode.isSelected = false;
             this.activedNode = null;
             if (isEmit) {
                 this.selectedChange.emit(null);
@@ -175,13 +154,9 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
             if (this.dragSrcNode.key !== this.dragTargetNode.key) {
                 this.draging = true;
                 this.message.confirm(
-                    this.l(
-                        'OrganizationUnitMoveConfirmMessage',
-                        this.dragSrcNode.title,
-                        this.dragTargetNode.title,
-                    ),
+                    this.l('OrganizationUnitMoveConfirmMessage', this.dragSrcNode.title, this.dragTargetNode.title),
                     this.l('AreYouSure'),
-                    isConfirmed => {
+                    (isConfirmed) => {
                         if (isConfirmed) {
                             const input = new MoveOrganizationUnitInput();
                             // tslint:disable-next-line:radix
@@ -190,7 +165,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
                                 this.dragTargetNode === null
                                     ? undefined
                                     : // tslint:disable-next-line:radix
-                                    parseInt(this.dragTargetNode.key);
+                                      parseInt(this.dragTargetNode.key);
                             this._organizationUnitService
                                 .moveOrganizationUnit(input)
                                 .pipe(
@@ -198,7 +173,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
                                         this.draging = false;
                                         this.reload();
                                     }),
-                                    catchError(error => {
+                                    catchError((error) => {
                                         return throwError(error);
                                     }),
                                 )
@@ -215,11 +190,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
         }
     }
 
-    createContextMenu(
-        $event: MouseEvent,
-        menu: NzDropdownMenuComponent,
-        node: NzTreeNode,
-    ): void {
+    createContextMenu($event: MouseEvent, menu: NzDropdownMenuComponent, node: NzTreeNode): void {
         this._nzContextMenuService.create($event, menu);
         this._setActiveNodeValue(node);
     }
@@ -233,12 +204,16 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
             _parentDisplayName = this.activedNode.title;
         }
         this.modalHelper
-            .createStatic(CreateOrEditUnitModalComponent, {
-                organizationUnit: {
-                    parentId: parentId,
-                    parentDisplayName: _parentDisplayName,
+            .createStatic(
+                CreateOrEditUnitModalComponent,
+                {
+                    organizationUnit: {
+                        parentId: parentId,
+                        parentDisplayName: _parentDisplayName,
+                    },
                 },
-            }, { size: 'md' })
+                { size: 'md' },
+            )
             .subscribe((res: OrganizationUnitDto) => {
                 if (res) {
                     this.unitCreated(res);
@@ -248,10 +223,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
 
     unitCreated(ou: OrganizationUnitDto): void {
         this._ouData.push(ou);
-        let childs = _.filter(
-            this._ouData,
-            child => (<OrganizationUnitDto>child).parentId === ou.id,
-        );
+        let childs = _.filter(this._ouData, (child) => (<OrganizationUnitDto>child).parentId === ou.id);
         const _treeNode = new NzTreeNode({
             title: ou.displayName,
             key: ou.id.toString(),
@@ -263,12 +235,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
             dto: ou,
         });
         if (this.activedNode) {
-            childs = _.filter(
-                this._ouData,
-                child =>
-                    (<OrganizationUnitDto>child).parentId ===
-                    parseInt(this.activedNode.key),
-            );
+            childs = _.filter(this._ouData, (child) => (<OrganizationUnitDto>child).parentId === parseInt(this.activedNode.key));
             this.activedNode.isLeaf = childs && childs.length <= 0;
 
             this.activedNode.children.push(_treeNode);
@@ -280,22 +247,17 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
     }
 
     addSubUnit() {
-        const canManageOrganizationTree = this.isGranted(
-            'Pages.Administration.OrganizationUnits.ManageOrganizationTree',
-        );
+        const canManageOrganizationTree = this.isGranted('Pages.Administration.OrganizationUnits.ManageOrganizationTree');
         if (!canManageOrganizationTree) {
             return;
         }
         if (this.activedNode.key) {
             this.addUnit(parseInt(this.activedNode.key));
         }
-        this._nzContextMenuService.close();
     }
 
     editUnit(): void {
-        const canManageOrganizationTree = this.isGranted(
-            'Pages.Administration.OrganizationUnits.ManageOrganizationTree',
-        );
+        const canManageOrganizationTree = this.isGranted('Pages.Administration.OrganizationUnits.ManageOrganizationTree');
         if (!canManageOrganizationTree) {
             return;
         }
@@ -305,16 +267,19 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
                 displayName: this.activedNode.title,
             };
             this.modalHelper
-                .createStatic(CreateOrEditUnitModalComponent, {
-                    organizationUnit: ouPars
-                }, { size: 'md' })
+                .createStatic(
+                    CreateOrEditUnitModalComponent,
+                    {
+                        organizationUnit: ouPars,
+                    },
+                    { size: 'md' },
+                )
                 .subscribe((res: OrganizationUnitDto) => {
                     if (res) {
                         this.activedNode.title = res.displayName;
                     }
                 });
         }
-        this._nzContextMenuService.close();
     }
 
     deleteUnit(): void {
@@ -322,29 +287,27 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
             this.message.confirm(
                 this.l('OrganizationUnitDeleteWarningMessage', this.activedNode.title),
                 this.l('AreYouSure'),
-                isConfirmed => {
+                (isConfirmed) => {
                     if (isConfirmed) {
-                        this._organizationUnitService
-                            .deleteOrganizationUnit(parseInt(this.activedNode.key, 10))
-                            .subscribe(() => {
-                                this.totalUnitCount -= 1;
-                                this.unitDeletedData();
-                                this.notify.success(this.l('SuccessfullyDeleted'));
-                            });
+                        this._organizationUnitService.deleteOrganizationUnit(parseInt(this.activedNode.key, 10)).subscribe(() => {
+                            this.totalUnitCount -= 1;
+                            this.unitDeletedData();
+                            this.notify.success(this.l('SuccessfullyDeleted'));
+                        });
                     }
-                });
+                },
+            );
         }
-        this._nzContextMenuService.close();
     }
 
     private unitDeletedData(): void {
-        _.remove(this._ouData, oRemove => {
+        _.remove(this._ouData, (oRemove) => {
             return oRemove.id === parseInt(this.activedNode.key);
         });
-        this._treeData = this._treeData.filter(item => item.key !== this.activedNode.key);
+        this._treeData = this._treeData.filter((item) => item.key !== this.activedNode.key);
         this._treeData.forEach((item, idx) => {
             if (item.key === this.activedNode.key) {
-                this._treeData = this._treeData.filter(tFilte => tFilte.key !== this.activedNode.key);
+                this._treeData = this._treeData.filter((tFilte) => tFilte.key !== this.activedNode.key);
                 this._setActiveNodeNull();
                 return;
             }
@@ -354,9 +317,9 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
 
     private _unitDeletedSubData(item: NzTreeNode): void {
         if (item && item.children) {
-            item.children.forEach(itemChild => {
+            item.children.forEach((itemChild) => {
                 if (itemChild.key === this.activedNode.key) {
-                    _.remove(item.children, remove => {
+                    _.remove(item.children, (remove) => {
                         return remove.key === this.activedNode.key;
                     });
                     item.isLeaf = !item.children.length;
@@ -377,8 +340,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
     }
 
     incrementMemberCount(incrementAmount: number): void {
-        this.activedNode.origin.memberCount =
-            this.activedNode.origin.memberCount + incrementAmount;
+        this.activedNode.origin.memberCount = this.activedNode.origin.memberCount + incrementAmount;
         if (this.activedNode.origin.memberCount < 0) {
             this.activedNode.origin.memberCount = 0;
         }
