@@ -8,10 +8,10 @@ export class NgZorroMessageService {
 
     init() {
         abp.message.info = (message: string, title?: string, options?: any) => {
-            let displayTitle = title == null ? message : title;
+            const { title_normalize, message_normalize } = this.normalize(message, title);
             this._modalService.info({
-                nzTitle: displayTitle,
-                nzContent: message,
+                nzTitle: title_normalize,
+                nzContent: message_normalize,
             });
         };
 
@@ -20,18 +20,18 @@ export class NgZorroMessageService {
             title?: string,
             options?: any
         ) => {
-            let displayTitle = title == null ? message : title;
+            const { title_normalize, message_normalize } = this.normalize(message, title);
             this._modalService.success({
-                nzTitle: displayTitle,
-                nzContent: message,
+                nzTitle: title_normalize,
+                nzContent: message_normalize,
             });
         };
 
         abp.message.warn = (message: string, title?: string, options?: any) => {
-            let displayTitle = title == null ? message : title;
+            const { title_normalize, message_normalize } = this.normalize(message, title);
             this._modalService.warning({
-                nzTitle: displayTitle,
-                nzContent: message,
+                nzTitle: title_normalize,
+                nzContent: message_normalize,
             });
         };
 
@@ -40,10 +40,10 @@ export class NgZorroMessageService {
             title?: string,
             options?: any
         ) => {
-            let displayTitle = title == null ? message : title;
+            const { title_normalize, message_normalize } = this.normalize(message, title);
             this._modalService.error({
-                nzTitle: displayTitle,
-                nzContent: message,
+                nzTitle: title_normalize,
+                nzContent: message_normalize,
             });
         };
 
@@ -53,13 +53,14 @@ export class NgZorroMessageService {
             callback?: (result: boolean) => void,
             options?: any
         ) => {
+            const title_normalize = title ?? <any>(
+                abp.localization.localize(
+                    "AreYouSure",
+                    AppConsts.localization.defaultLocalizationSourceName
+                )
+            );
             this._modalService.confirm({
-                nzTitle: <any>(
-                    abp.localization.localize(
-                        "AreYouSure",
-                        AppConsts.localization.defaultLocalizationSourceName
-                    )
-                ),
+                nzTitle: title_normalize,
                 nzContent: message,
                 nzOnOk() {
                     if (callback) {
@@ -73,5 +74,14 @@ export class NgZorroMessageService {
                 },
             });
         };
+    }
+
+    normalize(message: string, title?: string) {
+        if (!title) {
+            title = message;
+            message = "";
+        }
+
+        return { message_normalize: message, title_normalize: title };
     }
 }
