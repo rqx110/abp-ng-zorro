@@ -6,6 +6,7 @@ import { ProfileServiceProxy, UpdateProfilePictureInput } from '@shared/service-
 import { FileUploader, FileUploaderOptions, FileItem } from 'ng2-file-upload';
 import { finalize } from 'rxjs/operators';
 import { ModalComponentBase } from '@shared/common/modal-component-base';
+import { ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
 
 @Component({
     selector: 'changeProfilePictureModal',
@@ -51,10 +52,9 @@ export class ChangeProfilePictureModalComponent extends ModalComponentBase imple
         this.imageChangedEvent = event;
     }
 
-    imageCroppedFile(file: File) {
-        let files: File[] = [file];
+    imageCroppedFile(event: ImageCroppedEvent) {
         this.uploader.clearQueue();
-        this.uploader.addToQueue(files);
+        this.uploader.addToQueue([<File>base64ToFile(event.base64)]);
     }
 
     initFileUploader(): void {

@@ -92,17 +92,19 @@ export class UserNotificationHelper {
                 }
             }
         });
-
-        //Desktop notification
-        Push.default.create('AbpZeroTemplate', {
-            body: this.format(userNotification).text,
-            icon: abp.appPath + 'assets/common/images/app-logo-small.png',
-            timeout: 6000,
-            onClick: function () {
-                window.focus();
-                this.close();
-            }
-        });
+        
+        if (Push.default.Permission.has()) {
+            //Desktop notification
+            Push.default.create('AbpZeroTemplate', {
+                body: this.format(userNotification).text,
+                icon: abp.appPath + 'assets/common/images/app-logo-small.png',
+                timeout: 6000,
+                onClick: function () {
+                    window.focus();
+                    this.close();
+                }
+            });
+        }
     }
 
     setAllAsRead(callback?: () => void): void {

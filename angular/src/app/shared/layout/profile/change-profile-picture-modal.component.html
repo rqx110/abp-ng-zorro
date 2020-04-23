@@ -10,7 +10,7 @@
             <span>{{"ProfilePicture_Change_Info" | localize:maxProfilPictureBytesUserFriendlyValue}}</span>
 
             <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
-                [resizeToWidth]="128" format="png" (imageCroppedFile)="imageCroppedFile($event)"></image-cropper>
+                [resizeToWidth]="128" format="png" (imageCropped)="imageCroppedFile($event)"></image-cropper>
         </nz-form-control>
     </nz-form-item>
     <div class="modal-footer">
