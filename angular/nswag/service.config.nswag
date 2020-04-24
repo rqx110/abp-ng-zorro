@@ -1,14 +1,14 @@
-﻿{
+{
   "runtime": "Default",
   "defaultVariables": null,
-  "swaggerGenerator": {
-    "fromSwagger": {
+  "documentGenerator": {
+    "fromDocument": {
       "url": "https://localhost:44301/swagger/v1/swagger.json",
       "output": null
     }
   },
   "codeGenerators": {
-    "swaggerToTypeScriptClient": {
+    "openApiToTypeScriptClient": {
       "className": "{controller}ServiceProxy",
       "moduleName": "",
       "namespace": "",
@@ -26,6 +26,7 @@
       "generateOptionalParameters": false,
       "exportTypes": true,
       "wrapDtoExceptions": false,
+      "exceptionClass": "ApiException",
       "clientBaseClass": null,
       "wrapResponses": false,
       "wrapResponseMethods": [],
@@ -54,6 +55,7 @@
       "baseUrlTokenName": "API_BASE_URL",
       "queryNullValue": "",
       "inlineNamedDictionaries": false,
+      "inlineNamedAny": false,
       "templateDirectory": null,
       "typeNameGeneratorType": null,
       "propertyNameGeneratorType": null,
@@ -62,7 +64,7 @@
       "serviceSchemes": null,
       "output": "../src/shared/service-proxies/service-proxies.ts"
     },
-    "swaggerToCSharpClient": {
+    "openApiToCSharpClient": {
       "clientBaseClass": null,
       "configurationClass": null,
       "generateClientClasses": true,
@@ -108,6 +110,7 @@
       "requiredPropertiesMustBeDefined": true,
       "dateType": "System.DateTime",
       "jsonConverters": null,
+      "anyType": "object",
       "dateTimeType": "System.DateTime",
       "timeType": "System.TimeSpan",
       "timeSpanType": "System.TimeSpan",
@@ -126,9 +129,12 @@
       "generateImmutableArrayProperties": false,
       "generateImmutableDictionaryProperties": false,
       "jsonSerializerSettingsTransformationMethod": null,
+      "inlineNamedArrays": false,
       "inlineNamedDictionaries": false,
       "inlineNamedTuples": true,
+      "inlineNamedAny": false,
       "generateDtoTypes": true,
+      "generateOptionalPropertiesAsNullable": false,
       "templateDirectory": null,
       "typeNameGeneratorType": null,
       "propertyNameGeneratorType": null,
@@ -137,7 +143,7 @@
       "serviceSchemes": null,
       "output": null
     },
-    "swaggerToCSharpController": {
+    "openApiToCSharpController": {
       "controllerBaseClass": null,
       "controllerStyle": "Partial",
       "controllerTarget": "AspNet",
@@ -166,6 +172,7 @@
       "requiredPropertiesMustBeDefined": true,
       "dateType": "System.DateTime",
       "jsonConverters": null,
+      "anyType": "object",
       "dateTimeType": "System.DateTime",
       "timeType": "System.TimeSpan",
       "timeSpanType": "System.TimeSpan",
@@ -184,9 +191,12 @@
       "generateImmutableArrayProperties": false,
       "generateImmutableDictionaryProperties": false,
       "jsonSerializerSettingsTransformationMethod": null,
+      "inlineNamedArrays": false,
       "inlineNamedDictionaries": false,
       "inlineNamedTuples": true,
+      "inlineNamedAny": false,
       "generateDtoTypes": true,
+      "generateOptionalPropertiesAsNullable": false,
       "templateDirectory": null,
       "typeNameGeneratorType": null,
       "propertyNameGeneratorType": null,
