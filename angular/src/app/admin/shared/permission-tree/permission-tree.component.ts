@@ -42,6 +42,7 @@ export class PermissionTreeComponent extends AppComponentBase implements OnInit 
                 idMapName: 'name',
                 parentIdMapName: 'parentName',
                 titleMapName: 'displayName',
+                cb: (item) => { item.expanded = true }
             },
         );
 

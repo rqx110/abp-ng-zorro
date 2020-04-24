@@ -41,7 +41,8 @@ export class OrganizationUnitsTreeComponent extends AppComponentBase {
                 idMapName: 'id',
                 parentIdMapName: 'parentId',
                 titleMapName: 'displayName',
-            },
+                cb: (item) => { item.expanded = true }
+            }
         );
 
         setTimeout(() => {
