@@ -10,6 +10,7 @@ import * as _ from 'lodash';
 import { finalize, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { CreateOrEditUnitModalComponent } from './create-or-edit-unit-modal.component';
+import { ArrayService } from '@delon/util';
 
 @Component({
     selector: 'organization-tree',
@@ -33,6 +34,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
         injector: Injector,
         private _organizationUnitService: OrganizationUnitServiceProxy,
         private _nzContextMenuService: NzContextMenuService,
+        private _arrayService: ArrayService,
     ) {
         super(injector);
     }
@@ -65,58 +67,24 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
     }
 
     treeDataMap(): NzTreeNode[] {
-        const _treeData: NzTreeNode[] = [];
-        const ouDtataParentIsNull = _.filter(this._ouData, (item) => (<OrganizationUnitDto>item).parentId === null);
-        ouDtataParentIsNull.forEach((item) => {
-            const treeItem = this._recursionGenerateTree(item);
-            _treeData.push(treeItem);
+        return this._arrayService.arrToTreeNode(this._ouData, {
+            idMapName: 'id',
+            parentIdMapName: 'parentId',
+            titleMapName: 'displayName',
+            cb: (item) => {
+                item.expanded = true;
+                item.isLeaf = false;
+            },
         });
-        return _treeData;
-    }
-
-    private _recursionGenerateTree(item: OrganizationUnitDto): NzTreeNode {
-        const childs = _.filter(this._ouData, (child) => (<OrganizationUnitDto>child).parentId === item.id);
-        const parentOu = _.find(this._ouData, (p) => (<OrganizationUnitDto>p).id === item.parentId);
-        const _treeNode = new NzTreeNode({
-            title: item.displayName,
-            key: item.id.toString(),
-            isLeaf: childs && childs.length <= 0,
-            expanded: true,
-            isMatched: true,
-            code: item.code,
-            memberCount: item.memberCount,
-            dto: item,
-            parent: parentOu,
-        });
-        if (childs && childs.length) {
-            childs.forEach((itemChild) => {
-                const childItem = this._recursionGenerateTree(itemChild);
-                _treeNode.children.push(childItem);
-            });
-        }
-        return _treeNode;
     }
 
     openFolder(data: NzTreeNode | NzFormatEmitEvent): void {
         if (data instanceof NzTreeNode) {
-            if (!data.isExpanded) {
-                data.origin.isLoading = true;
-                setTimeout(() => {
-                    data.isExpanded = !data.isExpanded;
-                    data.origin.isLoading = false;
-                }, 500);
-            } else {
-                data.isExpanded = !data.isExpanded;
-            }
+            data.isExpanded = !data.isExpanded;
         } else {
-            if (!data.node.isExpanded) {
-                data.node.origin.isLoading = true;
-                setTimeout(() => {
-                    data.node.isExpanded = !data.node.isExpanded;
-                    data.node.origin.isLoading = false;
-                }, 500);
-            } else {
-                data.node.isExpanded = !data.node.isExpanded;
+            const node = data.node;
+            if (node) {
+                node.isExpanded = !node.isExpanded;
             }
         }
     }
@@ -135,7 +103,6 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
     private _setActiveNodeNull(isEmit: boolean = true) {
         if (this.activedNode) {
             this.activedNode.isSelected = false;
-            this.activedNode = null;
             if (isEmit) {
                 this.selectedChange.emit(null);
             }
@@ -222,25 +189,20 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
     }
 
     unitCreated(ou: OrganizationUnitDto): void {
-        this._ouData.push(ou);
-        let childs = _.filter(this._ouData, (child) => (<OrganizationUnitDto>child).parentId === ou.id);
-        const _treeNode = new NzTreeNode({
-            title: ou.displayName,
-            key: ou.id.toString(),
-            isLeaf: childs && childs.length <= 0,
-            expanded: true,
-            isMatched: true,
-            code: ou.code,
-            memberCount: ou.memberCount,
-            dto: ou,
+        ou.parentId = 0;
+        const newNode = this._arrayService.arrToTreeNode([ou], {
+            idMapName: 'id',
+            parentIdMapName: 'parentId',
+            titleMapName: 'displayName',
+            cb:(item)=>{
+                item.expanded = true;
+                item.isLeaf = false;
+            }
         });
         if (this.activedNode) {
-            childs = _.filter(this._ouData, (child) => (<OrganizationUnitDto>child).parentId === parseInt(this.activedNode.key));
-            this.activedNode.isLeaf = childs && childs.length <= 0;
-
-            this.activedNode.children.push(_treeNode);
+            this.activedNode.addChildren(newNode);
         } else {
-            this._treeData = [...this._treeData, _treeNode];
+            this._treeData = [...this._treeData, ...newNode];
         }
 
         this.totalUnitCount += 1;
@@ -291,43 +253,13 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
                     if (isConfirmed) {
                         this._organizationUnitService.deleteOrganizationUnit(parseInt(this.activedNode.key, 10)).subscribe(() => {
                             this.totalUnitCount -= 1;
-                            this.unitDeletedData();
+                            this._setActiveNodeNull()
+                            this.activedNode.remove();
                             this.notify.success(this.l('SuccessfullyDeleted'));
                         });
                     }
                 },
             );
-        }
-    }
-
-    private unitDeletedData(): void {
-        _.remove(this._ouData, (oRemove) => {
-            return oRemove.id === parseInt(this.activedNode.key);
-        });
-        this._treeData = this._treeData.filter((item) => item.key !== this.activedNode.key);
-        this._treeData.forEach((item, idx) => {
-            if (item.key === this.activedNode.key) {
-                this._treeData = this._treeData.filter((tFilte) => tFilte.key !== this.activedNode.key);
-                this._setActiveNodeNull();
-                return;
-            }
-            this._unitDeletedSubData(item);
-        });
-    }
-
-    private _unitDeletedSubData(item: NzTreeNode): void {
-        if (item && item.children) {
-            item.children.forEach((itemChild) => {
-                if (itemChild.key === this.activedNode.key) {
-                    _.remove(item.children, (remove) => {
-                        return remove.key === this.activedNode.key;
-                    });
-                    item.isLeaf = !item.children.length;
-                    this._setActiveNodeNull();
-                    return;
-                }
-                this._unitDeletedSubData(itemChild);
-            });
         }
     }
 

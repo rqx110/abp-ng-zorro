@@ -17,7 +17,7 @@
         </a>
     </ng-template>
     <nz-spin [nzTip]="l('MovingWithThreeDot')" [nzSpinning]="draging">
-        <nz-tree [nzData]="_treeData" nzBlockNode [nzShowExpand]="true" [nzDraggable]="true"
+        <nz-tree [nzData]="_treeData" [nzShowExpand]="true" [nzDraggable]="true"
             (nzClick)="activeNode($event)" (nzDblClick)="openFolder($event)" (nzOnDragEnter)="dragEnter($event)"
             (nzOnDrop)="dragSaveData($event)" (nzOnDragEnd)="dragSaveData($event)" [nzTreeTemplate]="nzTreeTemplate">
         </nz-tree>
@@ -40,15 +40,11 @@
         </nz-dropdown-menu>
         <ng-template #nzTreeTemplate let-node>
             <span class="custom-node" draggable="true" aria-grabbed="true">
-                <span [class.shine-animate]="node.origin.isLoading"
-                    (contextmenu)="createContextMenu($event, menu, node)">
-                    <i nz-icon nzType="folder" *ngIf="!node.isExpanded" (click)="openFolder(node)" nz-tooltip
-                        [nzTooltipTitle]="node.origin.code"></i>
-                    <i nz-icon nzType="folder-open" *ngIf="node.isExpanded" (click)="openFolder(node)" nz-tooltip
-                        [nzTooltipTitle]="node.origin.code"></i>
+                <span (contextmenu)="createContextMenu($event, menu, node)">
+                    <i nz-icon nzType="folder" *ngIf="!node.isExpanded" (click)="openFolder(node)" nz-tooltip [nzTooltipTitle]="node.origin.code"></i>
+                    <i nz-icon nzType="folder-open" *ngIf="node.isExpanded" (click)="openFolder(node)" nz-tooltip [nzTooltipTitle]="node.origin.code"></i>
                     <span class="ou-title">{{node.title}}</span>
-                    <span class="member-count"
-                        [class.member-count-hasvalue]="node?.origin?.memberCount">({{node?.origin?.memberCount}})</span>
+                    <span class="member-count" [class.member-count-hasvalue]="node?.origin?.memberCount">({{node?.origin?.memberCount}})</span>
                 </span>
             </span>
         </ng-template>
