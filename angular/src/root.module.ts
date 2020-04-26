@@ -20,7 +20,7 @@ import { LocaleMappingService } from '@shared/locale-mapping.service';
 
 import { AbpHttpInterceptor } from 'abp-ng2-module';
 
-import { DelonModule } from './delon.module';
+import { GlobalConfigModule } from './global-config.module';
 
 import * as _ from 'lodash';
 import { NzI18nService, NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
@@ -151,7 +151,7 @@ function handleLogoutRequest(authService: AppAuthService) {
         BrowserModule,
         HttpClientModule,
         AbpZeroTemplateCommonModule.forRoot(),
-        DelonModule.forRoot(),
+        GlobalConfigModule.forRoot(),
         SharedModule,
         ServiceProxyModule,
         RootRoutingModule,
