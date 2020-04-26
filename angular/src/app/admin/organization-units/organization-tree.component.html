@@ -17,7 +17,7 @@
         </a>
     </ng-template>
     <nz-spin [nzTip]="l('MovingWithThreeDot')" [nzSpinning]="draging">
-        <nz-tree [nzData]="_treeData" [nzShowExpand]="true" [nzDraggable]="true"
+        <nz-tree [nzData]="_treeData" [nzShowExpand]="true" nzExpandAll [nzDraggable]="true"
             (nzClick)="activeNode($event)" (nzDblClick)="openFolder($event)" (nzOnDragEnter)="dragEnter($event)"
             (nzOnDrop)="dragSaveData($event)" (nzOnDragEnd)="dragSaveData($event)" [nzTreeTemplate]="nzTreeTemplate">
         </nz-tree>

@@ -73,7 +73,6 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
             titleMapName: 'displayName',
             cb: (item) => {
                 item.expanded = true;
-                item.isLeaf = false;
             },
         });
     }
@@ -196,10 +195,11 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
             titleMapName: 'displayName',
             cb:(item)=>{
                 item.expanded = true;
-                item.isLeaf = false;
             }
         });
         if (this.activedNode) {
+            this.activedNode.isLeaf = false;
+            this.activedNode.isExpanded = true;
             this.activedNode.addChildren(newNode);
         } else {
             this._treeData = [...this._treeData, ...newNode];
