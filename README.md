@@ -5,7 +5,7 @@ This project uses ng-zorro-antd v9.x([https://ng.ant.design](https://ng.ant.desi
 # Usage
 1. [download](https://aspnetzero.com/Download) the project template. (Must be purchased first.)
 2. copy the template `aspnet-core` folder to this project.
-3. run `MyCompanyName.AbpZeroTemplate.Web.Host` project. [official doucment](https://docs.aspnetzero.com/documents/aspnet-core-angular/latest/)
+3. run `MyCompanyName.AbpZeroTemplate.Web.Host` project. [official document](https://docs.aspnetzero.com/documents/aspnet-core-angular/latest/)
 4. run angular project: `npm start`
 
 # Screenshot

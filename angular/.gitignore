@@ -5,6 +5,9 @@
 /tmp
 /out-tsc
 /src/assets/alain-*.less
+scripts/var.less
+src/assets/style.dark.css
+src/assets/style.compact.css
 
 # dependencies
 /node_modules

@@ -29,6 +29,8 @@ import { NotificationsComponent } from './shared/layout/notifications/notificati
 import { SettingDrawerComponent } from '@app/shared/layout/setting-drawer/setting-drawer.component';
 import { SettingDrawerItemComponent } from '@app/shared/layout/setting-drawer/setting-drawer-item.component';
 
+import { LayoutThemeBtnComponent } from './shared/layout/theme-btn/theme-btn.component';
+
 import { FileUploadModule } from 'ng2-file-upload';
 import { ImageCropperModule } from 'ngx-image-cropper';
 
@@ -69,7 +71,8 @@ const NAVCOMPONENTS = [
         SettingDrawerComponent,
         SettingDrawerItemComponent,
         SessionTimeoutModalComponent,
-        SessionTimeoutComponent
+        SessionTimeoutComponent,
+        LayoutThemeBtnComponent
     ],
     entryComponents: [
         LoginAttemptsModalComponent,
