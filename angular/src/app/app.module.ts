@@ -29,14 +29,13 @@ import { NotificationsComponent } from './shared/layout/notifications/notificati
 import { SettingDrawerComponent } from '@app/shared/layout/setting-drawer/setting-drawer.component';
 import { SettingDrawerItemComponent } from '@app/shared/layout/setting-drawer/setting-drawer-item.component';
 
-import { LayoutThemeBtnComponent } from './shared/layout/theme-btn/theme-btn.component';
-
 import { FileUploadModule } from 'ng2-file-upload';
 import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { SessionTimeoutModalComponent } from './shared/common/session-timeout/session-timeout-modal-component';
 import { SessionTimeoutComponent } from './shared/common/session-timeout/session-timeout.component';
 import { SharedModule } from '@shared/shared.module';
+import { LayoutModule } from '@shared/layout/layout.module';
 
 
 const NAVCOMPONENTS = [
@@ -56,7 +55,8 @@ const NAVCOMPONENTS = [
         UtilsModule,
         AppCommonModule.forRoot(),
         FileUploadModule,
-        ImageCropperModule
+        ImageCropperModule,
+        LayoutModule,
     ],
     declarations: [
         AppComponent,
@@ -72,7 +72,6 @@ const NAVCOMPONENTS = [
         SettingDrawerItemComponent,
         SessionTimeoutModalComponent,
         SessionTimeoutComponent,
-        LayoutThemeBtnComponent
     ],
     entryComponents: [
         LoginAttemptsModalComponent,
