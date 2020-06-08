@@ -1,28 +1,29 @@
-import { UtilsService } from 'abp-ng2-module';
 import { AppConsts } from '@shared/AppConsts';
+import { LocalStorageService } from '@shared/utils/local-storage.service';
 
 export class SignalRHelper {
     static initSignalR(callback: () => void): void {
+        new LocalStorageService().getItem(AppConsts.authorization.encrptedAuthTokenName, function (err, value) {
+            let encryptedAuthToken = value?.token;
 
-        let encryptedAuthToken = new UtilsService().getCookieValue(AppConsts.authorization.encrptedAuthTokenName);
+            abp.signalr = {
+                autoConnect: false, 
+                connect: undefined,
+                hubs: undefined,
+                qs: AppConsts.authorization.encrptedAuthTokenName + '=' + encodeURIComponent(encryptedAuthToken),
+                remoteServiceBaseUrl: AppConsts.remoteServiceBaseUrl,
+                startConnection: undefined,
+                url: '/signalr'
+            };
 
-        abp.signalr = {
-            autoConnect: false, // _zone.runOutsideAngular in ChatSignalrService
-            // autoReconnect: true,
-            connect: undefined,
-            hubs: undefined,
-            qs: AppConsts.authorization.encrptedAuthTokenName + '=' + encodeURIComponent(encryptedAuthToken),
-            remoteServiceBaseUrl: AppConsts.remoteServiceBaseUrl,
-            startConnection: undefined,
-            url: '/signalr'
-        };
+            let script = document.createElement('script');
+            script.onload = () => {
+                callback();
+            };
 
-        let script = document.createElement('script');
-        script.onload = () => {
-            callback();
-        };
+            script.src = AppConsts.appBaseUrl + '/assets/abp/abp.signalr-client.js';
+            document.head.appendChild(script);
+        });
 
-        script.src = AppConsts.appBaseUrl + '/assets/abp/abp.signalr-client.js';
-        document.head.appendChild(script);
     }
 }

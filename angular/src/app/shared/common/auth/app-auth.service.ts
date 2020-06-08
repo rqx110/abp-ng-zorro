@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AppConsts } from '@shared/AppConsts';
 import { XmlHttpRequestHelper } from '@shared/helpers/XMLHttpRequestHelper';
+import { LocalStorageService } from '@shared/utils/local-storage.service';
 
 @Injectable()
 export class AppAuthService {
@@ -18,7 +19,7 @@ export class AppAuthService {
             () => {
                 abp.auth.clearToken();
                 abp.auth.clearRefreshToken();
-                abp.utils.setCookieValue(AppConsts.authorization.encrptedAuthTokenName, undefined, undefined, abp.appPath);
+                new LocalStorageService().removeItem(AppConsts.authorization.encrptedAuthTokenName);
 
                 if (reload !== false) {
                     if (returnUrl) {

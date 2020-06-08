@@ -41,6 +41,7 @@ export class LoginComponent extends AppComponentBase implements OnInit {
     }
 
     ngOnInit(): void {
+        this.loginService.init();
         if (this._sessionService.userId > 0 && UrlHelper.getReturnUrl() && UrlHelper.getSingleSignIn()) {
             this._sessionAppService.updateUserSignInToken()
                 .subscribe((result: UpdateUserSignInTokenOutput) => {
