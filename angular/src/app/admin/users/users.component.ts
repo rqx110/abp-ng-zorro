@@ -17,6 +17,7 @@ import { finalize } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { AppConsts } from '@shared/AppConsts';
 import { FileDownloadService } from '@shared/utils/file-download.service';
+import { UtilsService } from 'abp-ng2-module';
 @Component({
     templateUrl: './users.component.html',
     styles: [],
@@ -144,5 +145,10 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> imple
             this.refresh();
             this.notify.success(this.l('SuccessfullyDeleted'));
         });
+    }
+
+    getUserProfilePictureUrl(userId: number): string {
+        let encryptedAuthToken = new UtilsService().getCookieValue(AppConsts.authorization.encrptedAuthTokenName);
+        return AppConsts.remoteServiceBaseUrl + '/Profile/GetProfilePictureByUser?userId=' + userId + '&' + AppConsts.authorization.encrptedAuthTokenName + '=' + encodeURIComponent(encryptedAuthToken);
     }
 }

@@ -40,22 +40,18 @@ export class SessionLockScreenComponent extends AppComponentBase {
       profilePicture: ''
     };
 
-    if (userInfo.profilePictureId) {
-      this._profileService.getProfilePictureById(userInfo.profilePictureId)
-        .subscribe(
-          (data) => {
+    this._profileService.getProfilePictureByUserName(userInfo.userName).subscribe(
+        (data) => {
             if (data.profilePicture) {
-              this.userInfo.profilePicture = 'data:image/jpeg;base64,' + data.profilePicture;
+                this.userInfo.profilePicture = 'data:image/jpeg;base64,' + data.profilePicture;
             } else {
-              this.userInfo.profilePicture = AppConsts.appBaseUrl + '/assets/common/images/default-profile-picture.png';
+                this.userInfo.profilePicture = AppConsts.appBaseUrl + '/assets/common/images/default-profile-picture.png';
             }
-          },
-          () => {
+        },
+        () => {
             this.userInfo.profilePicture = AppConsts.appBaseUrl + '/assets/common/images/default-profile-picture.png';
-          });
-    } else {
-      this.userInfo.profilePicture = AppConsts.appBaseUrl + '/assets/common/images/default-profile-picture.png';
-    }
+        },
+    );
   }
 
   login(): void {

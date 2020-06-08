@@ -153,6 +153,7 @@
                     <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshCheckStatus(dataList)"
                         nzLeft="0px"></td>
                     <td>
+                        <nz-avatar [nzSrc]="getUserProfilePictureUrl(item.id)" nzSize="small" class="mr-sm"></nz-avatar>
                         {{item.userName}}
                     </td>
                     <td>

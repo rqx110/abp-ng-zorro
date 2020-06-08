@@ -82,7 +82,8 @@ export class CreateOrEditUserModalComponent extends ModalComponentBase implement
             this.allOrganizationUnits = result.allOrganizationUnits;
             this.memberedOrganizationUnits = result.memberedOrganizationUnits;
 
-            this.getProfilePicture(result.profilePictureId);
+            this.getProfilePicture(result.user);
+
             if (this.userId) {
                 setTimeout(() => {
                     this.setRandomPassword = false;
@@ -98,19 +99,14 @@ export class CreateOrEditUserModalComponent extends ModalComponentBase implement
         });
     }
 
-    getProfilePicture(profilePictureId: string): void {
-        if (!profilePictureId) {
-            this.profilePicture = this.appRootUrl() + 'assets/common/images/default-profile-picture.png';
-        } else {
-            this._profileService.getProfilePictureById(profilePictureId).subscribe(result => {
-
-                if (result && result.profilePicture) {
-                    this.profilePicture = 'data:image/jpeg;base64,' + result.profilePicture;
-                } else {
-                    this.profilePicture = this.appRootUrl() + 'assets/common/images/default-profile-picture.png';
-                }
-            });
-        }
+    getProfilePicture(user: UserEditDto): void {
+        this._profileService.getProfilePictureByUser(user.id).subscribe(result => {
+            if (result && result.profilePicture) {
+                this.profilePicture = 'data:image/jpeg;base64,' + result.profilePicture;
+            } else {
+                this.profilePicture = this.appRootUrl() + 'assets/common/images/default-profile-picture.png';
+            }
+        });
     }
 
     setOrganizationUnitTreeData(): any {
