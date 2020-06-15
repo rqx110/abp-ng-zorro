@@ -82,7 +82,7 @@ export class CreateOrEditUserModalComponent extends ModalComponentBase implement
             this.allOrganizationUnits = result.allOrganizationUnits;
             this.memberedOrganizationUnits = result.memberedOrganizationUnits;
 
-            this.getProfilePicture(result.user);
+            this.getProfilePicture(this.userId);
 
             if (this.userId) {
                 setTimeout(() => {
@@ -99,8 +99,13 @@ export class CreateOrEditUserModalComponent extends ModalComponentBase implement
         });
     }
 
-    getProfilePicture(user: UserEditDto): void {
-        this._profileService.getProfilePictureByUser(user.id).subscribe(result => {
+    getProfilePicture(userId: number): void {
+        if (!userId) {
+            this.profilePicture = this.appRootUrl() + 'assets/common/images/default-profile-picture.png';
+            return;
+        }
+
+        this._profileService.getProfilePictureByUser(userId).subscribe(result => {
             if (result && result.profilePicture) {
                 this.profilePicture = 'data:image/jpeg;base64,' + result.profilePicture;
             } else {

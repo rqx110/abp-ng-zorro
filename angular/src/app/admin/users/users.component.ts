@@ -17,7 +17,7 @@ import { finalize } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { AppConsts } from '@shared/AppConsts';
 import { FileDownloadService } from '@shared/utils/file-download.service';
-import { UtilsService } from 'abp-ng2-module';
+import { LocalStorageService } from '@shared/utils/local-storage.service';
 @Component({
     templateUrl: './users.component.html',
     styles: [],
@@ -35,6 +35,7 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> imple
         private _userServiceProxy: UserServiceProxy,
         private _fileDownloadService: FileDownloadService,
         private _activatedRoute: ActivatedRoute,
+        private _localStorageService: LocalStorageService
     ) {
         super(injector);
         this.filterText = this._activatedRoute.snapshot.queryParams['filterText'] || '';
@@ -98,6 +99,7 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> imple
             .pipe(finalize(finishedCallback))
             .subscribe((result: PagedResultDtoOfUserListDto) => {
                 this.dataList = result.items;
+                this.setUsersProfilePictureUrl(this.dataList);
                 this.showPaging(result);
             });
     }
@@ -147,8 +149,13 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> imple
         });
     }
 
-    getUserProfilePictureUrl(userId: number): string {
-        let encryptedAuthToken = new UtilsService().getCookieValue(AppConsts.authorization.encrptedAuthTokenName);
-        return AppConsts.remoteServiceBaseUrl + '/Profile/GetProfilePictureByUser?userId=' + userId + '&' + AppConsts.authorization.encrptedAuthTokenName + '=' + encodeURIComponent(encryptedAuthToken);
+    setUsersProfilePictureUrl(users: UserListDto[]): void {
+        for (let i = 0; i < users.length; i++) {
+            let user = users[i];
+            this._localStorageService.getItem(AppConsts.authorization.encrptedAuthTokenName, function (err, value) {
+                let profilePictureUrl = AppConsts.remoteServiceBaseUrl + '/Profile/GetProfilePictureByUser?userId=' + user.id + '&' + AppConsts.authorization.encrptedAuthTokenName + '=' + encodeURIComponent(value.token);
+                (user as any).profilePictureUrl = profilePictureUrl;
+            });
+        }
     }
 }

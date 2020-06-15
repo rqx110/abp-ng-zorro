@@ -1,5 +1,5 @@
 
-import { UtilsService, MessageService, TokenService, LogService, LocalizationService } from 'abp-ng2-module';
+import { MessageService, TokenService, LogService, LocalizationService } from 'abp-ng2-module';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppConsts } from '@shared/AppConsts';
@@ -7,10 +7,10 @@ import { UrlHelper } from '@shared/helpers/UrlHelper';
 import { AuthenticateModel, AuthenticateResultModel, ExternalAuthenticateModel, ExternalAuthenticateResultModel, ExternalLoginProviderInfoModel, TokenAuthServiceProxy } from '@shared/service-proxies/service-proxies';
 import { ScriptLoaderService } from '@shared/utils/script-loader.service';
 import * as _ from 'lodash';
-import { finalize } from 'rxjs/operators';
 
 import { OAuthService, AuthConfig } from 'angular-oauth2-oidc';
 import { UserAgentApplication, AuthResponse } from 'msal';
+import { LocalStorageService } from '@shared/utils/local-storage.service';
 
 declare const FB: any; // Facebook API
 declare const gapi: any; // Google API
@@ -52,12 +52,12 @@ export class LoginService {
     constructor(
         private _tokenAuthService: TokenAuthServiceProxy,
         private _router: Router,
-        private _utilsService: UtilsService,
         private _messageService: MessageService,
         private _tokenService: TokenService,
         private _logService: LogService,
         private oauthService: OAuthService,
-        private _localizationService: LocalizationService
+        private _localizationService: LocalizationService,
+        private _localStorageService: LocalStorageService
     ) {
         this.clear();
     }
@@ -65,22 +65,24 @@ export class LoginService {
     authenticate(finallyCallback?: () => void, redirectUrl?: string): void {
         finallyCallback = finallyCallback || (() => { });
 
-        // We may switch to localStorage instead of cookies
-        this.authenticateModel.twoFactorRememberClientToken = this._utilsService.getCookieValue(LoginService.twoFactorRememberClientTokenName);
-        this.authenticateModel.singleSignIn = UrlHelper.getSingleSignIn();
-        this.authenticateModel.returnUrl = UrlHelper.getReturnUrl();
+        const self = this;
+        this._localStorageService.getItem(LoginService.twoFactorRememberClientTokenName, function (err, value) {
+            self.authenticateModel.twoFactorRememberClientToken = value?.token;
+            self.authenticateModel.singleSignIn = UrlHelper.getSingleSignIn();
+            self.authenticateModel.returnUrl = UrlHelper.getReturnUrl();
 
-        this._tokenAuthService
-            .authenticate(this.authenticateModel)
-            .subscribe({
-                next: (result: AuthenticateResultModel) => {
-                    this.processAuthenticateResult(result, redirectUrl);
-                    finallyCallback();
-                },
-                error: (err: any) => {
-                    finallyCallback();
-                }
-            });
+            self._tokenAuthService
+                .authenticate(self.authenticateModel)
+                .subscribe({
+                    next: (result: AuthenticateResultModel) => {
+                        self.processAuthenticateResult(result, redirectUrl);
+                        finallyCallback();
+                    },
+                    error: () => {
+                        finallyCallback();
+                    }
+                });
+        });
     }
 
     externalAuthenticate(provider: ExternalLoginProvider): void {
@@ -97,7 +99,7 @@ export class LoginService {
                 let scopes = ['user.read'];
                 this.MSAL.loginPopup({
                     scopes: scopes
-                }).then((idTokenResponse: AuthResponse) => {
+                }).then(() => {
                     this.MSAL.acquireTokenSilent({ scopes: scopes }).then((accessTokenResponse: AuthResponse) => {
                         this.microsoftLoginCallback(accessTokenResponse);
                     }).catch(error => {
@@ -177,20 +179,16 @@ export class LoginService {
             );
         }
 
-        this._utilsService.setCookieValue(
-            AppConsts.authorization.encrptedAuthTokenName,
-            encryptedAccessToken,
-            tokenExpireDate,
-            abp.appPath
-        );
+        this._localStorageService.setItem(AppConsts.authorization.encrptedAuthTokenName, {
+            token: encryptedAccessToken,
+            expireDate: tokenExpireDate,
+        });
 
         if (twoFactorRememberClientToken) {
-            this._utilsService.setCookieValue(
-                LoginService.twoFactorRememberClientTokenName,
-                twoFactorRememberClientToken,
-                new Date(new Date().getTime() + 365 * 86400000), // 1 year
-                abp.appPath
-            );
+            this._localStorageService.setItem(LoginService.twoFactorRememberClientTokenName, {
+                token: twoFactorRememberClientToken,
+                expireDate: new Date(new Date().getTime() + 365 * 86400000), // 1 year
+            });
         }
 
         if (redirectUrl) {
