@@ -277,4 +277,19 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
             this.activedNode.origin.memberCount = 0;
         }
     }
+
+    rolesAdded(roleIds: number[]): void {
+        this.incrementRoleCount(roleIds.length);
+    }
+
+    roleRemoved(roleIds: number[]): void {
+        this.incrementRoleCount(-roleIds.length);
+    }
+
+    incrementRoleCount(incrementAmount: number): void {
+        this.activedNode.origin.roleCount = this.activedNode.origin.roleCount + incrementAmount;
+        if (this.activedNode.origin.roleCount < 0) {
+            this.activedNode.origin.roleCount = 0;
+        }
+    }
 }

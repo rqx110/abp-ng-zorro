@@ -25,18 +25,20 @@ import { CreateOrEditRoleModalComponent } from './roles/create-or-edit-role-moda
 import { AuditLogDetailModalComponent } from './audit-logs/audit-logs-detail/audit-logs-detail-modal.component';
 import { EntityChangeDetailModalComponent } from './audit-logs/entity-change-detail/entity-change-detail-modal.component';
 import { AddMemberModalComponent } from './organization-units/add-member-modal.component';
+import { AddRoleModalComponent } from './organization-units/add-role-modal.component';
 import { CreateOrEditLanguageModalComponent } from './languages/create-or-edit-language-modal.component';
 import { EditLanguageTextComponent } from './languages/edit-language-text.component';
 import { CreateTenantModalComponent } from './tenants/create-tenant-modal.component';
 import { CreateEditionModalComponent } from './editions/create-edition-modal.component';
 import { EditEditionModalComponent } from './editions/edit-edition-modal.component';
 import { EditTenantModalComponent } from './tenants/edit-tenant-modal.component';
-import {TenantFeaturesModalComponent} from './tenants/tenant-features-modal.component';
+import { TenantFeaturesModalComponent } from './tenants/tenant-features-modal.component';
 import { CreateOrEditUnitModalComponent } from './organization-units/create-or-edit-unit-modal.component';
 import { PermissionComboComponent } from './shared/permission-combo/permission-combo.component';
 import { RoleComboComponent } from './shared/role-combo/role-combo.component';
 import { OrganizationTreeComponent } from './organization-units/organization-tree.component';
 import { OrganizationUnitMembersComponent } from './organization-units/organization-unit-members.component';
+import { OrganizationUnitRolesComponent } from './organization-units/organization-unit-roles.component';
 import { OrganizationUnitsTreeComponent } from './shared/organization-unit-tree/organization-unit-tree.component';
 import { EditionComboComponent } from './shared/edtion-combo/edition-combo.component';
 import { InstallComponent } from './install/install.component';
@@ -78,6 +80,7 @@ import { SharedModule } from '@shared/shared.module';
     EntityChangeDetailModalComponent,
     CreateOrEditUnitModalComponent,
     AddMemberModalComponent,
+    AddRoleModalComponent,
     CreateOrEditLanguageModalComponent,
     EditLanguageTextComponent,
     CreateTenantModalComponent,
@@ -85,6 +88,7 @@ import { SharedModule } from '@shared/shared.module';
     EditEditionModalComponent,
     OrganizationTreeComponent,
     OrganizationUnitMembersComponent,
+    OrganizationUnitRolesComponent,
     EditTenantModalComponent,
     TenantFeaturesModalComponent,
     EditionComboComponent,
@@ -102,6 +106,7 @@ import { SharedModule } from '@shared/shared.module';
     EntityChangeDetailModalComponent,
     CreateOrEditUnitModalComponent,
     AddMemberModalComponent,
+    AddRoleModalComponent,
     CreateOrEditLanguageModalComponent,
     EditLanguageTextComponent,
     CreateTenantModalComponent,

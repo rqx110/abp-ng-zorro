@@ -1,4 +1,4 @@
 export interface IBasicOrganizationUnitInfo {
     id: number;
-    displayName: string;
+    title: string;
 }

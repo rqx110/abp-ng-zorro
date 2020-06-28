@@ -10,24 +10,24 @@ import {
     PagedRequestDto,
 } from '@shared/common/paged-listing-component-base';
 import {
-    OrganizationUnitUserListDto,
     OrganizationUnitServiceProxy,
-    PagedResultDtoOfOrganizationUnitUserListDto
+    OrganizationUnitRoleListDto,
+    PagedResultDtoOfOrganizationUnitRoleListDto
 } from '@shared/service-proxies/service-proxies';
 import { NzTreeNode } from 'ng-zorro-antd/tree';
 import { finalize } from 'rxjs/operators';
 import * as _ from 'lodash';
-import { AddMemberModalComponent } from './add-member-modal.component';
+import { AddRoleModalComponent } from './add-role-modal.component';
 
 @Component({
-    selector: 'organization-unit-members',
-    templateUrl: './organization-unit-members.component.html',
+    selector: 'organization-unit-roles',
+    templateUrl: './organization-unit-roles.component.html',
     styles: [],
 })
-export class OrganizationUnitMembersComponent extends PagedListingComponentBase<OrganizationUnitUserListDto> implements OnInit {
+export class OrganizationUnitRolesComponent extends PagedListingComponentBase<OrganizationUnitRoleListDto> implements OnInit {
 
-    @Output() memberRemoved = new EventEmitter<number[]>();
-    @Output() membersAdded = new EventEmitter<number[]>();
+    @Output() roleRemoved = new EventEmitter<number[]>();
+    @Output() rolesAdded = new EventEmitter<number[]>();
 
     filterText = '';
     private _organizationUnit: NzTreeNode = null;
@@ -64,36 +64,36 @@ export class OrganizationUnitMembersComponent extends PagedListingComponentBase<
         }
 
         this._organizationUnitService
-            .getOrganizationUnitUsers(
+            .getOrganizationUnitRoles(
                 parseInt(this._organizationUnit.key, 10),
                 request.sorting,
                 request.maxResultCount,
                 request.skipCount,
             )
             .pipe(finalize(finishedCallback))
-            .subscribe((result: PagedResultDtoOfOrganizationUnitUserListDto) => {
+            .subscribe((result: PagedResultDtoOfOrganizationUnitRoleListDto) => {
                 this.dataList = result.items;
                 this.showPaging(result);
             });
     }
 
-    removeMember(user: OrganizationUnitUserListDto): void {
+    removeRole(role: OrganizationUnitRoleListDto): void {
         const _ouId = parseInt(this.organizationUnit.key);
-        this._organizationUnitService.removeUserFromOrganizationUnit(user.id, _ouId).subscribe(() => {
+        this._organizationUnitService.removeRoleFromOrganizationUnit(role.id, _ouId).subscribe(() => {
             this.refresh();
             this.notify.success(this.l('SuccessfullyRemoved'));
-            this.memberRemoved.emit([user.id]);
+            this.roleRemoved.emit([role.id]);
         });
     }
 
-    addMembers(): void {
+    addRoles(): void {
         this.modalHelper
-            .createStatic(AddMemberModalComponent, {
+            .createStatic(AddRoleModalComponent, {
                 organizationUnitId: parseInt(this.organizationUnit.key),
             })
             .subscribe((res: number[]) => {
                 if (res) {
-                    this.membersAdded.emit(res);
+                    this.rolesAdded.emit(res);
                     this.refresh();
                 }
             });

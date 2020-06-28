@@ -44,7 +44,7 @@
                     <i nz-icon nzType="folder" *ngIf="!node.isExpanded" (click)="openFolder(node)" nz-tooltip [nzTooltipTitle]="node.origin.code"></i>
                     <i nz-icon nzType="folder-open" *ngIf="node.isExpanded" (click)="openFolder(node)" nz-tooltip [nzTooltipTitle]="node.origin.code"></i>
                     <span class="ou-title">{{node.title}}</span>
-                    <span class="member-count" [class.member-count-hasvalue]="node?.origin?.memberCount">({{node?.origin?.memberCount}})</span>
+                    <small class="member-count" style="font-size: .82em; opacity: .5;">{{node?.origin?.memberCount}} {{'Members' | localize}}, {{node?.origin?.roleCount}} {{'Roles' | localize}}</small>
                 </span>
             </span>
         </ng-template>
