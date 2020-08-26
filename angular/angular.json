@@ -21,7 +21,7 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "tsConfig": "tsconfig.app.json",
             "preserveSymlinks": true,
             "assets": [
               "src/favicon.ico",
@@ -47,9 +47,14 @@
               "node_modules/moment/min/moment-with-locales.js",
               "node_modules/moment-timezone/builds/moment-timezone-with-data.js",
               "node_modules/push.js/bin/push.js",
-              
               "src/assets/abp-web-resources/abp.js",
               "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.moment.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "@angularclass/hmr",
+              "@ant-design/colors",
+              "lodash",
+              "file-saver"
             ]
           },
           "configurations": {
@@ -66,10 +71,12 @@
                   "maximumError": "10kb"
                 }
               ],
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -81,10 +88,12 @@
               "buildOptimizer": true
             },
             "hmr": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.hmr.ts"
-              }]
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hmr.ts"
+                }
+              ]
             }
           }
         },
@@ -114,7 +123,7 @@
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
+            "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
               "src/styles.less"
@@ -132,9 +141,12 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-                "src/tsconfig.app.json"
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
             ],
             "exclude": [
+              "**/node_modules/**"
             ]
           }
         }
@@ -154,13 +166,6 @@
             "production": {
               "devServerTarget": "abp-zero-template:serve:production"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": []
           }
         }
       }

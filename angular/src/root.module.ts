@@ -3,11 +3,11 @@ import { registerLocaleData, PlatformLocation } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RootRoutingModule } from 'root-routing.module';
+import { RootRoutingModule } from './root-routing.module';
 
 import { AppModule } from '@app/app.module';
-import { RootComponent } from 'root.component';
-import { AppPreBootstrap } from 'AppPreBootstrap';
+import { RootComponent } from './root.component';
+import { AppPreBootstrap } from './AppPreBootstrap';
 
 import { AppAuthService } from '@app/shared/common/auth/app-auth.service';
 import { AppConsts } from '@shared/AppConsts';

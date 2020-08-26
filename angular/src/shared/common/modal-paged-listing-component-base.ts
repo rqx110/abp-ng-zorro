@@ -1,11 +1,12 @@
 import { ModalComponentBase } from '@shared/common/modal-component-base';
-import { OnInit, Injector } from '@angular/core';
+import { OnInit, Injector, Directive } from '@angular/core';
 import { AppConsts } from '@shared/AppConsts';
 import {
     PagedResultDto,
     PagedRequestDto,
 } from '@shared/common/paged-listing-component-base';
 
+@Directive()
 export abstract class ModalPagedListingComponentBase<EntityDto> extends ModalComponentBase implements OnInit {
     dataList: EntityDto[] = [];
     public pageSize = AppConsts.grid.defaultPageSize;

@@ -1,5 +1,5 @@
 import { AppComponentBase } from '@shared/common/app-component-base';
-import { Injector, OnInit } from '@angular/core';
+import { Injector, OnInit, Directive } from '@angular/core';
 import { AppConsts } from '@shared/AppConsts';
 
 export class PagedResultDto {
@@ -17,6 +17,7 @@ export class PagedRequestDto {
     sorting: string;
 }
 
+@Directive()
 export abstract class PagedListingComponentBase<EntityDto> extends AppComponentBase implements OnInit {
 
     public pageSize = AppConsts.grid.defaultPageSize;
