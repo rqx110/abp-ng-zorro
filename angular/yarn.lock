@@ -1844,15 +1844,15 @@ abab@^2.0.3:
   resolved "https://registry.npm.taobao.org/abab/download/abab-2.0.4.tgz?cache=0&sync_timestamp=1596258151468&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fabab%2Fdownload%2Fabab-2.0.4.tgz#6dfa57b417ca06d21b2478f0e638302f99c2405c"
   integrity sha1-bfpXtBfKBtIbJHjw5jgwL5nCQFw=
 
-abp-ng2-module@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.npm.taobao.org/abp-ng2-module/download/abp-ng2-module-6.2.0.tgz#a59415c574ba8d3ac6c203fef8251ffc342f2460"
-  integrity sha1-pZQVxXS6jTrGwgP++CUf/DQvJGA=
+abp-ng2-module@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.npm.taobao.org/abp-ng2-module/download/abp-ng2-module-6.0.0.tgz#04a5729081156ac717f041d5814a83e675c4cd14"
+  integrity sha1-BKVykIEVascX8EHVgUqD5nXEzRQ=
 
-abp-web-resources@^5.3.0:
-  version "5.3.0"
-  resolved "https://registry.npm.taobao.org/abp-web-resources/download/abp-web-resources-5.3.0.tgz#45e7e35e74c0778185dc19668446c1bec919d095"
-  integrity sha1-RefjXnTAd4GF3BlmhEbBvskZ0JU=
+abp-web-resources@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.npm.taobao.org/abp-web-resources/download/abp-web-resources-5.2.0.tgz#89c17111c6e70b1ecbfb287dfa960e0593511a77"
+  integrity sha1-icFxEcbnCx7L+yh9+pYOBZNRGnc=
 
 abs-svg-path@~0.1.1:
   version "0.1.1"
@@ -1972,12 +1972,12 @@ amdefine@>=0.0.4:
   resolved "https://registry.npm.taobao.org/amdefine/download/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
-angular-oauth2-oidc@^10.0.3:
-  version "10.0.3"
-  resolved "https://registry.npm.taobao.org/angular-oauth2-oidc/download/angular-oauth2-oidc-10.0.3.tgz#612ef75c2e07b56592d2506f9618ee6a61857ad9"
-  integrity sha1-YS73XC4HtWWS0lBvlhjuamGFetk=
+angular-oauth2-oidc@^9.2.0:
+  version "9.2.1"
+  resolved "https://registry.npm.taobao.org/angular-oauth2-oidc/download/angular-oauth2-oidc-9.2.1.tgz#745d8c19d671ca3f50cae357768050ab48163c43"
+  integrity sha1-dF2MGdZxyj9QyuNXdoBQq0gWPEM=
   dependencies:
-    tslib "^2.0.0"
+    js-sha256 "^0.9.0"
 
 ansi-colors@4.1.1:
   version "4.1.1"
@@ -5652,6 +5652,11 @@ jest-worker@^26.0.0:
     "@types/node" "*"
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
+
+js-sha256@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.npm.taobao.org/js-sha256/download/js-sha256-0.9.0.tgz#0b89ac166583e91ef9123644bd3c5334ce9d0966"
+  integrity sha1-C4msFmWD6R75EjZEvTxTNM6dCWY=
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
