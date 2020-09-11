@@ -97,6 +97,9 @@ export class AppPreBootstrap {
                 moment.tz.setDefault(abp.timing.timeZoneInfo.iana.timeZoneId);
                 (window as any).moment.tz.setDefault(abp.timing.timeZoneInfo.iana.timeZoneId);
             } else {
+                Date.prototype.toISOString = function () {
+                    return moment(this).locale('en').format();
+                };
                 moment.fn.toJSON = function () {
                     return this.locale('en').format();
                 };
