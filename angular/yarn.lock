@@ -128,10 +128,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/cdk@^10.0.2":
-  version "10.1.3"
-  resolved "https://registry.npm.taobao.org/@angular/cdk/download/@angular/cdk-10.1.3.tgz#4a8d7dcdbe344b4d7e8e0ed5c25c19b78313b494"
-  integrity sha1-So19zb40S01+jg7VwlwZt4MTtJQ=
+"@angular/cdk@^10.0.0":
+  version "10.2.3"
+  resolved "https://registry.npm.taobao.org/@angular/cdk/download/@angular/cdk-10.2.3.tgz#49eb09ae68f91f1ecec388592091a0f8f1dd5dce"
+  integrity sha1-SesJrmj5Hx7Ow4hZIJGg+PHdXc4=
   dependencies:
     tslib "^2.0.0"
   optionalDependencies:
@@ -258,10 +258,10 @@
   dependencies:
     tinycolor2 "^1.4.1"
 
-"@ant-design/icons-angular@10.0.0-beta.0":
-  version "10.0.0-beta.0"
-  resolved "https://registry.npm.taobao.org/@ant-design/icons-angular/download/@ant-design/icons-angular-10.0.0-beta.0.tgz#fb631e1d6bcba7c855245f72f70655e6c9d805ca"
-  integrity sha1-+2MeHWvLp8hVJF9y9wZV5snYBco=
+"@ant-design/icons-angular@^10.0.0":
+  version "10.0.1"
+  resolved "https://registry.npm.taobao.org/@ant-design/icons-angular/download/@ant-design/icons-angular-10.0.1.tgz#d1173f629535c1e82a05288fd95b8e05bc272d61"
+  integrity sha1-0Rc/YpU1wegqBSiP2VuOBbwnLWE=
   dependencies:
     "@ant-design/colors" "^3.1.0"
     tslib "^2.0.0"
@@ -1581,52 +1581,52 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@delon/abc@^10.0.0-beta.5":
-  version "10.0.0-beta.5"
-  resolved "https://registry.npm.taobao.org/@delon/abc/download/@delon/abc-10.0.0-beta.5.tgz#64711dde21db580e8da5c7691b7377ec8f9474f0"
-  integrity sha1-ZHEd3iHbWA6NpcdpG3N37I+UdPA=
+"@delon/abc@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.npm.taobao.org/@delon/abc/download/@delon/abc-10.0.0.tgz#6b5a1ed4d4978b570e434e55ae4b9cf780fbccc2"
+  integrity sha1-a1oe1NSXi1cOQ05Vrkuc94D7zMI=
   dependencies:
-    "@delon/acl" "^10.0.0-beta.5"
-    "@delon/theme" "^10.0.0-beta.5"
-    "@delon/util" "^10.0.0-beta.5"
+    "@delon/acl" "^10.0.0"
+    "@delon/theme" "^10.0.0"
+    "@delon/util" "^10.0.0"
     file-saver "^2.0.2"
     ngx-countdown "^10.0.0"
     tslib "^2.0.0"
 
-"@delon/acl@^10.0.0-beta.5":
-  version "10.0.0-beta.5"
-  resolved "https://registry.npm.taobao.org/@delon/acl/download/@delon/acl-10.0.0-beta.5.tgz#a3ba21f2da8cc3c9cef7ff888daae85191735b63"
-  integrity sha1-o7oh8tqMw8nO9/+IjaroUZFzW2M=
+"@delon/acl@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.npm.taobao.org/@delon/acl/download/@delon/acl-10.0.0.tgz#cc04a10453e656a02b1cd3804bbdb2af345d7f2a"
+  integrity sha1-zAShBFPmVqArHNOAS72yrzRdfyo=
   dependencies:
-    "@delon/util" "^10.0.0-beta.5"
+    "@delon/util" "^10.0.0"
     tslib "^2.0.0"
 
-"@delon/chart@^10.0.0-beta.5":
-  version "10.0.0-beta.5"
-  resolved "https://registry.npm.taobao.org/@delon/chart/download/@delon/chart-10.0.0-beta.5.tgz#e1a85eb392c66986401fe1c286043647b6ab4795"
-  integrity sha1-4ahes5LGaYZAH+HChgQ2R7arR5U=
+"@delon/chart@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.npm.taobao.org/@delon/chart/download/@delon/chart-10.0.0.tgz#5d33edfc68f6826b4261690f0b0beedc5e7e59f0"
+  integrity sha1-XTPt/Gj2gmtCYWkPCwvu3F5+WfA=
   dependencies:
     "@antv/data-set" "^0.11.4"
     "@antv/g2" "^4.0.13"
-    "@delon/theme" "^10.0.0-beta.5"
-    "@delon/util" "^10.0.0-beta.5"
+    "@delon/theme" "^10.0.0"
+    "@delon/util" "^10.0.0"
     tslib "^2.0.0"
 
-"@delon/theme@^10.0.0-beta.5":
-  version "10.0.0-beta.5"
-  resolved "https://registry.npm.taobao.org/@delon/theme/download/@delon/theme-10.0.0-beta.5.tgz#415bd070a7cc3675d80fdfe37b9b4eedd9c722f4"
-  integrity sha1-QVvQcKfMNnXYD9/je5tO7dnHIvQ=
+"@delon/theme@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.npm.taobao.org/@delon/theme/download/@delon/theme-10.0.0.tgz#a2f5b84a8d772c4d679d9d2148e4aeb493c8f8f3"
+  integrity sha1-ovW4So13LE1nnZ0hSOSutJPI+PM=
   dependencies:
-    "@delon/acl" "^10.0.0-beta.5"
-    "@delon/chart" "^10.0.0-beta.5"
-    "@delon/util" "^10.0.0-beta.5"
-    ng-zorro-antd "^10.0.0-beta.4"
+    "@delon/acl" "^10.0.0"
+    "@delon/chart" "^10.0.0"
+    "@delon/util" "^10.0.0"
+    ng-zorro-antd "^10.0.0"
     tslib "^2.0.0"
 
-"@delon/util@^10.0.0-beta.5":
-  version "10.0.0-beta.5"
-  resolved "https://registry.npm.taobao.org/@delon/util/download/@delon/util-10.0.0-beta.5.tgz#b607355c18c6f3fec1bd3f380ceabf2b183ded84"
-  integrity sha1-tgc1XBjG8/7BvT84DOq/Kxg97YQ=
+"@delon/util@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.npm.taobao.org/@delon/util/download/@delon/util-10.0.0.tgz#16889b17911f649c3d24aad020d871f1e537face"
+  integrity sha1-FoibF5EfZJw9JKrQINhx8eU3+s4=
   dependencies:
     extend "^3.0.0"
     tslib "^2.0.0"
@@ -6675,13 +6675,13 @@ ng-alain-plugin-theme@^10.0.2:
     postcss "^7.0.0"
     strip-css-comments "^4.1.0"
 
-ng-zorro-antd@^10.0.0-beta.4:
-  version "10.0.0-beta.4"
-  resolved "https://registry.npm.taobao.org/ng-zorro-antd/download/ng-zorro-antd-10.0.0-beta.4.tgz#f4db8f2611a6f96437acefb594fef439a7ba498c"
-  integrity sha1-9NuPJhGm+WQ3rO+1lP70Oae6SYw=
+ng-zorro-antd@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.npm.taobao.org/ng-zorro-antd/download/ng-zorro-antd-10.0.0.tgz#b4bc37ad9c00a9c59b16f37a71c7fe71a757380e"
+  integrity sha1-tLw3rZwAqcWbFvN6ccf+cadXOA4=
   dependencies:
-    "@angular/cdk" "^10.0.2"
-    "@ant-design/icons-angular" "10.0.0-beta.0"
+    "@angular/cdk" "^10.0.0"
+    "@ant-design/icons-angular" "^10.0.0"
     date-fns "^2.10.0"
     resize-observer-polyfill "^1.5.1"
     tslib "^2.0.0"

@@ -21,12 +21,9 @@ import {
     UserServiceProxy,
     CreateOrUpdateUserInput,
     ProfileServiceProxy,
-    PasswordComplexitySetting,
-    UpdateProfilePictureInput
+    PasswordComplexitySetting
 } from '@shared/service-proxies/service-proxies';
-import { UploadFile } from 'ng-zorro-antd/upload';
 import { TokenService } from 'abp-ng2-module';
-import { Observable, of } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 @Component({
