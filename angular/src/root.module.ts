@@ -38,11 +38,12 @@ export function appInitializerFactory(
             AppConsts.appBaseHref = getBaseHref(platformLocation);
             let appBaseUrl = getDocumentOrigin() + AppConsts.appBaseHref;
 
+            initializeLocalForage();
+            
             AppPreBootstrap.run(appBaseUrl, () => {
                 initializeNgZorroMessage(injector);
                 
                 handleLogoutRequest(injector.get(AppAuthService));
-                initializeLocalForage();
 
                 const appSessionService: AppSessionService = injector.get(AppSessionService);
                 appSessionService.init().then(
