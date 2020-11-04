@@ -71,6 +71,7 @@ export class HeaderNotificationsComponent extends AppComponentBase implements On
             for (let i = 0; i < self.notifications.length; i++) {
                 if (self.notifications[i].userNotificationId === userNotificationId) {
                     self.notifications[i].state = 'READ';
+                    self.notifications[i].isUnread = false;
                 }
             }
 
@@ -93,7 +94,9 @@ export class HeaderNotificationsComponent extends AppComponentBase implements On
     }
 
     setNotificationAsRead(userNotification: IFormattedUserNotification): void {
-        this._userNotificationHelper.setAsRead(userNotification.userNotificationId);
+        if (userNotification.state !== 'READ') {
+            this._userNotificationHelper.setAsRead(userNotification.userNotificationId);
+        }
     }
 
     gotoUrl(url): void {
