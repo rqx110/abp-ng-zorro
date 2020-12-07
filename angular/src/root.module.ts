@@ -18,11 +18,10 @@ import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module
 import { API_BASE_URL } from '@shared/service-proxies/service-proxies';
 import { LocaleMappingService } from '@shared/locale-mapping.service';
 
-import { AbpHttpInterceptor } from 'abp-ng2-module';
+// import { AbpHttpInterceptor } from 'abp-ng2-module';
 
 import { GlobalConfigModule } from './global-config.module';
 
-import * as _ from 'lodash';
 import { NzI18nService, NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 
 import * as localForage from 'localforage';

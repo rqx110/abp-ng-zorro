@@ -16,7 +16,6 @@ import {
 } from '@shared/service-proxies/service-proxies';
 import { NzTreeNode } from 'ng-zorro-antd/tree';
 import { finalize } from 'rxjs/operators';
-import * as _ from 'lodash';
 import { AddMemberModalComponent } from './add-member-modal.component';
 
 @Component({

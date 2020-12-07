@@ -14,7 +14,6 @@ import { EditUserPermissionsModalComponent } from './edit-user-permissions-modal
 import { ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 
-import * as _ from 'lodash';
 import { AppConsts } from '@shared/AppConsts';
 import { FileDownloadService } from '@shared/utils/file-download.service';
 import { LocalStorageService } from '@shared/utils/local-storage.service';

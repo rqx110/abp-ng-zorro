@@ -10,7 +10,6 @@ import {
 } from '@shared/service-proxies/service-proxies';
 import { Router } from '@angular/router';
 import { CreateOrEditLanguageModalComponent } from './create-or-edit-language-modal.component';
-import * as _ from 'lodash';
 import { finalize } from 'rxjs/operators';
 
 @Component({

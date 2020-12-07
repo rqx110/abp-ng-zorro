@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { Router } from '@angular/router';
 import { AppConsts } from '@shared/AppConsts';
-import * as _ from 'lodash';
+import { filter as _filter } from 'lodash-es';
 
 @Component({
     selector: 'layout-account',
@@ -36,7 +36,7 @@ export class AccountComponent extends AppComponentBase {
             return false;
         }
 
-        if (_.filter(this.tenantChangeDisabledRoutes, route => this._router.url.indexOf('/account/' + route) >= 0).length) {
+        if (_filter(this.tenantChangeDisabledRoutes, route => this._router.url.indexOf('/account/' + route) >= 0).length) {
             return false;
         }
 

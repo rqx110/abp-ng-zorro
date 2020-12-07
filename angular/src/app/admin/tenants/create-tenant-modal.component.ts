@@ -9,7 +9,7 @@ import {
 } from '@shared/service-proxies/service-proxies';
 import { ModalComponentBase } from '@shared/common/modal-component-base';
 import { finalize } from 'rxjs/operators';
-import * as _ from 'lodash';
+import { filter as _filter } from 'lodash-es';
 
 @Component({
     selector: 'createTenantModal',
@@ -65,7 +65,7 @@ export class CreateTenantModalComponent extends ModalComponentBase implements On
                 this.editions.unshift(notAssignedItem);
 
                 this._commonLookupService.getDefaultEditionName().subscribe((getDefaultEditionResult) => {
-                    let defaultEdition = _.filter(this.editions, { 'displayText': getDefaultEditionResult.name });
+                    let defaultEdition = _filter(this.editions, { 'displayText': getDefaultEditionResult.name });
                     if (defaultEdition && defaultEdition[0]) {
                         this.tenant.editionId = parseInt(defaultEdition[0].value);
                         this.selectedEdtionId = this.tenant.editionId + '';
@@ -76,7 +76,7 @@ export class CreateTenantModalComponent extends ModalComponentBase implements On
     }
 
     selectedEditionIsFree(): boolean {
-        let selectedEditions = _.filter(this.editions, { 'value': this.tenant.editionId.toString() })
+        let selectedEditions = _filter(this.editions, { 'value': this.tenant.editionId.toString() })
             .map(u => Object.assign(new SubscribableEditionComboboxItemDto(), u));
 
         if (selectedEditions.length !== 1) {

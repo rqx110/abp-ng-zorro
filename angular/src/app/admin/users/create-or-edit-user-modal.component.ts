@@ -8,7 +8,7 @@ import {
 
 import { AppConsts } from '@shared/AppConsts';
 
-import * as _ from 'lodash';
+import { filter as _filter, map as _map } from 'lodash-es';
 import { ModalComponentBase } from '@shared/common/modal-component-base';
 import {
     IOrganizationUnitsTreeComponentData,
@@ -123,8 +123,8 @@ export class CreateOrEditUserModalComponent extends ModalComponentBase implement
         input.user = this.user;
         input.setRandomPassword = this.setRandomPassword;
         input.sendActivationEmail = this.sendActivationEmail;
-        input.assignedRoleNames = _.map(
-            _.filter(this.roles, { isAssigned: true }), role => role.roleName,
+        input.assignedRoleNames = _map(
+            _filter(this.roles, { isAssigned: true }), role => role.roleName,
         );
         input.organizationUnits = this.organizationUnitTree.getSelectedOrganizations();
 
@@ -144,6 +144,6 @@ export class CreateOrEditUserModalComponent extends ModalComponentBase implement
     }
 
     getAssignedRoleCount(): number {
-        return _.filter(this.roles, { isAssigned: true }).length;
+        return _filter(this.roles, { isAssigned: true }).length;
     }
 }

@@ -6,7 +6,7 @@ import {
     RolesToOrganizationUnitInput,
     PagedResultDtoOfNameValueDto,
 } from '@shared/service-proxies/service-proxies';
-import * as _ from 'lodash';
+import { map as _map } from 'lodash-es';
 
 import { finalize } from 'rxjs/operators';
 import { ModalPagedListingComponentBase } from '@shared/common/modal-paged-listing-component-base';
@@ -50,7 +50,7 @@ export class AddRoleModalComponent extends ModalPagedListingComponentBase<NameVa
         this.saving = true;
         const input = new RolesToOrganizationUnitInput();
         input.organizationUnitId = this.organizationUnitId;
-        input.roleIds = _.map(this.selectedDataItems, (selectedMember) => Number(selectedMember.value));
+        input.roleIds = _map(this.selectedDataItems, (selectedMember) => Number(selectedMember.value));
 
         this._organizationUnitService
             .addRolesToOrganizationUnit(input)

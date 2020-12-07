@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { FeatureTreeEditModel } from '@app/admin/shared/feature-tree/feature-tree-edit.model';
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { FlatFeatureDto, NameValueDto } from '@shared/service-proxies/service-proxies';
-import * as _ from 'lodash';
+import { forEach as _forEach, filter as _filter } from 'lodash-es';
 import { NzTreeNode } from 'ng-zorro-antd/tree';
 import { ArrayService } from '@delon/util';
 
@@ -46,7 +46,7 @@ export class FeatureTreeComponent extends AppComponentBase {
     }
 
     setSelectedNodes(feature: FlatFeatureDto) {
-        let featureValues = _.filter(this._editData.featureValues, { name: feature.name });
+        let featureValues = _filter(this._editData.featureValues, { name: feature.name });
         if (featureValues && featureValues.length === 1) {
             let featureValue = featureValues[0];
             this.setSelectedNode(feature, featureValue.value);
@@ -134,7 +134,7 @@ export class FeatureTreeComponent extends AppComponentBase {
 
         let result = true;
 
-        _.forEach(this.selectedFeatures, feature => {
+        _forEach(this.selectedFeatures, feature => {
             let value = this.getFeatureValue(feature);
             if (!this.isFeatureValueValid(feature, value)) {
                 result = false;

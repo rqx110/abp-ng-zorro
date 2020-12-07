@@ -6,7 +6,6 @@ import { NzContextMenuService, NzDropdownMenuComponent } from 'ng-zorro-antd/dro
 
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { OrganizationUnitServiceProxy, MoveOrganizationUnitInput } from '@shared/service-proxies/service-proxies';
-import * as _ from 'lodash';
 import { finalize, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { CreateOrEditUnitModalComponent } from './create-or-edit-unit-modal.component';

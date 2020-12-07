@@ -54,7 +54,6 @@
               "@angularclass/hmr",
               "@ant-design/colors",
               "rxjs/internal/observable/throwError",              
-              "lodash",
               "file-saver"
             ]
           },

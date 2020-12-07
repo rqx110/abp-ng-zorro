@@ -2,7 +2,7 @@ import { Component, OnInit, Injector } from '@angular/core';
 import { ModalComponentBase } from '@shared/common/modal-component-base';
 import { TenantEditDto, SubscribableEditionComboboxItemDto, TenantServiceProxy, CommonLookupServiceProxy } from '@shared/service-proxies/service-proxies';
 import { finalize } from 'rxjs/operators';
-import * as _ from 'lodash';
+import { filter as _filter } from 'lodash-es';
 import * as moment from 'moment';
 
 @Component({
@@ -68,7 +68,7 @@ export class EditTenantModalComponent extends ModalComponentBase implements OnIn
             return true;
         }
 
-        let selectedEditions = _.filter(this.editions, { value: this.tenant.editionId + '' });
+        let selectedEditions = _filter(this.editions, { value: this.tenant.editionId + '' });
         if (selectedEditions.length !== 1) {
             return true;
         }

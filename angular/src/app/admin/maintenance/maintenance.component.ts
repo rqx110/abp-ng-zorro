@@ -1,6 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { CachingServiceProxy, EntityDtoOfString, WebLogServiceProxy, CacheDto } from '@shared/service-proxies/service-proxies';
-import * as _ from 'lodash';
+import { escape as _escape } from 'lodash-es';
 import {
     PagedListingComponentBase,
     PagedRequestDto,
@@ -113,7 +113,7 @@ export class MaintenanceComponent extends PagedListingComponentBase<CacheDto> im
     }
 
     getRawLogContent(log: string): string {
-        return _.escape(log)
+        return _escape(log)
             .replace('DEBUG', '')
             .replace('INFO', '')
             .replace('WARN', '')

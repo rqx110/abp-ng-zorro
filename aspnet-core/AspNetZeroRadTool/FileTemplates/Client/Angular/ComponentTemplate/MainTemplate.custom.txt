@@ -7,7 +7,6 @@ import { FileDownloadService } from '@shared/utils/file-download.service';
 
 import { finalize } from 'rxjs/operators';
 import * as moment from 'moment';
-import * as _ from 'lodash';
 
 @Component({
     templateUrl: './{{entity_Name_Plural_Here}}.component.html'

@@ -1,7 +1,7 @@
 import { OrganizationUnitDto } from '@shared/service-proxies/service-proxies';
 import { Component, Injector } from '@angular/core';
 import { NzTreeNode } from 'ng-zorro-antd/tree';
-import * as _ from 'lodash';
+import { filter as _filter, map as _map } from 'lodash-es';
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { ArrayService } from '@delon/util';
 
@@ -63,11 +63,11 @@ export class OrganizationUnitsTreeComponent extends AppComponentBase {
     }
 
     ouCodeArrToIdArr(codes: string[]) {
-        const filterOUs = _.filter(this._allOrganizationUnits, (u: OrganizationUnitDto) => {
+        const filterOUs = _filter(this._allOrganizationUnits, (u: OrganizationUnitDto) => {
             return codes.indexOf(u.code) >= 0;
         },
         );
-        const ids = _.map(filterOUs, f => f.id);
+        const ids = _map(filterOUs, f => f.id);
         this.defaultCheckedOrganizationUnits = ids;
     }
 

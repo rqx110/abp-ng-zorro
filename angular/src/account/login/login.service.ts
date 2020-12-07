@@ -6,7 +6,7 @@ import { AppConsts } from '@shared/AppConsts';
 import { UrlHelper } from '@shared/helpers/UrlHelper';
 import { AuthenticateModel, AuthenticateResultModel, ExternalAuthenticateModel, ExternalAuthenticateResultModel, ExternalLoginProviderInfoModel, TokenAuthServiceProxy } from '@shared/service-proxies/service-proxies';
 import { ScriptLoaderService } from '@shared/utils/script-loader.service';
-import * as _ from 'lodash';
+import { filter as _filter, map as _map } from 'lodash-es'
 
 import { OAuthService, AuthConfig } from 'angular-oauth2-oidc';
 import { UserAgentApplication, AuthResponse } from 'msal';
@@ -215,7 +215,7 @@ export class LoginService {
         this._tokenAuthService
             .getExternalAuthenticationProviders()
             .subscribe((providers: ExternalLoginProviderInfoModel[]) => {
-                this.externalLoginProviders = _.map(providers, p => new ExternalLoginProvider(p));
+                this.externalLoginProviders = _map(providers, p => new ExternalLoginProvider(p));
 
                 if (callback) {
                     callback();
@@ -314,7 +314,7 @@ export class LoginService {
 
     public openIdConnectLoginCallback(resp) {
         this.initExternalLoginProviders(() => {
-            let openIdProvider = _.filter(this.externalLoginProviders, { name: 'OpenIdConnect' })[0];
+            let openIdProvider = _filter(this.externalLoginProviders, { name: 'OpenIdConnect' })[0];
             let authConfig = this.getOpenIdConnectConfig(openIdProvider);
             this.oauthService.configure(authConfig);
 

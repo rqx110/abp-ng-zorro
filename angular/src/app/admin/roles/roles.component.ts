@@ -8,7 +8,6 @@ import {
     RoleServiceProxy,
 } from '@shared/service-proxies/service-proxies';
 import { CreateOrEditRoleModalComponent } from './create-or-edit-role-modal.component';
-import * as _ from 'lodash';
 import { finalize } from 'rxjs/operators';
 
 @Component({

@@ -1,6 +1,5 @@
 import { Component, Injector, ViewEncapsulation } from '@angular/core';
 import { AppComponentBase } from '@shared/common/app-component-base';
-import * as _ from 'lodash';
 
 @Component({
     templateUrl: './host-dashboard.component.html',

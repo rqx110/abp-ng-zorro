@@ -1,5 +1,5 @@
 import * as moment from 'moment';
-import * as _ from 'lodash';
+import { merge as _merge} from 'lodash-es';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Type, CompilerOptions, NgModuleRef } from '@angular/core';
@@ -86,7 +86,7 @@ export class AppPreBootstrap {
 
         return XmlHttpRequestHelper.ajax('GET', AppConsts.remoteServiceBaseUrl + '/AbpUserConfiguration/GetAll', requestHeaders, null, (response) => {
             let result = response.result;
-            _.merge(abp, result);
+            _merge(abp, result);
 
             abp.clock.provider = this.getCurrentClockProvider(result.clock.provider);
 

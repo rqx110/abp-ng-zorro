@@ -4,7 +4,7 @@ import {
     ProfileServiceProxy,
 } from '@shared/service-proxies/service-proxies';
 import { AppComponentBase } from '@shared/common/app-component-base';
-import * as _ from 'lodash';
+import { filter as _filter } from 'lodash-es';
 
 @Component({
     selector: 'language-switch',
@@ -39,7 +39,7 @@ export class LanguageSwitchComponent extends AppComponentBase
     }
 
     ngOnInit() {
-        this.languages = _.filter(this.localization.languages, l => !l.isDisabled);
+        this.languages = _filter(this.localization.languages, l => !l.isDisabled);
         this.currentLanguage = this.localization.currentLanguage;
     }
 

@@ -10,7 +10,7 @@ import {
     PagedRequestDto
 } from '@shared/common/paged-listing-component-base';
 import { finalize } from 'rxjs/operators';
-import * as _ from 'lodash';
+import { map as _map } from 'lodash-es';
 import { ModalPagedListingComponentBase } from '@shared/common/modal-paged-listing-component-base';
 
 @Component({
@@ -60,7 +60,7 @@ export class AddMemberModalComponent extends ModalPagedListingComponentBase<Name
         this.saving = true;
         const input = new UsersToOrganizationUnitInput();
         input.organizationUnitId = this.organizationUnitId;
-        input.userIds = _.map(this.selectedDataItems, selectedMember =>
+        input.userIds = _map(this.selectedDataItems, selectedMember =>
             Number(selectedMember.value),
         );
 

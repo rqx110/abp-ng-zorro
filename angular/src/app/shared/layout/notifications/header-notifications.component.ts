@@ -2,7 +2,7 @@ import { Component, Injector, OnInit, ViewEncapsulation, NgZone } from '@angular
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { NotificationServiceProxy, UserNotification } from '@shared/service-proxies/service-proxies';
 import { IFormattedUserNotification, UserNotificationHelper } from './UserNotificationHelper';
-import * as _ from 'lodash';
+import { forEach as _forEach } from 'lodash-es';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -37,7 +37,7 @@ export class HeaderNotificationsComponent extends AppComponentBase implements On
             .subscribe(result => {
                 this.unreadNotificationCount = result.unreadCount;
                 this.notifications = [];
-                _.forEach(result.items, (item: UserNotification) => {
+                _forEach(result.items, (item: UserNotification) => {
                     this.notifications.push(this._userNotificationHelper.format(<any>item));
                 });
             });
