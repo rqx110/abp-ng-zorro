@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { UserLoginServiceProxy, UserLoginAttemptDto } from '@shared/service-proxies/service-proxies';
-import * as moment from 'moment';
 import { ModalComponentBase } from '@shared/common/modal-component-base';
+import { DateTimeService } from '../common/timing/date-time.service';
 
 @Component({
   selector: 'app-login-attempts-modal',
@@ -14,7 +14,8 @@ export class LoginAttemptsModalComponent extends ModalComponentBase implements O
 
   constructor(
     _injector: Injector,
-    private userLoginService: UserLoginServiceProxy
+    private userLoginService: UserLoginServiceProxy,
+    private _dateTimeService: DateTimeService
   ) {
     super(_injector);
   }
@@ -27,7 +28,7 @@ export class LoginAttemptsModalComponent extends ModalComponentBase implements O
   }
 
   getLoginAttemptTime(userLoginAttempt: UserLoginAttemptDto): string {
-    return moment(userLoginAttempt.creationTime).fromNow() + ' (' + moment(userLoginAttempt.creationTime).format('YYYY-MM-DD hh:mm:ss') + ')';
+    return this._dateTimeService.fromNow(userLoginAttempt.creationTime) + ' (' + this._dateTimeService.formatDate(userLoginAttempt.creationTime, 'yyyy-LL-dd hh:mm:ss') + ')';
   }
 
 }

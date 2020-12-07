@@ -6,7 +6,7 @@ import { CreateOrEdit{{Entity_Name_Here}}ModalComponent } from './create-or-edit
 import { FileDownloadService } from '@shared/utils/file-download.service';
 
 import { finalize } from 'rxjs/operators';
-import * as moment from 'moment';
+import DateTime from 'luxon';
 
 @Component({
     templateUrl: './{{entity_Name_Plural_Here}}.component.html'

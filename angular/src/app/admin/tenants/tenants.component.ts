@@ -12,6 +12,7 @@ import { CreateTenantModalComponent } from './create-tenant-modal.component';
 import { finalize } from 'rxjs/operators';
 import { EditTenantModalComponent } from './edit-tenant-modal.component';
 import { TenantFeaturesModalComponent } from './tenant-features-modal.component';
+import { DateTimeService } from '@app/shared/common/timing/date-time.service';
 
 @Component({
     selector: 'app-tenants',
@@ -31,7 +32,10 @@ export class TenantsComponent extends PagedListingComponentBase<TenantListDto> {
         selectedEditionId: number;
     } = <any>{};
 
-    constructor(injector: Injector, private _tenantService: TenantServiceProxy) {
+    constructor(injector: Injector, 
+        private _tenantService: TenantServiceProxy,
+        private _dateTimeService: DateTimeService
+    ) {
         super(injector);
     }
 
@@ -43,10 +47,10 @@ export class TenantsComponent extends PagedListingComponentBase<TenantListDto> {
         this._tenantService
             .getTenants(
                 this.filters.filterText,
-                this.filters.subscriptionEndDateRangeActive ? this.subscriptionDateRange[0] : undefined,
-                this.filters.subscriptionEndDateRangeActive ? this.subscriptionDateRange[1] : undefined,
-                this.filters.creationDateRangeActive ? this.creationDateRange[0] : undefined,
-                this.filters.creationDateRangeActive ? this.creationDateRange[1] : undefined,
+                this.filters.subscriptionEndDateRangeActive ? this._dateTimeService.getStartOfDayForDate(this.subscriptionDateRange[0]) : undefined,
+                this.filters.subscriptionEndDateRangeActive ? this._dateTimeService.getEndOfDayForDate(this.subscriptionDateRange[1]) : undefined,
+                this.filters.creationDateRangeActive ? this._dateTimeService.getStartOfDayForDate(this.creationDateRange[0]) : undefined,
+                this.filters.creationDateRangeActive ? this._dateTimeService.getEndOfDayForDate(this.creationDateRange[1]) : undefined,
                 this.filters.selectedEditionId,
                 this.filters.selectedEditionId !== undefined && (this.filters.selectedEditionId + '') !== '-1',
                 request.sorting,

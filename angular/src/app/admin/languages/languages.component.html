@@ -110,7 +110,7 @@
                             *ngIf="item.tenantId === appSession.tenantId">{{'No' | localize}}</span>
                     </td>
                     <td class="text-center">
-                        {{item.creationTime | momentFormat:'L'}}
+                        {{item.creationTime | luxonFormat:'D'}}
                     </td>
                     <td class="text-center">
                         <span class="badge badge-success" *ngIf="!item.isDisabled">{{'Yes' | localize}}</span>

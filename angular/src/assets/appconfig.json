@@ -30,7 +30,7 @@
         "to": "zh_CN"
       }
     ],
-    "moment": [
+    "luxon": [
       {
         "from": "es-MX",
         "to": "es"

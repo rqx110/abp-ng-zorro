@@ -7,6 +7,7 @@ import { AppAuthService } from './auth/app-auth.service';
 import { AppRouteGuard } from './auth/auth-route-guard';
 import { TimeZoneComboComponent } from './timing/timezone-combo.component';
 import { SharedModule } from '@shared/shared.module';
+import { DateTimeService } from './timing/date-time.service';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { SharedModule } from '@shared/shared.module';
     ],
     providers: [
         AppLocalizationService,
-        AppNavigationService
+        AppNavigationService,
+        DateTimeService
     ]
 })
 export class AppCommonModule {

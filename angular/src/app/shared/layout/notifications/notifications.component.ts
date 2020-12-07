@@ -1,10 +1,10 @@
 import { Component, Injector, ViewEncapsulation, OnInit } from '@angular/core';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { NotificationServiceProxy, UserNotification, UserNotificationState } from '@shared/service-proxies/service-proxies';
-import * as moment from 'moment';
 import { IFormattedUserNotification, UserNotificationHelper } from './UserNotificationHelper';
 import { PagedListingComponentBase, PagedRequestDto } from '@shared/common/paged-listing-component-base';
 import { finalize } from 'rxjs/operators';
+import { DateTimeService } from '@app/shared/common/timing/date-time.service';
 
 @Component({
     templateUrl: './notifications.component.html',
@@ -15,12 +15,13 @@ import { finalize } from 'rxjs/operators';
 export class NotificationsComponent extends PagedListingComponentBase<any> implements OnInit {
 
     readStateFilter = 'ALL';
-    dateRange: Date[] = [moment().startOf('day').toDate(), moment().endOf('day').toDate()];
+    dateRange: Date[] = [this._dateTimeService.getStartOfDay().toJSDate(), this._dateTimeService.getEndOfDay().toJSDate()];
 
     constructor(
         injector: Injector,
         private _notificationService: NotificationServiceProxy,
         private _userNotificationHelper: UserNotificationHelper,
+        private _dateTimeService: DateTimeService
     ) {
         super(injector);
     }
@@ -37,10 +38,6 @@ export class NotificationsComponent extends PagedListingComponentBase<any> imple
 
     isRead(record: any): boolean {
         return record.formattedNotification.state === 'READ';
-    }
-
-    fromNow(date: moment.Moment): string {
-        return moment(date).fromNow();
     }
 
     formatRecord(record: any): IFormattedUserNotification {
@@ -72,8 +69,8 @@ export class NotificationsComponent extends PagedListingComponentBase<any> imple
     ): void {
         this._notificationService.getUserNotifications(
             this.readStateFilter === 'ALL' ? undefined : UserNotificationState.Unread,
-            moment(this.dateRange[0]),
-            moment(this.dateRange[1]).endOf('day'),
+            this._dateTimeService.getStartOfDayForDate(this.dateRange[0]),
+            this._dateTimeService.getEndOfDayForDate(this.dateRange[1]),
             request.maxResultCount,
             request.skipCount,
         )

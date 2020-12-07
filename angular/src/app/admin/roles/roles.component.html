@@ -85,7 +85,7 @@
                             [nzTooltipTitle]="l('DefaultRole_Description')">{{'Default' | localize}}</nz-tag>
                     </td>
                     <td class="text-center">
-                        {{item.creationTime | momentFormat:'L'}}
+                        {{item.creationTime | luxonFormat:'D'}}
                     </td>
                     <td class="text-center">
                         <ng-container *ngIf="isGranted('Pages.Administration.Roles.Edit')">

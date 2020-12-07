@@ -37,7 +37,7 @@
 					"type" : "DateTime",
 					"content" : "
 						<td class=\"text-center\">
-							{{item.{{entity_Name_Here}}.{{property_Name_Here}} | momentFormat:\'L\'}}
+							{{item.{{entity_Name_Here}}.{{property_Name_Here}} | luxonFormat:\'D\'}}
 						</td>"
 					},
 					{

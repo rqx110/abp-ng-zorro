@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import { DateTime, Settings } from 'luxon';
 import { merge as _merge} from 'lodash-es';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -90,27 +90,35 @@ export class AppPreBootstrap {
 
             abp.clock.provider = this.getCurrentClockProvider(result.clock.provider);
 
-            moment.locale(new LocaleMappingService().map('moment', abp.localization.currentLanguage.name));
-            (window as any).moment.locale(new LocaleMappingService().map('moment', abp.localization.currentLanguage.name));
-
-            if (abp.clock.provider.supportsMultipleTimezone) {
-                moment.tz.setDefault(abp.timing.timeZoneInfo.iana.timeZoneId);
-                (window as any).moment.tz.setDefault(abp.timing.timeZoneInfo.iana.timeZoneId);
-            } else {
-                Date.prototype.toISOString = function () {
-                    return moment(this).locale('en').format();
-                };
-                moment.fn.toJSON = function () {
-                    return this.locale('en').format();
-                };
-                moment.fn.toISOString = function () {
-                    return this.locale('en').format();
-                };
-            }
+            AppPreBootstrap.configureLuxon();            
 
             abp.event.trigger('abp.dynamicScriptsInitialized');
 
             callback();
         });
+    }
+
+    private static configureLuxon() {
+        let luxonLocale = new LocaleMappingService().map(
+            'luxon',
+            abp.localization.currentLanguage.name
+        );
+
+        DateTime.local().setLocale(luxonLocale);
+        DateTime.utc().setLocale(luxonLocale);
+
+        if (abp.clock.provider.supportsMultipleTimezone) {
+            Settings.defaultZoneName = abp.timing.timeZoneInfo.iana.timeZoneId;
+        }
+
+        Date.prototype.toISOString = function () {
+            let value = DateTime.fromJSDate(this).setLocale('en').setZone(abp.timing.timeZoneInfo.iana.timeZoneId).toString();
+            return value;
+        };
+
+        Date.prototype.toString = function () {
+            let value = DateTime.fromJSDate(this).setLocale('en').setZone(abp.timing.timeZoneInfo.iana.timeZoneId).toString();
+            return value;
+        };
     }
 }

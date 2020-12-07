@@ -1769,6 +1769,11 @@
   resolved "https://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.165.tgz?cache=0&sync_timestamp=1604603009372&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Flodash%2Fdownload%2F%40types%2Flodash-4.14.165.tgz#74d55d947452e2de0742bad65270433b63a8c30f"
   integrity sha1-dNVdlHRS4t4HQrrWUnBDO2Ooww8=
 
+"@types/luxon@^1.25.0":
+  version "1.25.0"
+  resolved "https://registry.npm.taobao.org/@types/luxon/download/@types/luxon-1.25.0.tgz#3d6fe591fac874f48dd225cb5660b2b785a21a05"
+  integrity sha1-PW/lkfrIdPSN0iXLVmCyt4WiGgU=
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.npm.taobao.org/@types/minimatch/download/@types/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
@@ -1778,13 +1783,6 @@
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/@types/minimist/download/@types/minimist-1.2.0.tgz?cache=0&sync_timestamp=1596840945012&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fminimist%2Fdownload%2F%40types%2Fminimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
   integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
-
-"@types/moment-timezone@^0.5.13":
-  version "0.5.13"
-  resolved "https://registry.npm.taobao.org/@types/moment-timezone/download/@types/moment-timezone-0.5.13.tgz#0317ccc91eb4c7f4901704166166395c39276528"
-  integrity sha1-AxfMyR60x/SQFwQWYWY5XDknZSg=
-  dependencies:
-    moment ">=2.14.0"
 
 "@types/node@*", "@types/node@^13.13.2":
   version "13.13.2"
@@ -6212,6 +6210,11 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
+luxon@^1.25.0:
+  version "1.25.0"
+  resolved "https://registry.npm.taobao.org/luxon/download/luxon-1.25.0.tgz#d86219e90bc0102c0eb299d65b2f5e95efe1fe72"
+  integrity sha1-2GIZ6QvAECwOspnWWy9ele/h/nI=
+
 magic-string@0.25.7, magic-string@^0.25.0:
   version "0.25.7"
   resolved "https://registry.npm.taobao.org/magic-string/download/magic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
@@ -6562,18 +6565,6 @@ mkdirp@^1.0.3, mkdirp@^1.0.4, mkdirp@~1.0.4:
   resolved "https://registry.npm.taobao.org/mkdirp/download/mkdirp-1.0.4.tgz?cache=0&sync_timestamp=1587535418745&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmkdirp%2Fdownload%2Fmkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha1-PrXtYmInVteaXw4qIh3+utdcL34=
 
-moment-timezone@^0.5.28:
-  version "0.5.28"
-  resolved "https://registry.npm.taobao.org/moment-timezone/download/moment-timezone-0.5.28.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmoment-timezone%2Fdownload%2Fmoment-timezone-0.5.28.tgz#f093d789d091ed7b055d82aa81a82467f72e4338"
-  integrity sha1-8JPXidCR7XsFXYKqgagkZ/cuQzg=
-  dependencies:
-    moment ">= 2.9.0"
-
-"moment@>= 2.9.0", moment@>=2.14.0, moment@^2.24.0:
-  version "2.24.0"
-  resolved "https://registry.npm.taobao.org/moment/download/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
-  integrity sha1-DQVdU/UFKqZTyfbraLtdEr9cK1s=
-
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/move-concurrently/download/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -6906,10 +6897,10 @@ npm-run-path@^2.0.0:
   dependencies:
     path-key "^2.0.0"
 
-nswag@13.4.2:
-  version "13.4.2"
-  resolved "https://registry.npm.taobao.org/nswag/download/nswag-13.4.2.tgz#1026e1c611ba74cfcabfe0130c1eff762cd8cc1f"
-  integrity sha1-ECbhxhG6dM/Kv+ATDB7/dizYzB8=
+nswag@^13.9.4:
+  version "13.9.4"
+  resolved "https://registry.npm.taobao.org/nswag/download/nswag-13.9.4.tgz#0164b79aeb2f4299c2f9e935365c905c70452247"
+  integrity sha1-AWS3musvQpnC+ek1NlyQXHBFIkc=
 
 nth-check@^1.0.2:
   version "1.0.2"

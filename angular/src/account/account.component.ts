@@ -3,6 +3,7 @@ import { AppComponentBase } from '@shared/common/app-component-base';
 import { Router } from '@angular/router';
 import { AppConsts } from '@shared/AppConsts';
 import { filter as _filter } from 'lodash-es';
+import { DateTimeService } from '@app/shared/common/timing/date-time.service';
 
 @Component({
     selector: 'layout-account',
@@ -21,13 +22,13 @@ export class AccountComponent extends AppComponentBase {
 
     links = [];
 
-    public constructor(injector: Injector, private _router: Router,) {
+    public constructor(injector: Injector, private _router: Router, private _dateTimeService: DateTimeService,) {
         super(injector);
         this.currentYear = new Date().getFullYear();
         this.versionText =
             this.appSession.application.version +
             ' [' +
-            this.appSession.application.releaseDate.format('YYYYMMDD') +
+            this.appSession.application.releaseDate.toFormat('yyyyLLdd') +
             ']';
     }
 

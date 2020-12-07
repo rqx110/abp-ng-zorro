@@ -10,7 +10,7 @@ import {
 import { AuditLogDetailModalComponent } from './audit-logs-detail/audit-logs-detail-modal.component';
 import { FileDownloadService } from '@shared/utils/file-download.service';
 import { finalize } from 'rxjs/operators';
-import * as moment from 'moment';
+import { DateTimeService } from '@app/shared/common/timing/date-time.service';
 
 @Component({
     selector: 'app-audit-logs',
@@ -23,7 +23,7 @@ import * as moment from 'moment';
     `],
 })
 export class AuditLogsComponent extends PagedListingComponentBase<AuditLogListDto> implements OnInit {
-    startToEndDate: Date[] = [moment().startOf('day').toDate(), moment().endOf('day').toDate()];
+    startToEndDate: Date[] = [this._dateTimeService.getStartOfDay().toJSDate(), this._dateTimeService.getEndOfDay().toJSDate()];
     advancedFiltersVisible = false;
     username: string;
     serviceName: string;
@@ -37,7 +37,8 @@ export class AuditLogsComponent extends PagedListingComponentBase<AuditLogListDt
     constructor(
         injector: Injector,
         private _auditLogService: AuditLogServiceProxy,
-        private _fileDownloadService: FileDownloadService
+        private _fileDownloadService: FileDownloadService,
+        private _dateTimeService: DateTimeService
     ) {
         super(injector);
     }
@@ -53,8 +54,8 @@ export class AuditLogsComponent extends PagedListingComponentBase<AuditLogListDt
     ): void {
         this._auditLogService
             .getAuditLogs(
-                moment(this.startToEndDate[0]),
-                moment(this.startToEndDate[1]),
+                this._dateTimeService.getStartOfDayForDate(this.startToEndDate[0]),
+                this._dateTimeService.getEndOfDayForDate(this.startToEndDate[1]),
                 this.username,
                 this.serviceName,
                 this.methodName,
@@ -83,8 +84,8 @@ export class AuditLogsComponent extends PagedListingComponentBase<AuditLogListDt
         const self = this;
         this.exporting = true;
         self._auditLogService.getAuditLogsToExcel(
-            moment(self.startToEndDate[0]),
-            moment(self.startToEndDate[1]),
+            this._dateTimeService.getStartOfDayForDate(this.startToEndDate[0]),
+            this._dateTimeService.getEndOfDayForDate(this.startToEndDate[1]),
             self.username,
             self.serviceName,
             self.methodName,

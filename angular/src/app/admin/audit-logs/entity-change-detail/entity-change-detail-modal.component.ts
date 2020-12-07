@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Injector } from '@angular/core';
+import { DateTimeService } from '@app/shared/common/timing/date-time.service';
 import { ModalComponentBase } from '@shared/common/modal-component-base';
 import { EntityPropertyChangeDto, EntityChangeListDto, AuditLogServiceProxy } from '@shared/service-proxies/service-proxies';
-import * as moment from 'moment';
 
 
 @Component({
@@ -17,7 +17,8 @@ export class EntityChangeDetailModalComponent extends ModalComponentBase impleme
 
     constructor(
         injector: Injector,
-        private _auditLogService: AuditLogServiceProxy
+        private _auditLogService: AuditLogServiceProxy,
+        private _dateTimeService: DateTimeService
     ) {
         super(injector);
     }
@@ -40,7 +41,7 @@ export class EntityChangeDetailModalComponent extends ModalComponentBase impleme
         }
         propertyChangeValue = propertyChangeValue.replace(/^['"]+/g, '').replace(/['"]+$/g, '');
         if (this.isDate(propertyChangeValue, propertyTypeFullName)) {
-            return moment(propertyChangeValue).format('YYYY-MM-DD HH:mm:ss');
+            return this._dateTimeService.formatDate(propertyChangeValue, 'yyyy-LL-dd HH:mm:ss');
         }
 
         if (propertyChangeValue === 'null') {

@@ -1,10 +1,10 @@
 import { Injectable, Injector } from '@angular/core';
 import { EntityDtoOfGuid, NotificationServiceProxy } from '@shared/service-proxies/service-proxies';
-import * as moment from 'moment';
 import * as Push from 'push.js'; // if using ES6
 import { NotificationSettingsModalComponent } from './notification-settings-modal.component';
 import { AppConsts } from '@shared/AppConsts';
 import { ModalHelper } from '@delon/theme';
+import { DateTimeService } from '@app/shared/common/timing/date-time.service';
 
 export interface IFormattedUserNotification {
     userNotificationId: string;
@@ -23,7 +23,8 @@ export class UserNotificationHelper {
 
     constructor(
         private _modalHelper: ModalHelper,
-        private _notificationService: NotificationServiceProxy
+        private _notificationService: NotificationServiceProxy,
+        private _dateTimeService: DateTimeService
     ) {
     }
 
@@ -64,7 +65,7 @@ export class UserNotificationHelper {
         let formatted: IFormattedUserNotification = {
             userNotificationId: userNotification.id,
             text: abp.notifications.getFormattedMessageFromUserNotification(userNotification),
-            time: moment(userNotification.notification.creationTime).format('YYYY-MM-DD HH:mm:ss'),
+            time: this._dateTimeService.formatJSDate(userNotification.notification.creationTime, 'yyyy-LL-dd HH:mm:ss'),
             creationTime: userNotification.notification.creationTime,
             icon: this.getUiIconBySeverity(userNotification.notification.severity),
             state: abp.notifications.getUserNotificationStateAsString(userNotification.state),

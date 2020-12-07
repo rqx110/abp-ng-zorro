@@ -181,7 +181,7 @@
                         <span class="badge badge-error" *ngIf="!item.isActive">{{'No' | localize}}</span>
                     </td>
                     <td class="text-center">
-                        {{item.creationTime | momentFormat:'L'}}
+                        {{item.creationTime | luxonFormat:'D'}}
                     </td>
                     <td nzRight="0px" class="text-center">
                         <ng-container *ngIf="isGranted('Pages.Administration.Users.Edit')">

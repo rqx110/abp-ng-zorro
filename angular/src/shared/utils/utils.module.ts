@@ -6,8 +6,8 @@ import { ScriptLoaderService } from './script-loader.service';
 import { ValidationMessagesComponent } from './validation-messages.component';
 import { EqualValidator } from './validation/equal-validator.directive';
 import { PasswordComplexityValidator } from './validation/password-complexity-validator.directive';
-import { MomentFromNowPipe } from './moment-from-now.pipe';
-import { MomentFormatPipe } from './moment-format.pipe';
+import { LuxonFromNowPipe } from './luxon-from-now.pipe';
+import { LuxonFormatPipe } from './luxon-format.pipe';
 import { LocalizePipe } from './localize.pipe';
 import { LocalStorageService } from './local-storage.service';
 
@@ -24,8 +24,8 @@ import { LocalStorageService } from './local-storage.service';
         EqualValidator,
         PasswordComplexityValidator,
         AutoFocusDirective,
-        MomentFromNowPipe,
-        MomentFormatPipe,
+        LuxonFromNowPipe,
+        LuxonFormatPipe,
         ValidationMessagesComponent,
         LocalizePipe
     ],
@@ -33,8 +33,8 @@ import { LocalStorageService } from './local-storage.service';
         EqualValidator,
         PasswordComplexityValidator,
         AutoFocusDirective,
-        MomentFromNowPipe,
-        MomentFormatPipe,
+        LuxonFromNowPipe,
+        LuxonFormatPipe,
         ValidationMessagesComponent,
         LocalizePipe
     ]

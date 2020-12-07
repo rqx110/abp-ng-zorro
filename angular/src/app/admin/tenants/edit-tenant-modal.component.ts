@@ -3,7 +3,7 @@ import { ModalComponentBase } from '@shared/common/modal-component-base';
 import { TenantEditDto, SubscribableEditionComboboxItemDto, TenantServiceProxy, CommonLookupServiceProxy } from '@shared/service-proxies/service-proxies';
 import { finalize } from 'rxjs/operators';
 import { filter as _filter } from 'lodash-es';
-import * as moment from 'moment';
+import { DateTimeService } from '@app/shared/common/timing/date-time.service';
 
 @Component({
     selector: 'editTenantModal',
@@ -15,7 +15,7 @@ export class EditTenantModalComponent extends ModalComponentBase implements OnIn
     saving = false;
     isUnlimited = false;
     subscriptionEndDateUtcIsValid = false;
-    subscriptionEndDateUtcx: moment.Moment = moment().startOf('day');
+    subscriptionEndDateUtcx: Date = this._dateTimeService.getStartOfDay().toJSDate()
 
     tenant: TenantEditDto = undefined;
     tenantId: number;
@@ -28,7 +28,8 @@ export class EditTenantModalComponent extends ModalComponentBase implements OnIn
     constructor(
         injector: Injector,
         private _tenantService: TenantServiceProxy,
-        private _commonLookupService: CommonLookupServiceProxy
+        private _commonLookupService: CommonLookupServiceProxy,
+        private _dateTimeService: DateTimeService
     ) {
         super(injector);
     }
@@ -86,6 +87,8 @@ export class EditTenantModalComponent extends ModalComponentBase implements OnIn
         //take selected date as UTC
         if (this.isUnlimited || !this.tenant.editionId) {
             this.tenant.subscriptionEndDateUtc = null;
+        } else {
+            this.tenant.subscriptionEndDateUtc = this._dateTimeService.toUtcDate(this.tenant.subscriptionEndDateUtc);
         }
 
         this._tenantService.updateTenant(this.tenant)

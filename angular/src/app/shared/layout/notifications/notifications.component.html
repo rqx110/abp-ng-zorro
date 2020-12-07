@@ -70,8 +70,8 @@
                             120)}}</span>
                     </td>
                     <td>
-                        <span nz-tooltip [nzTooltipTitle]="item.notification.creationTime | momentFormat:'llll'">
-                            {{fromNow(item.notification.creationTime)}}
+                        <span nz-tooltip [nzTooltipTitle]="item.notification.creationTime | luxonFormat:'ffff'">
+                            {{ item.notification.creationTime | luxonFromNow }}
                         </span>
                     </td>
 

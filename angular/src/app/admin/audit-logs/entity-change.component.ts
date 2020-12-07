@@ -11,7 +11,7 @@ import {
 import { FileDownloadService } from '@shared/utils/file-download.service';
 import { finalize } from 'rxjs/operators';
 import { EntityChangeDetailModalComponent } from './entity-change-detail/entity-change-detail-modal.component';
-import * as moment from 'moment';
+import { DateTimeService } from '@app/shared/common/timing/date-time.service';
 
 @Component({
     selector: 'app-entity-change',
@@ -24,7 +24,7 @@ import * as moment from 'moment';
     `],
 })
 export class EntityChangeComponent extends PagedListingComponentBase<EntityChangeListDto> implements OnInit {
-    startToEndDate: Date[] = [moment().startOf('day').toDate(), moment().endOf('day').toDate()];
+    startToEndDate: Date[] = [this._dateTimeService.getStartOfDay().toJSDate(), this._dateTimeService.getEndOfDay().toJSDate()];
     username: string;
     minExecutionDuration: number;
     maxExecutionDuration: number;
@@ -37,7 +37,8 @@ export class EntityChangeComponent extends PagedListingComponentBase<EntityChang
     constructor(
         injector: Injector,
         private _auditLogService: AuditLogServiceProxy,
-        private _fileDownloadService: FileDownloadService
+        private _fileDownloadService: FileDownloadService,
+        private _dateTimeService: DateTimeService
     ) {
         super(injector);
     }
@@ -58,8 +59,8 @@ export class EntityChangeComponent extends PagedListingComponentBase<EntityChang
 
         this._auditLogService
             .getEntityChanges(
-                moment(this.startToEndDate[0]),
-                moment(this.startToEndDate[1]),
+                this._dateTimeService.getStartOfDayForDate(this.startToEndDate[0]),
+                this._dateTimeService.getEndOfDayForDate(this.startToEndDate[1]),
                 this.username,
                 this.entityTypeFullName,
                 this.sorting,
@@ -84,8 +85,8 @@ export class EntityChangeComponent extends PagedListingComponentBase<EntityChang
 
         this.exporting = true;
         self._auditLogService.getEntityChangesToExcel(
-            moment(self.startToEndDate[0]),
-            moment(self.startToEndDate[1]),
+            this._dateTimeService.getStartOfDayForDate(this.startToEndDate[0]),
+            this._dateTimeService.getEndOfDayForDate(this.startToEndDate[1]),
             self.username,
             self.entityTypeFullName,
             undefined,

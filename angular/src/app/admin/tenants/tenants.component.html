@@ -161,14 +161,14 @@
                         {{item.editionDisplayName}}
                     </td>
                     <td class="text-center">
-                        {{item.subscriptionEndDateUtc?(item.subscriptionEndDateUtc | momentFormat:'L'):'-'}}
+                        {{item.subscriptionEndDateUtc?(item.subscriptionEndDateUtc | luxonFormat:'D'):'-'}}
                     </td>
                     <td class="text-center">
                         <span class="badge badge-success" *ngIf="item.isActive">{{'Yes' | localize}}</span>
                         <span class="badge badge-error" *ngIf="!item.isActive">{{'No' | localize}}</span>
                     </td>
                     <td class="text-center">
-                        {{item.creationTime | momentFormat:'L'}}
+                        {{item.creationTime | luxonFormat:'D'}}
                     </td>
                     <td class="text-center">
                         <ng-container *ngIf="isGranted('Pages.Tenants.Edit')">
