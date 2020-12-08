@@ -104,8 +104,9 @@ export class AppPreBootstrap {
             abp.localization.currentLanguage.name
         );
 
-        DateTime.local().setLocale(luxonLocale);
-        DateTime.utc().setLocale(luxonLocale);
+		Settings.defaultLocale = luxonLocale
+        // DateTime.local().setLocale(luxonLocale);
+        // DateTime.utc().setLocale(luxonLocale);
 
         if (abp.clock.provider.supportsMultipleTimezone) {
             Settings.defaultZoneName = abp.timing.timeZoneInfo.iana.timeZoneId;
