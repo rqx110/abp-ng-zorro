@@ -48,7 +48,6 @@
               "src/assets/abp-web-resources/abp.js"
             ],
             "allowedCommonJsDependencies": [
-              "@angularclass/hmr",
               "@ant-design/colors",
               "rxjs/internal/observable/throwError",              
               "file-saver"
@@ -77,20 +76,11 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
-            },
-            "hmr": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.hmr.ts"
-                }
-              ]
             }
           }
         },
@@ -102,10 +92,6 @@
           "configurations": {
             "production": {
               "browserTarget": "abp-zero-template:build:production"
-            },
-            "hmr": {
-              "browserTarget": "abp-zero-template:build:hmr",
-              "hmr": true
             }
           }
         },

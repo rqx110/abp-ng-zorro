@@ -1,41 +1,27 @@
 import { RootModule } from './root.module';
 import { enableProdMode, ViewEncapsulation } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-import { environment } from '@env/environment';
-
 import { preloaderFinished } from '@delon/theme';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
+
+import { environment } from './environments/environment';
 
 preloaderFinished();
 
-import { hmrBootstrap } from './hmr';
-
 if (environment.production) {
-    enableProdMode();
+  enableProdMode();
 }
 
-const bootstrap = () => {
-    return platformBrowserDynamic()
-        .bootstrapModule(RootModule, {
-            defaultEncapsulation: ViewEncapsulation.Emulated,
-            preserveWhitespaces: false,
-        })
-        .then(res => {
-            if ((<any>window).appBootstrap) {
-                (<any>window).appBootstrap();
-            }
-            return res;
-        });
-};
-
-if (environment.hmr) {
-    // tslint:disable-next-line: no-string-literal
-    if (module['hot']) {
-        hmrBootstrap(module, bootstrap);
-    } else {
-        console.error('HMR is not enabled for webpack-dev-server!');
-        console.log('Are you using the --hmr flag for ng serve?');
+platformBrowserDynamic()
+  .bootstrapModule(RootModule, {
+    defaultEncapsulation: ViewEncapsulation.Emulated,
+    preserveWhitespaces: false,
+  })
+  .then((res) => {
+    const win = window as NzSafeAny;
+    if (win && win.appBootstrap) {
+      win.appBootstrap();
     }
-} else {
-    bootstrap();
-}
+    return res;
+  })
+  .catch((err) => console.error(err));
