@@ -49,7 +49,6 @@
             ],
             "allowedCommonJsDependencies": [
               "@ant-design/colors",
-              "rxjs/internal/observable/throwError",              
               "file-saver"
             ]
           },

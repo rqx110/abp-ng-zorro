@@ -2061,10 +2061,12 @@ abab@^2.0.5:
   resolved "https://registry.npm.taobao.org/abab/download/abab-2.0.5.tgz?cache=0&sync_timestamp=1599850271460&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fabab%2Fdownload%2Fabab-2.0.5.tgz#c0b678fb32d60fc1219c784d6a826fe385aeb79a"
   integrity sha1-wLZ4+zLWD8EhnHhNaoJv44Wut5o=
 
-abp-ng2-module@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.npm.taobao.org/abp-ng2-module/download/abp-ng2-module-6.2.0.tgz#a59415c574ba8d3ac6c203fef8251ffc342f2460"
-  integrity sha1-pZQVxXS6jTrGwgP++CUf/DQvJGA=
+abp-ng2-module@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.npm.taobao.org/abp-ng2-module/download/abp-ng2-module-6.3.0.tgz#92794dcb290166f609de20c6121839d4855f0d93"
+  integrity sha1-knlNyykBZvYJ3iDGEhg51IVfDZM=
+  dependencies:
+    tslib "^2.0.3"
 
 abp-web-resources@^5.3.0:
   version "5.3.0"
@@ -3147,10 +3149,10 @@ coa@^2.0.2:
     chalk "^2.4.1"
     q "^1.1.2"
 
-codelyzer@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.npm.taobao.org/codelyzer/download/codelyzer-6.0.0.tgz#50c98581cc2890e0e9a9f93878dc317115d836ed"
-  integrity sha1-UMmFgcwokODpqfk4eNwxcRXYNu0=
+codelyzer@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.npm.taobao.org/codelyzer/download/codelyzer-6.0.1.tgz#c0e9668e847255b37c759e68fb2700b11e277d0f"
+  integrity sha1-wOlmjoRyVbN8dZ5o+ycAsR4nfQ8=
   dependencies:
     "@angular/compiler" "9.0.0"
     "@angular/core" "9.0.0"
@@ -9663,7 +9665,7 @@ ts-pnp@^1.1.6:
   resolved "https://registry.npm.taobao.org/ts-pnp/download/ts-pnp-1.2.0.tgz#a500ad084b0798f1c3071af391e65912c86bca92"
   integrity sha1-pQCtCEsHmPHDBxrzkeZZEshrypI=
 
-tslib@2.0.3:
+tslib@2.0.3, tslib@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npm.taobao.org/tslib/download/tslib-2.0.3.tgz?cache=0&sync_timestamp=1602286854330&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftslib%2Fdownload%2Ftslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
   integrity sha1-jgdBrEX8DCJuWKF7/D5kubxsphw=
