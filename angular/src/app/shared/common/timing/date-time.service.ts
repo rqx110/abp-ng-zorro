@@ -44,7 +44,7 @@ export class DateTimeService {
     getStartOfDayMinusDays(daysFromNow: number): DateTime {
         let date = this.getDate();
         let newDate = this.minusDays(date, daysFromNow);
-        return this.getEndOfDayForDate(newDate);
+        return this.getStartOfDayForDate(newDate);
     }
 
     getEndOfDay(): DateTime {

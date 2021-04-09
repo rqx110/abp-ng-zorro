@@ -121,5 +121,10 @@ export class AppPreBootstrap {
             let value = DateTime.fromJSDate(this).setLocale('en').setZone(abp.timing.timeZoneInfo.iana.timeZoneId).toString();
             return value;
         };
+
+        DateTime.prototype.toString = function () {
+            let date = this.setLocale('en').setZone(abp.timing.timeZoneInfo.iana.timeZoneId) as DateTime;
+            return date.toISO();
+        };
     }
 }
