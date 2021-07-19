@@ -130,7 +130,7 @@ export class UserNotificationHelper {
 
     openSettingsModal(): void {
         this._modalHelper
-            .static(NotificationSettingsModalComponent, {}, 'md')
+            .createStatic(NotificationSettingsModalComponent, {}, {size: 'md'})
             .subscribe(() => { });
     }
 }

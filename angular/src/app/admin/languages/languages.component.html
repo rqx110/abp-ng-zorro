@@ -8,24 +8,20 @@
     </ng-template>
 </page-header>
 <nz-card [nzBordered]="false">
-    <form nz-form class="search__form">
-        <nz-row nzGutter="8">
-            <nz-col nzSm="24">
-                <nz-form-item>
-                    <nz-form-control>
-                        <nz-input-group nzSearch [nzAddOnAfter]="suffixSearchButton">
-                            <input type="text" nz-input [(ngModel)]="filterText" name="filterText"
-                                placeholder="{{'SearchWithThreeDot' | localize}}">
-                            <ng-template #suffixSearchButton>
-                                <button nz-button nzType="primary" nzSearch (click)="refresh()">
-                                    <i nz-icon nzType="search"></i>
-                                </button>
-                            </ng-template>
-                        </nz-input-group>
-                    </nz-form-control>
-                </nz-form-item>
-            </nz-col>
-        </nz-row>
+    <form nz-form>
+        <nz-form-item>
+            <nz-form-control>
+                <nz-input-group nzSearch [nzAddOnAfter]="suffixSearchButton" class="width-100">
+                    <input type="text" nz-input [(ngModel)]="filterText" name="filterText"
+                        placeholder="{{'SearchWithThreeDot' | localize}}">
+                    <ng-template #suffixSearchButton>
+                        <button nz-button nzType="primary" nzSearch (click)="refresh()">
+                            <i nz-icon nzType="search"></i>
+                        </button>
+                    </ng-template>
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
     </form>
     <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Administration.Languages.Create')"
         (click)="createOrEditLanguage()">

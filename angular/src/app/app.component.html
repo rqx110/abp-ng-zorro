@@ -1,11 +1,23 @@
-<div class="alain-default__progress-bar" *ngIf="isFetching"></div>
-<layout-header class="alain-default__header" *ngIf="!installationMode"></layout-header>
-<layout-sidebar class="alain-default__aside" *ngIf="!installationMode"></layout-sidebar>
-<section [className]="installationMode ? 'alain-fullscreen' : 'alain-default__content'">
+<layout-default [options]="options" [content]="contentTpl" *ngIf="!installationMode">
+  <layout-default-header-item direction="right" hidden="mobile">
+    <language-switch></language-switch>
+  </layout-default-header-item>
+  <layout-default-header-item direction="right" hidden="mobile">
+    <header-notifications></header-notifications>
+  </layout-default-header-item>
+  <layout-default-header-item direction="right" hidden="mobile">
+    <header-user></header-user>
+  </layout-default-header-item>
+  <ng-template #contentTpl>
     <!-- <reuse-tab></reuse-tab> -->
     <router-outlet></router-outlet>
-</section>
-<ng-template #settingHost></ng-template>
-<nz-back-top></nz-back-top>
+  </ng-template>
+</layout-default>
+
+<ng-container *ngIf="installationMode">
+  <router-outlet></router-outlet>
+</ng-container>
+
 <session-timeout #sessionTimeout *ngIf="IsSessionTimeOutEnabled"></session-timeout>
-<layout-theme-btn></layout-theme-btn>
+<setting-drawer *ngIf="showSettingDrawer"></setting-drawer>
+<theme-btn></theme-btn>

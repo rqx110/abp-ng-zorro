@@ -76,13 +76,12 @@
                             <i nz-icon nzType="info-circle" nz-tooltip [nzTooltipTitle]="l('CanNotChangeAdminUserName')"></i>
                         </em>
                     </nz-form-label>
-                    <nz-form-control [nzExtra]="usernameExtraTpl" [nzErrorTip]="usernameValidationTpl" nzHasFeedback>
+                    <nz-form-control  [nzErrorTip]="usernameValidationTpl" nzHasFeedback>
                         <input nz-input #userNameInput="ngModel" name="userName" [disabled]="!canChangeUserName"
                             [(ngModel)]="user.userName" placeholder="{{'UserName' | localize}}" required maxlength="32">
-                        <ng-template #usernameExtraTpl>
-                            <ng-container *ngIf="!canChangeUserName">{{'CanNotChangeAdminUserName' | localize}}
-                            </ng-container>
-                        </ng-template>
+                        <ng-container *ngIf="!canChangeUserName">
+                            <div class="ant-form-item-extra">{{'CanNotChangeAdminUserName' | localize}}</div>
+                        </ng-container>
                         <ng-template #usernameValidationTpl let-control>
                             <validation-messages [formCtrl]="control"></validation-messages>
                         </ng-template>

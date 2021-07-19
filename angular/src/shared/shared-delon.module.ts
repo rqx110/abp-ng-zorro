@@ -11,8 +11,10 @@ import { NoticeIconModule } from '@delon/abc/notice-icon';
 import { PageHeaderModule } from '@delon/abc/page-header';
 import { QuickMenuModule } from '@delon/abc/quick-menu';
 import { ResultModule } from '@delon/abc/result';
-import { SidebarNavModule } from '@delon/abc/sidebar-nav';
 import { TagSelectModule } from '@delon/abc/tag-select';
+import { LayoutDefaultModule } from '@delon/theme/layout-default';
+import { ThemeBtnModule } from '@delon/theme/theme-btn';
+import { SettingDrawerModule } from '@delon/theme/setting-drawer';
 
 export const SHARED_DELON_MODULES = [
   AvatarListModule,
@@ -29,6 +31,8 @@ export const SHARED_DELON_MODULES = [
   TagSelectModule,
   NoticeIconModule,
   QuickMenuModule,
-  SidebarNavModule,
   FullContentModule,
+  LayoutDefaultModule,
+  ThemeBtnModule,
+  SettingDrawerModule,
 ];

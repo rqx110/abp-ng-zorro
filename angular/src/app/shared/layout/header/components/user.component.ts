@@ -20,24 +20,24 @@ import { ProfileServiceProxy, TenantLoginInfoDto } from '@shared/service-proxies
     <nz-dropdown-menu #userMenuTpl="nzDropdownMenu">
         <ul nz-menu>
             <li nz-menu-item (click)="changePassword()">
-                <i nz-icon nzType="ellipsis"></i>
+                <i nz-icon nzType="ellipsis" class="mr-sm"></i>
                 {{"ChangePassword" | localize}}
             </li>
             <li nz-menu-item (click)="showLoginAttempts()">
-                <i nz-icon nzType="bars"></i>
+                <i nz-icon nzType="bars" class="mr-sm"></i>
                 {{"LoginAttempts" | localize}}
             </li>
             <li nz-menu-item (click)="changeProfilePicture()">
-                <i nz-icon nzType="picture"></i>
+                <i nz-icon nzType="picture" class="mr-sm"></i>
                 {{"ChangeProfilePicture" | localize}}
             </li>
             <li nz-menu-item (click)="changeMySettings()">
-                <i nz-icon nzType="setting"></i>
+                <i nz-icon nzType="setting" class="mr-sm"></i>
                 {{"MySettings" | localize}}
             </li>
             <li nz-menu-divider></li>
             <li nz-menu-item (click)="logout()">
-                <i nz-icon nzType="logout"></i>
+                <i nz-icon nzType="logout" class="mr-sm"></i>
                 {{'Logout' | localize}}
             </li>
         </ul>

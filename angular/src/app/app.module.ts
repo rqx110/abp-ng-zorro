@@ -15,8 +15,6 @@ import { MySettingsModalComponent } from '@app/shared/layout/profile/my-settings
 import { ChangeProfilePictureModalComponent } from '@app/shared/layout/profile/change-profile-picture-modal.component';
 import { SmsVerificationModalComponent } from '@app/shared/layout/profile/sms-verification-modal.component';
 
-import { HeaderComponent } from '@app/shared/layout/header/header.component';
-import { SidebarComponent } from '@app/shared/layout/sidebar/sidebar.component';
 import { HeaderUserComponent } from '@app/shared/layout/header/components/user.component';
 
 import { LanguageSwitchComponent } from '@app/shared/layout/header/components/language-switch.component';
@@ -26,21 +24,15 @@ import { HeaderNotificationsComponent } from './shared/layout/notifications/head
 import { NotificationSettingsModalComponent } from './shared/layout/notifications/notification-settings-modal.component';
 import { NotificationsComponent } from './shared/layout/notifications/notifications.component';
 
-import { SettingDrawerComponent } from '@app/shared/layout/setting-drawer/setting-drawer.component';
-import { SettingDrawerItemComponent } from '@app/shared/layout/setting-drawer/setting-drawer-item.component';
-
 import { FileUploadModule } from 'ng2-file-upload';
 import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { SessionTimeoutModalComponent } from './shared/common/session-timeout/session-timeout-modal-component';
 import { SessionTimeoutComponent } from './shared/common/session-timeout/session-timeout.component';
 import { SharedModule } from '@shared/shared.module';
-import { LayoutModule } from '@shared/layout/layout.module';
 
 
 const NAVCOMPONENTS = [
-    HeaderComponent,
-    SidebarComponent,
     HeaderUserComponent,
     LanguageSwitchComponent,
     HeaderNotificationsComponent
@@ -56,7 +48,6 @@ const NAVCOMPONENTS = [
         AppCommonModule.forRoot(),
         FileUploadModule,
         ImageCropperModule,
-        LayoutModule,
     ],
     declarations: [
         AppComponent,
@@ -68,8 +59,6 @@ const NAVCOMPONENTS = [
         SmsVerificationModalComponent,
         NotificationsComponent,
         NotificationSettingsModalComponent,
-        SettingDrawerComponent,
-        SettingDrawerItemComponent,
         SessionTimeoutModalComponent,
         SessionTimeoutComponent,
     ],
@@ -80,8 +69,6 @@ const NAVCOMPONENTS = [
         ChangeProfilePictureModalComponent,
         SmsVerificationModalComponent,
         NotificationSettingsModalComponent,
-        SettingDrawerComponent,
-        SettingDrawerItemComponent,
     ],
     providers: [UserNotificationHelper],
 })

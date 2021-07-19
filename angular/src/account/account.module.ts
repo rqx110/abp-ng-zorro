@@ -29,7 +29,6 @@ import { ValidateTwoFactorCodeComponent } from './login/validate-two-factor-code
 import { SessionLockScreenComponent } from './login/session-lock-screen.component';
 import { TenantRegistrationHelperService } from './register/tenant-registration-helper.service';
 import { SharedModule } from '@shared/shared.module';
-import { LayoutModule } from '@shared/layout/layout.module';
 
 @NgModule({
     imports: [
@@ -40,7 +39,6 @@ import { LayoutModule } from '@shared/layout/layout.module';
         UtilsModule,
         AccountRoutingModule,
         OAuthModule.forRoot(),
-        LayoutModule,
     ],
     declarations: [
         AccountComponent,

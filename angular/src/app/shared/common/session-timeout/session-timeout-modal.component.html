@@ -1,4 +1,6 @@
 <nz-modal [(nzVisible)]="isVisible" [nzTitle]="l('YourSessionIsAboutToExpire')" [nzCancelText]="null" [nzOkText]="null" [nzClosable]="false">
-  <p>{{l("SessionExpireRedirectingInXSecond",currentSecond)}}</p>
-  <nz-progress [nzPercent]="progresbarPercent" [nzShowInfo]="false"></nz-progress>
+  <ng-container *nzModalContent>
+    <p>{{l("SessionExpireRedirectingInXSecond",currentSecond)}}</p>
+    <nz-progress [nzPercent]="progresbarPercent" [nzShowInfo]="false"></nz-progress>
+  </ng-container>
 </nz-modal>

@@ -9,13 +9,13 @@
 </page-header>
 
 <nz-card [nzBordered]="false">
-    <form nz-form [nzLayout]="'vertical'" class="search__form">
+    <form nz-form [nzLayout]="'vertical'">
         <nz-form-item nz-row>
             <nz-form-label>
                 {{'TenantNameOrTenancyCode' | localize}}
             </nz-form-label>
             <nz-form-control>
-                <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
+                <nz-input-group nzSearch [nzAddOnAfter]="suffixButton" class="width-100">
                     <input type="text" nz-input [(ngModel)]="filters.filterText" name="filterText"
                         placeholder="{{'SearchWithThreeDot' | localize}}">
                     <ng-template #suffixButton>

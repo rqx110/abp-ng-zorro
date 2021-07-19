@@ -19,7 +19,7 @@ import { filter as _filter } from 'lodash-es';
             <li nz-menu-item *ngFor="let language of languages"
                 [nzSelected]="language.name == currentLanguage.name"
                 (click)="changeLanguage(language.name)">
-                <i class="anticon {{language.icon}}"></i>
+                <i class="anticon {{language.icon}}" class="mr-sm"></i>
                 {{language.displayName}}
             </li>
         </ul>

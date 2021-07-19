@@ -159,8 +159,7 @@
                         [nzDisabled]="settings.security.useDefaultPasswordComplexitySettings">{{"PasswordComplexity_RequireUppercase" | localize}}</label>
                 </div>
                 <div nz-row>
-                    <label
-                        [ngClass]="{'text-disabled-color':settings.security.useDefaultPasswordComplexitySettings}">{{"PasswordComplexity_RequiredLength" | localize}}</label>
+                    <label nz-typography [nzDisabled]="settings.security.useDefaultPasswordComplexitySettings">{{"PasswordComplexity_RequiredLength" | localize}}</label>
                     <input nz-input type="number" name="RequiredLength" class="form-control"
                         [(ngModel)]="settings.security.passwordComplexity.requiredLength"
                         *ngIf="!settings.security.useDefaultPasswordComplexitySettings">

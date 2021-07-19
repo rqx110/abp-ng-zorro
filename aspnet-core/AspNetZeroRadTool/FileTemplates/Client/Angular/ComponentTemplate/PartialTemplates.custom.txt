@@ -139,7 +139,7 @@ import { View{{Entity_Name_Here}}ModalComponent } from './view-{{entity_Name_Her
 			"condition": "{{Create_View_Only_Here}} == true",
 			"content": "view{{Entity_Name_Here}}(id): void {
 				this.modalHelper
-					.create(View{{Entity_Name_Here}}ModalComponent, {
+					.createStatic(View{{Entity_Name_Here}}ModalComponent, {
 						{{entity_Name_Here}}Id: id
 					}, { size: 'md' })
 					.subscribe(() => { });

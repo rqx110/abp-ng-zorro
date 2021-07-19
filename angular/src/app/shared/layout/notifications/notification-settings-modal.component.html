@@ -5,7 +5,7 @@
     <h4>{{"ReceiveNotifications" | localize}}</h4>
     <nz-form-item>
         <nz-form-control [nzExtra]="l('ReceiveNotifications_Definition')">
-            <nz-switch name="ReceiveNotifications" [ngModel]="settings.receiveNotifications" [nzCheckedChildren]="checkedTemplate"
+            <nz-switch name="ReceiveNotifications" [(ngModel)]="settings.receiveNotifications" [nzCheckedChildren]="checkedTemplate"
                 [nzUnCheckedChildren]="unCheckedTemplate"></nz-switch>
             <ng-template #checkedTemplate><i nz-icon nzType="check"></i></ng-template>
             <ng-template #unCheckedTemplate><i nz-icon nzType="close"></i></ng-template>
