@@ -124,12 +124,12 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
                     (isConfirmed) => {
                         if (isConfirmed) {
                             const input = new MoveOrganizationUnitInput();
-                            // tslint:disable-next-line:radix
+                            // eslint-disable-next-line radix
                             input.id = parseInt(this.dragSrcNode.key);
                             input.newParentId =
                                 this.dragTargetNode === null
                                     ? undefined
-                                    : // tslint:disable-next-line:radix
+                                    : // eslint-disable-next-line radix
                                       parseInt(this.dragTargetNode.key);
                             this._organizationUnitService
                                 .moveOrganizationUnit(input)

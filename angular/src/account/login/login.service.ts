@@ -6,7 +6,7 @@ import { AppConsts } from '@shared/AppConsts';
 import { UrlHelper } from '@shared/helpers/UrlHelper';
 import { AuthenticateModel, AuthenticateResultModel, ExternalAuthenticateModel, ExternalAuthenticateResultModel, ExternalLoginProviderInfoModel, TokenAuthServiceProxy } from '@shared/service-proxies/service-proxies';
 import { ScriptLoaderService } from '@shared/utils/script-loader.service';
-import { filter as _filter, map as _map } from 'lodash-es'
+import { filter as _filter, map as _map } from 'lodash-es';
 
 import { OAuthService, AuthConfig } from 'angular-oauth2-oidc';
 import { UserAgentApplication, AuthResponse } from 'msal';

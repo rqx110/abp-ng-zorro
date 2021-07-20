@@ -90,7 +90,7 @@ export class AppPreBootstrap {
 
             abp.clock.provider = this.getCurrentClockProvider(result.clock.provider);
 
-            AppPreBootstrap.configureLuxon();            
+            AppPreBootstrap.configureLuxon();
 
             abp.event.trigger('abp.dynamicScriptsInitialized');
 
