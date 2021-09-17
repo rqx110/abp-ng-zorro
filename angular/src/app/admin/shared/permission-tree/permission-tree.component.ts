@@ -11,15 +11,12 @@ import { PermissionTreeEditModel } from '@app/admin/shared/permission-tree/permi
 export class PermissionTreeComponent extends AppComponentBase implements OnInit {
     private _editData: PermissionTreeEditModel;
 
-    defaultCheckedPermissionNames: string[] = [];
-
     checkStrictly = true;
 
     loading = false;
 
     set editData(val: PermissionTreeEditModel) {
         this._editData = val;
-        this.defaultCheckedPermissionNames = val.grantedPermissionNames;
         this.arrToTreeNode();
     }
 
@@ -42,7 +39,10 @@ export class PermissionTreeComponent extends AppComponentBase implements OnInit 
                 idMapName: 'name',
                 parentIdMapName: 'parentName',
                 titleMapName: 'displayName',
-                cb: (item) => { item.expanded = true }
+                cb: (item) => { 
+                    item.expanded = true;
+                    item.checked = item.isLeaf == true && this._editData.grantedPermissionNames.indexOf(item.name) != -1 ? true : false;
+                }
             },
         );
 
