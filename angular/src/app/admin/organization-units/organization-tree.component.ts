@@ -101,6 +101,7 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
     private _setActiveNodeNull(isEmit: boolean = true) {
         if (this.activedNode) {
             this.activedNode.isSelected = false;
+            this.activedNode = null;
             if (isEmit) {
                 this.selectedChange.emit(null);
             }
@@ -187,7 +188,6 @@ export class OrganizationTreeComponent extends AppComponentBase implements OnIni
     }
 
     unitCreated(ou: OrganizationUnitDto): void {
-        ou.parentId = 0;
         const newNode = this._arrayService.arrToTreeNode([ou], {
             idMapName: 'id',
             parentIdMapName: 'parentId',
