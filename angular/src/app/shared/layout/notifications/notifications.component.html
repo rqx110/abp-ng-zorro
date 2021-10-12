@@ -38,6 +38,12 @@
                     {{"SetAllAsRead" | localize}}
                 </span>
             </button>
+            <button nz-button [nzType]="'default'" [nzLoading]="isTableLoading" (click)="onSearch()">
+                <i nz-icon nzType="reload"></i>
+                <span>
+                    {{'Refresh' | localize}}
+                </span>
+            </button>
         </nz-col>
     </nz-row>
     <nz-row class="my-md">
