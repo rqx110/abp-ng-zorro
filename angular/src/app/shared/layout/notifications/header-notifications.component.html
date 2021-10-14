@@ -31,8 +31,8 @@
                                         {{item.text}}
                                     </ng-template>
                                     <ng-template #nzDescription>
-                                        <div *ngIf="item.time" class="notice-icon__item-time">
-                                            {{item.time | luxonFromNow}}
+                                        <div *ngIf="item.creationTime" class="notice-icon__item-time">
+                                            {{item.creationTime | luxonFromNow}}
                                             <span *ngIf="item.isUnread">
                                                 <a href="javascript:;" *ngIf="item.state=='UNREAD'"
                                                     class="notice-icon__item-extra"
