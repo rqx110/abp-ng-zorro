@@ -18,7 +18,7 @@
       "httpClass": "HttpClient",
       "useSingletonProvider": false,
       "injectionTokenType": "InjectionToken",
-      "rxJsVersion": 6.0,
+      "rxJsVersion": 7.0,
       "dateTimeType": "Luxon",
       "nullValue": "Undefined",
       "generateClientClasses": true,

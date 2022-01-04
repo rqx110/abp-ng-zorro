@@ -14,7 +14,7 @@ export class SessionTimeoutComponent extends AppComponentBase implements AfterVi
   @ViewChild(SessionTimeoutModalComponent)
   private sessionTimeOutModal: SessionTimeoutModalComponent;
 
-  destroy$ = new Subject();
+  destroy$ = new Subject<void>();
 
   private timeOutSecond = parseInt(this.s('App.UserManagement.SessionTimeOut.TimeOutSecond')); // show inactivity modal when TimeOutSecond passed
   private lastActivityTimeStorageKey = 'Abp.SessionTimeOut.UserLastActivityTime';

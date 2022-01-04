@@ -41,7 +41,7 @@
     "ngx-image-cropper": "^5.0.1",
     "push.js": "1.0.12",
     "qrious": "4.0.2",
-    "rxjs": "^6.6.7",
+    "rxjs": "^7.5.1",
     "screenfull": "^6.0.0",
     "tslib": "^2.3.1",
     "zone.js": "~0.11.4"
