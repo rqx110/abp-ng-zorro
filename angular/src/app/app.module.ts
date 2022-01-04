@@ -39,7 +39,7 @@ const NAVCOMPONENTS = [
 ];
 
 @NgModule({
-    imports: [        
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         SharedModule,
@@ -62,14 +62,6 @@ const NAVCOMPONENTS = [
         SessionTimeoutModalComponent,
         SessionTimeoutComponent,
     ],
-    entryComponents: [
-        LoginAttemptsModalComponent,
-        ChangePasswordModalComponent,
-        MySettingsModalComponent,
-        ChangeProfilePictureModalComponent,
-        SmsVerificationModalComponent,
-        NotificationSettingsModalComponent,
-    ],
-    providers: [UserNotificationHelper],
+    providers: [UserNotificationHelper]
 })
 export class AppModule { }

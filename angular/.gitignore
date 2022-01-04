@@ -29,6 +29,7 @@ src/assets/style.compact.css
 !.vscode/extensions.json
 
 # misc
+/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage

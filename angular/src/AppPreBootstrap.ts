@@ -109,7 +109,7 @@ export class AppPreBootstrap {
         // DateTime.utc().setLocale(luxonLocale);
 
         if (abp.clock.provider.supportsMultipleTimezone) {
-            Settings.defaultZoneName = abp.timing.timeZoneInfo.iana.timeZoneId;
+            Settings.defaultZone = abp.timing.timeZoneInfo.iana.timeZoneId;
         }
 
         Date.prototype.toISOString = function () {
