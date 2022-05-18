@@ -47,8 +47,6 @@
               "src/assets/abp-web-resources/abp.js"
             ],
             "allowedCommonJsDependencies": [
-              "@ant-design/colors",
-              "file-saver"
             ]
           },
           "configurations": {
