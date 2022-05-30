@@ -47,7 +47,12 @@
               "src/assets/abp-web-resources/abp.js"
             ],
             "allowedCommonJsDependencies": [
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules/"
+              ]
+            }
           },
           "configurations": {
             "production": {
