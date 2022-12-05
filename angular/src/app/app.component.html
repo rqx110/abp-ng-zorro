@@ -1,4 +1,4 @@
-<layout-default [options]="options" [content]="contentTpl" *ngIf="!installationMode">
+<layout-default [options]="options" [content]="contentTpl">
   <layout-default-header-item direction="right" hidden="mobile">
     <language-switch></language-switch>
   </layout-default-header-item>
@@ -13,10 +13,6 @@
     <router-outlet></router-outlet>
   </ng-template>
 </layout-default>
-
-<ng-container *ngIf="installationMode">
-  <router-outlet></router-outlet>
-</ng-container>
 
 <session-timeout #sessionTimeout *ngIf="IsSessionTimeOutEnabled"></session-timeout>
 <setting-drawer *ngIf="showSettingDrawer"></setting-drawer>

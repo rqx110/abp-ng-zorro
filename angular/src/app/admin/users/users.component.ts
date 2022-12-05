@@ -8,6 +8,7 @@ import {
     UserServiceProxy,
     EntityDtoOfInt64,
     PagedResultDtoOfUserListDto,
+    GetUsersInput,
 } from '@shared/service-proxies/service-proxies';
 import { CreateOrEditUserModalComponent } from './create-or-edit-user-modal.component';
 import { EditUserPermissionsModalComponent } from './edit-user-permissions-modal.component';
@@ -86,15 +87,15 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> imple
         finishedCallback: () => void,
     ): void {
         this._userServiceProxy
-            .getUsers(
-                this.filterText,
-                this.selectedPermissions,
-                this.role !== '' ? parseInt(this.role) : undefined,
-                this.onlyLockedUsers,
-                request.sorting,
-                request.maxResultCount,
-                request.skipCount,
-            )
+            .getUsers(new GetUsersInput({
+                filter: this.filterText,
+                permissions: this.selectedPermissions,
+                role: this.role !== '' ? parseInt(this.role) : undefined,
+                onlyLockedUsers: this.onlyLockedUsers,
+                sorting: request.sorting,
+                maxResultCount: request.maxResultCount,
+                skipCount: request.skipCount,
+            }))
             .pipe(finalize(finishedCallback))
             .subscribe((result: PagedResultDtoOfUserListDto) => {
                 this.dataList = result.items;

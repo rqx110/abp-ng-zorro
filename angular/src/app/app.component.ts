@@ -1,10 +1,10 @@
-import { Component, OnInit, NgZone, Injector } from '@angular/core';
-import { environment } from '@env/environment';
-import { LayoutDefaultOptions } from '@delon/theme/layout-default';
-import { SignalRHelper } from '@shared/helpers/SignalRHelper';
-import { AppComponentBase } from '@shared/common/app-component-base';
-import { UrlHelper } from '@shared/helpers/UrlHelper';
-import { AppNavigationService } from '@app/shared/layout/nav/app-navigation.service';
+import {Component, OnInit, NgZone, Injector} from '@angular/core';
+import {environment} from '@env/environment';
+import {LayoutDefaultOptions, LayoutDefaultService} from '@delon/theme/layout-default';
+import {SignalRHelper} from '@shared/helpers/SignalRHelper';
+import {AppComponentBase} from '@shared/common/app-component-base';
+import {UrlHelper} from '@shared/helpers/UrlHelper';
+import {AppNavigationService} from '@app/shared/layout/nav/app-navigation.service';
 
 @Component({
     selector: 'app-app',
@@ -14,16 +14,17 @@ export class AppComponent extends AppComponentBase implements OnInit {
     installationMode = true;
     IsSessionTimeOutEnabled: boolean = this.setting.getBoolean('App.UserManagement.SessionTimeOut.IsEnabled') && this.appSession.userId != null;
 
-    options: LayoutDefaultOptions = {
-        logoExpanded: `./assets/logo-full.svg`,
-        logoCollapsed: `./assets/logo.svg`,
-      };
+    get options(): LayoutDefaultOptions {
+        return this._layoutDefaultService.options;
+    };
+
     showSettingDrawer = !environment.production;
 
     constructor(
         injector: Injector,
         public _zone: NgZone,
-        _appNavigationService: AppNavigationService
+        _appNavigationService: AppNavigationService,
+        private _layoutDefaultService: LayoutDefaultService
     ) {
         super(injector);
 
@@ -32,6 +33,7 @@ export class AppComponent extends AppComponentBase implements OnInit {
 
     ngOnInit(): void {
         this.installationMode = UrlHelper.isInstallUrl(location.href);
+        this._layoutDefaultService.setOptions({hideAside: this.installationMode, hideHeader: this.installationMode});
 
         if (this.appSession.application) {
             SignalRHelper.initSignalR(() => {

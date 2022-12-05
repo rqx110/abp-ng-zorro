@@ -1,6 +1,6 @@
 # About
 
-This project uses ng-zorro-antd v13.x([https://ng.ant.design](https://ng.ant.design)) as [ASP.NET Zero](https://aspnetzero.com/) front-end template. Compatible with ASP.NET zero template v8.9+.
+This project uses ng-zorro-antd v14.x([https://ng.ant.design](https://ng.ant.design)) as [ASP.NET Zero](https://aspnetzero.com/) front-end template.
 
 # Usage
 1. [download](https://aspnetzero.com/Download) the project template. (Must be purchased first.)

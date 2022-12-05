@@ -46,8 +46,7 @@
               "node_modules/push.js/bin/push.js",
               "src/assets/abp-web-resources/abp.js"
             ],
-            "allowedCommonJsDependencies": [
-            ],
+            "allowedCommonJsDependencies": [],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "node_modules/"
@@ -156,6 +155,5 @@
         }
       }
     }
-  },
-  "defaultProject": "abp-zero-template"
+  }
 }
