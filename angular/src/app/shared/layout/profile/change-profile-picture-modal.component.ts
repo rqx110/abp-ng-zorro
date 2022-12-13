@@ -20,7 +20,7 @@ export class ChangeProfilePictureModalComponent extends ModalComponentBase imple
 
     maxProfilPictureBytesUserFriendlyValue = 5;
     private temporaryPictureFileName: string;
-    private _uploaderOptions: FileUploaderOptions = {};
+    private _uploaderOptions: FileUploaderOptions = { url: '' };
 
     imageChangedEvent: any = '';
 
