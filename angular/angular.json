@@ -19,7 +19,9 @@
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "preserveSymlinks": true,
             "assets": [
@@ -46,7 +48,12 @@
               "node_modules/push.js/bin/push.js",
               "src/assets/abp-web-resources/abp.js"
             ],
-            "allowedCommonJsDependencies": [],
+            "allowedCommonJsDependencies": [
+              "file-saver",
+              "extend",
+              "push.js",
+              "localforage"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "node_modules/"
@@ -110,10 +117,11 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
             "styles": [
               "src/styles.less"
             ],
