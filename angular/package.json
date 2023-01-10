@@ -35,7 +35,7 @@
     "lodash-es": "^4.17.21",
     "luxon": "^3.2.1",
     "msal": "^1.4.16",
-    "ng-zorro-antd": "^15.0.0",
+    "ng-zorro-antd": "^15.0.1",
     "ng2-file-upload": "^3.0.0",
     "ngx-image-cropper": "^6.3.2",
     "push.js": "1.0.12",

@@ -6413,6 +6413,16 @@ ng-zorro-antd@^15.0.0:
     date-fns "^2.16.1"
     tslib "^2.3.0"
 
+ng-zorro-antd@^15.0.1:
+  version "15.0.1"
+  resolved "https://registry.yarnpkg.com/ng-zorro-antd/-/ng-zorro-antd-15.0.1.tgz#f0ec69974fc5d30a4b1538215a8114cb6b4aee55"
+  integrity sha512-egamL9n5xhovE2pEkRuEHD67n4f/4Zd82yiPvadWsB9OXdiCHr3lfsifK71hxmDsb8kVuUJby5Enx/OA65IPWA==
+  dependencies:
+    "@angular/cdk" "^15.0.0"
+    "@ant-design/icons-angular" "^15.0.0"
+    date-fns "^2.16.1"
+    tslib "^2.3.0"
+
 ng2-file-upload@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmmirror.com/ng2-file-upload/-/ng2-file-upload-3.0.0.tgz#55ce8752a93cf234a754fe1009ceff40c625582c"
