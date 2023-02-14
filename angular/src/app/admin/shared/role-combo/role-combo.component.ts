@@ -9,6 +9,7 @@ import {
 import {
     RoleServiceProxy,
     RoleListDto,
+    GetRolesInput,
 } from '@shared/service-proxies/service-proxies';
 import { AppComponentBase } from '@shared/common/app-component-base';
 
@@ -36,7 +37,7 @@ export class RoleComboComponent extends AppComponentBase implements OnInit {
     }
 
     ngOnInit(): void {
-        this._roleService.getRoles(undefined).subscribe(result => {
+        this._roleService.getRoles(new GetRolesInput({permissions: []})).subscribe(result => {
             this.roles = result.items;
         });
     }

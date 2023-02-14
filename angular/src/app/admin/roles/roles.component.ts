@@ -6,6 +6,7 @@ import {
 import {
     RoleListDto,
     RoleServiceProxy,
+    GetRolesInput,
 } from '@shared/service-proxies/service-proxies';
 import { CreateOrEditRoleModalComponent } from './create-or-edit-role-modal.component';
 import { finalize } from 'rxjs/operators';
@@ -28,7 +29,7 @@ export class RolesComponent extends PagedListingComponentBase<RoleListDto> {
         pageNumber: number,
         finishedCallback: () => void,
     ): void {
-        this._roleService.getRoles(this.selectedPermissions)
+        this._roleService.getRoles(new GetRolesInput({permissions: this.selectedPermissions}))
             .pipe(finalize(finishedCallback))
             .subscribe(result => {
                 this.dataList = result.items;

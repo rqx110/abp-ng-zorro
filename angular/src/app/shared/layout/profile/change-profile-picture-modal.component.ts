@@ -20,7 +20,7 @@ export class ChangeProfilePictureModalComponent extends ModalComponentBase imple
 
     maxProfilPictureBytesUserFriendlyValue = 5;
     private temporaryPictureFileName: string;
-    private _uploaderOptions: FileUploaderOptions = {};
+    private _uploaderOptions: FileUploaderOptions = { url: '' };
 
     imageChangedEvent: any = '';
 
@@ -87,10 +87,6 @@ export class ChangeProfilePictureModalComponent extends ModalComponentBase imple
     updateProfilePicture(fileToken: string): void {
         const input = new UpdateProfilePictureInput();
         input.fileToken = fileToken;
-        input.x = 0;
-        input.y = 0;
-        input.width = 0;
-        input.height = 0;
 
         this.saving = true;
         this._profileService.updateProfilePicture(input)

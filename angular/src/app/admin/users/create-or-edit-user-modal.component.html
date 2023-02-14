@@ -99,7 +99,7 @@
                     </nz-form-label>
                     <nz-form-control [nzErrorTip]="passwordValidationTpl" nzHasFeedback>
                         <input nz-input type="password" #Password="ngModel" id="Password" name="Password"
-                            [(ngModel)]="user.password" placeholder="{{'Password' | localize}}" minlength="8"
+                            [(ngModel)]="user.password" placeholder="{{'Password' | localize}}"
                             validateEqual="PasswordRepeat" reverse="true" [required]="!user.id && !setRandomPassword"
                             maxlength="32" [requireDigit]="passwordComplexitySetting.requireDigit"
                             [requireLowercase]="passwordComplexitySetting.requireLowercase"

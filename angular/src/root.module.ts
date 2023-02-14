@@ -87,7 +87,7 @@ function getDocumentOrigin() {
 function registerNgZorroLocales(injector: Injector) {
     if (shouldLoadLocale()) {
         let ngZorroLcale = convertAbpLocaleToNgZorroLocale(abp.localization.currentLanguage.name);
-        import(`ng-zorro-antd/esm2015/i18n/languages/${ngZorroLcale}.js`)
+        import(`/node_modules/ng-zorro-antd/esm2020/i18n/languages/${ngZorroLcale}.mjs`)
             .then(module => {
                 let nzI18nService = injector.get(NzI18nService);
                 nzI18nService.setLocale(module.default);
@@ -98,7 +98,7 @@ function registerNgZorroLocales(injector: Injector) {
 function registerLocales(resolve: (value?: boolean | Promise<boolean>) => void, reject: any) {
     if (shouldLoadLocale()) {
         let angularLocale = convertAbpLocaleToAngularLocale(abp.localization.currentLanguage.name);
-        import(`@angular/common/locales/${angularLocale}.js`)
+        import(`/node_modules/@angular/common/locales/${angularLocale}.mjs`)
             .then(module => {
                 registerLocaleData(module.default);
                 resolve(true);

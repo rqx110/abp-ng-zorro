@@ -57,7 +57,6 @@ import { SharedModule } from '@shared/shared.module';
         ValidateTwoFactorCodeComponent,
         SessionLockScreenComponent
     ],
-    entryComponents: [TenantChangeModalComponent],
     providers: [
         LoginService,
         AccountRouteGuard,
