@@ -70,9 +70,11 @@
             <tbody>
                 <tr *ngFor="let item of ajaxTable.data">
                     <td>
-                        <a *ngIf="item.formattedNotification.url" href="{{item.formattedNotification.url}}">{{truncateString(item.formattedNotification.text,
+                        <a *ngIf="item.formattedNotification.url"
+                            href="{{item.formattedNotification.url}}">{{truncateString(item.formattedNotification.text,
                             120)}}</a>
-                        <span *ngIf="!item.formattedNotification.url" title="{{item.formattedNotification.text}}">{{truncateString(item.formattedNotification.text,
+                        <span *ngIf="!item.formattedNotification.url"
+                            title="{{item.formattedNotification.text}}">{{truncateString(item.formattedNotification.text,
                             120)}}</span>
                     </td>
                     <td>
